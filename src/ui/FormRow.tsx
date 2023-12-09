@@ -1,12 +1,18 @@
-import AddFormLabel from "./AddFormLabel";
+import FormLabel from "./FormLabel";
 
-function FormRow({name, label, children}) {
+type Props = {
+	name: string;
+	label: string;
+	children: React.ReactNode;
+};
+
+function FormRow({name, label, children}: Props) {
 	return (
-		<AddFormLabel name={name} label={label}>
-			<div className='flex gap-3'>
+		<FormLabel name={name} label={label}>
+			<div className=' gap-3 col-start-2 col-end-5 grid grid-cols-6'>
 				{children}
 			</div>
-		</AddFormLabel>
+		</FormLabel>
 	);
 }
 

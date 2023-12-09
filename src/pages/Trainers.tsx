@@ -24,7 +24,7 @@ function Trainers() {
 			) : (
 				<>
 					<TrainersTable />
-					<Button type='add' handleClick={() => setShowForm(!showForm)}>
+					<Button styleType='add' handleClick={() => setShowForm(!showForm)}>
 						Dodaj trenera
 					</Button>
 				</>

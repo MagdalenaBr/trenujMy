@@ -8,9 +8,9 @@ type Props = {
 };
 
 const styles =
-	"self-center w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-green-800";
+	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-green-800 col-start-1 col-end-4";
 
-function AddFormInput({ name, type, style, register }: Props) {
+function FormInput({ name, type, style, register }: Props) {
 	if (name === "name" || name === "category")
 		return (
 			<input
@@ -28,6 +28,10 @@ function AddFormInput({ name, type, style, register }: Props) {
 				className={`${styles} ${style}`}
 				{...register(name, {
 					required: "To pole jest wymagane",
+					pattern: {
+						value: /^(0|[1-9]\d*)(\.\d+)?$/,
+						message: "Podana kwota jest nieprawidłowa.",
+					},
 					minLength: {
 						value: 2,
 						message: "Minimalna cena wynosi 10zł.",
@@ -50,14 +54,6 @@ function AddFormInput({ name, type, style, register }: Props) {
 				})}
 			/>
 		);
-	// return (
-	// 	<input
-	// 		id={name}
-	// 		type={type}
-	// 		className={`self-center w-80 h-9 rounded-md font-normal text-sm ${style} border-2 focus:outline-none focus:ring-2 focus:ring-green-800 `}
-	// 		{...register(name, { required: "To pole jest wymagane" })}
-	// 	/>
-	// );
 }
 
-export default AddFormInput;
+export default FormInput;

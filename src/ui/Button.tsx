@@ -11,8 +11,8 @@ function Button({ children, styleType, type, handleClick }: Props) {
 			onClick={handleClick}
 			className={`px-4 py-2 rounded-lg font-semibold mt-3 tracking-wider ${
 				styleType === "add"
-					? " bg-green-800 text-green-50 4 px-8 "
-					: "bg-green-50 text-green-800 border-2 border-green-800"
+					? " bg-green-900 text-green-50 4 px-8 "
+					: "bg-green-50 text-green-900 border-2 border-green-900"
 			} `}>
 			{children}
 		</button>
