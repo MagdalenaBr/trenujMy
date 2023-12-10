@@ -1,12 +1,11 @@
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
 
 type TrainersType = {
-	category: string;
-	image: string;
-	id: number;
 	name: string;
+	category: string;
+	price: string;
 	phone: number;
-	price: number;
+	photo: string;
 }[];
 
 export async function getTrainers(): Promise<TrainersType> {
@@ -15,8 +14,11 @@ export async function getTrainers(): Promise<TrainersType> {
 	return trainers;
 }
 
-export async function addTrainers(newTrainer) :Promise<TrainersType> {
-	console.log(newTrainer);
+export async function addTrainers(
+	newTrainer: TrainersType
+): Promise<TrainersType> {
+
+	const imagePath = `${supabaseUrl}/storage/v1/object/public/trainers-image/`
 	const { data, error } = await supabase
 		.from("trainers")
 		.insert([newTrainer])

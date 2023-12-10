@@ -3,9 +3,8 @@ import FormInput from "../../ui/FormInput";
 import Button from "../../ui/Button";
 import Overlay from "../../ui/Overlay";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { addTrainers } from "../../services/apiTrainers";
 import FormRow from "../../ui/FormRow";
-import { useMutation } from "@tanstack/react-query";
+import { useCreateTrainer } from "./useCreateTrainer";
 
 type Props = {
 	showForm: boolean;
@@ -18,21 +17,24 @@ interface IFormInputs {
 	phone: number;
 	photo: string;
 }
+[];
 
 function AddTrainerForm({ showForm, setShowForm }: Props) {
+	const { register, handleSubmit, formState } = useForm();
+	const { errors } = formState;
+	const { createTrainer } = useCreateTrainer();
+
+	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
+
+		const image =  newTrainer.photo[0].name
+		console.log(image);
+		createTrainer(newTrainer);
+		setShowForm(!showForm);
+	};
+
 
 
 	
-	const { register, handleSubmit, formState } = useForm();
-	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
-		addTrainers(newTrainer);
-		setShowForm(!showForm);
-	};
-	const { errors } = formState;
-	console.log(errors.name);
-	function onError(err) {FormInput
-		console.log(err);
-	}
 	return createPortal(
 		<Overlay>
 			<div className='bg-neutral-100 py-6 px-10 rounded-md'>

@@ -20,6 +20,15 @@ function FormInput({ name, type, style, register }: Props) {
 				{...register(name, { required: "To pole jest wymagane." })}
 			/>
 		);
+	if (name === "photo")
+		return (
+			<input
+				id={name}
+				type={type}
+				className={`${styles} ${style}`}
+				{...register(name)}
+			/>
+		);
 	if (name === "price")
 		return (
 			<input
