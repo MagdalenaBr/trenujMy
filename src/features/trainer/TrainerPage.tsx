@@ -1,8 +1,9 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Container from "../../ui/Container";
 import { useQuery } from "@tanstack/react-query";
 import { getTrainers } from "../../services/apiTrainers";
 import Button from "../../ui/Button";
+import Schedule from "../schedule/Schedule";
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const navigate = useNavigate();
@@ -16,7 +17,7 @@ function TrainerPage() {
 
 	if (trainer === undefined) return;
 
-	function onClick(e) {
+	function onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
 		navigate(-1);
 	}
@@ -28,27 +29,24 @@ function TrainerPage() {
 					<Button styles='self-end mx-4' handleClick={e => onClick(e)}>
 						Back
 					</Button>
-					<div className="flex flex-col gap-5 self-start">
+					<div className='flex flex-col gap-5 self-start'>
 						<h2 className='text-2xl font-bold'>{trainer[0].name}</h2>
-						<div className="flex gap-2">
-							<h3 className="font-semibold">Kategoria:</h3>
+						<div className='flex gap-2'>
+							<h3 className='font-semibold'>Kategoria:</h3>
 							<span>{trainer[0].category}</span>
 						</div>
-						<div  className="flex gap-2">
-							<h3 className="font-semibold">Telefon:</h3>
+						<div className='flex gap-2'>
+							<h3 className='font-semibold'>Telefon:</h3>
 							<span>{trainer[0].phone}</span>
 						</div>
-						<div  className="flex gap-2">
-							<h3 className="font-semibold">Cena:</h3>
+						<div className='flex gap-2'>
+							<h3 className='font-semibold'>Cena:</h3>
 							<span>{trainer[0].price} zł</span>
 						</div>
 					</div>
-					<div>
-						<h3>Terminarz:</h3>
-						<p>tabela</p>
-					</div>
 				</div>
 			</div>
+			<Schedule />
 		</Container>
 	);
 }

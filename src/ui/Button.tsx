@@ -1,6 +1,6 @@
 type Props = {
 	children: string;
-	styleType: string;
+	styleType?: string;
 	handleClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 	type?: "submit" | "reset";
 	styles?: string

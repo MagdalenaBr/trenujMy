@@ -31,16 +31,17 @@ export async function addTrainers(newTrainer: TrainersType) {
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);
-		
-	if(storageError) throw new Error('Wystąpił błąd, zdjęcie nie zostało dodane.')
 
-	/// added trainer
-	// let { data: trainers, error: newTrainerError } = await supabase.from("trainers").select(newTrainer.id);
-
-	// ///delete all row when is a problem with uploading image
-	// if (storageError) {
-	// 	await supabase.from("trainers").delete().eq("id", data.id);
-	// 	throw new Error("Nie można załadowaać danych");
-	// }
+	if (storageError)
+		throw new Error("Wystąpił błąd, zdjęcie nie zostało dodane.");
 	return data;
+}
+
+export async function deleteTrainer(id) {
+	console.log(id);
+	const { error } = await supabase.from("trainers").delete().eq("id", id);
+	if (error) {
+		console.log(error);
+		throw new Error("Trener nie mógł zostać usunięty");
+	}
 }
