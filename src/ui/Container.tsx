@@ -4,7 +4,7 @@ type Props = {
 
 function Container({ children }: Props) {
 	return (
-		<div className='w-[60%] mx-auto bg-neutral-100 rounded divide-y  border border-neutral-30 overflow-hidden'>
+		<div className='w-[60%] mx-auto bg-violet-50 rounded  border border-neutral-30 overflow-hidden'>
 			{children}
 		</div>
 	);

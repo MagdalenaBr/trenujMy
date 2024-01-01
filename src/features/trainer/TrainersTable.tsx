@@ -9,14 +9,13 @@ function TrainersTable() {
 		queryKey: ["trainers"],
 		queryFn: getTrainers,
 	});
-
 	return (
 		<Table>
-			<Table.Header>
+			{/* <Table.Header>
 				<p className='col-[1_/_2]'>Trener</p>
 				<p>Kategoria</p>
 				<p>Cena</p>
-			</Table.Header>
+			</Table.Header> */}
 			{trainers ? (
 				trainers.map(trainer => (
 					<Table.Row key={trainer.id}>
@@ -29,8 +28,8 @@ function TrainersTable() {
 							<h2>{trainer.name}</h2>
 						</div>
 						<p>{trainer.category}</p>
-						<p>{trainer.price}</p>
-						<TrainerOptions />
+						<p>{trainer.price} zł</p>
+						<TrainerOptions id={trainer.id} />
 					</Table.Row>
 				))
 			) : (

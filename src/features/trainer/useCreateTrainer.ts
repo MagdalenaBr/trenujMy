@@ -8,7 +8,7 @@ interface IFormInputs {
 	category: string;
 	price: string;
 	phone: number;
-	photo: string;
+	image: string;
 }
 
 export function useCreateTrainer() {
@@ -25,6 +25,5 @@ export function useCreateTrainer() {
 			toast.error('Wystąpił błąd. Spróbuj jeszcze raz!')
 		}
 	});
-
 	return { createTrainer };
 }

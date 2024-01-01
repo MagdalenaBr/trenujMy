@@ -5,6 +5,7 @@ import Spinner from "../ui/Spinner";
 import AddTrainerForm from "../features/trainer/AddTrainerForm";
 import Button from "../ui/Button";
 import TrainersTable from "../features/trainer/TrainersTable";
+import MainContainer from "../ui/MainContainer";
 
 function Trainers() {
 	// const trainers = getTrainers();
@@ -18,7 +19,7 @@ function Trainers() {
 	});
 
 	return (
-		<>
+		<MainContainer title='Trenerzy'>
 			{isLoading ? (
 				<Spinner />
 			) : (
@@ -30,8 +31,10 @@ function Trainers() {
 				</>
 			)}
 
-			{showForm && <AddTrainerForm showForm={showForm} setShowForm={setShowForm}/>}
-		</>
+			{showForm && (
+				<AddTrainerForm showForm={showForm} setShowForm={setShowForm} />
+			)}
+		</MainContainer>
 
 		// <AddTrainerForm />
 	);

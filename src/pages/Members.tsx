@@ -1,9 +1,12 @@
-import MembersTable from "../features/members/MembersTable"
+import MainContainer from "../ui/MainContainer";
 
 function Members() {
-    return (
-        <MembersTable/>
-    )
+	return (
+		<MainContainer title='Klienci'>
+			<div></div>
+		</MainContainer>
+		// <MembersTable/>
+	);
 }
 
-export default Members
+export default Members;

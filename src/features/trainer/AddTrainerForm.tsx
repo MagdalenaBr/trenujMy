@@ -15,7 +15,7 @@ interface IFormInputs {
 	category: string;
 	price: string;
 	phone: number;
-	photo: string;
+	image: string;
 }
 [];
 
@@ -25,16 +25,10 @@ function AddTrainerForm({ showForm, setShowForm }: Props) {
 	const { createTrainer } = useCreateTrainer();
 
 	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
-
-		const image =  newTrainer.photo[0].name
-		console.log(image);
-		createTrainer(newTrainer);
+		createTrainer({ ...newTrainer, image: newTrainer.image[0] });
 		setShowForm(!showForm);
 	};
-
-
-
-	
+/// rozwiązanie submit https://stackoverflow.com/questions/71275687/type-of-handlesubmit-parameter-in-react-hook-form
 	return createPortal(
 		<Overlay>
 			<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -74,14 +68,15 @@ function AddTrainerForm({ showForm, setShowForm }: Props) {
 					</FormRow>
 
 					<label
-						htmlFor='photo'
-						className={`font-semibold bg-green-900 text-green-50  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4`}>
+						htmlFor='image'
+						className={`font-semibold bg-violet-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4`}>
 						Dodaj zdjęcie
 						<FormInput
 							type='file'
 							style='overflow-hidden w-[0.1px] h-[0.1px] absolute z-[-1]'
 							register={register}
-							name='photo'
+							name='image'
+							accept="image/png, image/jpeg"
 						/>
 					</label>
 

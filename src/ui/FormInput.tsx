@@ -5,12 +5,13 @@ type Props = {
 	type: string;
 	style?: string;
 	register: UseFormRegister<FieldValues>;
+	accept?: string;
 };
 
 const styles =
-	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-green-800 col-start-1 col-end-4";
+	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-violet-800 col-start-1 col-end-4";
 
-function FormInput({ name, type, style, register }: Props) {
+function FormInput({ name, type, style, accept, register }: Props) {
 	if (name === "name" || name === "category")
 		return (
 			<input
@@ -20,12 +21,13 @@ function FormInput({ name, type, style, register }: Props) {
 				{...register(name, { required: "To pole jest wymagane." })}
 			/>
 		);
-	if (name === "photo")
+	if (name === "image")
 		return (
 			<input
 				id={name}
 				type={type}
 				className={`${styles} ${style}`}
+				accept={accept}
 				{...register(name)}
 			/>
 		);

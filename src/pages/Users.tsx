@@ -1,5 +1,13 @@
+import MainContainer from "../ui/MainContainer";
+
+
+
 function Users() {
-	return <div>użytkkownicy</div>;
+	return (
+		<MainContainer title='Użytkownicy'>
+			<div></div>
+		</MainContainer>
+	);
 }
 
 export default Users;
