@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addTrainers } from "../../services/apiTrainers";
+import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
 
 
@@ -14,7 +14,7 @@ interface IFormInputs {
 export function useCreateTrainer() {
 	const queryClient = useQueryClient();
 	const { mutate: createTrainer } = useMutation({
-		mutationFn: (newTrainers: IFormInputs) => addTrainers(newTrainers),
+		mutationFn: (newTrainers: IFormInputs) => addOrEditTrainers(newTrainers),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["trainers"],

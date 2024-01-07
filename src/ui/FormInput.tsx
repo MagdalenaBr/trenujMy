@@ -9,7 +9,7 @@ type Props = {
 };
 
 const styles =
-	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-violet-800 col-start-1 col-end-4";
+	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 
 function FormInput({ name, type, style, accept, register }: Props) {
 	if (name === "name" || name === "category")

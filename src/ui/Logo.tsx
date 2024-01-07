@@ -4,9 +4,9 @@ function Logo() {
 	return (
 		<div>
 			<h1 className='flex gap-1 items-center text-3xl'>
-				TrenujeMy
+				TrenujMy
 				<span>
-					<LiaCatSolid className='text-4xl text-violet-800' />
+					<LiaCatSolid className='text-4xl text-slate-600' />
 				</span>
 			</h1>
 		</div>

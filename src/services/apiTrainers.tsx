@@ -10,9 +10,9 @@ type TrainersType = {
 	image: File | null;
 };
 
-type IdType ={
-	id?: number
-}
+type IdType = {
+	id?: number;
+};
 
 export async function getTrainers(): Promise<TrainersType[]> {
 	const { data: trainers, error } = await supabase.from("trainers").select("*");
@@ -20,22 +20,33 @@ export async function getTrainers(): Promise<TrainersType[]> {
 	return trainers;
 }
 
-export async function addTrainers(newTrainer: TrainersType, id: IdType) {
-	console.log(id);
-	console.log(newTrainer);
-	if (newTrainer.image === null) return;
-	const imageName = uuidv4() + newTrainer.image.name;
-	const imagePath = `${supabaseUrl}/storage/v1/object/public/trainersimage/${imageName}`;
+export async function addOrEditTrainers(newTrainer: TrainersType, id: IdType) {
 
-	const { data, error } = await supabase
-		.from("trainers")
-		.insert([{ ...newTrainer, image: imagePath }])
-		.select()
-		.single();
+	if (newTrainer.image === null) return;
+
+	const hasImage = typeof newTrainer.image === "string";
+	const imageName = uuidv4() + newTrainer.image.name;
+
+	const imagePath = hasImage
+		? newTrainer.image
+		: `${supabaseUrl}/storage/v1/object/public/trainersimage/${imageName}`;
+
+	let query = supabase.from("trainers");
+
+	//ADD TRAINER
+	if (!id) query = query.insert([{ ...newTrainer, image: imagePath }]);
+	//EDIT TRAINER
+	if (id)
+		query = query.update({ ...newTrainer, image: imagePath }).eq("id", id);
+
+	const { data, error } = await query.select().single();
 
 	if (error) throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");
 
+	if (hasImage) return data;
+
 	///upload image
+	
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);
@@ -46,20 +57,10 @@ export async function addTrainers(newTrainer: TrainersType, id: IdType) {
 }
 
 export async function deleteTrainer(id) {
-	console.log(id);
+	
 	const { error } = await supabase.from("trainers").delete().eq("id", id);
 	if (error) {
-		console.log(error);
 		throw new Error("Wystapił błąd. Trener nie został usunięty.");
 	}
 }
 
-export async function updateTrainer(id, newTrainer) {
-	const { data, error } = await supabase
-		.from("trainers")
-		.update({ ...newTrainer })
-		.eq("id", id)
-		.select();
-
-	return data;
-}

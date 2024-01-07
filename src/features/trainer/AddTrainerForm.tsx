@@ -5,7 +5,7 @@ import Overlay from "../../ui/Overlay";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateTrainer } from "./useCreateTrainer";
-import { useContext, useState } from "react";
+import { useEditTrainer } from "./useEditTrainer";
 
 // type Props = {
 // 	showForm: boolean;
@@ -22,19 +22,27 @@ interface IFormInputs {
 
 function AddTrainerForm({ trainer = {}, onCloseForm }) {
 	const { id, ...trainerEditData } = trainer;
-	console.log(id);
+
 	const isEditingSession = Boolean(id);
+	console.log(isEditingSession);
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? trainerEditData : {},
 	});
 
 	const { errors } = formState;
 	const { createTrainer } = useCreateTrainer();
+	const { editTrainer } = useEditTrainer();
 
-	// const [showForm, setShowForm]  = useState(false);
-	// console.log(showForm, setShowForm);
 	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
-		createTrainer({ ...newTrainer, image: newTrainer.image[0] }, id);
+		const image =
+			typeof newTrainer.image === "string"
+				? newTrainer.image
+				: newTrainer.image[0];
+		if (isEditingSession) {
+			editTrainer({ newTrainersData: { ...newTrainer, image }, id });
+		} else {
+			createTrainer({ ...newTrainer, image });
+		}
 		onCloseForm();
 	};
 	/// rozwiązanie submit https://stackoverflow.com/questions/71275687/type-of-handlesubmit-parameter-in-react-hook-form
@@ -78,7 +86,7 @@ function AddTrainerForm({ trainer = {}, onCloseForm }) {
 
 					<label
 						htmlFor='image'
-						className={`font-semibold bg-violet-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4`}>
+						className={`font-semibold bg-slate-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4`}>
 						Dodaj zdjęcie
 						<FormInput
 							type='file'
