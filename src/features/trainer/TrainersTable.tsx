@@ -3,8 +3,13 @@ import TrainerOptions from "../../ui/TrainerOptions";
 import Table from "../../ui/Table";
 import { useQuery } from "@tanstack/react-query";
 import { getTrainers } from "../../services/apiTrainers";
+import { ShowFormContext } from "../../pages/Trainers";
+import { useContext, useState } from "react";
+import AddTrainerForm from "./AddTrainerForm";
+import TrainerRow from "./TrainerRow";
 
 function TrainersTable() {
+	// const [showForm, onCloseForm] = useState(false);
 	const { data: trainers } = useQuery({
 		queryKey: ["trainers"],
 		queryFn: getTrainers,
@@ -29,7 +34,8 @@ function TrainersTable() {
 						</div>
 						<p>{trainer.category}</p>
 						<p>{trainer.price} zł</p>
-						<TrainerOptions id={trainer.id} />
+						<TrainerOptions trainer={trainer}/>
+						{/* {showForm && <AddTrainerForm trainer={trainer} />} */}
 					</Table.Row>
 				))
 			) : (

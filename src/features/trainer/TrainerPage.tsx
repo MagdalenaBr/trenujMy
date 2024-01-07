@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getTrainers } from "../../services/apiTrainers";
 import Button from "../../ui/Button";
 import Schedule from "../schedule/Schedule";
+import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
+
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const navigate = useNavigate();
@@ -27,7 +29,7 @@ function TrainerPage() {
 				<img src={trainer[0].image} alt='' className='w-96 h-96 object-cover' />
 				<div className='flex flex-col w-[100%]'>
 					<Button styles='self-end mx-4' handleClick={e => onClick(e)}>
-						Back
+						<HiOutlineArrowSmallLeft className='text-2xl' />
 					</Button>
 					<div className='flex flex-col gap-5 self-start'>
 						<h2 className='text-2xl font-bold'>{trainer[0].name}</h2>
@@ -46,6 +48,7 @@ function TrainerPage() {
 					</div>
 				</div>
 			</div>
+			<Button styleType='add'>Zarezerwuj trenera</Button>
 			<Schedule />
 		</Container>
 	);

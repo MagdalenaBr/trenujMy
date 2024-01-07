@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { getTrainers } from "../services/apiTrainers";
 import Spinner from "../ui/Spinner";
 import AddTrainerForm from "../features/trainer/AddTrainerForm";
 import Button from "../ui/Button";
 import TrainersTable from "../features/trainer/TrainersTable";
 import MainContainer from "../ui/MainContainer";
+
+
 
 function Trainers() {
 	// const trainers = getTrainers();
@@ -20,23 +22,21 @@ function Trainers() {
 
 	return (
 		<MainContainer title='Trenerzy'>
-			{isLoading ? (
-				<Spinner />
-			) : (
-				<>
-					<TrainersTable />
-					<Button styleType='add' handleClick={() => setShowForm(!showForm)}>
-						Dodaj trenera
-					</Button>
-				</>
-			)}
+				{isLoading ? (
+					<Spinner />
+				) : (
+					<>
+						<TrainersTable />
+						<Button styleType='add' handleClick={() => setShowForm(!showForm)}>
+							Dodaj trenera
+						</Button>
+					</>
+				)}
 
-			{showForm && (
-				<AddTrainerForm showForm={showForm} setShowForm={setShowForm} />
-			)}
+				{showForm && (
+					<AddTrainerForm onCloseForm={()=> setShowForm(false)}/>
+				)}
 		</MainContainer>
-
-		// <AddTrainerForm />
 	);
 }
 

@@ -5,11 +5,12 @@ import Overlay from "../../ui/Overlay";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateTrainer } from "./useCreateTrainer";
+import { useContext, useState } from "react";
 
-type Props = {
-	showForm: boolean;
-	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-};
+// type Props = {
+// 	showForm: boolean;
+// 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
+// };
 interface IFormInputs {
 	name: string;
 	category: string;
@@ -19,16 +20,24 @@ interface IFormInputs {
 }
 [];
 
-function AddTrainerForm({ showForm, setShowForm }: Props) {
-	const { register, handleSubmit, formState } = useForm();
+function AddTrainerForm({ trainer = {}, onCloseForm }) {
+	const { id, ...trainerEditData } = trainer;
+	console.log(id);
+	const isEditingSession = Boolean(id);
+	const { register, handleSubmit, formState } = useForm({
+		defaultValues: isEditingSession ? trainerEditData : {},
+	});
+
 	const { errors } = formState;
 	const { createTrainer } = useCreateTrainer();
 
+	// const [showForm, setShowForm]  = useState(false);
+	// console.log(showForm, setShowForm);
 	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
-		createTrainer({ ...newTrainer, image: newTrainer.image[0] });
-		setShowForm(!showForm);
+		createTrainer({ ...newTrainer, image: newTrainer.image[0] }, id);
+		onCloseForm();
 	};
-/// rozwiązanie submit https://stackoverflow.com/questions/71275687/type-of-handlesubmit-parameter-in-react-hook-form
+	/// rozwiązanie submit https://stackoverflow.com/questions/71275687/type-of-handlesubmit-parameter-in-react-hook-form
 	return createPortal(
 		<Overlay>
 			<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -76,7 +85,7 @@ function AddTrainerForm({ showForm, setShowForm }: Props) {
 							style='overflow-hidden w-[0.1px] h-[0.1px] absolute z-[-1]'
 							register={register}
 							name='image'
-							accept="image/png, image/jpeg"
+							accept='image/png, image/jpeg'
 						/>
 					</label>
 
@@ -84,7 +93,7 @@ function AddTrainerForm({ showForm, setShowForm }: Props) {
 						<Button
 							styleType='close'
 							type='reset'
-							handleClick={() => setShowForm(!showForm)}>
+							handleClick={() => onCloseForm()}>
 							Anuluj
 						</Button>
 						<Button styleType='add'>Dodaj</Button>
