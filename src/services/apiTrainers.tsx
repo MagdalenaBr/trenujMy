@@ -7,11 +7,7 @@ type TrainersType = {
 	category: string;
 	price: string;
 	phone: number;
-	image: File | null;
-};
-
-type IdType = {
-	id?: number;
+	image: string | undefined;
 };
 
 export async function getTrainers(): Promise<TrainersType[]> {
@@ -20,12 +16,9 @@ export async function getTrainers(): Promise<TrainersType[]> {
 	return trainers;
 }
 
-export async function addOrEditTrainers(newTrainer: TrainersType, id: IdType) {
-
-	if (newTrainer.image === null) return;
-
+export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 	const hasImage = typeof newTrainer.image === "string";
-	const imageName = uuidv4() + newTrainer.image.name;
+	const imageName = uuidv4() + newTrainer?.image?.name;
 
 	const imagePath = hasImage
 		? newTrainer.image
@@ -46,7 +39,7 @@ export async function addOrEditTrainers(newTrainer: TrainersType, id: IdType) {
 	if (hasImage) return data;
 
 	///upload image
-	
+	if (newTrainer.image === undefined) return;
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);
@@ -56,11 +49,9 @@ export async function addOrEditTrainers(newTrainer: TrainersType, id: IdType) {
 	return data;
 }
 
-export async function deleteTrainer(id) {
-	
+export async function deleteTrainer(id: number) {
 	const { error } = await supabase.from("trainers").delete().eq("id", id);
 	if (error) {
 		throw new Error("Wystapił błąd. Trener nie został usunięty.");
 	}
 }
-

@@ -4,11 +4,12 @@ import toast from "react-hot-toast";
 
 
 interface IFormInputs {
+	id: number
 	name: string;
 	category: string;
 	price: string;
 	phone: number;
-	image: string;
+	image: string | undefined;
 }
 
 export function useCreateTrainer() {

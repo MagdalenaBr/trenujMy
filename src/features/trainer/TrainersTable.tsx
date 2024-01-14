@@ -13,11 +13,6 @@ function TrainersTable() {
 	});
 	return (
 		<Table>
-			{/* <Table.Header>
-				<p className='col-[1_/_2]'>Trener</p>
-				<p>Kategoria</p>
-				<p>Cena</p>
-			</Table.Header> */}
 			{trainers ? (
 				trainers.map(trainer => (
 					<Table.Row key={trainer.id}>
@@ -31,7 +26,7 @@ function TrainersTable() {
 						</div>
 						<p>{trainer.category}</p>
 						<p>{trainer.price} zł</p>
-						<TrainerOptions trainer={trainer}/>
+						<TrainerOptions trainer={trainer} />
 					</Table.Row>
 				))
 			) : (

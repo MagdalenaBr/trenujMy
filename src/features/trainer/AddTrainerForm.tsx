@@ -2,29 +2,38 @@ import { createPortal } from "react-dom";
 import FormInput from "../../ui/FormInput";
 import Button from "../../ui/Button";
 import Overlay from "../../ui/Overlay";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateTrainer } from "./useCreateTrainer";
 import { useEditTrainer } from "./useEditTrainer";
 
-// type Props = {
-// 	showForm: boolean;
-// 	setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-// };
 interface IFormInputs {
+	id: number;
 	name: string;
 	category: string;
 	price: string;
 	phone: number;
-	image: string;
+	image: string | undefined;
 }
 [];
+type Trainer = {
+	id: number
+	name: string;
+	category: string;
+	price: string;
+	phone: number;
+	image: string | undefined;
+};
 
-function AddTrainerForm({ trainer = {}, onCloseForm }) {
+type TrainerType = {
+	trainer: Trainer | object;
+	onCloseForm: () => void;
+};
+
+function AddTrainerForm({ trainer = {}, onCloseForm }: TrainerType) {
 	const { id, ...trainerEditData } = trainer;
 
 	const isEditingSession = Boolean(id);
-	console.log(isEditingSession);
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? trainerEditData : {},
 	});
@@ -33,11 +42,11 @@ function AddTrainerForm({ trainer = {}, onCloseForm }) {
 	const { createTrainer } = useCreateTrainer();
 	const { editTrainer } = useEditTrainer();
 
-	const onSubmit: SubmitHandler<IFormInputs> = newTrainer => {
+	const onSubmit = (newTrainer: IFormInputs) => {
 		const image =
 			typeof newTrainer.image === "string"
 				? newTrainer.image
-				: newTrainer.image[0];
+				: newTrainer.image?.[0];
 		if (isEditingSession) {
 			editTrainer({ newTrainersData: { ...newTrainer, image }, id });
 		} else {

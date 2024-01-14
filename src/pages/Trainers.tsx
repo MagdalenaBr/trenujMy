@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { getTrainers } from "../services/apiTrainers";
 import Spinner from "../ui/Spinner";
 import AddTrainerForm from "../features/trainer/AddTrainerForm";
@@ -10,9 +10,6 @@ import MainContainer from "../ui/MainContainer";
 
 
 function Trainers() {
-	// const trainers = getTrainers();
-	// console.log(trainers);
-
 	const [showForm, setShowForm] = useState(false);
 
 	const { isLoading } = useQuery({

@@ -1,10 +1,15 @@
-import { useContext } from "react";
 import TrainerOptions from "../../ui/TrainerOptions";
-import AddTrainerForm from "./AddTrainerForm";
-import { ShowFormContext } from "../../pages/Trainers";
 
-function TrainerRow({trainer}) {
-    const { showForm, setShowForm } = useContext(ShowFormContext);
+type TrainerType= {
+	trainer: {id: number
+	name: string;
+	category: string;
+	price: string;
+	phone: number;
+	image: string |undefined;}
+}
+
+function TrainerRow({trainer} : TrainerType) {
 	return <>
 		<div className='col-[1_/_2] flex items-center gap-3 '>
 			<img
@@ -17,7 +22,6 @@ function TrainerRow({trainer}) {
 		<p>{trainer.category}</p>
 		<p>{trainer.price} zł</p>
 		<TrainerOptions trainer={trainer} />
-		{showForm && <AddTrainerForm trainer={trainer} />}
 	</>;
 }
 export default TrainerRow;

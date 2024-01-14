@@ -35,7 +35,7 @@ function Header({ children }: PropsType) {
 function Row({ children }: PropsType) {
 	const { columns } = useContext(TableContext);
 	return (
-		<div role='row' className={`grid ${columns} items-center`}>
+		<div role='row' className={`grid ${columns} items-center py-1`}>
 			{children}
 		</div>
 	);

@@ -12,7 +12,7 @@ const styles =
 	"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 
 function FormInput({ name, type, style, accept, register }: Props) {
-	if (name === "name" || name === "category")
+	if (name === "name" || name === "category" || name === "gender" || name === "city")
 		return (
 			<input
 				id={name}
@@ -61,6 +61,21 @@ function FormInput({ name, type, style, accept, register }: Props) {
 					pattern: {
 						value: /^(?:[0+]48)?\d{9}$/,
 						message: "Wprowadź prawidłowy numer telefonu.",
+					},
+				})}
+			/>
+		);
+	if (name === "email")
+		return (
+			<input
+				id={name}
+				type={type}
+				className={`${styles} ${style}`}
+				{...register(name, {
+					required: "To pole jest wymagane",
+					pattern: {
+						value: /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
+						message: "Wprowadź prawidłowy adres e-mail.",
 					},
 				})}
 			/>
