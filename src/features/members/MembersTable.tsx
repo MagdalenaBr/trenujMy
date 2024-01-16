@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import { BsInfoLg } from "react-icons/bs";
+
 import { getMembers } from "../../services/apiMembers";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
-import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 
 function MembersTable() {
@@ -24,7 +25,8 @@ function MembersTable() {
 						<p>{member.name}</p>
 						<p>{member.email}</p>
 						<p>{member.phone}</p>
-						<HiOutlinePencilSquare className="text-2xl  text-slate-800 justify-self-end mx-3"/>
+						<BsInfoLg className="text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800"/>
+						
 					</Table.Row>
 				))
 			) : (
