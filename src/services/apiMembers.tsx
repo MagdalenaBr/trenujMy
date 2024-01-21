@@ -1,12 +1,14 @@
 import supabase from "./supabase";
 
 type MemberType = {
-	id: number;
+	id?: number;
 	email: string;
 	name: string;
 	phone: string;
 	gender: string;
 	city: string;
+	startGymMembership?: string
+	endGymMembership?: string
 };
 
 export async function getMembers(): Promise<MemberType[]> {

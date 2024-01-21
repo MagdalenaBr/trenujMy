@@ -4,7 +4,7 @@ import { BsInfoLg } from "react-icons/bs";
 import { getMembers } from "../../services/apiMembers";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
-
+import { Link } from "react-router-dom";
 
 function MembersTable() {
 	const { data: members } = useQuery({
@@ -25,8 +25,11 @@ function MembersTable() {
 						<p>{member.name}</p>
 						<p>{member.email}</p>
 						<p>{member.phone}</p>
-						<BsInfoLg className="text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800"/>
-						
+						<Link to={`/members/${member.id}`}>
+							<BsInfoLg
+								className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800'
+							/>
+						</Link>
 					</Table.Row>
 				))
 			) : (
