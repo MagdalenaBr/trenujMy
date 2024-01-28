@@ -2,12 +2,12 @@ import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
 type TrainersType = {
-	id: number;
+	id?: number;
 	name: string;
 	category: string;
 	price: string;
-	phone: number;
-	image: string | undefined;
+	phone: string;
+	image: string;
 };
 
 export async function getTrainers(): Promise<TrainersType[]> {

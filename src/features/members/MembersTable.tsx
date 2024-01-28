@@ -11,7 +11,7 @@ function MembersTable() {
 		queryKey: ["members"],
 		queryFn: getMembers,
 	});
-	console.log(members);
+
 	return (
 		<Table>
 			<Table.Header>

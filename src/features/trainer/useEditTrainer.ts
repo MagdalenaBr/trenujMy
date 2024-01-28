@@ -3,14 +3,14 @@ import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
 type TrainerTypes = {
 	newTrainersData: {
-		id: number
+		id?: number;
 		name: string;
 		category: string;
 		price: string;
-		phone: number;
-		image: string |undefined;
+		phone: string;
+		image: string;
 	};
-	id: number
+	id: number;
 };
 
 export function useEditTrainer() {
