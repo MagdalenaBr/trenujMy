@@ -8,7 +8,7 @@ type TrainerTypes = {
 		category: string;
 		price: string;
 		phone: string;
-		image: string;
+		image: any;
 	};
 	id: number;
 };

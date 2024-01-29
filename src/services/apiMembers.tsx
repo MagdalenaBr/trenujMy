@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 type MemberType = {
-	id?: number;
+	id: number;
 	email: string;
 	name: string;
 	phone: string;
@@ -24,4 +24,12 @@ export async function addMember(newMember: MemberType) {
 		.select();
 	if (error) throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
 	return data;
+}
+
+
+export async function deleteMember(id: number) {
+	const { error } = await supabase.from("members").delete().eq("id", id);
+	if (error) {
+		throw new Error("Wystapił błąd. Klient nie został usunięty.");
+	}
 }

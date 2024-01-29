@@ -6,7 +6,6 @@ import MainContainer from "../ui/MainContainer";
 import AddTrainer from "../features/trainer/AddTrainer";
 
 function Trainers() {
-
 	const { isLoading } = useQuery({
 		queryKey: ["trainers"],
 		queryFn: getTrainers,

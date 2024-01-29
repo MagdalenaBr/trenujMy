@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import {
 	HiOutlinePencil,
 	HiOutlineCalendar,
@@ -7,8 +6,10 @@ import {
 } from "react-icons/hi2";
 
 import { useDeleteTrainer } from "../features/trainer/useDeleteTrainer";
-
+import Modal from "./Modal";
 import AddTrainerForm from "../features/trainer/AddTrainerForm";
+
+import Button from "./Button";
 
 type TrainerTypes = {
 	trainer: {
@@ -17,35 +18,34 @@ type TrainerTypes = {
 		category: string;
 		price: string;
 		phone: string;
-		image: string;
+		image: any;
 	};
 };
 
 function TrainerOptions({ trainer }: TrainerTypes) {
-	const [showForm, setShowForm] = useState(false);
 	const id = trainer?.id;
 	const { deleteOneTrainer } = useDeleteTrainer();
 	if (!id) return null;
 	return (
-		<>
+		<Modal>
 			<div className='flex gap-1 text-2xl justify-self-end px-5  text-slate-800'>
 				<Link to={`/trainers/${id}`}>
 					<HiOutlineCalendar />
 				</Link>
-				<button onClick={() => setShowForm(!showForm)}>
-					<HiOutlinePencil />
-				</button>
+				<Modal.OpenButton openForm='trainer'>
+					<Button>
+						<HiOutlinePencil />
+					</Button>
+				</Modal.OpenButton>
+
 				<button onClick={() => deleteOneTrainer(id)}>
 					<HiOutlineTrash />
 				</button>
+				<Modal.Window formName='trainer'>
+					<AddTrainerForm trainer={trainer} />
+				</Modal.Window>
 			</div>
-			{showForm && (
-				<AddTrainerForm
-					trainer={trainer}
-					onCloseForm={() => setShowForm(false)}
-				/>
-			)}
-		</>
+		</Modal>
 	);
 }
 export default TrainerOptions;

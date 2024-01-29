@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import StyledButton from "../../ui/StyledButton";
 import Modal from "../../ui/Modal";
 import AddMemberForm from "./AddMemberForm";
 
@@ -9,7 +9,7 @@ function AddMember() {
 				<AddMemberForm />
 			</Modal.Window>
 			<Modal.OpenButton openForm='member'>
-				<Button styleType='add'>Dodaj klienta</Button>
+				<StyledButton styleType='add'>Dodaj klienta</StyledButton>
 			</Modal.OpenButton>
 		</Modal>
 	);

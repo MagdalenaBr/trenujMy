@@ -9,5 +9,5 @@ export const schema = yup.object().shape({
 		.string()
 		.required("Numer telefonu jest wymagany")
 		.matches(/^(?:[0+]48)?\d{9}$/, "Podany numer telefonu jest nieprawidłowy"),
-	image: yup.string().required("Zdjęcie jest wymagane"),
+	image: yup.mixed().required("Zdjęcie jest wymagane"),
 });

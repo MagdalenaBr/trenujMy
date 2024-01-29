@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-	id: yup.number(),
+	id: yup.number().required(),
 	name: yup.string().required("Imie i nazwisko jest wymagane"),
 	email: yup
 		.string()

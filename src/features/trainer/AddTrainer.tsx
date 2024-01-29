@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import StyledButton from "../../ui/StyledButton";
 import Modal from "../../ui/Modal";
 import AddTrainerForm from "./AddTrainerForm";
 
@@ -9,7 +9,7 @@ function AddTrainer() {
 				<AddTrainerForm />
 			</Modal.Window>
 			<Modal.OpenButton openForm='trainer'>
-				<Button styleType='add'>Dodaj trenera</Button>
+				<StyledButton styleType='add'>Dodaj trenera</StyledButton>
 			</Modal.OpenButton>
 		</Modal>
 	);

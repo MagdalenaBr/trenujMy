@@ -7,7 +7,7 @@ type TrainersType = {
 	category: string;
 	price: string;
 	phone: string;
-	image: string;
+	image: any;
 };
 
 export async function getTrainers(): Promise<TrainersType[]> {
@@ -18,6 +18,8 @@ export async function getTrainers(): Promise<TrainersType[]> {
 
 export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 	const hasImage = typeof newTrainer.image === "string";
+
+	// if (typeof newTrainer.image === "string") return;
 	const imageName = uuidv4() + newTrainer?.image?.name;
 
 	const imagePath = hasImage
@@ -40,6 +42,7 @@ export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 
 	///upload image
 	if (newTrainer.image === undefined) return;
+	console.log(imageName, newTrainer.image);
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);

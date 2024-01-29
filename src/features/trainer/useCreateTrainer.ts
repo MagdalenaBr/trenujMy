@@ -9,7 +9,7 @@ interface IFormInputs {
 	category: string;
 	price: string;
 	phone: string;
-	image: string;
+	image: any;
 }
 
 export function useCreateTrainer() {

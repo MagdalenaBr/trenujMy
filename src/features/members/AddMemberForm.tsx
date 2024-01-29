@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormRow from "../../ui/FormRow";
-import Button from "../../ui/Button";
+import StyledButton from "../../ui/StyledButton";
 import { schema } from "../../validation/MembersValidation.";
 import useCreateMember from "./useCreateMember";
 
 interface IFormInput {
-	id?: number;
+	id: number;
 	name: string;
 	email: string;
 	phone: string;
@@ -97,13 +97,13 @@ function AddMemberForm({ handleCloseModal }: PropsType) {
 				</FormRow>
 
 				<div className='flex gap-4 justify-end pt-4'>
-					<Button
+					<StyledButton
 						styleType='close'
 						type='reset'
 						handleClick={() => handleCloseModal?.()}>
 						Anuluj
-					</Button>
-					<Button styleType='add'>Dodaj</Button>
+					</StyledButton>
+					<StyledButton styleType='add'>Dodaj</StyledButton>
 				</div>
 			</form>
 		</div>

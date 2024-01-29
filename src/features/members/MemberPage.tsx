@@ -1,20 +1,27 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Container from "../../ui/Container";
 
 import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../../services/apiMembers";
 
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
+import { useDeleteMember } from "./useDeleteMember";
 function MemberPage() {
 	const memberIdParams = useParams();
+	const navigate = useNavigate();
+	const { deleteOneMember } = useDeleteMember();
 	const memberId = Number(memberIdParams.memberId);
+
 	const members = useQuery({
 		queryKey: ["members"],
 		queryFn: getMembers,
 	});
-
 	const member = members.data?.find(member => member.id === memberId);
+
 	if (member === undefined) return;
+
+
+
 	return (
 		<Container>
 			<div className='flex flex-col gap-4'>
@@ -50,7 +57,11 @@ function MemberPage() {
 				<button>
 					<HiOutlinePencil />
 				</button>
-				<button>
+				<button
+					onClick={() => {
+						deleteOneMember(member.id);
+						navigate(-1);
+					}}>
 					<HiOutlineTrash />
 				</button>
 			</div>

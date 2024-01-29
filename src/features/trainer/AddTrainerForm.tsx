@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import StyledButton from "../../ui/StyledButton";
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateTrainer } from "./useCreateTrainer";
@@ -21,12 +21,12 @@ type Trainer = {
 	category: string;
 	price: string;
 	phone: string;
-	image: string;
+	image: any;
 };
 
 type TrainerType = {
-	trainer: Trainer | any;
-	handleCloseModal: () => void;
+	trainer?: Trainer | any;
+	handleCloseModal?: () => void;
 };
 
 function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
@@ -44,17 +44,22 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 	const { editTrainer } = useEditTrainer();
 
 	const onSubmit = (newTrainer: Trainer) => {
+		console.log(newTrainer);
 		const image =
 			typeof newTrainer.image === "string"
 				? newTrainer.image
 				: newTrainer.image?.[0];
+		console.log(image);
 		if (isEditingSession) {
 			editTrainer({ newTrainersData: { ...newTrainer, image }, id });
 		} else {
 			createTrainer({ ...newTrainer, image });
 		}
-		handleCloseModal();
+		handleCloseModal?.();
 	};
+
+	const styles =
+		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -63,28 +68,48 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
 				<FormRow name='name' label='Imię i nazwisko'>
-					<input type='text' id='name' {...register("name")} />
+					<input
+						type='text'
+						id='name'
+						{...register("name")}
+						className={styles}
+					/>
 					{errors.name?.message && (
 						<p className='col-start-4 col-end-7'>{errors.name.message}</p>
 					)}
 				</FormRow>
 
 				<FormRow name='category' label='Kategoria'>
-					<input type='text' id='category' {...register("category")} />
+					<input
+						type='text'
+						id='category'
+						{...register("category")}
+						className={styles}
+					/>
 					{errors.category?.message && (
 						<p className='col-start-4 col-end-7'>{errors.category.message}</p>
 					)}
 				</FormRow>
 
 				<FormRow name='price' label='Cena'>
-					<input type='text' id='price' {...register("price")} />
+					<input
+						type='text'
+						id='price'
+						{...register("price")}
+						className={styles}
+					/>
 					{errors.price?.message && (
 						<p className='col-start-4 col-end-7'>{errors.price.message}</p>
 					)}
 				</FormRow>
 
 				<FormRow name='phone' label='Telefon'>
-					<input type='tel' id='phone' {...register("phone")} />
+					<input
+						type='tel'
+						id='phone'
+						{...register("phone")}
+						className={styles}
+					/>
 					{errors.phone?.message && (
 						<p className='col-start-4 col-end-7'>{errors.phone.message}</p>
 					)}
@@ -107,13 +132,13 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				</label>
 
 				<div className='flex gap-4 justify-end pt-4'>
-					<Button
+					<StyledButton
 						styleType='close'
 						type='reset'
 						handleClick={() => handleCloseModal?.()}>
 						Anuluj
-					</Button>
-					<Button styleType='add'>Dodaj</Button>
+					</StyledButton>
+					<StyledButton styleType='add'>Dodaj</StyledButton>
 				</div>
 			</form>
 		</div>

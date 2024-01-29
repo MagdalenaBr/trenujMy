@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import FormInput from "../../ui/FormInput";
-import Button from "../../ui/Button";
+import Button from "../../ui/StyledButton";
 import Overlay from "../../ui/Overlay";
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
@@ -17,7 +17,7 @@ interface IFormInputs {
 }
 [];
 type Trainer = {
-	id: number
+	id: number;
 	name: string;
 	category: string;
 	price: string;
