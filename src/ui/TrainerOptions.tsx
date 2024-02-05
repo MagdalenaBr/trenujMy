@@ -10,6 +10,7 @@ import Modal from "./Modal";
 import AddTrainerForm from "../features/trainer/AddTrainerForm";
 
 import Button from "./Button";
+import DeletePopup from "./DeletePopup";
 
 type TrainerTypes = {
 	trainer: {
@@ -27,25 +28,30 @@ function TrainerOptions({ trainer }: TrainerTypes) {
 	const { deleteOneTrainer } = useDeleteTrainer();
 	if (!id) return null;
 	return (
-		<Modal>
-			<div className='flex gap-1 text-2xl justify-self-end px-5  text-slate-800'>
-				<Link to={`/trainers/${id}`}>
-					<HiOutlineCalendar />
-				</Link>
+		<div className='flex gap-1 text-2xl justify-self-end px-5  text-slate-800'>
+			<Link to={`/trainers/${id}`}>
+				<HiOutlineCalendar />
+			</Link>
+			<Modal>
 				<Modal.OpenButton openForm='trainer'>
 					<Button>
 						<HiOutlinePencil />
 					</Button>
 				</Modal.OpenButton>
-
-				<button onClick={() => deleteOneTrainer(id)}>
-					<HiOutlineTrash />
-				</button>
 				<Modal.Window formName='trainer'>
 					<AddTrainerForm trainer={trainer} />
 				</Modal.Window>
-			</div>
-		</Modal>
+
+				<Modal.OpenButton openForm='delete'>
+					<Button>
+						<HiOutlineTrash />
+					</Button>
+				</Modal.OpenButton>
+				<Modal.Window formName='delete'>
+					<DeletePopup handleDeleteItem={() => deleteOneTrainer(id)} />
+				</Modal.Window>
+			</Modal>
+		</div>
 	);
 }
 export default TrainerOptions;

@@ -1,14 +1,14 @@
 import supabase from "./supabase";
 
 type MemberType = {
-	id: number;
+	id?: number;
 	email: string;
 	name: string;
 	phone: string;
 	gender: string;
 	city: string;
-	startGymMembership?: string
-	endGymMembership?: string
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
 };
 
 export async function getMembers(): Promise<MemberType[]> {
@@ -17,17 +17,23 @@ export async function getMembers(): Promise<MemberType[]> {
 	return members;
 }
 
-export async function addMember(newMember: MemberType) {
-	const { data, error } = await supabase
-		.from("members")
-		.insert([{ ...newMember }])
-		.select();
+export async function addOrEditMember(newMember: MemberType, id?: number) {
+	console.log(newMember, id);
+	let query = supabase.from("members");
+
+	/// ADD MEMBER
+	if (!id) query = query.insert([{ ...newMember }]);
+
+	///EDIT MEMBER
+	if (id) query = query.update({ ...newMember }).eq("id", id);
+	
+
+	const { data, error } = await query.select().single();
 	if (error) throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
 	return data;
 }
 
-
-export async function deleteMember(id: number) {
+export async function deleteMember(id: number | undefined) {
 	const { error } = await supabase.from("members").delete().eq("id", id);
 	if (error) {
 		throw new Error("Wystapił błąd. Klient nie został usunięty.");

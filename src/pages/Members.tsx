@@ -6,8 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../services/apiMembers";
 import Spinner from "../ui/Spinner";
 function Members() {
-	// const [showForm, setShowForm] = useState(false);
-
 	const { isLoading } = useQuery({
 		queryKey: ["members"],
 		queryFn: getMembers,

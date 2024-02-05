@@ -6,6 +6,11 @@ import { getMembers } from "../../services/apiMembers";
 
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
 import { useDeleteMember } from "./useDeleteMember";
+import AddMemberForm from "./AddMemberForm";
+import Modal from "../../ui/Modal";
+import Button from "../../ui/Button";
+import DeletePopup from "../../ui/DeletePopup";
+
 function MemberPage() {
 	const memberIdParams = useParams();
 	const navigate = useNavigate();
@@ -17,10 +22,7 @@ function MemberPage() {
 		queryFn: getMembers,
 	});
 	const member = members.data?.find(member => member.id === memberId);
-
-	if (member === undefined) return;
-
-
+	if (member === undefined) return null;
 
 	return (
 		<Container>
@@ -54,16 +56,31 @@ function MemberPage() {
 				</div>
 			</div>
 			<div className='flex gap-3 text-3xl px-5  text-red-800'>
-				<button>
-					<HiOutlinePencil />
-				</button>
-				<button
-					onClick={() => {
-						deleteOneMember(member.id);
-						navigate(-1);
-					}}>
-					<HiOutlineTrash />
-				</button>
+
+				<Modal>
+					<Modal.OpenButton openForm='member'>
+						<Button>
+							<HiOutlinePencil />
+						</Button>
+					</Modal.OpenButton>
+					<Modal.Window formName='member'>
+						<AddMemberForm member={member} />
+					</Modal.Window>
+
+					<Modal.OpenButton openForm='delete'>
+						<Button>
+							<HiOutlineTrash />
+						</Button>
+					</Modal.OpenButton>
+					<Modal.Window formName='delete'>
+						<DeletePopup
+							handleDeleteItem={() => {
+								deleteOneMember(member.id);
+								navigate(-1);
+							}}
+						/>
+					</Modal.Window>
+				</Modal>
 			</div>
 		</Container>
 	);

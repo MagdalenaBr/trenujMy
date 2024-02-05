@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-	id: yup.number().required(),
+	id: yup.number(),
 	name: yup.string().required("Imie i nazwisko jest wymagane"),
 	email: yup
 		.string()
@@ -16,6 +16,6 @@ export const schema = yup.object().shape({
 		.matches(/^(?:[0+]48)?\d{9}$/, "Podany numer telefonu jest nieprawidłowy"),
 	gender: yup.string().required("Płeć jest wymagana"),
 	city: yup.string().required("Miasto jest wymagane"),
-	startGymMembership: yup.string(),
-	endGymMembership: yup.string(),
+	startGymMembership: yup.string().nullable(),
+	endGymMembership: yup.string().nullable(),
 });

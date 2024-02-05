@@ -6,22 +6,13 @@ import { useEditTrainer } from "./useEditTrainer";
 import { schema } from "../../validation/TrainersValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-// interface IFormInputs {
-// 	id?: number;
-// 	name: string;
-// 	category: string;
-// 	price: string;
-// 	phone: string;
-// 	image: string;
-// }
-// [];
 type Trainer = {
 	id?: number;
 	name: string;
 	category: string;
 	price: string;
 	phone: string;
-	image: any;
+	image: FileList | any;
 };
 
 type TrainerType = {
@@ -30,8 +21,8 @@ type TrainerType = {
 };
 
 function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
+	console.log(trainer);
 	const { id, ...trainerEditData } = trainer;
-
 	const isEditingSession = Boolean(id);
 
 	const { register, handleSubmit, formState } = useForm<Trainer>({
@@ -44,12 +35,10 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 	const { editTrainer } = useEditTrainer();
 
 	const onSubmit = (newTrainer: Trainer) => {
-		console.log(newTrainer);
 		const image =
 			typeof newTrainer.image === "string"
 				? newTrainer.image
 				: newTrainer.image?.[0];
-		console.log(image);
 		if (isEditingSession) {
 			editTrainer({ newTrainersData: { ...newTrainer, image }, id });
 		} else {
@@ -127,7 +116,9 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 						accept='image/png, image/jpeg'
 					/>
 					{errors.image?.message && (
-						<p className='col-start-4 col-end-7'>{errors.image.message}</p>
+						<p className='col-start-4 col-end-7'>
+							{errors.image.message?.toString()}
+						</p>
 					)}
 				</label>
 

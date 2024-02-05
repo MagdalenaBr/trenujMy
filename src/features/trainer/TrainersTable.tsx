@@ -6,7 +6,6 @@ import { getTrainers } from "../../services/apiTrainers";
 
 
 function TrainersTable() {
-	// const [showForm, onCloseForm] = useState(false);
 	const { data: trainers } = useQuery({
 		queryKey: ["trainers"],
 		queryFn: getTrainers,

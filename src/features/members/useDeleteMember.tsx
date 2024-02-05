@@ -6,7 +6,7 @@ export function useDeleteMember() {
 	const queryClient = useQueryClient();
 
 	const { mutate: deleteOneMember } = useMutation({
-		mutationFn: (id: number) => deleteMember(id),
+		mutationFn: (id: number | undefined) => deleteMember(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["members"],
@@ -18,5 +18,5 @@ export function useDeleteMember() {
 		},
 	});
 
-	return { deleteOneMember};
+	return { deleteOneMember };
 }

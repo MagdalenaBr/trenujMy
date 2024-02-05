@@ -38,11 +38,11 @@ export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 
 	if (error) throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");
 
-	if (hasImage) return data;
+	// if (hasImage) return data;
 
 	///upload image
 	if (newTrainer.image === undefined) return;
-	console.log(imageName, newTrainer.image);
+
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);

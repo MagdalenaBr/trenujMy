@@ -4,36 +4,52 @@ import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
 import { schema } from "../../validation/MembersValidation.";
 import useCreateMember from "./useCreateMember";
+import { useEditMember } from "./useEditMember";
 
-interface IFormInput {
-	id: number;
+type IFormInput = {
+	id?: number;
 	name: string;
 	email: string;
 	phone: string;
 	gender: string;
 	city: string;
-	startGymMembership?: string;
-	endGymMembership?: string;
-}
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
+};
 type PropsType = {
+	member?: IFormInput | any;
 	handleCloseModal?: () => void;
 };
-//https://medium.com/@msgold/creating-a-react-form-using-react-hook-form-and-yup-in-typescript-640168c5ed57
 
-function AddMemberForm({ handleCloseModal }: PropsType) {
-	const styles =
-		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
+function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
+
+	const { id, ...memberEditData } = member;
+
+	const isEditingSession = Boolean(id);
 
 	const { register, handleSubmit, formState } = useForm<IFormInput>({
+		defaultValues: isEditingSession ? memberEditData : {},
 		resolver: yupResolver(schema),
 	});
+
 	const { errors } = formState;
 	const { createMember } = useCreateMember();
-	function onSubmit(data: IFormInput) {
-		createMember(data);
-		handleCloseModal?.();
-	}
+	const { editMember } = useEditMember();
 
+	const onSubmit = (data: IFormInput) => {
+		console.log(isEditingSession);
+		if (isEditingSession) {
+			editMember({ newMember: data, id });
+		} else {
+			createMember({ ...data });
+		}
+
+		handleCloseModal?.();
+	};
+
+	console.log(formState.errors);
+	const styles =
+		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
