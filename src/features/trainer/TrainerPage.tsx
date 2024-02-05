@@ -5,6 +5,7 @@ import { getTrainers } from "../../services/apiTrainers";
 import StyledButton from "../../ui/StyledButton";
 import Schedule from "../schedule/Schedule";
 import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
+import BackButton from "../../ui/BackButton";
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
@@ -28,9 +29,10 @@ function TrainerPage() {
 			<div className='flex gap-5'>
 				<img src={trainer[0].image} alt='' className='w-96 h-96 object-cover' />
 				<div className='flex flex-col w-[100%]'>
-					<StyledButton styles='self-end mx-4' handleClick={e => onClick(e)}>
+					{/* <StyledButton styles='self-end mx-4' handleClick={e => onClick(e)}>
 						<HiOutlineArrowSmallLeft className='text-2xl' />
-					</StyledButton>
+					</StyledButton> */}
+					<BackButton/>
 					<div className='flex flex-col gap-5 self-start'>
 						<h2 className='text-2xl font-bold'>{trainer[0].name}</h2>
 						<div className='flex gap-2'>
@@ -45,7 +47,7 @@ function TrainerPage() {
 							<h3 className='font-semibold'>Cena:</h3>
 							<span>{trainer[0].price} zł</span>
 						</div>
-					</div>
+					B</div>
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>

@@ -90,12 +90,17 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 					)}
 				</FormRow>
 				<FormRow name='gender' label='Płeć'>
-					<input
+					{/* <input
 						type='text'
 						id='gender'
 						{...register("gender")}
 						className={styles}
-					/>
+					/> */}
+					<select id='gender' {...register("gender")} className={styles}>
+						<option value='Kobieta'>Kobieta</option>
+						<option value='Mężczyzna'>Mężczyzna</option>
+						<option value='Inna'>Inna</option>
+					</select>
 					{errors.gender?.message && (
 						<p className='col-start-4 col-end-7'>{errors.gender.message}</p>
 					)}
