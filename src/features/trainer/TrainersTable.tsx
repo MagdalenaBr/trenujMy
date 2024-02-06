@@ -10,9 +10,10 @@ function TrainersTable() {
 		queryKey: ["trainers"],
 		queryFn: getTrainers,
 	});
+	console.log(trainers);
 	return (
 		<Table>
-			{trainers ? (
+			{trainers?.length !== 0 ? (
 				trainers.map(trainer => (
 					<Table.Row key={trainer.id}>
 						<div className='col-[1_/_2] flex items-center gap-3 '>

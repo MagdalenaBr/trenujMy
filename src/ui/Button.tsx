@@ -4,7 +4,7 @@ type Props = {
 };
 
 function Button({ children, handleClick }: Props) {
-	return <button onClick={handleClick}>{children}</button>;
+	return <button onClick={handleClick} className="px-2">{children}</button>;
 }
 
 export default Button;

@@ -9,6 +9,7 @@ type MemberType = {
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
+	gymMembershipType?: string;
 };
 
 export async function getMembers(): Promise<MemberType[]> {
@@ -26,7 +27,6 @@ export async function addOrEditMember(newMember: MemberType, id?: number) {
 
 	///EDIT MEMBER
 	if (id) query = query.update({ ...newMember }).eq("id", id);
-	
 
 	const { data, error } = await query.select().single();
 	if (error) throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");

@@ -6,7 +6,7 @@ import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
 
-type MemberType ={
+type MemberType = {
 	id?: number;
 	email: string;
 	name: string;
@@ -15,10 +15,10 @@ type MemberType ={
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
-}
+	gymMembershipType?: string;
+};
 
-
-function MembersTable({members}: MemberType) {
+function MembersTable({ members }: MemberType) {
 	return (
 		<Table>
 			<Table.Header>
@@ -33,9 +33,7 @@ function MembersTable({members}: MemberType) {
 						<p>{member.email.toLowerCase()}</p>
 						<p>{member.phone}</p>
 						<Link to={`/members/${member.id}`}>
-							<BsInfoLg
-								className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800'
-							/>
+							<BsInfoLg className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800' />
 						</Link>
 					</Table.Row>
 				))

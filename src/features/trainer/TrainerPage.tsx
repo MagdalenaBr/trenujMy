@@ -47,7 +47,7 @@ function TrainerPage() {
 							<h3 className='font-semibold'>Cena:</h3>
 							<span>{trainer[0].price} zł</span>
 						</div>
-					B</div>
+					</div>
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>

@@ -11,11 +11,10 @@ type MembersType = {
 		city: string;
 		startGymMembership?: string | null;
 		endGymMembership?: string | null;
+		gymMembershipType?: string;
 	};
 	id: number;
-}
-
-
+};
 
 export function useEditMember() {
 	const queryClient = useQueryClient();
@@ -34,5 +33,3 @@ export function useEditMember() {
 	});
 	return { editMember };
 }
-
-

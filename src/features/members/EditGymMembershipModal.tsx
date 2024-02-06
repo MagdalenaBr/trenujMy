@@ -1,0 +1,23 @@
+import { HiOutlinePencil } from "react-icons/hi2";
+import Modal from "../../ui/Modal";
+import GymMembershipForm from "./GymMembershipForm";
+import Button from "../../ui/Button";
+
+function EditGymMembershipModal({member}) {
+	return (
+		<Modal>
+			<Modal.OpenButton openForm="membership">
+				<Button>
+					<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' />
+				</Button>
+                {/* <StyledButton ><HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' /></StyledButton> */}
+			</Modal.OpenButton>
+            <Modal.Window formName='membership'>
+                <GymMembershipForm member={member}/>
+
+            </Modal.Window>
+		</Modal>
+	);
+}
+
+export default EditGymMembershipModal;

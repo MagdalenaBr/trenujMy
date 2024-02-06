@@ -2,18 +2,18 @@ import MainContainer from "../ui/MainContainer";
 import MembersTable from "../features/members/MembersTable";
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import AddMember from "../features/members/AddMember";
-import { useQuery } from "@tanstack/react-query";
-import { getMembers } from "../services/apiMembers";
 import Spinner from "../ui/Spinner";
 import { useState } from "react";
+import { useMember } from "../features/members/useMember";
 function Members() {
 	const [memberName, setMemberName] = useState("");
-	const { data: members, isLoading } = useQuery({
-		queryKey: ["members"],
-		queryFn: getMembers,
-	});
+	const { members, isLoading } = useMember();
 
-	const filteredMembers = members?.filter(member=> member.name.toLowerCase().includes(memberName.toLocaleLowerCase()) ? member : '')
+	const filteredMembers = members?.filter(member =>
+		member.name.toLowerCase().includes(memberName.toLocaleLowerCase())
+			? member
+			: ""
+	);
 
 	return (
 		<MainContainer title='Klienci'>

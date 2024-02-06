@@ -10,7 +10,7 @@ function BackButton() {
 	}
 
 	return (
-		<StyledButton styles='self-end mx-4' handleClick={e => onClick(e)}>
+		<StyledButton styles='self-start' handleClick={e => onClick(e)}>
 			<HiOutlineArrowSmallLeft className='text-2xl' />
 		</StyledButton>
 	);
