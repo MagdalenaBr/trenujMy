@@ -11,9 +11,7 @@ import MemberOptions from "./MemberOptions";
 
 function MemberPage() {
 	const memberIdParams = useParams();
-
 	const memberId = Number(memberIdParams.memberId);
-
 	const members = useQuery({
 		queryKey: ["members"],
 		queryFn: getMembers,
@@ -28,7 +26,7 @@ function MemberPage() {
 					<h2 className='uppercase  font-bold'>{member.name}</h2>
 					<div className='flex gap-2'>
 						<h3 className='font-semibold'>E-mail:</h3>
-						<p>{member.email}</p>
+						<p>{member.email.toLowerCase()}</p>
 					</div>
 					<div className='flex gap-2'>
 						<h3 className='font-semibold'>Telefon:</h3>
@@ -45,8 +43,14 @@ function MemberPage() {
 					<div className='flex gap-2'>
 						<h3 className='font-semibold text-cyan-800'>Wykupiony karnet:</h3>
 						<p>
-							<span>{member.startGymMembership}</span> -{" "}
-							<span>{member.endGymMembership}</span>
+							{member.startGymMembership === null ? (
+								<span>brak</span>
+							) : (
+								<div>
+									<span>{member.startGymMembership}</span> do{" "}
+									<span>{member.endGymMembership}</span>
+								</div>
+							)}
 						</p>
 						<button>
 							<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' />

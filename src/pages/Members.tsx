@@ -5,24 +5,34 @@ import AddMember from "../features/members/AddMember";
 import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../services/apiMembers";
 import Spinner from "../ui/Spinner";
+import { useState } from "react";
 function Members() {
-	const { isLoading } = useQuery({
+	const [memberName, setMemberName] = useState("");
+	const { data: members, isLoading } = useQuery({
 		queryKey: ["members"],
 		queryFn: getMembers,
 	});
+
+	const filteredMembers = members?.filter(member=> member.name.toLowerCase().includes(memberName.toLocaleLowerCase()) ? member : '')
+
 	return (
 		<MainContainer title='Klienci'>
 			{isLoading ? (
 				<Spinner />
 			) : (
 				<>
-					<div className='flex justify-between items-center '>
+					<div className='flex justify-between items-center mb-4'>
 						<div className='relative'>
 							<HiOutlineMagnifyingGlass className='absolute top-[25%] mx-2 text-xl  text-slate-800' />
-							<input className='border-2 w-80 bg-slate-100 rounded-lg pl-8 pr-2 py-1 focus:border-cyan-800  focus:bg-sky-100 focus:outline-none transition-colors focus:shadow-md hover:border-cyan-800' />
+							<input
+								value={memberName}
+								onChange={e => setMemberName(e.target.value)}
+								className='border-2 w-80 bg-slate-100 rounded-lg pl-8 pr-2 py-1 focus:border-cyan-800  focus:bg-sky-100 focus:outline-none transition-colors focus:shadow-md hover:border-cyan-800'
+							/>
 						</div>
 					</div>
-					<MembersTable />
+					{/* <MemberSearch/> */}
+					<MembersTable members={filteredMembers} />
 					<AddMember />
 				</>
 			)}

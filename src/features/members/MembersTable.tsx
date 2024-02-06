@@ -6,12 +6,19 @@ import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
 
-function MembersTable() {
-	const { data: members } = useQuery({
-		queryKey: ["members"],
-		queryFn: getMembers,
-	});
+type MemberType ={
+	id?: number;
+	email: string;
+	name: string;
+	phone: string;
+	gender: string;
+	city: string;
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
+}
 
+
+function MembersTable({members}: MemberType) {
 	return (
 		<Table>
 			<Table.Header>
@@ -23,7 +30,7 @@ function MembersTable() {
 				members.map(member => (
 					<Table.Row key={member.id}>
 						<p>{member.name}</p>
-						<p>{member.email}</p>
+						<p>{member.email.toLowerCase()}</p>
 						<p>{member.phone}</p>
 						<Link to={`/members/${member.id}`}>
 							<BsInfoLg

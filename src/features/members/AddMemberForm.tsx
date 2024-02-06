@@ -124,7 +124,7 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 						handleClick={() => handleCloseModal?.()}>
 						Anuluj
 					</StyledButton>
-					<StyledButton styleType='add'>Dodaj</StyledButton>
+					<StyledButton styleType='add'>{isEditingSession ? 'Zmień' : 'Dodaj'}</StyledButton>
 				</div>
 			</form>
 		</div>
