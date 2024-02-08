@@ -1,6 +1,5 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
-
 type IFormInput = {
 	id?: number;
 	name: string;
@@ -10,27 +9,28 @@ type IFormInput = {
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
-	gymMembershipType?: string | undefined
+	gymMembershipType?: string | undefined;
 };
 type PropsType = {
-	errors: FieldErrors;
+	errors?: FieldErrors;
 	formType: string;
 	register: UseFormRegister<IFormInput>;
 	inputName: string;
 };
 
 function FormInput({ errors, inputName, register, formType }: PropsType) {
-	console.log(errors[inputName]);
 	return (
 		<>
 			<input
 				type={formType}
 				id={inputName}
 				{...register(inputName as keyof IFormInput)}
-				className="w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4"
+				className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'
 			/>
-			{errors[inputName]?.message && (
-				<p className='col-start-4 col-end-7'>{errors[inputName]?.message?.toString()}</p>
+			{errors && errors[inputName]?.message && (
+				<p className='col-start-4 col-end-7'>
+					{errors[inputName]?.message?.toString()}
+				</p>
 			)}
 		</>
 	);

@@ -4,6 +4,7 @@ import StyledButton from "../../ui/StyledButton";
 import { useQuery } from "@tanstack/react-query";
 import { getTrainers } from "../../services/apiTrainers";
 import { useEditMember } from "./useEditMember";
+import FormInput from "../../ui/FormInput";
 
 type MemberType = {
 	id?: number;
@@ -39,37 +40,34 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 		handleCloseModal?.();
 	};
 
-	const styles =
-		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
+
 				<FormRow name='name' label='Data rozpoczęcia'>
-					<input
-						type='date'
-						id='startGymMembership'
-						{...register("startGymMembership")}
-						className={styles}
+				<FormInput
+						inputName='startGymMembership'
+						register={register}
+						formType='date'
 					/>
-					
 				</FormRow>
+
 				<FormRow name='endGymMembership' label='Data zakończenia'>
-					<input
-						type='date'
-						id='endGymMembership'
-						{...register("endGymMembership")}
-						className={styles}
-					/>
-					
+				<FormInput
+						inputName='endGymMembership'
+						register={register}
+						formType='date'
+					/>					
 				</FormRow>
+				
 				<FormRow name='gymMembershipType' label='Rodzaj karnetu'>
 					<select
 						id='gymMembershipType'
 						{...register("gymMembershipType")}
-						className={styles}>
+						className="w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4">
 						<option value='Karnet otwarty'>Karnet otwarty</option>
 						{trainers?.map(trainer => (
 							<option value={`${trainer.category} ${trainer.name}`}>
