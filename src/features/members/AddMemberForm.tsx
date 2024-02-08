@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
-import { schema } from "../../validation/MembersValidation.";
+import { schema } from "../../validation/MembersValidation.tsx";
 import useCreateMember from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
+import FormInput from "../../ui/FormInput.tsx";
 
 type IFormInput = {
 	id?: number;
@@ -15,7 +16,7 @@ type IFormInput = {
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
-	gymMembershipType?: string
+	gymMembershipType?: string | undefined;
 };
 type PropsType = {
 	member?: IFormInput | any;
@@ -23,34 +24,27 @@ type PropsType = {
 };
 
 function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
-
 	const { id, ...memberEditData } = member;
-
 	const isEditingSession = Boolean(id);
+	const { createMember } = useCreateMember();
+	const { editMember } = useEditMember();
 
 	const { register, handleSubmit, formState } = useForm<IFormInput>({
 		defaultValues: isEditingSession ? memberEditData : {},
 		resolver: yupResolver(schema),
 	});
-
 	const { errors } = formState;
-	const { createMember } = useCreateMember();
-	const { editMember } = useEditMember();
+	console.log(errors);
 
 	const onSubmit = (data: IFormInput) => {
-		console.log(isEditingSession);
 		if (isEditingSession) {
 			editMember({ newMember: data, id });
 		} else {
 			createMember({ ...data });
 		}
-
 		handleCloseModal?.();
 	};
 
-	console.log(formState.errors);
-	const styles =
-		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
@@ -58,46 +52,35 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
 				<FormRow name='name' label='Imię i nazwisko'>
-					<input
-						type='text'
-						id='name'
-						{...register("name")}
-						className={styles}
+					<FormInput
+						errors={errors}
+						inputName='name'
+						register={register}
+						formType='text'
 					/>
-					{errors.name?.message && (
-						<p className='col-start-4 col-end-7'>{errors.name.message}</p>
-					)}
 				</FormRow>
 				<FormRow name='email' label='E-mail'>
-					<input
-						type='email'
-						id='email'
-						{...register("email")}
-						className={styles}
+					<FormInput
+						errors={errors}
+						inputName='email'
+						register={register}
+						formType='email'
 					/>
-					{errors.email?.message && (
-						<p className='col-start-4 col-end-7'>{errors.email.message}</p>
-					)}
 				</FormRow>
 				<FormRow name='phone' label='Telefon'>
-					<input
-						type='text'
-						id='phone'
-						{...register("phone")}
-						className={styles}
+					<FormInput
+						errors={errors}
+						inputName='phone'
+						register={register}
+						formType='text'
 					/>
-					{errors.phone?.message && (
-						<p className='col-start-4 col-end-7'>{errors.phone.message}</p>
-					)}
 				</FormRow>
 				<FormRow name='gender' label='Płeć'>
-					{/* <input
-						type='text'
+					<select
 						id='gender'
 						{...register("gender")}
-						className={styles}
-					/> */}
-					<select id='gender' {...register("gender")} className={styles}>
+						className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'>
+						<option value=''>Wybierz płeć</option>
 						<option value='Kobieta'>Kobieta</option>
 						<option value='Mężczyzna'>Mężczyzna</option>
 						<option value='Inna'>Inna</option>
@@ -107,15 +90,12 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 					)}
 				</FormRow>
 				<FormRow name='city' label='Miasto'>
-					<input
-						type='text'
-						id='city'
-						{...register("city")}
-						className={styles}
+					<FormInput
+						errors={errors}
+						inputName='city'
+						register={register}
+						formType='text'
 					/>
-					{errors.city?.message && (
-						<p className='col-start-4 col-end-7'>{errors.city.message}</p>
-					)}
 				</FormRow>
 
 				<div className='flex gap-4 justify-end pt-4'>
@@ -125,7 +105,9 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 						handleClick={() => handleCloseModal?.()}>
 						Anuluj
 					</StyledButton>
-					<StyledButton styleType='add'>{isEditingSession ? 'Zmień' : 'Dodaj'}</StyledButton>
+					<StyledButton styleType='add'>
+						{isEditingSession ? "Zmień" : "Dodaj"}
+					</StyledButton>
 				</div>
 			</form>
 		</div>

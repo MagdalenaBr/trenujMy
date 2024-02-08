@@ -6,6 +6,7 @@ import { HiTrophy } from "react-icons/hi2";
 import EditGymMembershipModal from "./EditGymMembershipModal";
 import { useMember } from "./useMember";
 import Spinner from "../../ui/Spinner";
+import StyledButton from "../../ui/StyledButton";
 
 function MemberPage() {
 	const memberIdParams = useParams();
@@ -14,7 +15,7 @@ function MemberPage() {
 	const member = members?.find(member => member.id === memberId);
 
 	if (isLoading) return <Spinner />;
-	
+
 	if (member === undefined) return null;
 
 	return (
@@ -73,6 +74,7 @@ function MemberPage() {
 				</div>
 				<BackButton />
 			</div>
+			<StyledButton styleType='add'>Zarezerwuj zajęcia</StyledButton>
 
 			<div className='flex items-center justify-center'>
 				<hr className='w-[20rem] mx-3' />

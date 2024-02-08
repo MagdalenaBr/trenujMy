@@ -17,7 +17,12 @@ type MemberType = {
 	gymMembershipType?: string;
 };
 
-function GymMembershipForm({ member, handleCloseModal }) {
+type PropsType = {
+	member?: MemberType | any;
+	handleCloseModal?: () => void;
+};
+
+function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 	const { id } = member;
 
 	const { data: trainers } = useQuery({
