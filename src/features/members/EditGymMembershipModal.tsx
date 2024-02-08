@@ -24,7 +24,6 @@ function EditGymMembershipModal({member}: MemberType) {
 				<Button>
 					<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' />
 				</Button>
-                {/* <StyledButton ><HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' /></StyledButton> */}
 			</Modal.OpenButton>
             <Modal.Window formName='membership'>
                 <GymMembershipForm member={member}/>

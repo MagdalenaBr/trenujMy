@@ -1,26 +1,5 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
-// type MemberType = {
-// 	id?: number;
-// 	name: string;
-// 	email: string;
-// 	phone: string;
-// 	gender: string;
-// 	city: string;
-// 	startGymMembership?: string | null;
-// 	endGymMembership?: string | null;
-// 	gymMembershipType?: string | undefined;
-// };
-
-// type Trainer = {
-// 	id?: number;
-// 	name: string;
-// 	category: string;
-// 	price: string;
-// 	phone: string;
-// 	image: FileList | any;
-// };
-
 type PropsType = {
 	errors?: FieldErrors;
 	formType: string;

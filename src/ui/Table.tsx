@@ -1,7 +1,4 @@
 import { createContext, useContext } from "react";
-// type ContextType = {
-// 	columns: string;
-// };
 
 const TableContext = createContext({
 	columns: "string",

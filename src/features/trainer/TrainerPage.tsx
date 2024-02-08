@@ -1,38 +1,24 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Container from "../../ui/Container";
-import { useQuery } from "@tanstack/react-query";
-import { getTrainers } from "../../services/apiTrainers";
 import StyledButton from "../../ui/StyledButton";
 import Schedule from "../schedule/Schedule";
-import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
 import BackButton from "../../ui/BackButton";
+import { useTrainer } from "./useTrainer";
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
-	const navigate = useNavigate();
-
 	const trainerId = Number(trainerIdParams.trainerId);
-	const trainers = useQuery({
-		queryKey: ["trainers"],
-		queryFn: getTrainers,
-	});
-	const trainer = trainers?.data?.filter(t => t.id === trainerId);
+	const { trainers } = useTrainer();
+	const trainer = trainers?.filter(t => t.id === trainerId);
 
 	if (trainer === undefined) return;
 
-	function onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-		e.preventDefault();
-		navigate(-1);
-	}
 	return (
 		<Container>
 			<div className='flex gap-5'>
 				<img src={trainer[0].image} alt='' className='w-96 h-96 object-cover' />
 				<div className='flex flex-col w-[100%]'>
-					{/* <StyledButton styles='self-end mx-4' handleClick={e => onClick(e)}>
-						<HiOutlineArrowSmallLeft className='text-2xl' />
-					</StyledButton> */}
-					<BackButton/>
+					<BackButton />
 					<div className='flex flex-col gap-5 self-start'>
 						<h2 className='text-2xl font-bold'>{trainer[0].name}</h2>
 						<div className='flex gap-2'>
