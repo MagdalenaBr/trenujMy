@@ -5,6 +5,7 @@ import { useCreateTrainer } from "./useCreateTrainer";
 import { useEditTrainer } from "./useEditTrainer";
 import { schema } from "../../validation/TrainersValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import FormInput from "../../ui/FormInput";
 
 type Trainer = {
 	id?: number;
@@ -47,9 +48,6 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 		handleCloseModal?.();
 	};
 
-	const styles =
-		"w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4";
-
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
@@ -57,56 +55,44 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
 				<FormRow name='name' label='Imię i nazwisko'>
-					<input
-						type='text'
-						id='name'
-						{...register("name")}
-						className={styles}
+					<FormInput
+						errors={errors}
+						inputName='name'
+						register={register}
+						formType='text'
 					/>
-					{errors.name?.message && (
-						<p className='col-start-4 col-end-7'>{errors.name.message}</p>
-					)}
 				</FormRow>
 
 				<FormRow name='category' label='Kategoria'>
-					<input
-						type='text'
-						id='category'
-						{...register("category")}
-						className={styles}
+				<FormInput
+						errors={errors}
+						inputName='category'
+						register={register}
+						formType='text'
 					/>
-					{errors.category?.message && (
-						<p className='col-start-4 col-end-7'>{errors.category.message}</p>
-					)}
 				</FormRow>
 
 				<FormRow name='price' label='Cena'>
-					<input
-						type='text'
-						id='price'
-						{...register("price")}
-						className={styles}
+				<FormInput
+						errors={errors}
+						inputName='price'
+						register={register}
+						formType='text'
 					/>
-					{errors.price?.message && (
-						<p className='col-start-4 col-end-7'>{errors.price.message}</p>
-					)}
 				</FormRow>
 
 				<FormRow name='phone' label='Telefon'>
-					<input
-						type='tel'
-						id='phone'
-						{...register("phone")}
-						className={styles}
+				<FormInput
+						errors={errors}
+						inputName='phone'
+						register={register}
+						formType='tel'
 					/>
-					{errors.phone?.message && (
-						<p className='col-start-4 col-end-7'>{errors.phone.message}</p>
-					)}
 				</FormRow>
 
 				<label
 					htmlFor='image'
-					className={`font-semibold bg-slate-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4`}>
+					className='font-semibold bg-slate-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4'>
 					Dodaj zdjęcie
 					<input
 						type='file'

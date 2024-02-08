@@ -1,22 +1,33 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
-type IFormInput = {
-	id?: number;
-	name: string;
-	email: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | undefined;
-};
+// type MemberType = {
+// 	id?: number;
+// 	name: string;
+// 	email: string;
+// 	phone: string;
+// 	gender: string;
+// 	city: string;
+// 	startGymMembership?: string | null;
+// 	endGymMembership?: string | null;
+// 	gymMembershipType?: string | undefined;
+// };
+
+// type Trainer = {
+// 	id?: number;
+// 	name: string;
+// 	category: string;
+// 	price: string;
+// 	phone: string;
+// 	image: FileList | any;
+// };
+
 type PropsType = {
 	errors?: FieldErrors;
 	formType: string;
-	register: UseFormRegister<IFormInput>;
+	register: UseFormRegister<any>;
 	inputName: string;
 };
+
 
 function FormInput({ errors, inputName, register, formType }: PropsType) {
 	return (
@@ -24,7 +35,7 @@ function FormInput({ errors, inputName, register, formType }: PropsType) {
 			<input
 				type={formType}
 				id={inputName}
-				{...register(inputName as keyof IFormInput)}
+				{...register(inputName)}
 				className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'
 			/>
 			{errors && errors[inputName]?.message && (

@@ -31,7 +31,7 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 		queryFn: getTrainers,
 	});
 
-	const { register, handleSubmit} = useForm({
+	const { register, handleSubmit} = useForm<MemberType>({
 		defaultValues: member,
 	});
 	const { editMember } = useEditMember();
@@ -62,7 +62,7 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 						formType='date'
 					/>					
 				</FormRow>
-				
+
 				<FormRow name='gymMembershipType' label='Rodzaj karnetu'>
 					<select
 						id='gymMembershipType'
