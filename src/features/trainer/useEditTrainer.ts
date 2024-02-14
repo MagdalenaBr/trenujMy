@@ -24,8 +24,8 @@ export function useEditTrainer() {
 			});
 			toast.success("Trener został edytowany!");
 		},
-		onError: () => {
-			toast.error("Wystąpił błąd. Spróbuj jeszcze raz!");
+		onError: (error) => {
+			toast.error(error.message);
 		},
 	});
 	return { editTrainer };

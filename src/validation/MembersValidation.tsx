@@ -18,5 +18,5 @@ export const schema = yup.object().shape({
 	city: yup.string().required("Miasto jest wymagane"),
 	startGymMembership: yup.string().nullable(),
 	endGymMembership: yup.string().nullable(),
-	gymMembershipType: yup.string(),
+	gymMembershipType: yup.string().nullable(),
 });

@@ -5,21 +5,16 @@ import AddMember from "../features/members/AddMember";
 import Spinner from "../ui/Spinner";
 import { useState } from "react";
 import { useMember } from "../features/members/useMember";
+import TableNoContent from "../ui/TableNoContent";
 function Members() {
 	const [memberName, setMemberName] = useState("");
-	const { members, isLoading } = useMember();
+	const { isLoading, error } = useMember();
 
-	const filteredMembers = members?.filter(member =>
-		member.name.toLowerCase().includes(memberName.toLocaleLowerCase())
-			? member
-			: ""
-	);
 
+	if(isLoading) return <Spinner/>
+	if(error) return <TableNoContent/>
 	return (
 		<MainContainer title='Klienci'>
-			{isLoading ? (
-				<Spinner />
-			) : (
 				<>
 					<div className='flex justify-between items-center mb-4'>
 						<div className='relative'>
@@ -31,11 +26,9 @@ function Members() {
 							/>
 						</div>
 					</div>
-					{/* <MemberSearch/> */}
-					<MembersTable members={filteredMembers} />
+					<MembersTable memberNameFromInput={memberName} />
 					<AddMember />
 				</>
-			)}
 		</MainContainer>
 	);
 }

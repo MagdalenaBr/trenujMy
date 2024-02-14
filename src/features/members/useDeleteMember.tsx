@@ -13,8 +13,8 @@ export function useDeleteMember() {
 			});
 			toast.success("Klient został usunięty!");
 		},
-		onError: () => {
-			toast.error("Wystąpił błąd. Spróbuj jeszcze raz!");
+		onError: (error) => {
+			toast.error(error.message);
 		},
 	});
 

@@ -3,32 +3,31 @@ import Modal from "../../ui/Modal";
 import GymMembershipForm from "./GymMembershipForm";
 import Button from "../../ui/Button";
 
-
 type MemberType = {
-	id?: number;
-	email: string;
-	name: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string;
+	member: {
+		id?: number;
+		email: string;
+		name: string;
+		phone: string;
+		gender: string;
+		city: string;
+		startGymMembership?: string | null;
+		endGymMembership?: string | null;
+		gymMembershipType?: string;
+	};
 };
 
-
-function EditGymMembershipModal({member}: MemberType) {
+function EditGymMembershipModal({ member }: MemberType) {
 	return (
 		<Modal>
-			<Modal.OpenButton openForm="membership">
+			<Modal.OpenButton openForm='membership'>
 				<Button>
 					<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' />
 				</Button>
 			</Modal.OpenButton>
-            <Modal.Window formName='membership'>
-                <GymMembershipForm member={member}/>
-
-            </Modal.Window>
+			<Modal.Window formName='membership'>
+				<GymMembershipForm member={member} />
+			</Modal.Window>
 		</Modal>
 	);
 }

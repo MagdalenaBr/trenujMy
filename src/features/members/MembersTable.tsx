@@ -1,24 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
 import { BsInfoLg } from "react-icons/bs";
-
-import { getMembers } from "../../services/apiMembers";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
+import { useMember } from "./useMember";
 
-type MemberType = {
-	id?: number;
-	email: string;
-	name: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string;
+type PropsType = {
+	memberNameFromInput: string;
 };
 
-function MembersTable({ members }: MemberType) {
+function MembersTable({ memberNameFromInput }: PropsType) {
+	const { members } = useMember();
+	const filteredMembers = members?.filter(member =>
+		member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())
+			? member
+			: ""
+	);
+
 	return (
 		<Table>
 			<Table.Header>
@@ -26,8 +23,8 @@ function MembersTable({ members }: MemberType) {
 				<p>e-mail</p>
 				<p>telefon</p>
 			</Table.Header>
-			{members ? (
-				members.map(member => (
+			{filteredMembers ? (
+				filteredMembers.map(member => (
 					<Table.Row key={member.id}>
 						<p>{member.name}</p>
 						<p>{member.email.toLowerCase()}</p>

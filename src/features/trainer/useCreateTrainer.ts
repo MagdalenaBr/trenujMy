@@ -20,8 +20,8 @@ export function useCreateTrainer() {
 			});
 			toast.success("Trener został dodany!");
 		},
-		onError: () => {
-			toast.error('Wystąpił błąd. Spróbuj jeszcze raz!')
+		onError: (error) => {
+			toast.error(error.message)
 		}
 	});
 	return { createTrainer };

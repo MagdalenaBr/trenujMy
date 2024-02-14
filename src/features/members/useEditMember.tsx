@@ -27,9 +27,10 @@ export function useEditMember() {
 			});
 			toast.success("Klient został edytowany!");
 		},
-		onError() {
-			toast.error("Wystąpił błąd. Spróbuj jeszcze raz!");
+		onError(error) {
+			toast.error(error.message);
 		},
+		throwOnError: true,
 	});
 	return { editMember };
 }

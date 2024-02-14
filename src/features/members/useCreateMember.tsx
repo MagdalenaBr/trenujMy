@@ -13,8 +13,8 @@ function useCreateMember() {
 			});
 			toast.success("Klient został dodany!");
 		},
-		onError() {
-			toast.error("Wystąpił błąd. Spróbuj jeszcze raz!");
+		onError(error) {
+			toast.error(error.message);
 		},
 	});
 

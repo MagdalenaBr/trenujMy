@@ -19,30 +19,33 @@ export async function getTrainers(): Promise<TrainersType[]> {
 export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 	const hasImage = typeof newTrainer.image === "string";
 	const imageName = uuidv4() + newTrainer?.image?.name;
-
 	const imagePath = hasImage
 		? newTrainer.image
 		: `${supabaseUrl}/storage/v1/object/public/trainersimage/${imageName}`;
 
-	let query = supabase.from("trainers");
-
+	let query;
 	//ADD TRAINER
-	if (!id) query = query.insert([{ ...newTrainer, image: imagePath }]);
+	if (!id)
+		query = supabase
+			.from("trainers")
+			.insert([{ ...newTrainer, image: imagePath }]);
 	//EDIT TRAINER
 	if (id)
-		query = query.update({ ...newTrainer, image: imagePath }).eq("id", id);
+		query = supabase
+			.from("trainers")
+			.update({ ...newTrainer, image: imagePath })
+			.eq("id", id);
+	if (query === undefined)
+		throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");
 
 	const { data, error } = await query.select().single();
-
 	if (error) throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");
 
 	///upload image
 	if (newTrainer.image === undefined) return;
-
 	const { error: storageError } = await supabase.storage
 		.from("trainersimage")
 		.upload(imageName, newTrainer.image);
-
 	if (storageError)
 		throw new Error("Wystąpił błąd, zdjęcie nie zostało dodane.");
 	return data;

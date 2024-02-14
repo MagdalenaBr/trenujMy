@@ -19,17 +19,24 @@ export async function getMembers(): Promise<MemberType[]> {
 }
 
 export async function addOrEditMember(newMember: MemberType, id?: number) {
-	console.log(newMember, id);
-	let query = supabase.from("members");
-
+	let query;
 	/// ADD MEMBER
-	if (!id) query = query.insert([{ ...newMember }]);
+	if (!id) query = supabase.from("members").insert([{ ...newMember }]);
 
-	///EDIT MEMBER
-	if (id) query = query.update({ ...newMember }).eq("id", id);
+	// ///EDIT MEMBER
+	if (id)
+		query = supabase
+			.from("member")
+			.update({ ...newMember })
+			.eq("id", id);
+
+	if (query === undefined)
+		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
 
 	const { data, error } = await query.select().single();
-	if (error) throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
+	if (error) {
+		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
+	}
 	return data;
 }
 
