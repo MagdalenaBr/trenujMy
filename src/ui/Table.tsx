@@ -11,7 +11,7 @@ type PropsType = {
 function Table({ children, columns = "grid-cols-4" }: PropsType) {
 	return (
 		<TableContext.Provider value={{ columns }}>
-			<div className='bg-slate-100 rounded divide-y  border border-slate-100 overflow-hidden'>
+			<div className='bg-slate-100 rounded divide-y  border border-slate-100 overflow-hidden px-5'>
 				{children}
 			</div>
 		</TableContext.Provider>
@@ -23,7 +23,7 @@ function Header({ children }: PropsType) {
 	return (
 		<div
 			role='row'
-			className={`grid ${columns} bg-slate-100 rounded-t py-4 text-neutral-900 uppercase font-bold `}>
+			className={`grid ${columns} bg-slate-100 rounded-t py-4 text-neutral-900 uppercase font-bold justify-items-start px-2`}>
 			{children}
 		</div>
 	);
@@ -32,7 +32,7 @@ function Header({ children }: PropsType) {
 function Row({ children }: PropsType) {
 	const { columns } = useContext(TableContext);
 	return (
-		<div role='row' className={`grid ${columns} items-center py-1`}>
+		<div role='row' className={`grid ${columns} items-center justify-items-start py-2 px-2`}>
 			{children}
 		</div>
 	);

@@ -1,63 +1,49 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
-import { schema } from "../../validation/MembersValidation.tsx";
-import useCreateMember from "./useCreateMember";
-import { useEditMember } from "./useEditMember";
-import FormInput from "../../ui/FormInput.tsx";
+import { useBookings } from "./useBookings";
+import FormOption from "./FormOption";
 
-type IFormInput = {
-	id?: number;
-	name: string;
-	email: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | undefined;
-};
-type PropsType = {
-	member?: IFormInput | any;
-	handleCloseModal?: () => void;
-};
-
-function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
-	const { id, ...memberEditData } = member;
-	const isEditingSession = Boolean(id);
-	const { createMember } = useCreateMember();
-	const { editMember } = useEditMember();
-
-	const { register, handleSubmit, formState } = useForm<IFormInput>({
-		defaultValues: isEditingSession ? memberEditData : {},
-		resolver: yupResolver(schema),
+function AddBookingForm({ handleCloseModal }) {
+	const { bookings } = useBookings();
+	console.log(bookings);
+	const { register, handleSubmit, formState } = useForm({
+		// defaultValues: isEditingSession ? memberEditData : {},
+		// resolver: yupResolver(schema),
 	});
+
+	// const memberOptions = bookings?.map(booking => (
+	// 	<option value={booking.members.name}>{booking.members.name}</option>
+	// ));
+
 	const { errors } = formState;
-
-
-	const onSubmit = (data: IFormInput) => {
-		if (isEditingSession) {
-			editMember({ newMember: data, id });
-		} else {
-			createMember({ ...data });
-		}
-		handleCloseModal?.();
-	};
-
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
-				onSubmit={handleSubmit(onSubmit)}
+				// onSubmit={handleSubmit(onSubmit)}
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
-				<FormRow name='name' label='Imię i nazwisko'>
-					<FormInput
+				<FormRow name='memberId' label='Imię i nazwisko'>
+					<select
+						id='memberId'
+						{...register("memberId")}
+						className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'>
+						{/* {bookings?.map(booking => (
+							<option value={booking.members.name}>
+								{booking.members.name}
+							</option>
+						))} */}
+						{/* {memberOptions} */}
+                        <FormOption value={`members.name`}/>
+					</select>
+
+					{/* <FormInput
 						errors={errors}
 						inputName='name'
 						register={register}
 						formType='text'
-					/>
+					/> */}
 				</FormRow>
 				<FormRow name='email' label='E-mail'>
 					<FormInput
@@ -106,7 +92,8 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 						Anuluj
 					</StyledButton>
 					<StyledButton styleType='add'>
-						{isEditingSession ? "Zmień" : "Dodaj"}
+						{/* {isEditingSession ? "Zmień" : "Dodaj"} */}
+						Dodaj
 					</StyledButton>
 				</div>
 			</form>
@@ -114,4 +101,4 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 	);
 }
 
-export default AddMemberForm;
+export default AddBookingForm;

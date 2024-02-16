@@ -48,7 +48,7 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
 
-				<FormRow name='name' label='Data rozpoczęcia'>
+				<FormRow name='startGymMembership' label='Data rozpoczęcia'>
 				<FormInput
 						inputName='startGymMembership'
 						register={register}
@@ -71,7 +71,7 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 						className="w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4">
 						<option value='Karnet otwarty'>Karnet otwarty</option>
 						{trainers?.map(trainer => (
-							<option value={`${trainer.category} ${trainer.name}`}>
+							<option key={trainer.id} value={`${trainer.category} ${trainer.name}`}>
 								{trainer.category} {trainer.name} {trainer.price}zł
 							</option>
 						))}
