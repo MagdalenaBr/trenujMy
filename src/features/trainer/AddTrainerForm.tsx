@@ -22,7 +22,6 @@ type TrainerType = {
 };
 
 function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
-	console.log(trainer);
 	const { id, ...trainerEditData } = trainer;
 	const isEditingSession = Boolean(id);
 

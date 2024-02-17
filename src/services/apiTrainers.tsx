@@ -57,3 +57,23 @@ export async function deleteTrainer(id: number) {
 		throw new Error("Wystapił błąd. Trener nie został usunięty.");
 	}
 }
+
+
+// export async function getOneTrainer({id}) {
+
+// 	let { data: trainers, error } = await supabase
+//   .from('trainers')
+//   .select("*")
+//   // Filters
+//   .eq('id', id)
+//   .gt('column', 'Greater than')
+//   .lt('column', 'Less than')
+//   .gte('column', 'Greater than or equal to')
+//   .lte('column', 'Less than or equal to')
+//   .like('column', '%CaseSensitive%')
+//   .ilike('column', '%CaseInsensitive%')
+//   .is('column', null)
+//   .in('column', ['Array', 'Values'])
+//   .neq('column', 'Not equal to')
+	
+// }

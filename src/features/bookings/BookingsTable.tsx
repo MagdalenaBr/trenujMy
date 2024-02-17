@@ -4,10 +4,12 @@ import { useBookings } from "./useBookings";
 import TableNoContent from "../../ui/TableNoContent";
 import BookingStatus from "./BookingStatus";
 import { HiOutlinePencil } from "react-icons/hi2";
+import AddBookingModal from "./AddBookingModal";
+import Button from "../../ui/Button";
 
 function BookingsTable() {
 	const { bookings } = useBookings();
-	console.log(bookings[1].date.split("T"));
+	
 	return (
 		<Table>
 			<Table.Header>
@@ -32,7 +34,11 @@ function BookingsTable() {
 						</div>
 						<div className='flex w-full justify-between'>
 							<BookingStatus status={booking.status} />
-							<HiOutlinePencil className='text-2xl text-slate-800' />
+							<AddBookingModal booking={booking}>
+								<Button>
+									<HiOutlinePencil className='text-2xl' />
+								</Button>
+							</AddBookingModal>
 						</div>
 					</Table.Row>
 				))

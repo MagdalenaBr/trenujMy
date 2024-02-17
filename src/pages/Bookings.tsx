@@ -4,8 +4,8 @@ import MainContainer from "../ui/MainContainer";
 import Spinner from "../ui/Spinner";
 import TableNoContent from "../ui/TableNoContent";
 import StyledButton from "../ui/StyledButton";
-import Modal from "../ui/Modal";
-import AddBooking from "../features/bookings/AddBooking";
+
+import AddBookingModal from "../features/bookings/AddBookingModal";
 
 function Bookings() {
 	const { isLoading, error } = useBookings();
@@ -14,10 +14,9 @@ function Bookings() {
 	return (
 		<MainContainer title='Rezerwacje'>
 			<BookingsTable />
-			{/* <StyledButton styleType='add'>Dodaj rezerwację</StyledButton> */}
-			<AddBooking/>
-
-			
+			<AddBookingModal>
+				<StyledButton styleType='add'>Dodaj rezerwację</StyledButton>
+			</AddBookingModal>
 		</MainContainer>
 	);
 }

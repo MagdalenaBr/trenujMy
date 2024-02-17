@@ -4,84 +4,81 @@ import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
 import { useBookings } from "./useBookings";
 import FormOption from "./FormOption";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../validation/BookingValidation";
+import useCreateBooking from "./useCreateBooking";
+import { useEditBooking } from "./useEditBooking";
 
-function AddBookingForm({ handleCloseModal }) {
-	const { bookings } = useBookings();
-	console.log(bookings);
+function AddBookingForm({ booking = {}, handleCloseModal }) {
+	// const { bookings } = useBookings();
+	const { id, ...bookingsEditData } = booking;
+
+	console.log(bookingsEditData);
+	const isEditingSession = Boolean(id);
+
 	const { register, handleSubmit, formState } = useForm({
-		// defaultValues: isEditingSession ? memberEditData : {},
-		// resolver: yupResolver(schema),
+		defaultValues: isEditingSession ? bookingsEditData : {},
+		resolver: yupResolver(schema),
 	});
+	const { createBooking } = useCreateBooking();
+	const { editBooking } = useEditBooking();
+	const onSubmit = data => {
 
-	// const memberOptions = bookings?.map(booking => (
-	// 	<option value={booking.members.name}>{booking.members.name}</option>
-	// ));
+		
+		console.log( data);
+		if (isEditingSession) {
+			editBooking({ newBooking: data, id });
+		} else {
+			createBooking({ ...data });
+		}
+		handleCloseModal?.();
+	};
 
 	const { errors } = formState;
+	
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
-				// onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
 				<FormRow name='memberId' label='Imię i nazwisko'>
-					<select
-						id='memberId'
-						{...register("memberId")}
-						className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'>
-						{/* {bookings?.map(booking => (
-							<option value={booking.members.name}>
-								{booking.members.name}
-							</option>
-						))} */}
-						{/* {memberOptions} */}
-                        <FormOption value={`members.name`}/>
-					</select>
-
-					{/* <FormInput
+					<FormOption
+						value={`members`}
 						errors={errors}
-						inputName='name'
+						inputName='memberId'
 						register={register}
-						formType='text'
-					/> */}
-				</FormRow>
-				<FormRow name='email' label='E-mail'>
-					<FormInput
-						errors={errors}
-						inputName='email'
-						register={register}
-						formType='email'
 					/>
 				</FormRow>
-				<FormRow name='phone' label='Telefon'>
-					<FormInput
+				<FormRow name='trainerId' label='Trener'>
+					<FormOption
+						value={`trainers`}
 						errors={errors}
-						inputName='phone'
+						inputName='trainerId'
 						register={register}
-						formType='text'
 					/>
 				</FormRow>
-				<FormRow name='gender' label='Płeć'>
+				<FormRow name='date' label='Data'>
+					<FormInput
+						errors={errors}
+						inputName='date'
+						register={register}
+						formType='datetime-local'
+					/>
+				</FormRow>
+				<FormRow name='status' label='Status'>
 					<select
-						id='gender'
-						{...register("gender")}
+						id='status'
+						{...register("status")}
 						className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'>
-						<option value=''>Wybierz płeć</option>
-						<option value='Kobieta'>Kobieta</option>
-						<option value='Mężczyzna'>Mężczyzna</option>
-						<option value='Inna'>Inna</option>
+						<option value=''></option>
+						<option value='zrealizowana'>zrealizowana</option>
+						<option value='niepotwierdzona'>niepotwierdzona</option>
+						<option value='anulowana'>anulowana</option>
 					</select>
-					{errors.gender?.message && (
-						<p className='col-start-4 col-end-7'>{errors.gender.message}</p>
+					{errors.status?.message && (
+						<p className='col-start-4 col-end-7'>{errors.status.message}</p>
 					)}
-				</FormRow>
-				<FormRow name='city' label='Miasto'>
-					<FormInput
-						errors={errors}
-						inputName='city'
-						register={register}
-						formType='text'
-					/>
 				</FormRow>
 
 				<div className='flex gap-4 justify-end pt-4'>
