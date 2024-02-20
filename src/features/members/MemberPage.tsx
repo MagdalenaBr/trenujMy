@@ -4,14 +4,14 @@ import BackButton from "../../ui/BackButton";
 import MemberOptions from "./MemberOptions";
 import { HiTrophy } from "react-icons/hi2";
 import EditGymMembershipModal from "./EditGymMembershipModal";
-import { useMember } from "./useMember";
+import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
 import StyledButton from "../../ui/StyledButton";
 
 function MemberPage() {
 	const memberIdParams = useParams();
 	const memberId = Number(memberIdParams.memberId);
-	const { members, isLoading } = useMember();
+	const { members, isLoading } = useMembers();
 	const member = members?.find(member => member.id === memberId);
 
 	if (isLoading) return <Spinner />;

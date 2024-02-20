@@ -8,24 +8,53 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/BookingValidation";
 import useCreateBooking from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
+import { useTrainer } from "../trainer/useTrainer";
+import Spinner from "../../ui/Spinner";
+import { useEffect } from "react";
 
-function AddBookingForm({ booking = {}, handleCloseModal }) {
-	// const { bookings } = useBookings();
+function AddBookingForm({
+	booking = {},
+	changedBookingData,
+	handleCloseModal,
+}) {
+	const { createBooking } = useCreateBooking();
+	const { editBooking } = useEditBooking();
 	const { id, ...bookingsEditData } = booking;
+	// const trainerId = bookingsEditData.trainerId;
 
-	console.log(bookingsEditData);
+	// const { selectedTrainer, trainerIsLoading } = useTrainer(trainerId);
+
+	// const trainerName = selectedTrainer.name;
+	// console.log(trainerName);
+
+	// const chengedIdToNameBookingData = {
+	// 	...bookingsEditData,
+	// 	trainerId: trainerName,
+	// };
+	// console.log(chengedIdToNameBookingData);
+	// console.log(changedBookingData);
+
 	const isEditingSession = Boolean(id);
 
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? bookingsEditData : {},
 		resolver: yupResolver(schema),
 	});
-	const { createBooking } = useCreateBooking();
-	const { editBooking } = useEditBooking();
-	const onSubmit = data => {
 
-		
-		console.log( data);
+	const onSubmit = (data) => {
+		// 	const trainerId = booking?.trainerId;
+		// const memberId = booking?.memberId;
+		// const { selectedTrainer } = useTrainer(trainerId);
+		// const { selectedMember } = useMember(memberId);
+		// const trainerName = selectedTrainer?.name;
+		// const memberName = selectedMember?.name;
+
+		// const changedIdToNameBookingData = {
+		// 	...booking,
+		// 	trainerId: trainerName,
+		// 	memberId: memberName,
+		// };
+		console.log(data);
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
@@ -35,7 +64,7 @@ function AddBookingForm({ booking = {}, handleCloseModal }) {
 	};
 
 	const { errors } = formState;
-	
+
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form

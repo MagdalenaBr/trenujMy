@@ -1,3 +1,4 @@
+import { useTrainer } from "../features/trainer/useTrainer";
 import supabase from "./supabase";
 
 type MemberType = {
@@ -19,6 +20,7 @@ export async function getMembers(): Promise<MemberType[]> {
 }
 
 export async function addOrEditMember(newMember: MemberType, id?: number) {
+
 	let query;
 	/// ADD MEMBER
 	if (!id) query = supabase.from("members").insert([{ ...newMember }]);
@@ -45,4 +47,15 @@ export async function deleteMember(id: number | undefined) {
 	if (error) {
 		throw new Error("Wystapił błąd. Klient nie został usunięty.");
 	}
+}
+
+export async function getOneMember(id: number) {
+	if (!id) return null;
+	const { data: member, error } = await supabase
+		.from("members")
+		.select("id, name")
+		.eq("id", id)
+		.single();
+	if (error) throw new Error("Klient nie został znaleziony.");
+	return member;
 }

@@ -2,14 +2,14 @@ import { BsInfoLg } from "react-icons/bs";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
-import { useMember } from "./useMember";
+import { useMembers } from "./useMembers";
 
 type PropsType = {
 	memberNameFromInput: string;
 };
 
 function MembersTable({ memberNameFromInput }: PropsType) {
-	const { members } = useMember();
+	const { members } = useMembers();
 	const filteredMembers = members?.filter(member =>
 		member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())
 			? member

@@ -1,25 +1,25 @@
-import { useMember } from "../members/useMember";
-import { useTrainer } from "../trainer/useTrainer";
+import { useMembers } from "../members/useMembers";
+import { useTrainers } from "../trainer/useTrainers";
 
 function FormOption({ value, errors, inputName, register }) {
-	const { trainers } = useTrainer();
-	const { members } = useMember();
+	const { trainers } = useTrainers();
+	const { members } = useMembers();
 	return (
 		<>
-			<input
+			{/* <input
 				id={inputName}
 				{...register(inputName)}
 				type='text'
 				list={value}
 				className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'
-			/>
-			<datalist id={value}>
+			/> */}
+			<select id={inputName} {...register(inputName)} className='w-80 h-9 rounded-md font-normal text-sm border-2 focus:outline-none focus:ring-2 focus:ring-slate-800 col-start-1 col-end-4'>
 				{(value === "members" ? members : trainers)?.map(el => (
-					<option key={el.id} value={el.name}>
+					<option key={el.id} value={el.id} label={el.name}>
 						{el.name}
 					</option>
 				))}
-			</datalist>
+			</select>
 			{errors && errors[inputName]?.message && (
 				<p className='col-start-4 col-end-7'>
 					{errors[inputName]?.message?.toString()}

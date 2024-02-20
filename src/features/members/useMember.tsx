@@ -1,15 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMembers } from "../../services/apiMembers";
+import { getOneMember } from "../../services/apiMembers";
 
-export function useMember() {
-	const {
-		data: members,
-		isLoading,
-		error,
-	} = useQuery({
-		queryKey: ["members"],
-		queryFn: getMembers,
+export function useMember(id) {
+	const { data: selectedMember } = useQuery({
+		queryKey: ["members", id],
+		queryFn: () => getOneMember(id),
 	});
 
-	return { members, isLoading, error };
+	return { selectedMember };
 }

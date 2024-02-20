@@ -58,22 +58,13 @@ export async function deleteTrainer(id: number) {
 	}
 }
 
-
-// export async function getOneTrainer({id}) {
-
-// 	let { data: trainers, error } = await supabase
-//   .from('trainers')
-//   .select("*")
-//   // Filters
-//   .eq('id', id)
-//   .gt('column', 'Greater than')
-//   .lt('column', 'Less than')
-//   .gte('column', 'Greater than or equal to')
-//   .lte('column', 'Less than or equal to')
-//   .like('column', '%CaseSensitive%')
-//   .ilike('column', '%CaseInsensitive%')
-//   .is('column', null)
-//   .in('column', ['Array', 'Values'])
-//   .neq('column', 'Not equal to')
-	
-// }
+export async function getOneTrainer(id: number) {
+	if (!id) return null;
+	const { data: trainers, error } = await supabase
+		.from("trainers")
+		.select("id, name")
+		.eq("id", id)
+		.single();
+	if (error) throw new Error("Trener nie został znaleziony.");
+	return trainers;
+}

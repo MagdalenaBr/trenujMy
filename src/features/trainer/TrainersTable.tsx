@@ -1,10 +1,10 @@
 import TableNoContent from "../../ui/TableNoContent";
 import TrainerOptions from "../../ui/TrainerOptions";
 import Table from "../../ui/Table";
-import { useTrainer } from "./useTrainer";
+import { useTrainers } from "./useTrainers";
 
 function TrainersTable() {
-	const { trainers } = useTrainer();
+	const { trainers } = useTrainers();
 	return (
 		<Table>
 			{trainers ? (

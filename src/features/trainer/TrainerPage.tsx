@@ -3,12 +3,12 @@ import Container from "../../ui/Container";
 import StyledButton from "../../ui/StyledButton";
 import Schedule from "../schedule/Schedule";
 import BackButton from "../../ui/BackButton";
-import { useTrainer } from "./useTrainer";
+import { useTrainers } from "./useTrainers";
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const trainerId = Number(trainerIdParams.trainerId);
-	const { trainers } = useTrainer();
+	const { trainers } = useTrainers();
 	const trainer = trainers?.filter(t => t.id === trainerId);
 
 	if (trainer === undefined) return;

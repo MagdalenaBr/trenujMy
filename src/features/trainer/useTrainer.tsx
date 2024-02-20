@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTrainers } from "../../services/apiTrainers";
+import { getOneTrainer } from "../../services/apiTrainers";
 
-export function useTrainer() {
-	const { data: trainers, isLoading, error } = useQuery({
-		queryKey: ["trainers"],
-		queryFn: getTrainers,
+export function useTrainer(id) {
+	const { data: selectedTrainer, isLoading: trainerIsLoading } = useQuery({
+		queryKey: ["trainers", id],
+		queryFn: () => getOneTrainer(id),
 	});
-
-	return { trainers, isLoading, error };
+	
+	return { selectedTrainer, trainerIsLoading };
 }
