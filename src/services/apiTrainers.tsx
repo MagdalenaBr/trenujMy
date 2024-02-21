@@ -35,8 +35,10 @@ export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
 			.from("trainers")
 			.update({ ...newTrainer, image: imagePath })
 			.eq("id", id);
+
 	if (query === undefined)
 		throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");
+	console.log(query);
 
 	const { data, error } = await query.select().single();
 	if (error) throw new Error("Wystąpił błąd, dane trenera nie zostały dodane.");

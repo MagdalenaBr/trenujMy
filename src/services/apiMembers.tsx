@@ -1,4 +1,3 @@
-import { useTrainer } from "../features/trainer/useTrainer";
 import supabase from "./supabase";
 
 type MemberType = {
@@ -20,7 +19,7 @@ export async function getMembers(): Promise<MemberType[]> {
 }
 
 export async function addOrEditMember(newMember: MemberType, id?: number) {
-	console.log(id);
+	console.log(newMember, id);
 
 	let query;
 	/// ADD MEMBER
@@ -29,13 +28,14 @@ export async function addOrEditMember(newMember: MemberType, id?: number) {
 	// ///EDIT MEMBER
 	if (id)
 		query = supabase
-			.from("member")
+			.from("members")
 			.update({ ...newMember })
 			.eq("id", id);
 
 	if (query === undefined)
 		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
 
+	console.log(query);
 	const { data, error } = await query.select().single();
 	if (error) {
 		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
