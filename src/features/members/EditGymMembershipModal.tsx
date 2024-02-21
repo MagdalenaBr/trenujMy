@@ -13,7 +13,7 @@ type MemberType = {
 		city: string;
 		startGymMembership?: string | null;
 		endGymMembership?: string | null;
-		gymMembershipType?: string;
+		gymMembershipType?: string | null;
 	};
 };
 

@@ -34,9 +34,11 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 		resolver: yupResolver(schema),
 	});
 	const { errors } = formState;
+	console.log(errors);
 
 
 	const onSubmit = (data: IFormInput) => {
+		console.log(data);
 		if (isEditingSession) {
 			editMember({ newMember: data, id });
 		} else {

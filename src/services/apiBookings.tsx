@@ -8,6 +8,7 @@ export async function getBookings(){
 }
 
 export async function addOrEditBooking(newBooking, id?) {
+	console.log(newBooking, id);
 	let query;
 	/// ADD MEMBER
 	if (!id) query = supabase.from("bookings").insert([{ ...newBooking }]);
@@ -15,7 +16,7 @@ export async function addOrEditBooking(newBooking, id?) {
 	// ///EDIT MEMBER
 	if (id)
 		query = supabase
-			.from("member")
+			.from("bookings")
 			.update({ ...newBooking })
 			.eq("id", id);
 

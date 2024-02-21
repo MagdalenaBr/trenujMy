@@ -10,7 +10,7 @@ type MemberType = {
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
-	gymMembershipType?: string;
+	gymMembershipType?: string | null;
 };
 
 export async function getMembers(): Promise<MemberType[]> {
@@ -20,6 +20,7 @@ export async function getMembers(): Promise<MemberType[]> {
 }
 
 export async function addOrEditMember(newMember: MemberType, id?: number) {
+	console.log(id);
 
 	let query;
 	/// ADD MEMBER

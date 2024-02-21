@@ -14,7 +14,6 @@ import { useEffect } from "react";
 
 function AddBookingForm({
 	booking = {},
-	changedBookingData,
 	handleCloseModal,
 }) {
 	const { createBooking } = useCreateBooking();
@@ -42,19 +41,8 @@ function AddBookingForm({
 	});
 
 	const onSubmit = (data) => {
-		// 	const trainerId = booking?.trainerId;
-		// const memberId = booking?.memberId;
-		// const { selectedTrainer } = useTrainer(trainerId);
-		// const { selectedMember } = useMember(memberId);
-		// const trainerName = selectedTrainer?.name;
-		// const memberName = selectedMember?.name;
-
-		// const changedIdToNameBookingData = {
-		// 	...booking,
-		// 	trainerId: trainerName,
-		// 	memberId: memberName,
-		// };
 		console.log(data);
+	
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
@@ -64,6 +52,7 @@ function AddBookingForm({
 	};
 
 	const { errors } = formState;
+	
 
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
