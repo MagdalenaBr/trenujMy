@@ -4,6 +4,8 @@ import StyledButton from "../../ui/StyledButton";
 import Schedule from "../schedule/Schedule";
 import BackButton from "../../ui/BackButton";
 import { useTrainers } from "./useTrainers";
+import { useSchedules } from "../schedule/useSchedules";
+import { useBooking } from "../bookings/useBooking";
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
@@ -11,7 +13,29 @@ function TrainerPage() {
 	const { trainers } = useTrainers();
 	const trainer = trainers?.find(t => t.id === trainerId);
 
+	const { schedule } = useSchedules();
+	const { booking } = useBooking(trainer?.id);
+
 	if (trainer === undefined) return;
+	let trainerSchedule;
+	if (trainer.category !== "trener personalny")
+		trainerSchedule = schedule?.map(el =>
+			el.trainerId === trainer.id
+				? {
+						title: `${el.name} ${booking?.length}/${el.numOfPlaces}`,
+						date: el.date,
+				  }
+				: {}
+		);
+	if (trainer.category === "trener personalny")
+		trainerSchedule = booking?.map(el =>
+			el.trainerId === trainer.id
+				? {
+						title: `${el.members.name} ${el.members.phone}`,
+						date: el.date,
+				  }
+				: {}
+		);
 
 	return (
 		<Container>
@@ -37,7 +61,7 @@ function TrainerPage() {
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>
-			<Schedule trainer={trainer}/>
+			<Schedule trainerSchedule={trainerSchedule} trainerCategory={trainer.category}/>
 		</Container>
 	);
 }
