@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Trainers from "./pages/Trainers";
@@ -12,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import MemberPage from "./features/members/MemberPage";
+import SchedulePage from "./pages/SchedulePage";
 
 const queryClient = new QueryClient();
 
@@ -28,8 +28,9 @@ function App() {
 						<Route path='/trainers/:trainerId' element={<TrainerPage />} />
 						<Route path='/bookings' element={<Bookings />} />
 						<Route path='/members' element={<Members />} />
-						<Route path='/members/:memberId' element={<MemberPage/>}/>
+						<Route path='/members/:memberId' element={<MemberPage />} />
 						<Route path='/users' element={<Users />} />
+						<Route path='/schedule' element={<SchedulePage />} />
 						<Route path='/*' element={<PageNotFound />} />
 					</Route>
 				</Routes>

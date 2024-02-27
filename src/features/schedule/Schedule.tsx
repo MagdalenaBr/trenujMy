@@ -31,7 +31,7 @@ function Schedule({ trainer }: TrainerType) {
 		trainerSchedule = schedule?.map(el =>
 			el.trainerId === trainer.id
 				? {
-						title: `${el.name} 1/${el.numOfPlaces}`,
+						title: `${el.name} ${booking?.length}/${el.numOfPlaces}`,
 						date: el.date,
 				  }
 				: {}
@@ -40,7 +40,7 @@ function Schedule({ trainer }: TrainerType) {
 		trainerSchedule = booking?.map(el =>
 			el.trainerId === trainer.id
 				? {
-						title: el.members.name,
+						title: `${el.members.name} ${el.members.phone}`,
 						date: el.date,
 				  }
 				: {}
@@ -52,6 +52,9 @@ function Schedule({ trainer }: TrainerType) {
 			initialView='timeGridWeek'
 			events={trainerSchedule}
 			locale='pl'
+			eventMinHeight={trainer.category === "trener personalny" ? 65 : 15}
+			slotMinTime={'08:00:00'}
+			slotMaxTime={'21:00:00'}
 			headerToolbar={{
 				start: "timeGridWeek,timeGridDay",
 				center: "title",
