@@ -37,3 +37,15 @@ export async function addOrEditBooking(newBooking, id?) {
 	}
 	return data;
 }
+
+export async function getBooking(id: number) {
+	// console.log(id);
+	// if (!id) return null;
+	const { data: booking, error } = await supabase
+		.from("bookings")
+		.select("*, trainers(name), members(name, phone)")
+		.eq("trainerId", id);
+	if (error) throw new Error("Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.");
+	console.log(booking);
+	return booking;
+}
