@@ -24,7 +24,6 @@ type PropsType = {
 };
 
 function GymMembershipForm({ member, handleCloseModal }: PropsType) {
-	console.log(member);
 	const { id } = member;
 
 	const { data: trainers } = useQuery({

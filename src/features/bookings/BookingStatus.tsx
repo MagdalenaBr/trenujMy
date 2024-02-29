@@ -1,4 +1,5 @@
-function BookingStatus({ status }) {
+function BookingStatus({ status }: {status: string}) {
+	
 let fontColor;
 if(status === 'zrealizowana') fontColor = 'text-lime-500'
 if(status === 'anulowana') fontColor = 'text-red-600'

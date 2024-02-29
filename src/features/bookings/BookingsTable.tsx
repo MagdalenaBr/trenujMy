@@ -1,15 +1,14 @@
-import { BsBookmark } from "react-icons/bs";
-import Table from "../../ui/Table";
-import { useBookings } from "./useBookings";
-import TableNoContent from "../../ui/TableNoContent";
-import BookingStatus from "./BookingStatus";
 import { HiOutlinePencil } from "react-icons/hi2";
+import { useBookings } from "./useBookings";
 import AddBookingModal from "./AddBookingModal";
+import BookingStatus from "./BookingStatus";
+import Table from "../../ui/Table";
+import TableNoContent from "../../ui/TableNoContent";
 import Button from "../../ui/Button";
 
 function BookingsTable() {
 	const { bookings } = useBookings();
-	
+
 	return (
 		<Table>
 			<Table.Header>

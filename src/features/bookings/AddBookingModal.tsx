@@ -1,29 +1,22 @@
-import Modal from "../../ui/Modal";
 import AddBookingForm from "./AddBookingForm";
-import { useTrainer } from "../trainer/useTrainer";
-import { useMember } from "../members/useMember";
+import Modal from "../../ui/Modal";
 
-function AddBookingModal({ children, booking }) {
-	// const trainerId = booking?.trainerId;
-	// const memberId = booking?.memberId;
-	// const { selectedTrainer } = useTrainer(trainerId);
-	// const { selectedMember } = useMember(memberId);
-	// const trainerName = selectedTrainer?.name;
-	// const memberName = selectedMember?.name;
+type PropsType = {
+	children: React.ReactNode;
+	booking: {
+		id?: number;
+		date: Date;
+		status: string;
+		trainerId: number;
+		memberId: number;
+	};
+};
 
-	// const changedIdToNameBookingData = {
-	// 	...booking,
-	// 	trainerId: trainerName,
-	// 	memberId: memberName,
-	// };
-
+function AddBookingModal({ children, booking }: PropsType) {
 	return (
 		<Modal>
 			<Modal.Window formName='member'>
-				<AddBookingForm
-					booking={booking}
-					
-				/>
+				<AddBookingForm booking={booking} />
 			</Modal.Window>
 			<Modal.OpenButton openForm='member'>{children}</Modal.OpenButton>
 		</Modal>

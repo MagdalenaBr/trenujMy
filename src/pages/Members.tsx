@@ -1,7 +1,7 @@
 import MainContainer from "../ui/MainContainer";
 import MembersTable from "../features/members/MembersTable";
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
-import AddMember from "../features/members/AddMember";
+import AddMemberModal from "../features/members/AddMemberModal";
 import Spinner from "../ui/Spinner";
 import { useState } from "react";
 import { useMembers } from "../features/members/useMembers";
@@ -26,7 +26,7 @@ function Members() {
 					</div>
 				</div>
 				<MembersTable memberNameFromInput={memberName} />
-				<AddMember />
+				<AddMemberModal />
 			</>
 		</MainContainer>
 	);

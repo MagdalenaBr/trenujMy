@@ -16,7 +16,7 @@ type IFormInput = {
 	city: string;
 	startGymMembership?: string | null;
 	endGymMembership?: string | null;
-	gymMembershipType?: string | undefined;
+	gymMembershipType?: string | null;
 };
 type PropsType = {
 	member?: IFormInput | any;

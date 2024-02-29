@@ -15,6 +15,8 @@ type MemberType = {
 export async function getMembers(): Promise<MemberType[]> {
 	const { data: members, error } = await supabase.from("members").select("*");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
+	console.log(members);
+	console.log(typeof members[0].phone);
 	return members;
 }
 

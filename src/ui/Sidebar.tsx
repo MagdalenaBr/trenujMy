@@ -31,6 +31,12 @@ function Sidebar() {
 					</NavLink>
 				</li>
 				<li>
+					<NavLink to='/schedule' className='flex items-center gap-2 text-xl'>
+						<HiOutlineCalendarDays className='text-slate-600 font-extrabold text-3xl' />
+						<span>Grafik</span>
+					</NavLink>
+				</li>
+				<li>
 					<NavLink to='/members' className='flex items-center gap-2 text-xl'>
 						<HiOutlineUserGroup className='text-slate-600 font-extrabold text-3xl' />
 						<span>Klienci</span>
@@ -40,12 +46,6 @@ function Sidebar() {
 					<NavLink to='/users' className='flex items-center gap-2 text-xl'>
 						<HiOutlineUser className='text-slate-600 font-extrabold text-3xl' />
 						<span>Użytkownicy</span>
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to='/schedule' className='flex items-center gap-2 text-xl'>
-						<HiOutlineCalendarDays className='text-slate-600 font-extrabold text-3xl' />
-						<span>Grafik</span>
 					</NavLink>
 				</li>
 			</ul>

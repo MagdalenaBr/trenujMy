@@ -1,38 +1,30 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { useCreateBooking } from "./useCreateBooking";
+import { useEditBooking } from "./useEditBooking";
+import { schema } from "../../validation/BookingValidation";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
-import { useBookings } from "./useBookings";
 import FormOption from "./FormOption";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validation/BookingValidation";
-import useCreateBooking from "./useCreateBooking";
-import { useEditBooking } from "./useEditBooking";
-import { useTrainer } from "../trainer/useTrainer";
-import Spinner from "../../ui/Spinner";
-import { useEffect } from "react";
 
-function AddBookingForm({
-	booking = {},
-	handleCloseModal,
-}) {
+type IFormInput = {
+	id?: number;
+	date: Date;
+	status: string;
+	trainerId: number;
+	memberId: number;
+};
+type PropsType = {
+	booking?: IFormInput | any;
+	handleCloseModal?: () => void;
+};
+
+function AddBookingForm({ booking = {}, handleCloseModal }: PropsType) {
 	const { createBooking } = useCreateBooking();
 	const { editBooking } = useEditBooking();
 	const { id, ...bookingsEditData } = booking;
-	// const trainerId = bookingsEditData.trainerId;
-
-	// const { selectedTrainer, trainerIsLoading } = useTrainer(trainerId);
-
-	// const trainerName = selectedTrainer.name;
-	// console.log(trainerName);
-
-	// const chengedIdToNameBookingData = {
-	// 	...bookingsEditData,
-	// 	trainerId: trainerName,
-	// };
-	// console.log(chengedIdToNameBookingData);
-	// console.log(changedBookingData);
-
 	const isEditingSession = Boolean(id);
 
 	const { register, handleSubmit, formState } = useForm({
@@ -40,9 +32,7 @@ function AddBookingForm({
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmit = (data) => {
-		console.log(data);
-	
+	const onSubmit = (data: IFormInput) => {
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
@@ -52,7 +42,6 @@ function AddBookingForm({
 	};
 
 	const { errors } = formState;
-	
 
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -95,7 +84,9 @@ function AddBookingForm({
 						<option value='anulowana'>anulowana</option>
 					</select>
 					{errors.status?.message && (
-						<p className='col-start-4 col-end-7'>{errors.status.message}</p>
+						<p className='col-start-4 col-end-7'>
+							{errors.status.message.toString()}
+						</p>
 					)}
 				</FormRow>
 
@@ -107,8 +98,7 @@ function AddBookingForm({
 						Anuluj
 					</StyledButton>
 					<StyledButton styleType='add'>
-						{/* {isEditingSession ? "Zmień" : "Dodaj"} */}
-						Dodaj
+						{isEditingSession ? "Zmień" : "Dodaj"}
 					</StyledButton>
 				</div>
 			</form>

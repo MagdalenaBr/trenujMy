@@ -6,8 +6,8 @@ import { useTrainers } from "../features/trainer/useTrainers";
 import TableNoContent from "../ui/TableNoContent";
 
 function Trainers() {
-	const { isLoading, error } = useTrainers();
-	if (isLoading) return <Spinner />;
+	const { trainerIsLoading, error } = useTrainers();
+	if (trainerIsLoading) return <Spinner />;
 	if (error) return <TableNoContent />;
 
 	return (

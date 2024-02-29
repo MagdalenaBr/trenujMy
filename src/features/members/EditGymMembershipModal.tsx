@@ -4,7 +4,6 @@ import GymMembershipForm from "./GymMembershipForm";
 import Button from "../../ui/Button";
 
 type MemberType = {
-	member: {
 		id?: number;
 		email: string;
 		name: string;
@@ -14,10 +13,11 @@ type MemberType = {
 		startGymMembership?: string | null;
 		endGymMembership?: string | null;
 		gymMembershipType?: string | null;
-	};
+	
 };
 
-function EditGymMembershipModal({ member }: MemberType) {
+function EditGymMembershipModal({ member }: {member: MemberType}) {
+
 	return (
 		<Modal>
 			<Modal.OpenButton openForm='membership'>
