@@ -4,12 +4,12 @@ import { getTrainers } from "../../services/apiTrainers";
 export function useTrainers() {
 	const {
 		data: trainers,
-		isLoading,
+		isLoading: trainerIsLoading,
 		error,
 	} = useQuery({
 		queryKey: ["trainers"],
 		queryFn: getTrainers,
 	});
 
-	return { trainers, isLoading, error };
+	return { trainers, trainerIsLoading, error };
 }

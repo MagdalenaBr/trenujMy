@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useParams } from "react-router-dom";
 import Container from "../../ui/Container";
 import StyledButton from "../../ui/StyledButton";
@@ -6,15 +7,19 @@ import BackButton from "../../ui/BackButton";
 import { useTrainers } from "./useTrainers";
 import { useSchedules } from "../schedule/useSchedules";
 import { useBooking } from "../bookings/useBooking";
+import Spinner from "../../ui/Spinner";
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const trainerId = Number(trainerIdParams.trainerId);
-	const { trainers } = useTrainers();
+	const { trainers, trainerIsLoading } = useTrainers();
 	const trainer = trainers?.find(t => t.id === trainerId);
 
-	const { schedule } = useSchedules();
-	const { booking } = useBooking(trainer?.id);
+	const { schedule, scheduleIsLoading } = useSchedules();
+	const { booking, bookingIsLoading } = useBooking(trainer?.id);
+
+	if (trainerIsLoading || scheduleIsLoading || bookingIsLoading)
+		return <Spinner />;
 
 	if (trainer === undefined) return;
 	let trainerSchedule;
@@ -22,7 +27,7 @@ function TrainerPage() {
 		trainerSchedule = schedule?.map(el =>
 			el.trainerId === trainer.id
 				? {
-						title: `${el.name} ${booking?.length}/${el.numOfPlaces}`,
+						title: `${el.name}, dostępne miejsca: ${booking?.length}/${el.numOfPlaces}`,
 						date: el.date,
 				  }
 				: {}
@@ -61,7 +66,7 @@ function TrainerPage() {
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>
-			<Schedule trainerSchedule={trainerSchedule} trainerCategory={trainer.category}/>
+			<Schedule trainerSchedule={trainerSchedule} />
 		</Container>
 	);
 }

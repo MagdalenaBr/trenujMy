@@ -1,30 +1,26 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { useSchedules } from "./useSchedules";
-import { useBooking } from "../bookings/useBooking";
+import { useOpenHours } from "./useOpenHours";
+import Spinner from "../../ui/Spinner";
 
-// type TrainerType = {
-// 	trainer: {
-// 		id?: number;
-// 		name: string;
-// 		category: string;
-// 		price: string;
-// 		phone: string;
-// 		image: any;
-// 	};
-// };
+function Schedule({ trainerSchedule, scheduleIsLoading }) {
+	const { openHours, isLoading: openHoursLoading } = useOpenHours();
+	// const defaultHours = {openHour: '00:00', closeHour: '24:00'}
+	if (openHoursLoading || scheduleIsLoading) return <Spinner />;
+	let openHour, closeHour;
+	if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
 
-function Schedule({ trainerSchedule, trainerCategory }) {
+	console.log(openHour, closeHour);
 	return (
 		<FullCalendar
 			plugins={[timeGridPlugin]}
 			initialView='timeGridWeek'
 			events={trainerSchedule}
 			locale='pl'
-			eventMinHeight={trainerCategory === "trener personalny" ? 65 : 15}
-			slotMinTime={"08:00:00"}
-			slotMaxTime={"21:00:00"}
+			eventMinHeight={65}
+			slotMinTime={openHour || "00:00"}
+			slotMaxTime={closeHour || "24:00"}
 			headerToolbar={{
 				start: "timeGridWeek,timeGridDay",
 				center: "title",

@@ -5,12 +5,12 @@ import { getSchedule } from "../../services/apiSchedule";
 export function useSchedules() {
 	const {
 		data: schedule,
-		isLoading,
+		isLoading: scheduleIsLoading,
 		error,
 	} = useQuery({
 		queryKey: ["schedule"],
 		queryFn: getSchedule,
 	});
 
-	return { schedule, isLoading, error };
+	return { schedule, scheduleIsLoading, error };
 }

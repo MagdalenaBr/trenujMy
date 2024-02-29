@@ -29,8 +29,7 @@ export function useEditMember() {
 		},
 		onError(error) {
 			toast.error(error.message);
-		},
-		throwOnError: true,
+		}
 	});
 	return { editMember };
 }
