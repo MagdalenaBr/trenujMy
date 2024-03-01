@@ -4,14 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
 import { schema } from "../../validation/BookingValidation";
+import FormOption from "./FormOption";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
-import FormOption from "./FormOption";
 
 type IFormInput = {
 	id?: number;
-	date: Date;
+	date: string;
 	status: string;
 	trainerId: number;
 	memberId: number;
@@ -19,29 +19,40 @@ type IFormInput = {
 type PropsType = {
 	booking?: IFormInput | any;
 	handleCloseModal?: () => void;
+	activeMember?: string;
+	memberId?: number;
+	memberName?: string;
 };
 
-function AddBookingForm({ booking = {}, handleCloseModal }: PropsType) {
+function AddBookingForm({
+	booking = {},
+	handleCloseModal,
+	activeMember,
+	memberId,
+	memberName,
+}: PropsType) {
+
 	const { createBooking } = useCreateBooking();
 	const { editBooking } = useEditBooking();
 	const { id, ...bookingsEditData } = booking;
 	const isEditingSession = Boolean(id);
-
+	console.log(bookingsEditData);
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? bookingsEditData : {},
 		resolver: yupResolver(schema),
 	});
+	const { errors } = formState;
+
 
 	const onSubmit = (data: IFormInput) => {
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
-			createBooking({ ...data });
+			createBooking(data);
 		}
 		handleCloseModal?.();
 	};
-
-	const { errors } = formState;
+	console.log(errors);
 
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -49,9 +60,15 @@ function AddBookingForm({ booking = {}, handleCloseModal }: PropsType) {
 				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
+				{/* <h2 className='text-center font-bold uppercase text-lg'>
+					{activeMemberName}
+				</h2> */}
 				<FormRow name='memberId' label='Imię i nazwisko'>
 					<FormOption
 						value={`members`}
+						member={activeMember}
+						memberId={memberId}
+						memberName={memberName}
 						errors={errors}
 						inputName='memberId'
 						register={register}

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 type BookingType = {
 	newBooking: {
-		date: Date;
+		date: string;
 		status: string;
 		trainerId: number;
 		memberId: number;

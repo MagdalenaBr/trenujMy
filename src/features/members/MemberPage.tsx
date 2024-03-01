@@ -7,6 +7,7 @@ import EditGymMembershipModal from "./EditGymMembershipModal";
 import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
 import StyledButton from "../../ui/StyledButton";
+import AddBookingModal from "../bookings/AddBookingModal";
 
 function MemberPage() {
 	const memberIdParams = useParams();
@@ -74,7 +75,11 @@ function MemberPage() {
 				</div>
 				<BackButton />
 			</div>
-			<StyledButton styleType='add'>Zarezerwuj zajęcia</StyledButton>
+
+			<AddBookingModal  activeMember={member}>
+				{/* <StyledButton styleType='add'>Dodaj rezerwację</StyledButton> */}
+				<StyledButton styleType='add'>Zarezerwuj zajęcia</StyledButton>
+			</AddBookingModal>
 
 			<div className='flex items-center justify-center'>
 				<hr className='w-[20rem] mx-3' />

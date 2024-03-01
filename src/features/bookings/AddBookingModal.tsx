@@ -3,20 +3,21 @@ import Modal from "../../ui/Modal";
 
 type PropsType = {
 	children: React.ReactNode;
-	booking: {
+	booking?: {
 		id?: number;
-		date: Date;
+		date: string;
 		status: string;
 		trainerId: number;
 		memberId: number;
 	};
+	activeMember?: string;
 };
 
-function AddBookingModal({ children, booking }: PropsType) {
+function AddBookingModal({ children, booking, activeMember, memberId, memberName }: PropsType) {
 	return (
 		<Modal>
 			<Modal.Window formName='member'>
-				<AddBookingForm booking={booking} />
+				<AddBookingForm booking={booking} activeMember={activeMember} memberId={memberId} memberName={memberName}/>
 			</Modal.Window>
 			<Modal.OpenButton openForm='member'>{children}</Modal.OpenButton>
 		</Modal>

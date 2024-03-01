@@ -1,14 +1,23 @@
 import supabase from "./supabase";
 
+type BookingType = {
+	id?: number;
+	date: string;
+	status: string;
+	trainerId: number;
+	memberId: number;
+};
+
 export async function getBookings() {
 	const { data: bookings, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
+	console.log(typeof bookings[0].date);
 	return bookings;
 }
 
-export async function addOrEditBooking(newBooking, id?) {
+export async function addOrEditBooking(newBooking: BookingType, id?: number) {
 	console.log(newBooking, id);
 
 	const newBookingData = {
@@ -39,13 +48,14 @@ export async function addOrEditBooking(newBooking, id?) {
 }
 
 export async function getBooking(id: number) {
-	// console.log(id);
-	// if (!id) return null;
 	const { data: booking, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)")
 		.eq("trainerId", id);
-	if (error) throw new Error("Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.");
+	if (error)
+		throw new Error(
+			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."
+		);
 	console.log(booking);
 	return booking;
 }
