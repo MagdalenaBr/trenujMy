@@ -4,10 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
 import { schema } from "../../validation/BookingValidation";
-import FormOption from "./FormOption";
+import FormOption from "../../ui/FormOption";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
+import { useTrainers } from "../trainer/useTrainers";
 
 type IFormInput = {
 	id?: number;
@@ -45,6 +46,7 @@ function AddBookingForm({
 	const { editBooking } = useEditBooking();
 	const { id, ...bookingsEditData } = booking;
 	const isEditingSession = Boolean(id);
+	const { trainers } = useTrainers();
 
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? bookingsEditData : {},
@@ -80,7 +82,8 @@ function AddBookingForm({
 				</FormRow>
 				<FormRow name='trainerId' label='Trener'>
 					<FormOption
-						value={`trainers`}
+						value='trainers'
+						data={trainers}
 						errors={errors}
 						inputName='trainerId'
 						register={register}

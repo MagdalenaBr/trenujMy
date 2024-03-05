@@ -1,5 +1,13 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { useTrainers } from "../trainer/useTrainers";
+
+type TrainersType = {
+	id: number;
+	name: string;
+	category: string;
+	price: number;
+	phone: string;
+	image: any;
+}[];
 
 type PropsType = {
 	errors?: FieldErrors;
@@ -19,6 +27,7 @@ type PropsType = {
 		endGymMembership?: string | null;
 		gymMembershipType?: string | null;
 	};
+	data?: TrainersType;
 };
 
 function FormOption({
@@ -29,8 +38,12 @@ function FormOption({
 	value,
 	memberId,
 	memberName,
+	data,
 }: PropsType) {
-	const { trainers } = useTrainers();
+	const typesOfActivities = data?.map(el => el.category);
+	const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
+		el => el !== "trener personalny"
+	);
 
 	return (
 		<>
@@ -41,7 +54,7 @@ function FormOption({
 				{value === "trainers" && (
 					<>
 						<option value=''></option>
-						{trainers?.map(el => (
+						{data?.map(el => (
 							<option
 								key={el.id}
 								value={el.id}
@@ -53,8 +66,17 @@ function FormOption({
 				)}
 				{value === "members" && (
 					<option
+						key={member ? member.id : memberId}
 						value={member ? member.id : memberId}
 						label={member ? member.name : memberName}></option>
+				)}
+				{value === "typeOfActivities" && (
+					<>
+						<option value=''></option>
+						{uniqueTypesOfActivities?.map(category => (
+							<option key={category} value={category} label={category}></option>
+						))}
+					</>
 				)}
 			</select>
 			{errors && errors[inputName]?.message && (
