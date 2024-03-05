@@ -1,5 +1,5 @@
 import TableNoContent from "../../ui/TableNoContent";
-import TrainerOptions from "../../ui/TrainerOptions";
+import TrainerOptions from "./TrainerOptions";
 import Table from "../../ui/Table";
 import { useTrainers } from "./useTrainers";
 

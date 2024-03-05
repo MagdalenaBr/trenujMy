@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../ui/FormInput";
 
 type Trainer = {
-	id: number;
+	id?: number;
 	name: string;
 	category: string;
 	price: number;

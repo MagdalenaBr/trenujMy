@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
 interface IFormInputs {
-	id: number;
+	id?: number;
 	name: string;
 	category: string;
 	price: number;

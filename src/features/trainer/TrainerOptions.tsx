@@ -5,16 +5,16 @@ import {
 	HiOutlineTrash,
 } from "react-icons/hi2";
 
-import { useDeleteTrainer } from "../features/trainer/useDeleteTrainer";
-import Modal from "./Modal";
-import AddTrainerForm from "../features/trainer/AddTrainerForm";
+import { useDeleteTrainer } from "./useDeleteTrainer";
+import Modal from "../../ui/Modal";
+import AddTrainerForm from "./AddTrainerForm";
 
-import Button from "./Button";
-import DeletePopup from "./DeletePopup";
+import Button from "../../ui/Button";
+import DeletePopup from "../../ui/DeletePopup";
 
 type TrainerTypes = {
 	trainer: {
-		id: number;
+		id?: number;
 		name: string;
 		category: string;
 		price: number;

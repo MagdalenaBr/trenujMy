@@ -1,8 +1,8 @@
-import TrainerOptions from "../../ui/TrainerOptions";
+import TrainerOptions from "./TrainerOptions";
 
 type TrainerType = {
 	trainer: {
-		id: number;
+		id?: number;
 		name: string;
 		category: string;
 		price: number;
