@@ -2,18 +2,19 @@ import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
 type TrainersType = {
-	id?: number;
+	id: number;
 	name: string;
 	category: string;
-	price: string;
+	price: number;
 	phone: string;
 	image: any;
 };
 
-export async function getTrainers(): Promise<TrainersType[]> {
-	const { data: trainers, error } = await supabase.from("trainers").select("*");
+export async function getTrainers(){
+	const { data: trainers , error } = await supabase.from("trainers").select("*");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
-	return trainers;
+	if (!trainers) return;
+	return trainers ;
 }
 
 export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {

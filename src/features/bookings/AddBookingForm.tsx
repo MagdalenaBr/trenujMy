@@ -19,7 +19,17 @@ type IFormInput = {
 type PropsType = {
 	booking?: IFormInput | any;
 	handleCloseModal?: () => void;
-	activeMember?: string;
+	activeMember?: {
+		id?: number;
+		name: string;
+		email: string;
+		phone: string;
+		gender: string;
+		city: string;
+		startGymMembership?: string | null;
+		endGymMembership?: string | null;
+		gymMembershipType?: string | null;
+	};
 	memberId?: number;
 	memberName?: string;
 };
@@ -31,18 +41,16 @@ function AddBookingForm({
 	memberId,
 	memberName,
 }: PropsType) {
-
 	const { createBooking } = useCreateBooking();
 	const { editBooking } = useEditBooking();
 	const { id, ...bookingsEditData } = booking;
 	const isEditingSession = Boolean(id);
-	console.log(bookingsEditData);
+
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? bookingsEditData : {},
 		resolver: yupResolver(schema),
 	});
 	const { errors } = formState;
-
 
 	const onSubmit = (data: IFormInput) => {
 		if (isEditingSession) {
@@ -52,7 +60,6 @@ function AddBookingForm({
 		}
 		handleCloseModal?.();
 	};
-	console.log(errors);
 
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
@@ -60,9 +67,6 @@ function AddBookingForm({
 				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 				className='flex flex-col mx-auto  py-8 divide-y '>
-				{/* <h2 className='text-center font-bold uppercase text-lg'>
-					{activeMemberName}
-				</h2> */}
 				<FormRow name='memberId' label='Imię i nazwisko'>
 					<FormOption
 						value={`members`}

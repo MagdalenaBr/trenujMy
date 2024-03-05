@@ -1,5 +1,10 @@
 import supabase from "./supabase";
 
+type HoursType = {
+	openHour: string;
+	closeHour: string;
+};
+
 export async function getOpenHours() {
 	const { data: openHours, error } = await supabase
 		.from("openHours")
@@ -8,12 +13,12 @@ export async function getOpenHours() {
 	return openHours;
 }
 
-export async function editOpenHours(newHours, id) {
+export async function editOpenHours(newHours: HoursType, id: number) {
 	console.log(newHours, id);
 	const { data, error } = await supabase
 		.from("openHours")
 		.update({ ...newHours })
-		.eq('id', id)
+		.eq("id", id)
 		.select()
 		.single();
 	if (error) {

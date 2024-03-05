@@ -7,20 +7,18 @@ import { useDeleteMember } from "./useDeleteMember";
 import { useNavigate } from "react-router-dom";
 
 type MemberType = {
-	member: {
-		id?: number;
-		email: string;
-		name: string;
-		phone: string;
-		gender: string;
-		city: string;
-		startGymMembership?: string | null;
-		endGymMembership?: string | null;
-		gymMembershipType?: string | null;
-	};
+	id?: number;
+	email: string;
+	name: string;
+	phone: string;
+	gender: string;
+	city: string;
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
+	gymMembershipType?: string | null;
 };
 
-function MemberOptions({ member }: MemberType) {
+function MemberOptions({ member }: { member: MemberType }) {
 	const navigate = useNavigate();
 	const { deleteOneMember } = useDeleteMember();
 	return (

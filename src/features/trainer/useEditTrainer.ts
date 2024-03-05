@@ -3,10 +3,10 @@ import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
 type TrainerTypes = {
 	newTrainersData: {
-		id?: number;
+		id: number;
 		name: string;
 		category: string;
-		price: string;
+		price: number;
 		phone: string;
 		image: any;
 	};

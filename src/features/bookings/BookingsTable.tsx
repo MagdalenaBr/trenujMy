@@ -11,7 +11,6 @@ function BookingsTable() {
 	const { bookings, isLoading, error } = useBookings();
 	if (isLoading) return <Spinner />;
 	if (error) return <TableNoContent />;
-	console.log(bookings);
 
 	return (
 		<Table>

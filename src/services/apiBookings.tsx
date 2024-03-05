@@ -56,6 +56,5 @@ export async function getBooking(id: number) {
 		throw new Error(
 			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."
 		);
-	console.log(booking);
 	return booking;
 }

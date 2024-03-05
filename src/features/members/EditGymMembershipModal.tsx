@@ -17,7 +17,6 @@ type MemberType = {
 };
 
 function EditGymMembershipModal({ member }: {member: MemberType}) {
-
 	return (
 		<Modal>
 			<Modal.OpenButton openForm='membership'>

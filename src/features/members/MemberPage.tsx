@@ -17,7 +17,7 @@ function MemberPage() {
 
 	if (isLoading) return <Spinner />;
 
-	if (member === undefined) return null;
+	if (member === undefined) return;
 
 	return (
 		<Container>
@@ -76,8 +76,7 @@ function MemberPage() {
 				<BackButton />
 			</div>
 
-			<AddBookingModal  activeMember={member}>
-				{/* <StyledButton styleType='add'>Dodaj rezerwację</StyledButton> */}
+			<AddBookingModal activeMember={member}>
 				<StyledButton styleType='add'>Zarezerwuj zajęcia</StyledButton>
 			</AddBookingModal>
 

@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-	id: yup.number(),
+	id: yup.number().required(),
 	name: yup.string().required("Imie i nazwisko jest wymagane"),
 	category: yup.string().required("Kategoria jest wymagana"),
-	price: yup.string().required("Cena jest wymagana"),
+	price: yup.number().required("Cena jest wymagana"),
 	phone: yup
 		.string()
 		.required("Numer telefonu jest wymagany")

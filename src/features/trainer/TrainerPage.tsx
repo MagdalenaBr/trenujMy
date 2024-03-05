@@ -9,6 +9,12 @@ import { useSchedules } from "../schedule/useSchedules";
 import { useBooking } from "../bookings/useBooking";
 import Spinner from "../../ui/Spinner";
 
+type ScheduleDataTypes = {
+	date: string;
+	title: string;
+	url?: string;
+}[];
+
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const trainerId = Number(trainerIdParams.trainerId);
@@ -16,12 +22,12 @@ function TrainerPage() {
 	const trainer = trainers?.find(t => t.id === trainerId);
 
 	const { schedule, scheduleIsLoading } = useSchedules();
+
 	const { booking, bookingIsLoading } = useBooking(trainer?.id);
 
 	if (trainerIsLoading || scheduleIsLoading || bookingIsLoading)
 		return <Spinner />;
 
-	if (trainer === undefined) return;
 	let trainerSchedule;
 	if (trainer.category !== "trener personalny")
 		trainerSchedule = schedule?.map(el =>
@@ -36,7 +42,7 @@ function TrainerPage() {
 		trainerSchedule = booking?.map(el =>
 			el.trainerId === trainer.id
 				? {
-						title: `${el.members.name} ${el.members.phone}`,
+						title: `${el.members?.name} ${el.members?.phone}`,
 						date: el.date,
 				  }
 				: {}
@@ -66,7 +72,7 @@ function TrainerPage() {
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>
-			<Schedule trainerSchedule={trainerSchedule} />
+			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} />
 		</Container>
 	);
 }

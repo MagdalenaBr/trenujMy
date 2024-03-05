@@ -2,10 +2,10 @@ import TrainerOptions from "../../ui/TrainerOptions";
 
 type TrainerType = {
 	trainer: {
-		id?: number;
+		id: number;
 		name: string;
 		category: string;
-		price: string;
+		price: number;
 		phone: string;
 		image: any;
 	};

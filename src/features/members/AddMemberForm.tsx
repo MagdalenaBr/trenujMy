@@ -36,7 +36,6 @@ function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
 	const { errors } = formState;
 
 	const onSubmit = (data: IFormInput) => {
-		console.log(data);
 		if (isEditingSession) {
 			editMember({ newMember: data, id });
 		} else {

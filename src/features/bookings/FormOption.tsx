@@ -8,6 +8,17 @@ type PropsType = {
 	value: string;
 	memberId?: number;
 	memberName?: string;
+	member?: {
+		id?: number;
+		name: string;
+		email: string;
+		phone: string;
+		gender: string;
+		city: string;
+		startGymMembership?: string | null;
+		endGymMembership?: string | null;
+		gymMembershipType?: string | null;
+	};
 };
 
 function FormOption({

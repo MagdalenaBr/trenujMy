@@ -1,16 +1,20 @@
 import Schedule from "../features/schedule/Schedule";
 import { useSchedules } from "../features/schedule/useSchedules";
 import MainContainer from "../ui/MainContainer";
-import ChangeOpenHours from "../features/schedule/ChangeOpenHours";
 import OpenHoursModal from "../features/schedule/OpenHoursModal";
-import Spinner from "../ui/Spinner";
+
+
+type ScheduleDataTypes = {
+	date: string;
+	title: string;
+	url?: string;
+}[];
 
 function SchedulePage() {
-	const { schedule, scheduleIsLoading } = useSchedules();
-
-	// if (scheduleIsLoading) return <Spinner />;
-
-	const trainerSchedule = schedule?.map(el => ({
+	const { schedule } = useSchedules();
+	if (!schedule) return;
+	
+	const trainerSchedule: ScheduleDataTypes = schedule.map(el => ({
 		title: `${el.name} ${el.trainers.name}`,
 		date: el.date,
 		url: `/trainers/${el.trainerId}`,
@@ -18,7 +22,7 @@ function SchedulePage() {
 
 	return (
 		<MainContainer title='Grafik' button={<OpenHoursModal />}>
-			<Schedule trainerSchedule={trainerSchedule} scheduleIsLoading={scheduleIsLoading}/>
+			<Schedule trainerSchedule={trainerSchedule} />
 		</MainContainer>
 	);
 }

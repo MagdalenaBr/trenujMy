@@ -4,14 +4,19 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { useOpenHours } from "./useOpenHours";
 import Spinner from "../../ui/Spinner";
 
-function Schedule({ trainerSchedule, scheduleIsLoading }) {
+type PropsType = {
+	date: string;
+	title: string;
+	url?: string;
+}[];
+
+function Schedule({ trainerSchedule }: { trainerSchedule: PropsType }) {
 	const { openHours, isLoading: openHoursLoading } = useOpenHours();
-	// const defaultHours = {openHour: '00:00', closeHour: '24:00'}
-	if (openHoursLoading || scheduleIsLoading) return <Spinner />;
+
+	if (openHoursLoading) return <Spinner />;
 	let openHour, closeHour;
 	if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
 
-	console.log(openHour, closeHour);
 	return (
 		<FullCalendar
 			plugins={[timeGridPlugin]}
