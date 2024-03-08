@@ -23,11 +23,17 @@ function SchedulePage() {
 
 	return (
 		<MainContainer title='Grafik' button={<OpenHoursModal />}>
+			<div className="w-full flex justify-end">
+				<Link
+					to='edit-schedule'
+					className='uppercase text-cyan-800 border-cyan-800 border-2 px-2 py-1 mb-7 rounded-md font-bold'>
+					Edytuj grafik
+				</Link>
+			</div>
 			<Schedule trainerSchedule={trainerSchedule} />
 			<CreateScheduleModal>
 				<StyledButton>Dodaj zajęcia</StyledButton>
 			</CreateScheduleModal>
-			<Link to='edit-schedule'>Edytuj grafik</Link>
 		</MainContainer>
 	);
 }
