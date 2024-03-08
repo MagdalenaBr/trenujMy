@@ -4,12 +4,15 @@ import StyledButton from "../../ui/StyledButton";
 import FormInput from "../../ui/FormInput.tsx";
 import { useTrainers } from "../trainer/useTrainers.tsx";
 import FormOption from "../../ui/FormOption.tsx";
-import { useCreateClasses } from "./useCreateClasses.tsx";
+import { useCreateSchedules } from "./useCreateSchedules.tsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/ScheduleValidation.tsx";
+import { useEditSchedules } from "./useEditSchedules.tsx";
+import Spinner from "../../ui/Spinner.tsx";
 
 type PropsType = {
 	handleCloseModal?: () => void;
+	classes?: ClassesType | any;
 };
 
 type ClassesType = {
@@ -20,21 +23,37 @@ type ClassesType = {
 	date: string;
 };
 
-function CreateScheduleForm({ handleCloseModal }: PropsType) {
+function CreateScheduleForm({ classes = {}, handleCloseModal }: PropsType) {
+	const { id, ...classesData } = classes;
+	const isEditingSession = Boolean(id);
+
+	const { createClasses } = useCreateSchedules();
+	const { editClasses } = useEditSchedules();
+	const { trainers, trainerIsLoading } = useTrainers();
+
 	const { register, handleSubmit, formState } = useForm({
+		defaultValues: isEditingSession ? classesData : {},
 		resolver: yupResolver(schema),
 	});
 	const { errors } = formState;
 
-	const { trainers } = useTrainers();
-	const { createClasses } = useCreateClasses();
-	console.log(errors);
-
 	const onSubmit = (data: ClassesType) => {
-		createClasses(data);
+		const { date, name, numOfPlaces, trainerId } = data;
+		const newData = {
+			date,
+			name,
+			numOfPlaces,
+			trainerId,
+		};
+		if (isEditingSession) {
+			editClasses({ newClasses: newData, id });
+		} else {
+			if (!isEditingSession) createClasses(data);
+		}
 		handleCloseModal?.();
 	};
 
+	if (trainerIsLoading) return <Spinner />;
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
@@ -43,7 +62,7 @@ function CreateScheduleForm({ handleCloseModal }: PropsType) {
 				className='flex flex-col mx-auto  py-8 divide-y '>
 				<FormRow name='name' label='Rodzaj zajęć'>
 					<FormOption
-						data={trainers}
+						trainerData={trainers}
 						value='typeOfActivities'
 						errors={errors}
 						inputName='name'
@@ -52,7 +71,7 @@ function CreateScheduleForm({ handleCloseModal }: PropsType) {
 				</FormRow>
 				<FormRow name='trainerId' label='Trener'>
 					<FormOption
-						data={trainers}
+						trainerData={trainers}
 						errors={errors}
 						value='trainers'
 						inputName='trainerId'

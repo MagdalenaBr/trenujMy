@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addSchedule } from "../../services/apiSchedule";
+import { addOrEditSchedule } from "../../services/apiSchedule";
 import toast from "react-hot-toast";
 
-export function useCreateClasses() {
+export function useCreateSchedules() {
 	const queryClient = useQueryClient();
 	const { mutate: createClasses } = useMutation({
-		mutationFn: addSchedule,
+		mutationFn: addOrEditSchedule,
 		onSuccess() {
 			queryClient.invalidateQueries({
 				queryKey: ["schedule"],

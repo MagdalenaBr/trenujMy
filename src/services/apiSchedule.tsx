@@ -16,12 +16,23 @@ export async function getSchedule() {
 	return schedule;
 }
 
-export async function addSchedule(newClasses: ClassesType): Promise<ClassesType> {
-	const { data: schedule, error } = await supabase
-		.from("schedule")
-		.insert([{ ...newClasses }])
-		.select()
-		.single();
+export async function addOrEditSchedule(
+	newClasses: ClassesType,
+	id?: number
+): Promise<ClassesType> {
+	let query;
+	if (!id) query = supabase.from("schedule").insert([{ ...newClasses }]);
+
+	if (id)
+		query = supabase
+			.from("schedule")
+			.update({ ...newClasses })
+			.eq("id", id);
+
+	if (query === undefined)
+		throw new Error("Wystąpił błąd, zajęcia nie zostały dodane.");
+
+	const { data: schedule, error } = await query.select().single();
 	if (error) {
 		throw new Error("Wystąpił błąd, zajęcia nie zostały dodaane.");
 	}

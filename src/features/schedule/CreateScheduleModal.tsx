@@ -1,15 +1,25 @@
 import Modal from "../../ui/Modal";
-import StyledButton from "../../ui/StyledButton";
 import CreateScheduleForm from "./CreateScheduleForm";
 
-function CreateScheduleModal() {
+type ClassesType = {
+	children: React.ReactNode;
+	classes?: {
+		id?: number;
+		name: string;
+		numOfPlaces: number;
+		trainerId: number;
+		date: string;
+	};
+};
+
+function CreateScheduleModal({ children, classes}: ClassesType) {
 	return (
 		<Modal>
 			<Modal.Window formName='schedule'>
-				<CreateScheduleForm />
+				<CreateScheduleForm classes={classes}/>
 			</Modal.Window>
 			<Modal.OpenButton openForm='schedule'>
-				<StyledButton>Dodaj zajęcia</StyledButton>
+				{children}
 			</Modal.OpenButton>
 		</Modal>
 	);

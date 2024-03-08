@@ -4,7 +4,7 @@ import MainContainer from "../ui/MainContainer";
 import OpenHoursModal from "../features/schedule/OpenHoursModal";
 import CreateScheduleModal from "../features/schedule/CreateScheduleModal";
 import { Link } from "react-router-dom";
-
+import StyledButton from "../ui/StyledButton";
 type ScheduleDataTypes = {
 	date: string;
 	title: string;
@@ -24,7 +24,9 @@ function SchedulePage() {
 	return (
 		<MainContainer title='Grafik' button={<OpenHoursModal />}>
 			<Schedule trainerSchedule={trainerSchedule} />
-			<CreateScheduleModal />
+			<CreateScheduleModal>
+				<StyledButton>Dodaj zajęcia</StyledButton>
+			</CreateScheduleModal>
 			<Link to='edit-schedule'>Edytuj grafik</Link>
 		</MainContainer>
 	);

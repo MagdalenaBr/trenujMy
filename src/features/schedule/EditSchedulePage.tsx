@@ -1,9 +1,13 @@
 import { HiOutlinePencil } from "react-icons/hi2";
 import { useSchedules } from "./useSchedules";
 import MainContainer from "../../ui/MainContainer";
+import CreateScheduleModal from "./CreateScheduleModal";
+import Button from "../../ui/Button";
+import Spinner from "../../ui/Spinner";
 
 export default function EditSchedulePage() {
-	const { schedule } = useSchedules();
+	const { schedule, scheduleIsLoading } = useSchedules();
+	if (scheduleIsLoading) return <Spinner />;
 	console.log(schedule);
 
 	return (
@@ -19,7 +23,9 @@ export default function EditSchedulePage() {
 				</div>
 
 				{schedule?.map(el => (
-					<div key={el.id} className='my-2 bg-slate-100 border-2  border-slate-200 rounded-md py-1 text-sm'>
+					<div
+						key={el.id}
+						className='my-2 bg-slate-100 border-2  border-slate-200 rounded-md py-1 text-sm'>
 						<div className='grid px-2 grid-cols-[repeat(4,minmax(100px,_1fr))_100px] items-center'>
 							<p className='font-bold  text-slate-700 text-start'>
 								{el.trainers.name}
@@ -32,9 +38,11 @@ export default function EditSchedulePage() {
 								</p>
 							</div>
 							<p>{el.numOfPlaces}</p>
-							<button>
-								<HiOutlinePencil className='text-2xl text-slate-600' />
-							</button>
+							<CreateScheduleModal classes={el} >
+								<Button>
+									<HiOutlinePencil className='text-2xl' />
+								</Button>
+							</CreateScheduleModal>
 						</div>
 					</div>
 				))}

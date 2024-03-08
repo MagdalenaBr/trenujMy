@@ -11,7 +11,7 @@ function BookingsTable() {
 	const { bookings, isLoading, error } = useBookings();
 	if (isLoading) return <Spinner />;
 	if (error) return <TableNoContent />;
-
+	
 	return (
 		<Table>
 			<Table.Header>
@@ -36,7 +36,11 @@ function BookingsTable() {
 						</div>
 						<div className='flex w-full justify-between'>
 							<BookingStatus status={booking?.status} />
-							<AddBookingModal booking={booking} memberId={booking.memberId} memberName={booking.members?.name}>
+							<AddBookingModal
+								booking={booking}
+								memberId={booking.memberId}
+								memberName={booking.members?.name}
+								>
 								<Button>
 									<HiOutlinePencil className='text-2xl' />
 								</Button>

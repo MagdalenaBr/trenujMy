@@ -27,7 +27,7 @@ type PropsType = {
 		endGymMembership?: string | null;
 		gymMembershipType?: string | null;
 	};
-	data?: TrainersType;
+	trainerData?: TrainersType;
 };
 
 function FormOption({
@@ -38,9 +38,9 @@ function FormOption({
 	value,
 	memberId,
 	memberName,
-	data,
+	trainerData,
 }: PropsType) {
-	const typesOfActivities = data?.map(el => el.category);
+	const typesOfActivities = trainerData?.map(el => el.category);
 	const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
 		el => el !== "trener personalny"
 	);
@@ -54,7 +54,7 @@ function FormOption({
 				{value === "trainers" && (
 					<>
 						<option value=''></option>
-						{data?.map(el => (
+						{trainerData?.map(el => (
 							<option
 								key={el.id}
 								value={el.id}

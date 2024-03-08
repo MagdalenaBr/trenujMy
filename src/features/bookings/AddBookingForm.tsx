@@ -9,6 +9,7 @@ import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
 import { useTrainers } from "../trainer/useTrainers";
+import Spinner from "../../ui/Spinner";
 
 type IFormInput = {
 	id?: number;
@@ -44,9 +45,10 @@ function AddBookingForm({
 }: PropsType) {
 	const { createBooking } = useCreateBooking();
 	const { editBooking } = useEditBooking();
+	const { trainers, trainerIsLoading } = useTrainers();
+
 	const { id, ...bookingsEditData } = booking;
 	const isEditingSession = Boolean(id);
-	const { trainers } = useTrainers();
 
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? bookingsEditData : {},
@@ -63,6 +65,7 @@ function AddBookingForm({
 		handleCloseModal?.();
 	};
 
+	if (trainerIsLoading) return <Spinner />;
 	return (
 		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
 			<form
@@ -83,7 +86,7 @@ function AddBookingForm({
 				<FormRow name='trainerId' label='Trener'>
 					<FormOption
 						value='trainers'
-						data={trainers}
+						trainerData={trainers}
 						errors={errors}
 						inputName='trainerId'
 						register={register}
