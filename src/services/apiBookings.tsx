@@ -58,3 +58,15 @@ export async function getBooking(id: number) {
 		);
 	return booking;
 }
+
+export async function getMemberBookings(id: number) {
+	const { data: booking, error } = await supabase
+		.from("bookings")
+		.select("*, trainers(name), members(name, phone)")
+		.eq("memberId", id);
+	if (error)
+		throw new Error(
+			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."
+		);
+	return booking;
+}

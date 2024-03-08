@@ -8,6 +8,7 @@ import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
 import StyledButton from "../../ui/StyledButton";
 import AddBookingModal from "../bookings/AddBookingModal";
+import MemberClasses from "./MemberClasses";
 
 function MemberPage() {
 	const memberIdParams = useParams();
@@ -18,6 +19,7 @@ function MemberPage() {
 	if (isLoading) return <Spinner />;
 
 	if (member === undefined) return;
+	console.log(member);
 
 	return (
 		<Container>
@@ -85,6 +87,7 @@ function MemberPage() {
 				<h3 className='uppercase font-semibold'>Zajęcia</h3>
 				<hr className='w-[20rem] mx-3' />
 			</div>
+			<MemberClasses memberId={member.id}/>
 			<MemberOptions member={member} />
 		</Container>
 	);
