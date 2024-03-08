@@ -8,7 +8,6 @@ import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput.tsx";
 
 type IFormInput = {
-	id?: number;
 	name: string;
 	email: string;
 	phone: string;

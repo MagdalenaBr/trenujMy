@@ -47,23 +47,11 @@ export async function addOrEditBooking(newBooking: BookingType, id?: number) {
 	return data;
 }
 
-export async function getBooking(id: number) {
+export async function getBooking(id: number, columnName: string) {
 	const { data: booking, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)")
-		.eq("trainerId", id);
-	if (error)
-		throw new Error(
-			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."
-		);
-	return booking;
-}
-
-export async function getMemberBookings(id: number) {
-	const { data: booking, error } = await supabase
-		.from("bookings")
-		.select("*, trainers(name), members(name, phone)")
-		.eq("memberId", id);
+		.eq(columnName, id);
 	if (error)
 		throw new Error(
 			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."

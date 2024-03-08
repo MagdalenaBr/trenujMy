@@ -87,7 +87,7 @@ function MemberPage() {
 				<h3 className='uppercase font-semibold'>Zajęcia</h3>
 				<hr className='w-[20rem] mx-3' />
 			</div>
-			<MemberClasses memberId={member.id}/>
+			<MemberClasses memberId={member?.id}/>
 			<MemberOptions member={member} />
 		</Container>
 	);

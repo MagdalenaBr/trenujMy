@@ -23,7 +23,7 @@ function TrainerPage() {
 
 	const { schedule, scheduleIsLoading } = useSchedules();
 
-	const { booking, bookingIsLoading } = useBooking(trainer?.id);
+	const { booking, bookingIsLoading } = useBooking(trainer?.id, "trainerId");
 
 	if (trainerIsLoading || scheduleIsLoading || bookingIsLoading)
 		return <Spinner />;

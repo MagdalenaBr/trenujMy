@@ -1,7 +1,17 @@
 import supabase from "./supabase";
 
 type MemberType = {
-	id?: number;
+	id: number
+	email: string;
+	name: string;
+	phone: string;
+	gender: string;
+	city: string;
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
+	gymMembershipType?: string | null;
+};
+type AddMemberType = {
 	email: string;
 	name: string;
 	phone: string;
@@ -20,7 +30,7 @@ export async function getMembers(): Promise<MemberType[]> {
 	return members;
 }
 
-export async function addOrEditMember(newMember: MemberType, id?: number) {
+export async function addOrEditMember(newMember: AddMemberType, id?: number) {
 	console.log(newMember, id);
 
 	let query;

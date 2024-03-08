@@ -1,4 +1,36 @@
-function MemberClasses({memberId}) {
-    return <div></div>
+import { HiOutlinePencil } from "react-icons/hi2";
+import Button from "../../ui/Button";
+import TableWithSpacing from "../../ui/TableWithSpacing";
+import BookingStatus from "../bookings/BookingStatus";
+import { useBooking } from "../bookings/useBooking";
+import AddBookingModal from "../bookings/AddBookingModal";
+
+function MemberClasses({ memberId }: { memberId: number }) {
+	const { booking } = useBooking(memberId, "memberId");
+	console.log(booking);
+	return (
+		<div className='max-h-72 overflow-auto'>
+			<TableWithSpacing columns='grid-cols-[repeat(3,minmax(100px,_1fr))_100px]'>
+				{booking?.map(el => (
+					<TableWithSpacing.Row key={el.id}>
+						<p>{el.trainers.name}</p>
+						<div>
+							<p>{el.date.split("T")[0]}</p>
+							<p className='text-slate-600 text-sm'>{el.date.split("T")[1]}</p>
+						</div>
+						<BookingStatus status={el?.status} />
+						<AddBookingModal
+							booking={el}
+							memberId={el.memberId}
+							memberName={el.members?.name}>
+							<Button>
+								<HiOutlinePencil className='text-2xl' />
+							</Button>
+						</AddBookingModal>
+					</TableWithSpacing.Row>
+				))}
+			</TableWithSpacing>
+		</div>
+	);
 }
-export default MemberClasses
+export default MemberClasses;

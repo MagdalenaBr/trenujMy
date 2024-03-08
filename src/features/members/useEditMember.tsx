@@ -3,7 +3,6 @@ import { addOrEditMember } from "../../services/apiMembers";
 import toast from "react-hot-toast";
 type MembersType = {
 	newMember: {
-		id?: number;
 		name: string;
 		email: string;
 		phone: string;
