@@ -2,16 +2,13 @@ import { HiOutlinePencil } from "react-icons/hi2";
 import Button from "../../ui/Button";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../bookings/BookingStatus";
-import { useBooking } from "../bookings/useBooking";
 import AddBookingModal from "../bookings/AddBookingModal";
 
-function MemberClasses({ memberId }: { memberId: number }) {
-	const { booking } = useBooking(memberId, "memberId");
-	console.log(booking);
+function MemberClasses({ memberBookings }) {
 	return (
 		<div className='max-h-72 overflow-auto'>
 			<TableWithSpacing columns='grid-cols-[repeat(3,minmax(100px,_1fr))_100px]'>
-				{booking?.map(el => (
+				{memberBookings?.map(el => (
 					<TableWithSpacing.Row key={el.id}>
 						<p>{el.trainers.name}</p>
 						<div>

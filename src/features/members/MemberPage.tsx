@@ -2,19 +2,21 @@ import { useParams } from "react-router-dom";
 import Container from "../../ui/Container";
 import BackButton from "../../ui/BackButton";
 import MemberOptions from "./MemberOptions";
-import { HiTrophy } from "react-icons/hi2";
 import EditGymMembershipModal from "./EditGymMembershipModal";
 import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
 import StyledButton from "../../ui/StyledButton";
 import AddBookingModal from "../bookings/AddBookingModal";
 import MemberClasses from "./MemberClasses";
+import MemberClassesStats from "./MemberClassesStats";
+import { useBooking } from "../bookings/useBooking";
 
 function MemberPage() {
 	const memberIdParams = useParams();
 	const memberId = Number(memberIdParams.memberId);
 	const { members, isLoading } = useMembers();
 	const member = members?.find(member => member.id === memberId);
+	const { booking } = useBooking(member?.id, "memberId");
 
 	if (isLoading) return <Spinner />;
 
@@ -68,13 +70,7 @@ function MemberPage() {
 						</div>
 					</div>
 				</div>
-				<div>
-					<div className='flex flex-col items-center gap-2 rounded-lg bg-blue-50 border-2 border-cyan-800 p-4'>
-						<h3 className='text-sm'>Zajęcia odbyte</h3>
-						<HiTrophy className=' text-cyan-800 text-4xl' />
-						<p className='text-cyan-800 text-3xl'>15</p>
-					</div>
-				</div>
+				<MemberClassesStats memberBookings={booking}/>
 				<BackButton />
 			</div>
 
@@ -87,7 +83,7 @@ function MemberPage() {
 				<h3 className='uppercase font-semibold'>Zajęcia</h3>
 				<hr className='w-[20rem] mx-3' />
 			</div>
-			<MemberClasses memberId={member?.id}/>
+			<MemberClasses memberBookings={booking}/>
 			<MemberOptions member={member} />
 		</Container>
 	);
