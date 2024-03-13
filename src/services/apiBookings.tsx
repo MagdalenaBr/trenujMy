@@ -8,6 +8,21 @@ type BookingType = {
 	memberId: number;
 };
 
+type GetBookingType = {
+	date: string;
+	id: number;
+	memberId: number;
+	members: {
+		name: string;
+		phone: number;
+	};
+	status: string;
+	trainerId: number;
+	trainers: {
+		name: string;
+	};
+}[];
+
 export async function getBookings() {
 	const { data: bookings, error } = await supabase
 		.from("bookings")
@@ -47,7 +62,10 @@ export async function addOrEditBooking(newBooking: BookingType, id?: number) {
 	return data;
 }
 
-export async function getBooking(id: number, columnName: string) {
+export async function getBooking(
+	id: number,
+	columnName: string
+): Promise<GetBookingType> {
 	const { data: booking, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)")

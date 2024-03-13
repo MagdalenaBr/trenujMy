@@ -4,7 +4,23 @@ import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../bookings/BookingStatus";
 import AddBookingModal from "../bookings/AddBookingModal";
 
-function MemberClasses({ memberBookings }) {
+type GetBookingType = {
+	date: string;
+	id: number;
+	memberId: number;
+	members: {
+		name: string;
+		phone: number;
+	};
+	status: string;
+	trainerId: number;
+	trainers: {
+		name: string;
+	};
+}[];
+
+function MemberClasses({ memberBookings }: {memberBookings: GetBookingType}) {
+	console.log(memberBookings);
 	return (
 		<div className='max-h-72 overflow-auto'>
 			<TableWithSpacing columns='grid-cols-[repeat(3,minmax(100px,_1fr))_100px]'>

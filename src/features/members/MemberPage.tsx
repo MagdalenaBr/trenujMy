@@ -16,10 +16,10 @@ function MemberPage() {
 	const memberId = Number(memberIdParams.memberId);
 	const { members, isLoading } = useMembers();
 	const member = members?.find(member => member.id === memberId);
-	const { booking } = useBooking(member?.id, "memberId");
-
+	const { booking } = useBooking(member.id, "memberId");
+	
+	
 	if (isLoading) return <Spinner />;
-
 	if (member === undefined) return;
 	console.log(member);
 

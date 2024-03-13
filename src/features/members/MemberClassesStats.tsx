@@ -1,6 +1,26 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-export default function MemberClassesStats({ memberBookings }) {
+type GetBookingType = {
+	date: string;
+	id: number;
+	memberId: number;
+	members: {
+		name: string;
+		phone: number;
+	};
+	status: string;
+	trainerId: number;
+	trainers: {
+		name: string;
+	};
+}[];
+
+export default function MemberClassesStats({
+	memberBookings,
+}: {
+	memberBookings: GetBookingType;
+}) {
+	console.log(memberBookings);
 	if (!memberBookings) return [];
 	const unconfirmedClasses = memberBookings.filter(
 		el => el.status === "niepotwierdzona"
@@ -11,18 +31,18 @@ export default function MemberClassesStats({ memberBookings }) {
 	const canceledClasses = memberBookings.filter(
 		el => el.status === "anulowana"
 	).length;
-	console.log(unconfirmedClasses.length);
+
 	const data = [
 		{ name: "niepotwierdzona", value: unconfirmedClasses },
 		{ name: "zrealizowana", value: complitedClasses },
 		{ name: "anulowana", value: canceledClasses },
 	];
+
 	const colors = ["#434cc247", "#13c51c9d", "#cf6b6b"];
 	const checkIfDataExists = Boolean(
 		unconfirmedClasses > 0 || complitedClasses > 0 || canceledClasses > 0
 	);
 
-	console.log(checkIfDataExists);
 	return (
 		<ResponsiveContainer width='50%' height={250}>
 			<PieChart>
