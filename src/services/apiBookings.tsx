@@ -1,50 +1,49 @@
 import supabase from "./supabase";
-
-type BookingType = {
-	id?: number;
-	date: string;
+interface NewBookingTypes {
 	status: string;
 	trainerId: number;
 	memberId: number;
-};
-
-type GetBookingType = {
 	date: string;
+}
+interface BookingsDataType extends NewBookingTypes {
 	id: number;
-	memberId: number;
+	created_at: string;
+	trainers: {
+		name: string;
+	};
 	members: {
 		name: string;
 		phone: number;
 	};
-	status: string;
-	trainerId: number;
-	trainers: {
-		name: string;
-	};
-}[];
+}
+interface AddOrEditDataTypes extends NewBookingTypes {
+	id: number;
+}
 
-export async function getBookings() {
+export async function getBookings(): Promise<BookingsDataType[]> {
 	const { data: bookings, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
-	console.log(typeof bookings[0].date);
+	console.log(bookings);
 	return bookings;
 }
 
-export async function addOrEditBooking(newBooking: BookingType, id?: number) {
-	console.log(newBooking, id);
-
+export async function addOrEditBooking(
+	newBooking: NewBookingTypes,
+	id?: number
+): Promise<AddOrEditDataTypes> {
+	const { date, status, trainerId, memberId } = newBooking;
 	const newBookingData = {
-		date: newBooking.date,
-		status: newBooking.status,
-		trainerId: newBooking.trainerId,
-		memberId: newBooking.memberId,
+		date,
+		status,
+		trainerId,
+		memberId,
 	};
+
 	let query;
 	/// ADD MEMBER
 	if (!id) query = supabase.from("bookings").insert([{ ...newBookingData }]);
-
 	// ///EDIT MEMBER
 	if (id)
 		query = supabase
@@ -54,7 +53,6 @@ export async function addOrEditBooking(newBooking: BookingType, id?: number) {
 
 	if (query === undefined)
 		throw new Error("Wystąpił błąd, rezerwacja nie została dodana.");
-	console.log(query);
 	const { data, error } = await query.select().single();
 	if (error) {
 		throw new Error("Wystąpił błąd, rezerwacja nie została dodana.");
@@ -65,7 +63,7 @@ export async function addOrEditBooking(newBooking: BookingType, id?: number) {
 export async function getBooking(
 	id: number,
 	columnName: string
-): Promise<GetBookingType> {
+): Promise<BookingsDataType[]> {
 	const { data: booking, error } = await supabase
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)")
@@ -74,5 +72,6 @@ export async function getBooking(
 		throw new Error(
 			"Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie."
 		);
+
 	return booking;
 }

@@ -21,7 +21,7 @@ function MemberPage() {
 	
 	if (isLoading) return <Spinner />;
 	if (member === undefined) return;
-	console.log(member);
+
 
 	return (
 		<Container>

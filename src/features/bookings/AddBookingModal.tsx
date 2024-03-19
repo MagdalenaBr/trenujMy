@@ -1,19 +1,26 @@
 import AddBookingForm from "./AddBookingForm";
 import Modal from "../../ui/Modal";
 
-type PropsType = {
-	children: React.ReactNode;
-	memberId?: number;
-	memberName?: string;
-	booking?: {
-		id?: number;
-		date: string;
-		status: string;
-		trainerId: number;
-		memberId: number;
+
+
+interface BookingTypes {
+	status: string;
+	trainerId: number;
+	memberId: number;
+	date: string;
+	created_at: string;
+	id: number;
+	trainers: {
+		name: string;
 	};
-	activeMember?: {
-		id?: number;
+	members: {
+		name: string;
+		phone: number;
+	};
+}
+
+interface ActiveMemberType{
+		id: number;
 		name: string;
 		email: string;
 		phone: string;
@@ -22,8 +29,15 @@ type PropsType = {
 		startGymMembership?: string | null;
 		endGymMembership?: string | null;
 		gymMembershipType?: string | null;
-	};
-};
+}
+interface PropsTypes {
+	children: React.ReactNode;
+	booking: BookingTypes;
+	activeMember?: ActiveMemberType
+	memberId: number
+	memberName: string
+}
+
 
 function AddBookingModal({
 	children,
@@ -31,7 +45,7 @@ function AddBookingModal({
 	activeMember,
 	memberId,
 	memberName,
-}: PropsType) {
+}: PropsTypes) {
 	return (
 		<Modal>
 			<Modal.Window formName='member'>

@@ -11,33 +11,47 @@ import StyledButton from "../../ui/StyledButton";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
 
-type IFormInput = {
-	id?: number;
-	date: string;
+
+
+interface CommonDataTypes {
 	status: string;
 	trainerId: number;
 	memberId: number;
-};
-type PropsType = {
-	booking?: IFormInput | any;
-	handleCloseModal?: () => void;
-	activeMember?: {
-		id?: number;
+	date: string;
+}
+interface BookingTypes extends CommonDataTypes{
+	created_at: string;
+	id: number;
+	trainers: {
 		name: string;
-		email: string;
-		phone: string;
-		gender: string;
-		city: string;
-		startGymMembership?: string | null;
-		endGymMembership?: string | null;
-		gymMembershipType?: string | null;
 	};
-	memberId?: number;
-	memberName?: string;
-};
+	members: {
+		name: string;
+		phone: number;
+	};
+}
+
+interface ActiveMemberType {
+	id: number;
+	name: string;
+	email: string;
+	phone: string;
+	gender: string;
+	city: string;
+	startGymMembership?: string | null;
+	endGymMembership?: string | null;
+	gymMembershipType?: string | null;
+}
+interface PropsType {
+	handleCloseModal?: () => void;
+	booking: BookingTypes;
+	activeMember?: ActiveMemberType;
+	memberId: number;
+	memberName: string;
+}
 
 function AddBookingForm({
-	booking = {},
+	booking = {} as BookingTypes,
 	handleCloseModal,
 	activeMember,
 	memberId,
@@ -56,7 +70,8 @@ function AddBookingForm({
 	});
 	const { errors } = formState;
 
-	const onSubmit = (data: IFormInput) => {
+	const onSubmit = (data: CommonDataTypes)=> {
+		console.log(data);
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
