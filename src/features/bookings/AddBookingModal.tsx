@@ -15,7 +15,7 @@ interface BookingTypes {
 	};
 	members: {
 		name: string;
-		phone: number;
+		phone: string;
 	};
 }
 
@@ -32,10 +32,10 @@ interface ActiveMemberType{
 }
 interface PropsTypes {
 	children: React.ReactNode;
-	booking: BookingTypes;
+	booking?: BookingTypes;
 	activeMember?: ActiveMemberType
-	memberId: number
-	memberName: string
+	memberId?: number
+	memberName?: string
 }
 
 

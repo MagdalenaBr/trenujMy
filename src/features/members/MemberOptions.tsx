@@ -6,19 +6,8 @@ import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
 import { useDeleteMember } from "./useDeleteMember";
 import { useNavigate } from "react-router-dom";
 
-type MemberType = {
-	id?: number;
-	email: string;
-	name: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | null;
-};
 
-function MemberOptions({ member }: { member: MemberType }) {
+function MemberOptions({ member }) {
 	const navigate = useNavigate();
 	const { deleteOneMember } = useDeleteMember();
 	return (

@@ -13,7 +13,7 @@ interface BookingsDataType extends NewBookingTypes {
 	};
 	members: {
 		name: string;
-		phone: number;
+		phone: string;
 	};
 }
 interface AddOrEditDataTypes extends NewBookingTypes {

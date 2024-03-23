@@ -7,34 +7,42 @@ import useCreateMember from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput.tsx";
 
-type IFormInput = {
-	name: string;
-	email: string;
-	phone: string;
-	gender: string;
+interface CommonData {
 	city: string;
-	startGymMembership?: string | null;
+	email: string;
 	endGymMembership?: string | null;
+	gender: string;
 	gymMembershipType?: string | null;
-};
-type PropsType = {
-	member?: IFormInput | any;
-	handleCloseModal?: () => void;
-};
+	name: string;
+	phone: string;
+	startGymMembership?: string | null;
+}
+interface MemberTypes extends CommonData {
+	id: number;
+}
 
-function AddMemberForm({ member = {}, handleCloseModal }: PropsType) {
+interface PropsType {
+	handleCloseModal?: () => void;
+	member?: MemberTypes;
+}
+
+function AddMemberForm({
+	member = {} as MemberTypes,
+	handleCloseModal,
+}: PropsType) {
 	const { id, ...memberEditData } = member;
 	const isEditingSession = Boolean(id);
 	const { createMember } = useCreateMember();
 	const { editMember } = useEditMember();
 
-	const { register, handleSubmit, formState } = useForm<IFormInput>({
+	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? memberEditData : {},
 		resolver: yupResolver(schema),
 	});
 	const { errors } = formState;
 
-	const onSubmit = (data: IFormInput) => {
+	const onSubmit = (data: CommonData) => {
+		console.log(data);
 		if (isEditingSession) {
 			editMember({ newMember: data, id });
 		} else {

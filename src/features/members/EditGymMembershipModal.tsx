@@ -3,20 +3,19 @@ import Modal from "../../ui/Modal";
 import GymMembershipForm from "./GymMembershipForm";
 import Button from "../../ui/Button";
 
-type MemberType = {
-		id?: number;
-		email: string;
-		name: string;
-		phone: string;
-		gender: string;
-		city: string;
-		startGymMembership?: string | null;
-		endGymMembership?: string | null;
-		gymMembershipType?: string | null;
-	
-};
 
-function EditGymMembershipModal({ member }: {member: MemberType}) {
+interface MemberTypes {
+	id: number;
+	city: string;
+	email: string;
+	endGymMembership: string;
+	gender: string;
+	gymMembershipType: string;
+	name: string;
+	phone: string;
+	startGymMembership: string;
+}
+function EditGymMembershipModal({ member }: {member: MemberTypes}) {
 	return (
 		<Modal>
 			<Modal.OpenButton openForm='membership'>

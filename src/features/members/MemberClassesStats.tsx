@@ -1,25 +1,25 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-type GetBookingType = {
+interface BookingTypes {
+	created_at: string;
 	date: string;
 	id: number;
 	memberId: number;
 	members: {
 		name: string;
-		phone: number;
+		phone: string;
 	};
 	status: string;
 	trainerId: number;
 	trainers: {
 		name: string;
 	};
-}[];
+}
+
 
 export default function MemberClassesStats({
-	memberBookings,
-}: {
-	memberBookings: GetBookingType;
-}) {
+	memberBookings
+}: {memberBookings: BookingTypes[]}) {
 	console.log(memberBookings);
 	if (!memberBookings) return [];
 	const unconfirmedClasses = memberBookings.filter(

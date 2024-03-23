@@ -16,12 +16,10 @@ function MemberPage() {
 	const memberId = Number(memberIdParams.memberId);
 	const { members, isLoading } = useMembers();
 	const member = members?.find(member => member.id === memberId);
-	const { booking } = useBooking(member.id, "memberId");
-	
-	
+	const { booking } = useBooking(member?.id, "memberId");
+
 	if (isLoading) return <Spinner />;
 	if (member === undefined) return;
-
 
 	return (
 		<Container>
@@ -70,7 +68,7 @@ function MemberPage() {
 						</div>
 					</div>
 				</div>
-				<MemberClassesStats memberBookings={booking}/>
+				{booking && <MemberClassesStats memberBookings={booking} />}
 				<BackButton />
 			</div>
 
@@ -83,7 +81,12 @@ function MemberPage() {
 				<h3 className='uppercase font-semibold'>Zajęcia</h3>
 				<hr className='w-[20rem] mx-3' />
 			</div>
-			<MemberClasses memberBookings={booking}/>
+			{booking?.length !== 0 ? (
+				booking && <MemberClasses memberBookings={booking} />
+			) : (
+				<p className='text-sm text-slate-500'>Brak dostępnych rezerwacji</p>
+			)}
+
 			<MemberOptions member={member} />
 		</Container>
 	);

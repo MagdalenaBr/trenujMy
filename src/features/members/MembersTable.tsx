@@ -4,11 +4,9 @@ import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
 import { useMembers } from "./useMembers";
 
-type PropsType = {
-	memberNameFromInput: string;
-};
 
-function MembersTable({ memberNameFromInput }: PropsType) {
+
+function MembersTable({ memberNameFromInput }: {memberNameFromInput: string}) {
 	const { members } = useMembers();
 	const filteredMembers = members?.filter(member =>
 		member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())

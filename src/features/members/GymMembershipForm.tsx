@@ -6,24 +6,28 @@ import { getTrainers } from "../../services/apiTrainers";
 import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput";
 
-type MemberType = {
-	id?: number;
+
+interface CommonData {
+	city: string;
 	email: string;
+	endGymMembership: string;
+	gender: string;
+	gymMembershipType: string;
 	name: string;
 	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | null;
-};
+	startGymMembership: string;
+}
+interface MemberTypes extends CommonData {
+	id: number;
+}
 
-type PropsType = {
-	member?: MemberType | any;
+interface PropsType {
 	handleCloseModal?: () => void;
-};
+	member: MemberTypes;
+}
 
 function GymMembershipForm({ member, handleCloseModal }: PropsType) {
+	
 	const { id } = member;
 
 	const { data: trainers } = useQuery({
@@ -31,11 +35,11 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
 		queryFn: getTrainers,
 	});
 
-	const { register, handleSubmit} = useForm<MemberType>({
+	const { register, handleSubmit} = useForm({
 		defaultValues: member,
 	});
 	const { editMember } = useEditMember();
-	const onSubmit = (data: MemberType) => {
+	const onSubmit = (data: CommonData) => {
 		editMember({ newMember: data, id });
 		handleCloseModal?.();
 	};

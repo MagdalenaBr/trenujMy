@@ -27,7 +27,7 @@ interface BookingTypes extends CommonDataTypes{
 	};
 	members: {
 		name: string;
-		phone: number;
+		phone: string;
 	};
 }
 
@@ -44,10 +44,10 @@ interface ActiveMemberType {
 }
 interface PropsType {
 	handleCloseModal?: () => void;
-	booking: BookingTypes;
+	booking?: BookingTypes;
 	activeMember?: ActiveMemberType;
-	memberId: number;
-	memberName: string;
+	memberId?: number;
+	memberName?: string;
 }
 
 function AddBookingForm({

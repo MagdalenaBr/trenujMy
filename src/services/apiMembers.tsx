@@ -1,40 +1,34 @@
 import supabase from "./supabase";
 
-type MemberType = {
-	id: number
+interface CommonDataTypes {
+	city: string;
 	email: string;
+	gender: string;
 	name: string;
 	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | null;
-};
-type AddMemberType = {
-	email: string;
-	name: string;
-	phone: string;
-	gender: string;
-	city: string;
-	startGymMembership?: string | null;
-	endGymMembership?: string | null;
-	gymMembershipType?: string | null;
-};
-
-export async function getMembers(): Promise<MemberType[]> {
-	const { data: members, error } = await supabase.from("members").select("*");
-	if (error) throw new Error("Dane nie mogą zostać załadowane.");
-	return members;
 }
 
-export async function addOrEditMember(newMember: AddMemberType, id?: number) {
-	console.log(newMember, id);
+interface MembersType extends CommonDataTypes {
+	created_at: string;
+	endGymMembership: string;
+	gymMembershipType: string;
+	id: number;
+	startGymMembership: string;
+}
 
+export async function getMembers() {
+	const { data: members, error } = await supabase.from("members").select("*");
+	if (error) throw new Error("Dane nie mogą zostać załadowane.");
+ return members;
+}
+
+export async function addOrEditMember(
+	newMember: CommonDataTypes,
+	id?: number
+): Promise<MembersType> {
 	let query;
 	/// ADD MEMBER
 	if (!id) query = supabase.from("members").insert([{ ...newMember }]);
-
 	// ///EDIT MEMBER
 	if (id)
 		query = supabase
@@ -44,8 +38,6 @@ export async function addOrEditMember(newMember: AddMemberType, id?: number) {
 
 	if (query === undefined)
 		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
-
-	console.log(query);
 	const { data, error } = await query.select().single();
 	if (error) {
 		throw new Error("Wystąpił błąd, dane klienta nie zostały dodane.");
@@ -53,20 +45,21 @@ export async function addOrEditMember(newMember: AddMemberType, id?: number) {
 	return data;
 }
 
-export async function deleteMember(id: number | undefined) {
+export async function deleteMember(id: number) {
 	const { error } = await supabase.from("members").delete().eq("id", id);
 	if (error) {
 		throw new Error("Wystapił błąd. Klient nie został usunięty.");
 	}
 }
 
-export async function getOneMember(id: number) {
-	if (!id) return null;
-	const { data: member, error } = await supabase
-		.from("members")
-		.select("id, name")
-		.eq("id", id)
-		.single();
-	if (error) throw new Error("Klient nie został znaleziony.");
-	return member;
-}
+// export async function getOneMember(id: number): Promise<MembersType>{
+// 	// if (!id) return null;
+// 	const { data: member, error } = await supabase
+// 		.from("members")
+// 		.select("id, name")
+// 		.eq("id", id)
+// 		.single();
+// 	if (error) throw new Error("Klient nie został znaleziony.");
+// 	console.log(member);
+// 	return member;
+// }
