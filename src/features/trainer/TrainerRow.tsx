@@ -1,17 +1,18 @@
 import TrainerOptions from "./TrainerOptions";
 
-type TrainerType = {
-	trainer: {
-		id?: number;
-		name: string;
-		category: string;
-		price: number;
-		phone: string;
-		image: any;
-	};
-};
+interface TrainersDataTypes {
+	id: number;
+	image: string;
+	name: string;
+	phone: string;
+	price: number;
+	category: string;
+	created_at: string;
+}
 
-function TrainerRow({ trainer }: TrainerType) {
+
+function TrainerRow({ trainer }: {trainer: TrainersDataTypes}) {
+	console.log(trainer);
 	return (
 		<>
 			<div className='col-[1_/_2] flex items-center gap-3 '>

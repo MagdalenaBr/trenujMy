@@ -14,7 +14,6 @@ export async function getOpenHours(): Promise<HoursTypes[]> {
 		.from("openHours")
 		.select("*");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
-	console.log(openHours);
 	return openHours;
 }
 

@@ -20,7 +20,6 @@ interface MemberTypes {
 }
 
 function MemberOptions({ member }: { member: MemberTypes }) {
-	console.log(member);
 	const navigate = useNavigate();
 	const { deleteOneMember } = useDeleteMember();
 	return (

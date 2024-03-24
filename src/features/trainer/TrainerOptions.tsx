@@ -12,18 +12,17 @@ import AddTrainerForm from "./AddTrainerForm";
 import Button from "../../ui/Button";
 import DeletePopup from "../../ui/DeletePopup";
 
-type TrainerTypes = {
-	trainer: {
-		id?: number;
-		name: string;
-		category: string;
-		price: number;
-		phone: string;
-		image: any;
-	};
-};
+interface TrainersDataTypes {
+	id: number;
+	image: string;
+	name: string;
+	phone: string;
+	price: number;
+	category: string;
+	created_at: string;
+}
 
-function TrainerOptions({ trainer }: TrainerTypes) {
+function TrainerOptions({ trainer }: {trainer: TrainersDataTypes}) {
 	const id = trainer?.id;
 	const { deleteOneTrainer } = useDeleteTrainer();
 	if (!id) return null;

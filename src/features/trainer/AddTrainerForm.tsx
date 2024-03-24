@@ -7,25 +7,27 @@ import { schema } from "../../validation/TrainersValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../ui/FormInput";
 
-type Trainer = {
-	id?: number;
+type TrainerTypes = {
+	image: FileList | string;
 	name: string;
-	category: string;
-	price: number;
 	phone: string;
-	image: FileList | any;
+	price: number;
+	category: string;
 };
 
-type TrainerType = {
-	trainer?: Trainer | any;
+interface PropsType {
 	handleCloseModal?: () => void;
-};
+	trainer?: TrainerTypes & { id: number };
+}
 
-function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
+function AddTrainerForm({
+	trainer = {} as TrainerTypes & { id: number },
+	handleCloseModal,
+}: PropsType) {
 	const { id, ...trainerEditData } = trainer;
 	const isEditingSession = Boolean(id);
 
-	const { register, handleSubmit, formState } = useForm<Trainer>({
+	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? trainerEditData : {},
 		resolver: yupResolver(schema),
 	});
@@ -34,15 +36,18 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 	const { createTrainer } = useCreateTrainer();
 	const { editTrainer } = useEditTrainer();
 
-	const onSubmit = (newTrainer: Trainer) => {
+	const onSubmit = (newTrainer: TrainerTypes) => {
 		const image =
 			typeof newTrainer.image === "string"
 				? newTrainer.image
 				: newTrainer.image?.[0];
 		if (isEditingSession) {
-			editTrainer({ newTrainersData: { ...newTrainer, image }, id });
+			editTrainer({
+				newTrainersData: { ...newTrainer, image } as TrainerTypes,
+				id,
+			});
 		} else {
-			createTrainer({ ...newTrainer, image });
+			createTrainer({ ...newTrainer, image } as TrainerTypes);
 		}
 		handleCloseModal?.();
 	};
@@ -63,7 +68,7 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				</FormRow>
 
 				<FormRow name='category' label='Kategoria'>
-				<FormInput
+					<FormInput
 						errors={errors}
 						inputName='category'
 						register={register}
@@ -72,7 +77,7 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				</FormRow>
 
 				<FormRow name='price' label='Cena'>
-				<FormInput
+					<FormInput
 						errors={errors}
 						inputName='price'
 						register={register}
@@ -81,7 +86,7 @@ function AddTrainerForm({ trainer = {}, handleCloseModal }: TrainerType) {
 				</FormRow>
 
 				<FormRow name='phone' label='Telefon'>
-				<FormInput
+					<FormInput
 						errors={errors}
 						inputName='phone'
 						register={register}

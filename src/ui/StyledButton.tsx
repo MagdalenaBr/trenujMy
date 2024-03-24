@@ -1,7 +1,7 @@
 type Props = {
 	children: React.ReactNode
 	styleType?: string;
-	handleClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+	handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 	type?: "submit" | "reset";
 	styles?: string
 };

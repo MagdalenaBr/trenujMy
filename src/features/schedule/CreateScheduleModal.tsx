@@ -3,7 +3,7 @@ import CreateScheduleForm from "./CreateScheduleForm";
 
 interface ClassesType {
 	children: React.ReactNode;
-	classes: {
+	classes?: {
 		created_at: string;
 		date: string;
 		id: number;
