@@ -10,20 +10,29 @@ import { schema } from "../../validation/ScheduleValidation.tsx";
 import { useEditSchedules } from "./useEditSchedules.tsx";
 import Spinner from "../../ui/Spinner.tsx";
 
-type PropsType = {
+interface PropsType {
 	handleCloseModal?: () => void;
-	classes?: ClassesType | any;
-};
+	classes?: ClassesType;
+}
 
-type ClassesType = {
-	id?: number;
-	name: string;
-	numOfPlaces: number;
-	trainerId: number;
+interface DataTypes {
 	date: string;
-};
+	numOfPlaces: number;
+	name: string;
+	trainerId: number;
+}
 
-function CreateScheduleForm({ classes = {}, handleCloseModal }: PropsType) {
+interface ClassesType extends DataTypes {
+	id: number;
+	created_at: string;
+	trainers: {
+		name: string;
+	};
+}
+function CreateScheduleForm({
+	classes = {} as ClassesType,
+	handleCloseModal,
+}: PropsType) {
 	const { id, ...classesData } = classes;
 	const isEditingSession = Boolean(id);
 
@@ -37,7 +46,7 @@ function CreateScheduleForm({ classes = {}, handleCloseModal }: PropsType) {
 	});
 	const { errors } = formState;
 
-	const onSubmit = (data: ClassesType) => {
+	const onSubmit = (data: DataTypes) => {
 		const { date, name, numOfPlaces, trainerId } = data;
 		const newData = {
 			date,

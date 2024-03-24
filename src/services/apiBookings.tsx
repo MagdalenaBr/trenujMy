@@ -25,7 +25,6 @@ export async function getBookings(): Promise<BookingsDataType[]> {
 		.from("bookings")
 		.select("*, trainers(name), members(name, phone)");
 	if (error) throw new Error("Dane nie mogą zostać załadowane.");
-	console.log(bookings);
 	return bookings;
 }
 

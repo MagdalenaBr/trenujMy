@@ -42,7 +42,6 @@ function AddMemberForm({
 	const { errors } = formState;
 
 	const onSubmit = (data: CommonData) => {
-		console.log(data);
 		if (isEditingSession) {
 			editMember({ newMember: data, id });
 		} else {

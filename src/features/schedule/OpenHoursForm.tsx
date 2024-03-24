@@ -5,14 +5,14 @@ import FormInput from "../../ui/FormInput.tsx";
 import { useEditOpenHours } from "./useEditOpenHours.ts";
 import { useOpenHours } from "./useOpenHours.ts";
 
-type PropsType = {
+interface PropsType {
 	handleCloseModal?: () => void;
-};
+}
 
-type HoursType = {
+interface OpenHoursTypes {
 	openHour: string;
 	closeHour: string;
-};
+}
 
 function OpenHoursForm({ handleCloseModal }: PropsType) {
 	const { register, handleSubmit, formState } = useForm({
@@ -29,7 +29,7 @@ function OpenHoursForm({ handleCloseModal }: PropsType) {
 	if (!openHours) return;
 	const id = openHours[0].id;
 
-	const onSubmit = (data: HoursType) => {
+	const onSubmit = (data: OpenHoursTypes) => {
 		changeOpenHours({ newHours: data, id });
 		handleCloseModal?.();
 	};

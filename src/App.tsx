@@ -12,7 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import MemberPage from "./features/members/MemberPage";
 import SchedulePage from "./pages/SchedulePage";
-import ListSchedule from "./features/schedule/ListSchedule";
+import ScheduleList from "./features/schedule/ScheduleList";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ function App() {
 						<Route path='/members/:memberId' element={<MemberPage />} />
 						<Route path='/users' element={<Users />} />
 						<Route path='/schedule' element={<SchedulePage />} />
-						<Route path='/schedule/edit-schedule' element={<ListSchedule />} />
+						<Route path='/schedule/edit-schedule' element={<ScheduleList />} />
 						<Route path='/*' element={<PageNotFound />} />
 					</Route>
 				</Routes>

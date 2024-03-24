@@ -20,7 +20,6 @@ interface BookingTypes {
 export default function MemberClassesStats({
 	memberBookings
 }: {memberBookings: BookingTypes[]}) {
-	console.log(memberBookings);
 	if (!memberBookings) return [];
 	const unconfirmedClasses = memberBookings.filter(
 		el => el.status === "niepotwierdzona"

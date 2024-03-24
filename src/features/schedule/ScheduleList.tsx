@@ -6,7 +6,7 @@ import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 
-export default function ListSchedule() {
+export default function ScheduleList() {
 	const { schedule, scheduleIsLoading } = useSchedules();
 	if (scheduleIsLoading) return <Spinner />;
 

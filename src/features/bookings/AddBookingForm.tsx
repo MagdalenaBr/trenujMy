@@ -71,7 +71,6 @@ function AddBookingForm({
 	const { errors } = formState;
 
 	const onSubmit = (data: CommonDataTypes)=> {
-		console.log(data);
 		if (isEditingSession) {
 			editBooking({ newBooking: data, id });
 		} else {
