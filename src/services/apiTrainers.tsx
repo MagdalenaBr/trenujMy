@@ -1,14 +1,7 @@
 import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
-type TrainersType = {
-	id?: number;
-	name: string;
-	category: string;
-	price: number;
-	phone: string;
-	image: any;
-};
+
 
 export async function getTrainers(){
 	const { data: trainers , error } = await supabase.from("trainers").select("*");
@@ -17,7 +10,7 @@ export async function getTrainers(){
 	return trainers ;
 }
 
-export async function addOrEditTrainers(newTrainer: TrainersType, id?: number) {
+export async function addOrEditTrainers(newTrainer, id?) {
 	const hasImage = typeof newTrainer.image === "string";
 	const imageName = uuidv4() + newTrainer?.image?.name;
 	const imagePath = hasImage

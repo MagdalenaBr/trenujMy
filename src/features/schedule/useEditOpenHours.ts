@@ -2,15 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editOpenHours } from "../../services/apiOpenHours";
 import toast from "react-hot-toast";
 
-type HoursType = {
+
+interface OpenHoursTypes {
 	openHour: string;
 	closeHour: string;
-};
+}
 
 export function useEditOpenHours() {
 	const queryClient = useQueryClient();
 	const { mutate: changeOpenHours } = useMutation({
-		mutationFn: ({ newHours, id }: { newHours: HoursType; id: number }) =>
+		mutationFn: ({ newHours, id }: {newHours: OpenHoursTypes, id: number}) =>
 			editOpenHours(newHours, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

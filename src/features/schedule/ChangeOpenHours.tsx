@@ -1,6 +1,8 @@
-type PropsType = {
-	handleClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-};
+
+interface PropsType {
+	handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
 
 function ChangeOpenHours({ handleClick }: PropsType) {
 	return (

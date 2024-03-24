@@ -9,11 +9,11 @@ import { useSchedules } from "../schedule/useSchedules";
 import { useBooking } from "../bookings/useBooking";
 import Spinner from "../../ui/Spinner";
 
-type ScheduleDataTypes = {
+interface ScheduleDataTypes {
 	date: string;
 	title: string;
 	url?: string;
-}[];
+}
 
 function TrainerPage() {
 	const trainerIdParams = useParams();
@@ -72,7 +72,7 @@ function TrainerPage() {
 				</div>
 			</div>
 			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>
-			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} />
+			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes[]} />
 		</Container>
 	);
 }

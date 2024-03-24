@@ -4,13 +4,17 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { useOpenHours } from "./useOpenHours";
 import Spinner from "../../ui/Spinner";
 
-type PropsType = {
+interface ScheduleDataTypes {
 	date: string;
 	title: string;
 	url?: string;
-}[];
+}
 
-function Schedule({ trainerSchedule }: { trainerSchedule: PropsType }) {
+function Schedule({
+	trainerSchedule,
+}: {
+	trainerSchedule: ScheduleDataTypes[];
+}) {
 	const { openHours, isLoading: openHoursLoading } = useOpenHours();
 
 	if (openHoursLoading) return <Spinner />;

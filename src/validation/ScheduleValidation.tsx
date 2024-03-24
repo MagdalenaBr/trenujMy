@@ -1,7 +1,6 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-	id: yup.number(),
 	name: yup.string().required("Wybierz rodzaj zajęć"),
 	numOfPlaces: yup
 		.number()
