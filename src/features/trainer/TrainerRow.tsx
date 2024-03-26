@@ -12,10 +12,9 @@ interface TrainersDataTypes {
 
 
 function TrainerRow({ trainer }: {trainer: TrainersDataTypes}) {
-	console.log(trainer);
 	return (
 		<>
-			<div className='col-[1_/_2] flex items-center gap-3 '>
+			<div className='col-[1_/_3] flex items-center gap-9 '>
 				<img
 					src={trainer.image}
 					alt='trener'

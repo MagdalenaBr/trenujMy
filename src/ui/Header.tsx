@@ -6,17 +6,17 @@ import Logo from "./Logo";
 
 function Header() {
 	return (
-		<header className='flex justify-between py-5 px-7 bg-slate-100 row-[1_/_2] col-[1_/_3] sticky top-0 border-b-2 border-slate-300'>
-			<Logo/>
+		<header className='flex justify-between py-5 px-7 row-[1_/_2] col-[1_/_3] sticky top-0 '>
+			<Logo />
 			<div>
-				<div className='flex gap-2 items-center text-xl'>
+				<div className='flex gap-2 items-center text-xl text-slate-200'>
 					<p>bronxx</p>
 					<NavLink>
 						<HiOutlineUser />
 					</NavLink>
-					<NavLink>
+					{/* <NavLink>
 						<HiOutlineMoon />
-					</NavLink>
+					</NavLink> */}
 					<NavLink>
 						<IoLogOutOutline />
 					</NavLink>

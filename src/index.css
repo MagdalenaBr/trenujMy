@@ -3,5 +3,42 @@
 @tailwind utilities;
 
 body {
-	overflow: hidden;
+  overflow: hidden;
+}
+
+/* FullCalendar */
+:root {
+  --fc-border-color: rgb(71 85 105);
+}
+
+.fc .fc-toolbar-title {
+  @apply text-violet-400;
+}
+
+.fc-theme-standard td {
+  @apply border-slate-600;
+}
+.fc-list-sticky {
+  @apply border-slate-600;
+}
+
+/* scrollbar*/
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #475569 #0f172a;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
 }

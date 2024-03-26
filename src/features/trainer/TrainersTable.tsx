@@ -6,7 +6,7 @@ import TrainerRow from "./TrainerRow";
 function TrainersTable() {
 	const { trainers } = useTrainers();
 	return (
-		<Table>
+		<Table columns="grid-cols-5">
 			{trainers ? (
 				trainers.map(trainer => (
 					<Table.Row key={trainer.id}>

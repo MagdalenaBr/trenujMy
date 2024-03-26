@@ -1,16 +1,15 @@
-
 interface PropsType {
-	handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-
 function ChangeOpenHours({ handleClick }: PropsType) {
-	return (
-		<button
-			onClick={handleClick}
-			className='uppercase text-cyan-800 border-cyan-800 border-2 px-2 py-1 mb-4 rounded-md font-bold self-center'>
-			Zmień godziny otwarcia
-		</button>
-	);
+  return (
+    <button
+      onClick={handleClick}
+      className="mb-4 self-center rounded-md border-2 border-cyan-800 px-2 py-1 font-bold uppercase text-cyan-800"
+    >
+      Zmień godziny otwarcia
+    </button>
+  );
 }
 export default ChangeOpenHours;

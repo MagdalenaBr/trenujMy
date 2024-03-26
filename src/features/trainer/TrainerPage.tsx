@@ -74,7 +74,7 @@ function TrainerPage() {
 					</div>
 				</div>
 			</div>
-			<StyledButton styleType='add'>Zarezerwuj trenera</StyledButton>
+			{/* <StyledButton styleType='add'>Zarezerwuj trenera</StyledButton> */}
 			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} />
 		</Container>
 	);

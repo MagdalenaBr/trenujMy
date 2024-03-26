@@ -1,41 +1,45 @@
 import { createContext, useContext } from "react";
 
 const TableContext = createContext({
-	columns: "string",
+  columns: "string",
 });
 type PropsType = {
-	children: React.ReactNode;
-	columns?: string;
+  children: React.ReactNode;
+  columns?: string;
 };
 
 function Table({ children, columns = "grid-cols-4" }: PropsType) {
-	return (
-		<TableContext.Provider value={{ columns }}>
-			<div className='bg-slate-100 rounded divide-y  border border-slate-100 overflow-hidden px-5'>
-				{children}
-			</div>
-		</TableContext.Provider>
-	);
+  return (
+    <TableContext.Provider value={{ columns }}>
+      <div className=" bg-slate-900/70 divide-slate-00 divide-y divide-slate-700 overflow-hidden rounded-lg border-2 border-slate-700 text-slate-300">
+        {children}
+      </div>
+    </TableContext.Provider>
+  );
 }
 
 function Header({ children }: PropsType) {
-	const { columns } = useContext(TableContext);
-	return (
-		<div
-			role='row'
-			className={`grid ${columns} bg-slate-100 rounded-t py-4 text-neutral-900 uppercase font-bold justify-items-start px-2`}>
-			{children}
-		</div>
-	);
+  const { columns } = useContext(TableContext);
+  return (
+    <div
+      role="row"
+      className={`grid ${columns} justify-items-start rounded-t bg-slate-100 px-2 py-4 font-bold uppercase text-neutral-900`}
+    >
+      {children}
+    </div>
+  );
 }
 
 function Row({ children }: PropsType) {
-	const { columns } = useContext(TableContext);
-	return (
-		<div role='row' className={`grid ${columns} items-center justify-items-start py-2 px-2`}>
-			{children}
-		</div>
-	);
+  const { columns } = useContext(TableContext);
+  return (
+    <div
+      role="row"
+      className={`grid ${columns} items-center justify-items-start  `}
+    >
+      {children}
+    </div>
+  );
 }
 
 Table.Header = Header;
