@@ -3,16 +3,15 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 function AppLayout() {
-	return (
-		<div className='grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] bg-[linear-gradient(to_right_bottom,rgba(30,41,59,0.95),rgba(15,23,42,0.95)),url("./data/background.jpg")] bg-cover '>
-			<Header />
-			<Sidebar />
-			<main className='text-center text-md row-[2_/_3] col-[2_/_3] overflow-auto h-[90vh]'>
-				<Outlet />
-			</main>
-		</div>
-	);
+  return (
+    <div className='grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-[linear-gradient(to_right_bottom,#cbd5e1c5,#94a3b8d1),url("./data/background.jpg")] bg-cover dark:bg-[linear-gradient(to_right_bottom,rgba(30,41,59,0.95),rgba(15,23,42,0.95)),url("./data/background.jpg")] text-slate-900'>
+      <Header />
+      <Sidebar />
+      <main className="text-md col-[2_/_3] row-[2_/_3] h-[90vh] overflow-auto text-center">
+        <Outlet />
+      </main>
+    </div>
+  );
 }
 
-// bg-gradient-to-br from-slate-800 to-slate-900 font-notoSans h-screen text-slate-800
 export default AppLayout;

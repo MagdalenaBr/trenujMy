@@ -1,29 +1,28 @@
 import { NavLink } from "react-router-dom";
 
-import { HiOutlineUser, HiOutlineMoon } from "react-icons/hi2";
+import { HiOutlineUser} from "react-icons/hi2";
 import { IoLogOutOutline } from "react-icons/io5";
 import Logo from "./Logo";
+import DarkMode from "./DarkMode";
 
 function Header() {
-	return (
-		<header className='flex justify-between py-5 px-7 row-[1_/_2] col-[1_/_3] sticky top-0 '>
-			<Logo />
-			<div>
-				<div className='flex gap-2 items-center text-xl text-slate-200'>
-					<p>bronxx</p>
-					<NavLink>
-						<HiOutlineUser />
-					</NavLink>
-					{/* <NavLink>
-						<HiOutlineMoon />
-					</NavLink> */}
-					<NavLink>
-						<IoLogOutOutline />
-					</NavLink>
-				</div>
-			</div>
-		</header>
-	);
+  return (
+    <header className="sticky top-0 col-[1_/_3] row-[1_/_2] flex justify-between px-7 py-5 ">
+      <Logo />
+      <div>
+        <div className="flex items-center gap-2 text-xl dark:text-slate-200">
+          <p>bronxx</p>
+          <NavLink>
+            <HiOutlineUser />
+          </NavLink>
+          <DarkMode />
+          <NavLink>
+            <IoLogOutOutline />
+          </NavLink>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default Header;

@@ -13,32 +13,38 @@ import { Toaster } from "react-hot-toast";
 import MemberPage from "./features/members/MemberPage";
 import SchedulePage from "./pages/SchedulePage";
 import ScheduleList from "./features/schedule/ScheduleList";
+import DarkModeProvider from "./context/darkModeContext";
 
 const queryClient = new QueryClient();
 
 function App() {
-	return (
-		<QueryClientProvider client={queryClient}>
-			<ReactQueryDevtools />
-			<Toaster />
-			<BrowserRouter>
-				<Routes>
-					<Route element={<AppLayout />}>
-						<Route index path='/' element={<Home />} />
-						<Route path='/trainers' element={<Trainers />} />
-						<Route path='/trainers/:trainerId' element={<TrainerPage />} />
-						<Route path='/bookings' element={<Bookings />} />
-						<Route path='/members' element={<Members />} />
-						<Route path='/members/:memberId' element={<MemberPage />} />
-						<Route path='/users' element={<Users />} />
-						<Route path='/schedule' element={<SchedulePage />} />
-						<Route path='/schedule/edit-schedule' element={<ScheduleList />} />
-						<Route path='/*' element={<PageNotFound />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
-		</QueryClientProvider>
-	);
+  return (
+    <DarkModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <Toaster />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index path="/" element={<Home />} />
+              <Route path="/trainers" element={<Trainers />} />
+              <Route path="/trainers/:trainerId" element={<TrainerPage />} />
+              <Route path="/bookings" element={<Bookings />} />
+              <Route path="/members" element={<Members />} />
+              <Route path="/members/:memberId" element={<MemberPage />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/schedule" element={<SchedulePage />} />
+              <Route
+                path="/schedule/edit-schedule"
+                element={<ScheduleList />}
+              />
+              <Route path="/*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </DarkModeProvider>
+  );
 }
 
 export default App;

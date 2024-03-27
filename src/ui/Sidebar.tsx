@@ -12,19 +12,15 @@ import {
 function Sidebar() {
   return (
     <>
-      <nav className=" t-0 sticky col-[1_/_2] row-[2_/_3] border-slate-700 transition">
+      <nav className=" t-0 sticky  col-[1_/_2] row-[2_/_3] border-slate-700 transition-colors delay-100">
         <ul className="flex flex-col gap-5 pl-10 pt-5 ">
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive
-                    ? "border-l-4  border-violet-400 bg-slate-700"
-                    : null,
-                )
-              }
+              className={({
+                isActive,
+              }) => ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+             ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`}
             >
               <HiOutlineHome className="text-3xl font-extrabold text-slate-200" />
               <span className="text-slate-300">Start</span>
@@ -34,10 +30,8 @@ function Sidebar() {
             <NavLink
               to="/trainers"
               className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive ? "border-l-4 border-violet-400 bg-slate-700" : null,
-                )
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+              ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`
               }
             >
               <HiOutlineTrophy className="text-3xl font-extrabold text-slate-200" />
@@ -48,12 +42,8 @@ function Sidebar() {
             <NavLink
               to="/bookings"
               className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive
-                    ? "border-l-4 border-violet-400 bg-slate-700 "
-                    : null,
-                )
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+              ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`
               }
             >
               <HiOutlinePencilSquare className="text-3xl font-extrabold text-slate-200" />
@@ -64,12 +54,8 @@ function Sidebar() {
             <NavLink
               to="/schedule"
               className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive
-                    ? "border-l-4 border-violet-400 bg-slate-700 "
-                    : null,
-                )
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+              ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`
               }
             >
               <HiOutlineCalendarDays className="text-3xl font-extrabold text-slate-200" />
@@ -80,10 +66,8 @@ function Sidebar() {
             <NavLink
               to="/members"
               className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive ? "border-l-4 border-violet-400 bg-slate-700" : null,
-                )
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+              ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`
               }
             >
               <HiOutlineUserGroup className="text-3xl font-extrabold text-slate-200" />
@@ -94,12 +78,8 @@ function Sidebar() {
             <NavLink
               to="/users"
               className={({ isActive }) =>
-                clsx(
-                  "flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700",
-                  isActive
-                    ? "border-l-4 border-violet-400 bg-slate-700 "
-                    : null,
-                )
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl transition hover:bg-slate-700
+              ${isActive && "border-l-4  border-violet-400 bg-slate-700"}`
               }
             >
               <HiOutlineUser className="text-3xl font-extrabold text-slate-200" />
