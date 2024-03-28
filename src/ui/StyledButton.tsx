@@ -13,7 +13,7 @@ function StyledButton({ children, styleType, type, handleClick, styles }: Props)
 			onClick={handleClick}
 			className={`px-6 py-3 my-4 rounded-xl font-semibold tracking-wider hover:scale-105 transition ${styles} ${
 				styleType === "add"
-					? " bg-[#5C526E] text-violet-100 px-12 "
+					? "bg-accentColor1 text-violet-100 px-12 "
 					: "bg-violet-100 text-cyan-800 border-2 border-cyan-800"
 			} `}>
 			{children}

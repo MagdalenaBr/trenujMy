@@ -27,7 +27,7 @@ function TrainerOptions({ trainer }: {trainer: TrainersDataTypes}) {
 	const { deleteOneTrainer } = useDeleteTrainer();
 	if (!id) return null;
 	return (
-		<div className='flex gap-2 text-2xl px-5  text-violet-400'>
+		<div className='flex gap-2 text-2xl px-5 text-accentColor2'>
 			<Link to={`/trainers/${id}`}>
 				<HiOutlineCalendar />
 			</Link>
