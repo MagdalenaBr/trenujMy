@@ -11,7 +11,7 @@ import {
 function Sidebar() {
   return (
     <>
-      <nav className=" t-0 sticky  col-[1_/_2] row-[2_/_3] border-slate-700">
+      <nav className=" t-0 sticky  col-[1_/_2] row-[2_/_3] border-slate-700 font-semibold">
         <ul className="flex flex-col gap-5 pl-10 pt-5 ">
           <li>
             <NavLink

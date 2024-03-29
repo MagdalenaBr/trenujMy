@@ -1,8 +1,6 @@
-import { createContext, useContext } from "react";
+import { useContext } from "react";
+import TableContext from "../context/TableContext";
 
-const TableContext = createContext({
-  columns: "string",
-});
 type PropsType = {
   children: React.ReactNode;
   columns?: string;
@@ -11,7 +9,7 @@ type PropsType = {
 function Table({ children, columns = "grid-cols-4" }: PropsType) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className=" bg-slate-900/70 divide-slate-00 divide-y divide-slate-700 overflow-hidden rounded-lg border-2 border-slate-700 text-slate-300">
+      <div className=" divide-slate-00 divide-y divide-slate-700 overflow-hidden rounded-lg border-2 border-slate-700 bg-slate-900/70 text-slate-300">
         {children}
       </div>
     </TableContext.Provider>
@@ -19,11 +17,11 @@ function Table({ children, columns = "grid-cols-4" }: PropsType) {
 }
 
 function Header({ children }: PropsType) {
-  const { columns } = useContext(TableContext);
+  const ColumnsContext = useContext(TableContext);
   return (
     <div
       role="row"
-      className={`grid ${columns} justify-items-start rounded-t bg-slate-100 px-2 py-4 font-bold uppercase text-neutral-900`}
+      className={`grid ${ColumnsContext?.columns} justify-items-start rounded-t bg-slate-100 px-2 py-4 font-bold uppercase text-neutral-900`}
     >
       {children}
     </div>
@@ -31,11 +29,11 @@ function Header({ children }: PropsType) {
 }
 
 function Row({ children }: PropsType) {
-  const { columns } = useContext(TableContext);
+  const ColumnsContext = useContext(TableContext);
   return (
     <div
       role="row"
-      className={`grid ${columns} items-center justify-items-start  `}
+      className={`grid ${ColumnsContext?.columns} items-center justify-items-start  `}
     >
       {children}
     </div>

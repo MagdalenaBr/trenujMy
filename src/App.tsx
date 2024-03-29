@@ -13,7 +13,7 @@ import { Toaster } from "react-hot-toast";
 import MemberPage from "./features/members/MemberPage";
 import SchedulePage from "./pages/SchedulePage";
 import ScheduleList from "./features/schedule/ScheduleList";
-import DarkModeProvider from "./context/darkModeContext";
+import DarkModeProvider from "./context/DarkModeContext";
 
 const queryClient = new QueryClient();
 
