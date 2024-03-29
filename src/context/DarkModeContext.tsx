@@ -15,11 +15,10 @@ export default function DarkModeProvider({
   children: React.ReactNode;
 }) {
   const [darkMode, setDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
   );
 
   function toggleDarkMode() {
-    
     if (darkMode === false) {
       localStorage.theme = "dark";
     } else {
