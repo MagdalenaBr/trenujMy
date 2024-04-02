@@ -20,7 +20,7 @@ function EditGymMembershipModal({ member }: {member: MemberTypes}) {
 		<Modal>
 			<Modal.OpenButton openForm='membership'>
 				<Button>
-					<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125 transition' />
+					<HiOutlinePencil className='text-lg cursor-pointer text-red-800 hover:scale-125 active:scale-125' />
 				</Button>
 			</Modal.OpenButton>
 			<Modal.Window formName='membership'>

@@ -21,7 +21,7 @@ function Members() {
 						<input
 							value={memberName}
 							onChange={e => setMemberName(e.target.value)}
-							className='border-2 w-80 bg-slate-100 rounded-lg pl-8 pr-2 py-1 focus:border-cyan-800  focus:bg-sky-100 focus:outline-none transition-colors focus:shadow-md hover:border-cyan-800'
+							className='border-2 w-80 bg-slate-100 rounded-lg pl-8 pr-2 py-1 focus:border-cyan-800  focus:bg-sky-100 focus:outline-none focus:shadow-md hover:border-cyan-800'
 						/>
 					</div>
 				</div>

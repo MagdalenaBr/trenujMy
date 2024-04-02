@@ -13,6 +13,7 @@ export default {
 				accentColor1: "rgb(var(--color-accentColor1) / <alpha-value>)",
 				accentColor2: "rgb(var(--color-accentColor2) / <alpha-value>)",
 			},
+			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},
 	},
 	plugins: [],

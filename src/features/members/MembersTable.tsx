@@ -28,7 +28,7 @@ function MembersTable({ memberNameFromInput }: {memberNameFromInput: string}) {
 						<p>{member.email.toLowerCase()}</p>
 						<p>{member.phone}</p>
 						<Link to={`/members/${member.id}`}>
-							<BsInfoLg className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 transition hover:text-cyan-800' />
+							<BsInfoLg className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 hover:text-cyan-800' />
 						</Link>
 					</Table.Row>
 				))

@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 function AppLayout() {
   return (
-    <div className='text-primaryTextColor grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] '>
+    <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] text-primaryTextColor">
       <Header />
       <Sidebar />
       <main className="text-md col-[2_/_3] row-[2_/_3] h-[90vh] overflow-auto text-center">
