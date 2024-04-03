@@ -8,11 +8,16 @@ export default {
 			},
 			colors: {
 				primaryTextColor: "rgb(var(--color-primaryTextColor) / <alpha-value>)",
+				secondaryTextColor: "rgb(var(--color-secondaryTextColor) / <alpha-value>)",
 				activeText: "rgb(var(--color-activeText) / <alpha-value>)",
 				activeBkg: "rgb(var(--color-activeBkg) / <alpha-value>)",
 				accentColor1: "rgb(var(--color-accentColor1) / <alpha-value>)",
 				accentColor2: "rgb(var(--color-accentColor2) / <alpha-value>)",
-				bgColor: "rgb(var(--color-bgColor) / <alpha-value>)"
+				bgColor: "rgb(var(--color-bgColor) / <alpha-value>)",
+				statusCanceled: "rgb(var(--color-statusCanceled) / <alpha-value>)",
+				statusComplited: "rgb(var(--color-statusComplited) / <alpha-value>)",
+				statusUnconfirmed:
+					"rgb(var(--color-statusUnconfirmed) / <alpha-value>)",
 			},
 			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},

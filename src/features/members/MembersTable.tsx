@@ -15,7 +15,7 @@ function MembersTable({ memberNameFromInput }: {memberNameFromInput: string}) {
 	);
 
 	return (
-		<Table>
+		<Table uniqueStyles="px-2 py-2">
 			<Table.Header>
 				<p>Imie i nazwisko</p>
 				<p>e-mail</p>
