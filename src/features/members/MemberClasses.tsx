@@ -23,7 +23,7 @@ interface BookingTypes {
 function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
 
 	return (
-		<div className='max-h-72 overflow-auto'>
+		<div className='min-h-10 overflow-auto'>
 			<TableWithSpacing columns='grid-cols-[repeat(3,minmax(100px,_1fr))_100px]'>
 				{memberBookings?.map(el => (
 					<TableWithSpacing.Row key={el.id}>

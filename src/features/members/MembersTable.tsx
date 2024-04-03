@@ -15,7 +15,7 @@ function MembersTable({ memberNameFromInput }: {memberNameFromInput: string}) {
 	);
 
 	return (
-		<Table uniqueStyles="px-2 py-2">
+		<Table uniqueStyles="px-2 py-2" columns="grid-cols-[2fr_1fr_1fr_1fr]">
 			<Table.Header>
 				<p>Imie i nazwisko</p>
 				<p>e-mail</p>
@@ -24,11 +24,11 @@ function MembersTable({ memberNameFromInput }: {memberNameFromInput: string}) {
 			{filteredMembers ? (
 				filteredMembers.map(member => (
 					<Table.Row key={member.id}>
-						<p>{member.name}</p>
+						<p className="text-violet-200 font-semibold">{member.name}</p>
 						<p>{member.email.toLowerCase()}</p>
 						<p>{member.phone}</p>
 						<Link to={`/members/${member.id}`}>
-							<BsInfoLg className='text-2xl  text-slate-800 justify-self-end mx-3 cursor-pointer hover:scale-125 hover:text-cyan-800' />
+							<BsInfoLg className='text-2xl  text-accentColor2 justify-self-end mx-3 cursor-pointer hover:scale-125 hover:text-cyan-800' />
 						</Link>
 					</Table.Row>
 				))

@@ -18,6 +18,8 @@ export default {
 				statusComplited: "rgb(var(--color-statusComplited) / <alpha-value>)",
 				statusUnconfirmed:
 					"rgb(var(--color-statusUnconfirmed) / <alpha-value>)",
+				serchInputBg:
+					"rgb(var(--color-serchInputBg) / <alpha-value>)",
 			},
 			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},
