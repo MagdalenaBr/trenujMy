@@ -12,6 +12,7 @@ export default {
 				activeBkg: "rgb(var(--color-activeBkg) / <alpha-value>)",
 				accentColor1: "rgb(var(--color-accentColor1) / <alpha-value>)",
 				accentColor2: "rgb(var(--color-accentColor2) / <alpha-value>)",
+				bgColor: "rgb(var(--color-bgColor) / <alpha-value>)"
 			},
 			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},
