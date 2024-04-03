@@ -23,7 +23,7 @@ interface BookingTypes {
 function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
 
 	return (
-		<div className='min-h-10 overflow-auto'>
+		<div className='max-h-48 overflow-auto'>
 			<TableWithSpacing columns='grid-cols-[repeat(3,minmax(100px,_1fr))_100px]'>
 				{memberBookings?.map(el => (
 					<TableWithSpacing.Row key={el.id}>
@@ -38,7 +38,7 @@ function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
 							memberId={el.memberId}
 							memberName={el.members?.name}>
 							<Button>
-								<HiOutlinePencil className='text-2xl' />
+								<HiOutlinePencil className='text-2xl text-accentColor2' />
 							</Button>
 						</AddBookingModal>
 					</TableWithSpacing.Row>

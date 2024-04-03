@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 function AppLayout() {
   return (
-    <div className="relative grid h-full w-full grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-bgColor/80 text-primaryTextColor">
+    <div className="relative grid h-screen w-full grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-bgColor/80 text-primaryTextColor">
       <img
         src="../public/background.jpg"
         aria-hidden="true"
@@ -12,7 +12,7 @@ function AppLayout() {
       />
       <Header />
       <Sidebar />
-      <main className="text-md col-[2_/_3] row-[2_/_3] h-[90vh] overflow-auto text-center">
+      <main className="text-md col-[2_/_3] row-[2_/_3] h-[87vh] overflow-auto text-center">
         <Outlet />
       </main>
     </div>

@@ -4,11 +4,12 @@ import TableContext from "../context/TableContext";
 type PropsType = {
   children: React.ReactNode;
   columns?: string;
+  uniqueStyles?: string
 };
 
-function TableWithSpacing({ children, columns = "grid-cols-4" }: PropsType) {
+function TableWithSpacing({ children, columns = "grid-cols-4", uniqueStyles='' }: PropsType) {
   return (
-    <TableContext.Provider value={{ columns }}>
+    <TableContext.Provider value={{ columns, uniqueStyles }}>
       <div role="table">{children}</div>
     </TableContext.Provider>
   );
@@ -31,8 +32,8 @@ function Row({ children }: PropsType) {
   const ColumnsContext = useContext(TableContext);
 
   return (
-    <div className="my-2 rounded-md border-2  border-slate-200 bg-slate-100 py-1 text-sm">
-      <div className={`grid px-2 ${ColumnsContext?.columns} items-center`}>
+    <div className="my-2 rounded-md border-2  border-slate-200 bg-slate-900/80 py-1 text-sm">
+      <div className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles} items-center`}>
         {children}
       </div>
     </div>
