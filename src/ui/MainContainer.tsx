@@ -1,15 +1,15 @@
 type PropsType = {
 	title: string;
 	children: React.ReactNode;
-	button?: React.ReactNode;
+	buttons?: React.ReactNode;
 };
 
-function MainContainer({ children, title, button }: PropsType) {
+function MainContainer({ children, title, buttons }: PropsType) {
 	return (
-		<div className='w-[80%] mx-auto flex flex-col'>
-			<div className={button? 'flex justify-between' : ''}>
+		<div className='w-[80%] mx-auto flex flex-col relative'>
+			<div className={buttons? 'flex justify-between' : ''}>
 				<h2 className='text-[2rem] text-start mb-5 text-primaryTextColor'>{title}</h2>
-				{button}
+				{buttons}
 			</div>
 			{children}
 		</div>

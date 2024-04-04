@@ -5,6 +5,7 @@ import CreateScheduleModal from "./CreateScheduleModal";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
+import BackButton from "../../ui/BackButton";
 
 export default function ScheduleList() {
 	const { schedule, scheduleIsLoading } = useSchedules();
@@ -12,6 +13,7 @@ export default function ScheduleList() {
 
 	return (
 		<MainContainer title='Aktualny grafik'>
+			<BackButton/>
 			<TableWithSpacing columns='grid-cols-[repeat(4,minmax(100px,_1fr))_100px]'>
 				<TableWithSpacing.Header>
 					<p>Trener</p>

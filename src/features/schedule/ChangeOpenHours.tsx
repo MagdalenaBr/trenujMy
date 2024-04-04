@@ -6,7 +6,7 @@ function ChangeOpenHours({ handleClick }: PropsType) {
   return (
     <button
       onClick={handleClick}
-      className="mb-4 self-center rounded-md border-2 border-cyan-800 px-2 py-1 font-bold uppercase text-cyan-800"
+      className="rounded-md border-2 border-primaryTextColor px-2 py-1 font-bold uppercase w-[15rem]"
     >
       Zmień godziny otwarcia
     </button>

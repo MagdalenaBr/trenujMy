@@ -20,14 +20,19 @@ function Schedule({
 	if (openHoursLoading) return <Spinner />;
 	let openHour, closeHour;
 	if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
+	console.log(trainerSchedule);
 
 	return (
-		<div className="bg-slate-900 h-[50%]">
+		<div className="bg-slate-400">
 
 			<FullCalendar
 				plugins={[timeGridPlugin]}
 				initialView='timeGridWeek'
-				events={trainerSchedule}
+				events={[
+					{ title: 'event 1', date: '2024-04-01' },
+					{ title: 'event 2', date: '2024-04-02' }
+				  ]}
+				
 				eventColor={"#5C526E"}
 				eventBorderColor={"#475569"}
 				locale='pl'

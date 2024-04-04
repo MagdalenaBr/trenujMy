@@ -54,7 +54,7 @@
   }
 }
 
-/* FullCalendar */
+/* FullCalendar
 :root {
   --fc-border-color: rgb(71 85 105);
 }
@@ -68,7 +68,7 @@
 }
 .fc-list-sticky {
   @apply border-slate-600;
-}
+} */
 
 /* scrollbar*/
 
