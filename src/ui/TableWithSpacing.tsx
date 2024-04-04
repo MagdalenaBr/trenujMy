@@ -32,7 +32,7 @@ function Row({ children }: PropsType) {
   const ColumnsContext = useContext(TableContext);
 
   return (
-    <div className="my-2 rounded-md border-2  border-slate-200 bg-slate-900/80 py-1 text-sm">
+    <div className="my-2 rounded-md border-2  border-slate-200 bg-bgTableWithSpacing/60 py-1 text-sm">
       <div className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles} items-center`}>
         {children}
       </div>

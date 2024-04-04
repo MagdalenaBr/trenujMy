@@ -83,7 +83,9 @@ function MemberPage() {
         {booking?.length !== 0 ? (
           booking && <MemberClasses memberBookings={booking} />
         ) : (
-          <p className="text-sm text-slate-500">Brak dostępnych rezerwacji</p>
+          <div className="h-48 text-sm text-slate-300">
+            <p>Brak dostępnych rezerwacji</p>
+          </div>
         )}
 
         <AddBookingModal activeMember={member}>

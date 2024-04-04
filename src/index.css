@@ -16,6 +16,7 @@
     --color-accentColor1: 114 80 182;
     --color-accentColor2:  150 129 192;
     --color-bgColor: 15 23 42;
+    --color-bgTableWithSpacing: 15 23 42;
     --color-statusCanceled: 239 68 68;
     --color-statusComplited: 132 204 22;
     --color-statusUnconfirmed: 129 140 248;
@@ -29,6 +30,7 @@
     --color-accentColor1: 114 80 182;
     --color-accentColor2:  150 129 192;
     --color-bgColor: 148 163 184;
+    --color-bgTableWithSpacing: 100 116 139;
     --color-statusCanceled: 253 164 175;
     --color-statusComplited: 190 242 100;
     --color-statusUnconfirmed: 165 180 252;
@@ -43,6 +45,7 @@
       --color-accentColor1: 114 80 182;
       --color-accentColor2:  150 129 192;
       --color-bgColor: 15 23 42;
+      --color-bgTableWithSpacing: 15 23 42;
       --color-statusCanceled: 239 68 68;
       --color-statusComplited: 132 204 22;
       --color-statusUnconfirmed: 129 140 248;
