@@ -3,58 +3,56 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useOpenHours } from "./useOpenHours";
 import Spinner from "../../ui/Spinner";
+import dayGridPlugin from "@fullcalendar/daygrid";
 
 interface ScheduleDataTypes {
-	date: string;
-	title: string;
-	url?: string;
+  date: string;
+  title: string;
+  url?: string;
 }
 
 function Schedule({
-	trainerSchedule,
+  trainerSchedule,
 }: {
-	trainerSchedule: ScheduleDataTypes[];
+  trainerSchedule: ScheduleDataTypes[];
 }) {
-	const { openHours, isLoading: openHoursLoading } = useOpenHours();
+  const { openHours, isLoading: openHoursLoading } = useOpenHours();
 
-	if (openHoursLoading) return <Spinner />;
-	let openHour, closeHour;
-	if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
-	console.log(trainerSchedule);
+  if (openHoursLoading) return <Spinner />;
+  let openHour, closeHour;
+  if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
+  console.log(trainerSchedule);
 
-	return (
-		<div className="bg-slate-400">
-
-			<FullCalendar
-				plugins={[timeGridPlugin]}
-				initialView='timeGridWeek'
-				events={[
-					{ title: 'event 1', date: '2024-04-01' },
-					{ title: 'event 2', date: '2024-04-02' }
-				  ]}
-				
-				eventColor={"#5C526E"}
-				eventBorderColor={"#475569"}
-				locale='pl'
-				eventMinHeight={65}
-				slotMinTime={openHour || "00:00"}
-				slotMaxTime={closeHour || "24:00"}
-				headerToolbar={{
-					start: "timeGridWeek,timeGridDay",
-					center: "title",
-					end: "today prev,next",
-				}}
-				buttonText={{
-					today: "dzisiaj",
-					month: "miesiąc",
-					week: "tydzień",
-					day: "dzień",
-					list: "lista",
-				}}
-				allDaySlot={false}
-			/>
-		</div>
-	);
+  return (
+    <div className=" bg-slate-900/70 p-2 text-slate-300">
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        initialView="dayGridMonth"
+        events={trainerSchedule}
+        eventColor={"rgb(119, 103, 151)"}
+        locale="pl"
+        height={"39rem"}
+        eventMinHeight={65}
+        slotMinTime={openHour || "00:00"}
+        slotMaxTime={closeHour || "24:00"}
+		
+        headerToolbar={{
+          start: "dayGridMonth,timeGridWeek,timeGridDay",
+          center: "title",
+          end: "today prev,next",
+        }}
+        buttonText={{
+          today: "dzisiaj",
+          month: "miesiąc",
+          week: "tydzień",
+          day: "dzień",
+          list: "lista",
+        }}
+        allDaySlot={false}
+		
+      />
+    </div>
+  );
 }
 
 export default Schedule;

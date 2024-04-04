@@ -13,7 +13,7 @@ function SchedulePage() {
   if (!schedule) return;
 
   const trainerSchedule = schedule.map((el) => ({
-    title: `${el.name} ${el.trainers.name}`,
+    title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
     date: el.date,
     url: `/trainers/${el.trainerId}`,
   }));

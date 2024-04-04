@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply overflow-hidden transition duration-100 ease-linear;
+    @apply transition duration-100 ease-linear;
   }
 
   :root[class="dark"] {
@@ -14,13 +14,21 @@
     --color-secondaryTextColor: 148 163 184;
     --color-activeBkg: 51 65 85;
     --color-accentColor1: 114 80 182;
-    --color-accentColor2:  150 129 192;
+    --color-accentColor2: 150 129 192;
     --color-bgColor: 15 23 42;
     --color-bgTableWithSpacing: 15 23 42;
     --color-statusCanceled: 239 68 68;
     --color-statusComplited: 132 204 22;
     --color-statusUnconfirmed: 129 140 248;
     --color-serchInputBg: 51 65 85;
+
+    /* FullCalendar */
+
+    --fc-border-color: rgb(203, 213, 225);
+    --fc-button-hover-bg-color: rgb(150, 129, 192);
+    --fc-button-active-bg-color: rgb(150, 129, 192);
+    --fc-button-active-border-color: rgb(150, 129, 192);
+    --fc-today-bg-color: transparent;
   }
   :root[class="light"] {
     --color-primaryTextColor: 30 41 59;
@@ -28,13 +36,21 @@
     --color-activeText: 203 213 225;
     --color-activeBkg: 71 85 105;
     --color-accentColor1: 114 80 182;
-    --color-accentColor2:  150 129 192;
+    --color-accentColor2: 150 129 192;
     --color-bgColor: 148 163 184;
     --color-bgTableWithSpacing: 100 116 139;
     --color-statusCanceled: 253 164 175;
     --color-statusComplited: 190 242 100;
     --color-statusUnconfirmed: 165 180 252;
-    --color-serchInputBg: 51 65 85
+    --color-serchInputBg: 51 65 85;
+
+    /* FullCalendar */
+
+    --fc-border-color: rgb(30, 41, 59);
+    --fc-button-hover-bg-color: rgb(150, 129, 192);
+    --fc-button-active-bg-color: rgb(150, 129, 192);
+    --fc-button-active-border-color: rgb(150, 129, 192);
+    --fc-today-bg-color: transparent;
   }
   @media ((prefers-color-scheme: dark)) {
     :root {
@@ -43,32 +59,45 @@
       --color-activeText: 203 213 225;
       --color-activeBkg: 51 65 85;
       --color-accentColor1: 114 80 182;
-      --color-accentColor2:  150 129 192;
+      --color-accentColor2: 150 129 192;
       --color-bgColor: 15 23 42;
       --color-bgTableWithSpacing: 15 23 42;
       --color-statusCanceled: 239 68 68;
       --color-statusComplited: 132 204 22;
       --color-statusUnconfirmed: 129 140 248;
       --color-serchInputBg: 100 116 139;
+
+      /* FullCalendar */
+
+      --fc-border-color: rgb(203, 213, 225);
+      --fc-button-hover-bg-color: rgb(150, 129, 192);
+      --fc-button-active-bg-color: rgb(150, 129, 192);
+      --fc-button-active-border-color: rgb(150, 129, 192);
+      --fc-today-bg-color: transparent;
     }
   }
 }
 
-/* FullCalendar
-:root {
-  --fc-border-color: rgb(71 85 105);
+/* FullCalendar */
+
+.fc .fc-timegrid-slot-minor {
+  @apply border-t-0;
+}
+
+.fc-border-color {
+  @apply border-primaryTextColor;
 }
 
 .fc .fc-toolbar-title {
-  @apply text-violet-400;
+  @apply text-[#9681c0];
 }
 
 .fc-theme-standard td {
-  @apply border-slate-600;
+  @apply border-primaryTextColor;
 }
 .fc-list-sticky {
-  @apply border-slate-600;
-} */
+  @apply border-primaryTextColor;
+}
 
 /* scrollbar*/
 
