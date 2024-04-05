@@ -3,12 +3,11 @@ import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import { Link } from "react-router-dom";
 import { useMembers } from "./useMembers";
+import { useContext } from "react";
+import { SearchNameContext } from "../../context/SearchContext";
 
-function MembersTable({
-  memberNameFromInput,
-}: {
-  memberNameFromInput: string;
-}) {
+function MembersTable() {
+  const { name: memberNameFromInput } = useContext(SearchNameContext);
   const { members } = useMembers();
   const filteredMembers = members?.filter((member) =>
     member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())
