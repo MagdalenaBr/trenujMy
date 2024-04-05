@@ -12,7 +12,7 @@ function AppLayout() {
       />
       <Header />
       <Sidebar />
-      <main className="text-md col-[2_/_3] row-[2_/_3] h-[87vh] overflow-auto text-center">
+      <main className="text-md col-[2_/_3] row-[2_/_3] h-[96%] overflow-auto text-center">
         <Outlet />
       </main>
     </div>

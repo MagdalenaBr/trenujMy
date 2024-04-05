@@ -1,7 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useParams } from "react-router-dom";
 import Container from "../../ui/Container";
-import StyledButton from "../../ui/StyledButton";
 import Schedule from "../schedule/Schedule";
 import BackButton from "../../ui/BackButton";
 import { useTrainers } from "./useTrainers";
@@ -75,7 +74,7 @@ function TrainerPage() {
 				</div>
 			</div>
 			{/* <StyledButton styleType='add'>Zarezerwuj trenera</StyledButton> */}
-			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} />
+			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} page="trainer"/>
 		</Container>
 	);
 }

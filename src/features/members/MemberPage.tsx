@@ -17,6 +17,7 @@ function MemberPage() {
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => member.id === memberId);
   const { booking } = useBooking(member?.id, "memberId");
+  console.log(member);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
@@ -27,19 +28,19 @@ function MemberPage() {
       <div className="flex justify-around">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2">
-            <h3 className="font-semibold">E-mail:</h3>
+            <h3 className="text-lightAccentColor font-semibold">E-mail:</h3>
             <p>{member.email.toLowerCase()}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="font-semibold">Telefon:</h3>
+            <h3 className="text-lightAccentColor font-semibold">Telefon:</h3>
             <p>{member.phone}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="font-semibold">Płeć:</h3>
+            <h3 className="text-lightAccentColor font-semibold">Płeć:</h3>
             <p>{member.gender}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="font-semibold">Miasto:</h3>
+            <h3 className="text-lightAccentColor font-semibold">Miasto:</h3>
             <p>{member.city}</p>
           </div>
           <div className="flex flex-col gap-2">

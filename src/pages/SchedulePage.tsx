@@ -15,7 +15,7 @@ function SchedulePage() {
   const trainerSchedule = schedule.map((el) => ({
     title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
     date: el.date,
-    url: `/trainers/${el.trainerId}`,
+    url: `/trenerzy/${el.trainerId}`,
   }));
 
   return (
@@ -28,7 +28,7 @@ function SchedulePage() {
         </div>
       }
     >
-      <Schedule trainerSchedule={trainerSchedule} />
+      <Schedule trainerSchedule={trainerSchedule} page="schedulePage"/>
       <CreateScheduleModal>
         <StyledButton>Dodaj zajęcia</StyledButton>
       </CreateScheduleModal>

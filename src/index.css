@@ -21,6 +21,7 @@
     --color-statusComplited: 132 204 22;
     --color-statusUnconfirmed: 129 140 248;
     --color-serchInputBg: 51 65 85;
+    --color-lightAccentColor: 221 214 254;
 
     /* FullCalendar */
 
@@ -43,6 +44,7 @@
     --color-statusComplited: 190 242 100;
     --color-statusUnconfirmed: 165 180 252;
     --color-serchInputBg: 51 65 85;
+    --color-lightAccentColor: 221 214 254;
 
     /* FullCalendar */
 
@@ -66,6 +68,7 @@
       --color-statusComplited: 132 204 22;
       --color-statusUnconfirmed: 129 140 248;
       --color-serchInputBg: 100 116 139;
+      --color-lightAccentColor: 221 214 254;
 
       /* FullCalendar */
 

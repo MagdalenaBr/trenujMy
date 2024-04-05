@@ -27,15 +27,15 @@ function App() {
           <Routes>
             <Route element={<AppLayout />}>
               <Route index path="/" element={<Home />} />
-              <Route path="/trainers" element={<Trainers />} />
-              <Route path="/trainers/:trainerId" element={<TrainerPage />} />
-              <Route path="/bookings" element={<Bookings />} />
-              <Route path="/members" element={<Members />} />
-              <Route path="/members/:memberId" element={<MemberPage />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/schedule" element={<SchedulePage />} />
+              <Route path="/trenerzy" element={<Trainers />} />
+              <Route path="/trenerzy/:trainerId" element={<TrainerPage />} />
+              <Route path="/rezerwacje" element={<Bookings />} />
+              <Route path="/klienci" element={<Members />} />
+              <Route path="/klienci/:memberId" element={<MemberPage />} />
+              <Route path="/użytkownicy" element={<Users />} />
+              <Route path="/grafik" element={<SchedulePage />} />
               <Route
-                path="/schedule/edit-schedule"
+                path="/grafik/zmien-grafik"
                 element={<ScheduleList />}
               />
               <Route path="/*" element={<PageNotFound />} />

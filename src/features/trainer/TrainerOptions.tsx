@@ -28,7 +28,7 @@ function TrainerOptions({ trainer }: {trainer: TrainersDataTypes}) {
 	if (!id) return null;
 	return (
 		<div className='flex gap-2 text-2xl px-5 text-accentColor2'>
-			<Link to={`/trainers/${id}`}>
+			<Link to={`/trenerzy/${id}`}>
 				<HiOutlineCalendar />
 			</Link>
 			<Modal>

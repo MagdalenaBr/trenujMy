@@ -27,7 +27,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              to="/trainers"
+              to="/trenerzy"
               className={({ isActive }) =>
                 ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
               ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
@@ -39,7 +39,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              to="/bookings"
+              to="/rezerwacje"
               className={({ isActive }) =>
                 ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
               ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
@@ -51,7 +51,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              to="/schedule"
+              to="/grafik"
               className={({ isActive }) =>
                 ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
               ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
@@ -63,7 +63,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              to="/members"
+              to="/klienci"
               className={({ isActive }) =>
                 ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
               ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
@@ -75,7 +75,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              to="/users"
+              to="/użytkownicy"
               className={({ isActive }) =>
                 ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
               ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
