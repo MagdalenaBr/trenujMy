@@ -5,7 +5,7 @@ import { SearchNameContext } from "../context/SearchContext";
 export default function SearchInput() {
   const searchNameContext = useContext(SearchNameContext);
   return (
-    <div className="mb-4 flex items-center justify-between">
+    <div className="flex items-center justify-between">
       <div className="relative focus:text-slate-700">
         <HiOutlineMagnifyingGlass className="absolute top-[25%] mx-2  text-xl text-accentColor2" />
         <input
