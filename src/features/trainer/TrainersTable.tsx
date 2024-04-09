@@ -10,9 +10,13 @@ function TrainersTable() {
   const { trainers } = useTrainers();
 
   const [searchParams] = useSearchParams();
-  const sortValue = { name: "category", value: searchParams.get("category") };
-
+  const sortValueCategory = {
+    name: "category",
+    value: searchParams.get("category"),
+  };
+  const sortValuePrice = { name: "price", value: searchParams.get("price") };
   const searchNameContext = useContext(SearchNameContext);
+  
   //SEARCH TRAINER NAME
   let filteredTrainers = trainers?.filter((trainer) =>
     trainer.name
@@ -22,23 +26,18 @@ function TrainersTable() {
       : "",
   );
 
-  if (sortValue.value === null) filteredTrainers;
-  if (sortValue.value !== null)
+  // SORT CATEGORY
+  if (sortValueCategory.value === null) filteredTrainers;
+  if (sortValueCategory.name === "category" && sortValueCategory.value !== null)
     filteredTrainers = filteredTrainers?.filter(
-      (trainer) => trainer.category === sortValue.value,
+      (trainer) => trainer.category === sortValueCategory.value,
     );
-  // if (sortValue.value === "trener personalny")
-  //   filteredTrainers = filteredTrainers?.filter(
-  //     (trainer) => trainer.category === "trener personalny",
-  //   );
-  // if (sortValue.value === "pole dance")
-  //   filteredTrainers = filteredTrainers?.filter(
-  //     (trainer) => trainer.category === "pole dance",
-  //   );
-  // if (sortValue.value === "pole dance")
-  //   filteredTrainers = filteredTrainers?.filter(
-  //     (trainer) => trainer.category === "pole dance",
-  //   );
+
+  // SORT PRICE
+  if (sortValuePrice.value === "ceny rosnąco" && sortValuePrice.value !== null)
+    filteredTrainers = filteredTrainers?.sort((a, b) => a.price - b.price);
+  if (sortValuePrice.value === "ceny malejąco" && sortValuePrice.value !== null)
+    filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   return (
     <Table columns="grid-cols-5">
