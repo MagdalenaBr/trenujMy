@@ -27,7 +27,7 @@ export default function TrainersSortPanel() {
       value={sortValue}
       className="w-60 rounded-lg border-2 border-none bg-serchInputBg  px-2 py-1 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md"
     >
-      <option value="wszystko">wszystko</option>
+      <option value="wszystko">kategoria: wszystko</option>
       {trainerCategory?.map((category) => (
         <option value={category} key={category}>
           {category}

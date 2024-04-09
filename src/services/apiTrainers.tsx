@@ -18,40 +18,10 @@ interface NewTrainerDataTypes {
   category: string;
 }
 
-export async function getTrainers(sortValue: {
-  name: string;
-  value: string | null;
-}) {
-  let query = supabase.from("trainers");
-
-  //   if (sortValue) query = query.select().eq(sortValue.name, sortValue.value);
-  //   if (!sortValue) query = query.select("*");
-
-  //   const { data: trainers, error } = await query;
-  console.log(sortValue);
-
-  if (sortValue.value !== null) {
-    const { data: trainers, error } = await supabase
-      .from("trainers")
-      .select()
-      .eq(sortValue.name, sortValue.value);
-    if (error) throw new Error("Dane nie mogą zostać załadowane.");
-    return trainers;
-  } else {
-    const { data: trainers, error } = await supabase
-      .from("trainers")
-      .select("*");
-    if (error) throw new Error("Dane nie mogą zostać załadowane.");
-    return trainers;
-  }
-  // console.log(sortValue);
-  //   if (sortValue.value === null) {
-  //     const { data: trainers, error } = await supabase
-  //       .from("trainers")
-  //       .select("*");
-  //     if (error) throw new Error("Dane nie mogą zostać załadowane.");
-  //     return trainers;
-  //   }
+export async function getTrainers() {
+  const { data: trainers, error } = await supabase.from("trainers").select("*");
+  if (error) throw new Error("Dane nie mogą zostać załadowane.");
+  return trainers;
 }
 
 export async function addOrEditTrainers(
