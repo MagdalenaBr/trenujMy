@@ -12,7 +12,9 @@ function MembersTable() {
   const filteredMembers = members?.filter((member) =>
     member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())
       ? member
-      : "",
+      : "" || String(member.phone).includes(memberNameFromInput)
+        ? member
+        : "",
   );
 
   return (
@@ -25,7 +27,7 @@ function MembersTable() {
       {filteredMembers ? (
         filteredMembers.map((member) => (
           <Table.Row key={member.id}>
-            <p className="text-lightAccentColor font-semibold">{member.name}</p>
+            <p className="font-semibold text-lightAccentColor">{member.name}</p>
             <p>{member.email.toLowerCase()}</p>
             <p>{member.phone}</p>
             <Link to={`/klienci/${member.id}`}>

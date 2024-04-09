@@ -6,7 +6,7 @@ import { useTrainers } from "../features/trainer/useTrainers";
 import TableNoContent from "../ui/TableNoContent";
 import SearchNameProvider from "../context/SearchContext";
 import SearchInput from "../ui/SearchInput";
-import TrainersSortCategory from "../features/trainer/TrainersSortCategory";
+import TrainersSortPanel from "../features/trainer/TrainersSortPanel";
 
 function Trainers() {
   const { trainerIsLoading, error } = useTrainers();
@@ -18,8 +18,14 @@ function Trainers() {
       <SearchNameProvider>
         <div className="mb-4 flex content-center items-center justify-end gap-4 ">
           <SearchInput />
-          <TrainersSortCategory dataName='category'/>
-          <TrainersSortCategory dataName='price'/>
+          <TrainersSortPanel
+            dataName="category"
+            mainSortCategory="kategoria: wszystko"
+          />
+          <TrainersSortPanel
+            dataName="price"
+            mainSortCategory="cena: domyślna"
+          />
         </div>
         <TrainersTable />
       </SearchNameProvider>
