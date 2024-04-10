@@ -34,10 +34,7 @@ function App() {
               <Route path="/klienci/:memberId" element={<MemberPage />} />
               <Route path="/użytkownicy" element={<Users />} />
               <Route path="/grafik" element={<SchedulePage />} />
-              <Route
-                path="/grafik/zmien-grafik"
-                element={<ScheduleList />}
-              />
+              <Route path="/grafik/zmien-grafik" element={<ScheduleList />} />
               <Route path="/*" element={<PageNotFound />} />
             </Route>
           </Routes>

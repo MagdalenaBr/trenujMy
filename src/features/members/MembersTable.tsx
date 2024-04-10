@@ -7,12 +7,12 @@ import { useContext } from "react";
 import { SearchNameContext } from "../../context/SearchContext";
 
 function MembersTable() {
-  const { name: memberNameFromInput } = useContext(SearchNameContext);
+  const searchNameContext = useContext(SearchNameContext);
   const { members } = useMembers();
   const filteredMembers = members?.filter((member) =>
-    member.name.toLowerCase().includes(memberNameFromInput.toLocaleLowerCase())
+    member.name.toLowerCase().includes(searchNameContext?.name.toLocaleLowerCase())
       ? member
-      : "" || String(member.phone).includes(memberNameFromInput)
+      : "" || String(member.phone).includes(searchNameContext?.name as string)
         ? member
         : "",
   );

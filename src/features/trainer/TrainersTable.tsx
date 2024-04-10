@@ -34,9 +34,9 @@ function TrainersTable() {
     );
 
   // SORT PRICE
-  if (sortValuePrice.value === "ceny rosnąco" && sortValuePrice.value !== null)
+  if (sortValuePrice.value === "rosnąco" && sortValuePrice.value !== null)
     filteredTrainers = filteredTrainers?.sort((a, b) => a.price - b.price);
-  if (sortValuePrice.value === "ceny malejąco" && sortValuePrice.value !== null)
+  if (sortValuePrice.value === "malejąco" && sortValuePrice.value !== null)
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   return (

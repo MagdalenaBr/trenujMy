@@ -5,19 +5,22 @@ export default function SortPanel({
   dataName,
   mainSortCategory,
 }: {
-  searchCategories: string[];
+  searchCategories: {
+    name: string;
+    value: string;
+  }[];
   dataName: string;
   mainSortCategory: string;
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortValue = searchParams.get(dataName) as string;
+  const sortValue = searchParams.get(dataName || "") as string;
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    if (e.target.value === "wszystko") {
+    if (e.target.value === "domyślne") {
       searchParams.delete(dataName);
       setSearchParams(searchParams);
     }
-    if (e.target.value !== "wszystko") {
+    if (e.target.value !== "domyślne") {
       searchParams.set(dataName, e.target.value);
       setSearchParams(searchParams);
     }
@@ -29,10 +32,10 @@ export default function SortPanel({
       value={sortValue}
       className="w-60 rounded-lg border-2 border-none bg-serchInputBg  px-2 py-1 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md"
     >
-      <option value="wszystko">{mainSortCategory}</option>
-      {searchCategories?.map((value) => (
-        <option value={value} key={value}>
-          {value}
+      <option value="domyślne">{mainSortCategory}</option>
+      {searchCategories?.map((el) => (
+        <option value={el.value} key={el.value}>
+          {`${el.name}: ${el.value}`}
         </option>
       ))}
     </select>

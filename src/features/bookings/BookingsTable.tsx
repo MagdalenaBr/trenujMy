@@ -6,11 +6,23 @@ import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
+import { useContext } from "react";
+import { SearchNameContext } from "../../context/SearchContext";
 
 function BookingsTable() {
+  const searchNameContext = useContext(SearchNameContext);
   const { bookings, isLoading, error } = useBookings();
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
+
+
+  const filteredBookings = bookings?.filter((bookings) =>
+    bookings.members.name
+      .toLowerCase()
+      .includes(searchNameContext?.name.toLocaleLowerCase() as string)
+      ? bookings
+      : "",
+  );
 
   return (
     <Table uniqueStyles="px-2 py-2 ">
@@ -20,12 +32,14 @@ function BookingsTable() {
         <p>Data</p>
         <p>Status</p>
       </Table.Header>
-      {bookings ? (
-        bookings.map((booking) => (
+      {filteredBookings ? (
+        filteredBookings.map((booking) => (
           <Table.Row key={booking.id}>
             <div>
               <h2 className="font-semibold">{booking.members?.name}</h2>
-              <p className="text-secondaryTextColor text-start text-sm">{booking.members?.phone}</p>
+              <p className="text-start text-sm text-secondaryTextColor">
+                {booking.members?.phone}
+              </p>
             </div>
             <p>{booking.trainers.name}</p>
             <div>

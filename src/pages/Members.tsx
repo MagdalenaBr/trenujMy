@@ -7,7 +7,6 @@ import TableNoContent from "../ui/TableNoContent";
 import SearchInput from "../ui/SearchInput";
 import SearchNameProvider from "../context/SearchContext";
 function Members() {
-  // const [memberName, setMemberName] = useState("");
   const { isLoading, error } = useMembers();
 
   if (isLoading) return <Spinner />;
