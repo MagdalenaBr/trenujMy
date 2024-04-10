@@ -30,13 +30,13 @@ function TrainersTable() {
   if (sortValueCategory.value === null) filteredTrainers;
   if (sortValueCategory.name === "category" && sortValueCategory.value !== null)
     filteredTrainers = filteredTrainers?.filter(
-      (trainer) => trainer.category === sortValueCategory.value,
+      (trainer) => trainer.category.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === sortValueCategory.value,
     );
 
   // SORT PRICE
-  if (sortValuePrice.value === "rosnąco" && sortValuePrice.value !== null)
+  if (sortValuePrice.value === "rosnaco" && sortValuePrice.value !== null)
     filteredTrainers = filteredTrainers?.sort((a, b) => a.price - b.price);
-  if (sortValuePrice.value === "malejąco" && sortValuePrice.value !== null)
+  if (sortValuePrice.value === "malejaco" && sortValuePrice.value !== null)
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   return (

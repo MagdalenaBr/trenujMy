@@ -8,6 +8,7 @@ export default function SortPanel({
   searchCategories: {
     name: string;
     value: string;
+    label: string
   }[];
   dataName: string;
   mainSortCategory: string;
@@ -35,7 +36,7 @@ export default function SortPanel({
       <option value="domyślne">{mainSortCategory}</option>
       {searchCategories?.map((el) => (
         <option value={el.value} key={el.value}>
-          {`${el.name}: ${el.value}`}
+          {`${el.name}: ${el.label}`}
         </option>
       ))}
     </select>

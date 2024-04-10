@@ -15,7 +15,9 @@ function Members() {
     <MainContainer title="Klienci">
       <>
         <SearchNameProvider>
-          <SearchInput />
+          <div className="mb-4">
+            <SearchInput />
+          </div>
           <MembersTable />
         </SearchNameProvider>
         <AddMemberModal />

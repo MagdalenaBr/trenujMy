@@ -1,7 +1,6 @@
 import SortPanel from "../../ui/SortPanel";
 import { useTrainers } from "./useTrainers";
 
-
 export default function TrainersSortPanel({
   dataName,
   mainSortCategory,
@@ -18,13 +17,26 @@ export default function TrainersSortPanel({
   let searchCategories;
   if (dataName === "category")
     searchCategories = trainersCotagories.map((category) => {
-      return { name: "kategoria", value: category };
+      return {
+        name: "kategoria",
+        value: category.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+        label: category,
+      };
     });
 
   if (dataName === "price")
-    searchCategories =[ { name: "cena", value: "rosnąco" },
-  { name: "cena", value: "malejąco" },]
-
+    searchCategories = [
+      {
+        name: "cena",
+        value: 'rosnaco',
+        label: 'rosnąco'
+      },
+      {
+        name: "cena",
+        value: 'malejaco',
+        label: 'malejąco'
+      },
+    ];
 
   return (
     <SortPanel
@@ -32,6 +44,7 @@ export default function TrainersSortPanel({
         searchCategories as {
           name: string;
           value: string;
+          label: string;
         }[]
       }
       dataName={dataName}
