@@ -13,6 +13,10 @@ function Bookings() {
           dataName="status"
           mainSortCategory="status: wszystko"
         />
+        <BookingsSortPanel
+          dataName="date"
+          mainSortCategory="data: malejąco"
+        />
         <BookingsTable />
       </SearchNameProvider>
     </MainContainer>

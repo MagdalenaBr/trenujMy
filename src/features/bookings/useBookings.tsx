@@ -3,17 +3,23 @@ import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
 
 export function useBookings() {
+  const [searchParams] = useSearchParams();
 
-	const [searchParams] = useSearchParams();
-	const sortValue = { name: "status", value: searchParams.get("status") };
-	const {
-		data: bookings,
-		error,
-		isLoading,
-	} = useQuery({
-		queryKey: ["bookings", sortValue],
-		queryFn: ()=>getBookings(sortValue),
-	});
+  const sortByStatusValue = {
+    name: "status",
+    value: searchParams.get("status"),
+  };
 
-	return { bookings, error, isLoading };
+  const sortByDateValue = { name: "date", value: searchParams.get("date") };
+
+  const {
+    data: bookings,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["bookings", sortByStatusValue, sortByDateValue],
+    queryFn: () => getBookings(sortByDateValue, sortByStatusValue),
+  });
+
+  return { bookings, error, isLoading };
 }

@@ -15,10 +15,6 @@ export default function TrainersSortPanel({
     ...new Set(trainers?.map((trainer) => trainer.category)),
   ];
 
-  // { name: "status", value: "anulowana" },
-  // { name: "status", value: "niepotwierdzona" },
-  // { name: "status", value: "zrealizowana" },
-
   let searchCategories;
   if (dataName === "category")
     searchCategories = trainersCotagories.map((category) => {

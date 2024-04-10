@@ -7,17 +7,22 @@ export default function BookingsSortPanel({
   dataName: string;
   mainSortCategory: string;
 }) {
-  const searchCategories = [
-    { name: "status", value: "anulowana" },
-    { name: "status", value: "niepotwierdzona" },
-    { name: "status", value: "zrealizowana" },
-  ];
+  let searchCategories;
+  if (dataName === "status")
+    searchCategories = [
+      { name: "status", value: "anulowana" },
+      { name: "status", value: "niepotwierdzona" },
+      { name: "status", value: "zrealizowana" },
+    ];
+
+  if (dataName === "date")
+    searchCategories = [{ name: "data", value: "rosnąco" }];
 
   return (
     <SortPanel
       dataName={dataName}
       mainSortCategory={mainSortCategory}
-      searchCategories={searchCategories}
+      searchCategories={searchCategories as { name: string; value: string }[]}
     />
   );
 }
