@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import TableContext from "../context/TableContext";
+import Pagination from "./Pagination";
 
 type PropsType = {
   children: React.ReactNode;
@@ -45,7 +46,13 @@ function Row({ children }: PropsType) {
   );
 }
 
+function Footer({numOfData}) {
+
+  return <Pagination numOfData={numOfData}/>;
+}
+
 Table.Header = Header;
 Table.Row = Row;
+Table.Footer = Footer;
 
 export default Table;

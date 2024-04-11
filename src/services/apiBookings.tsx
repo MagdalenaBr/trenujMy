@@ -32,7 +32,7 @@ export async function getBookings(
 ): Promise<BookingsDataType[]> {
   let query = supabase
     .from("bookings")
-    .select("*, trainers(name), members(name, phone)");
+    .select("*, trainers(name), members(name, phone)", { count: 'exact'});
 
   //WITHOUT SORTING
   if (sortByStatusValue.value === null && sortByDateValue.value === null)
