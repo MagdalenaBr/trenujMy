@@ -5,6 +5,10 @@ import { useSearchParams } from "react-router-dom";
 export function useBookings() {
   const [searchParams] = useSearchParams();
 
+  const currentPage = Number(searchParams.get("page")) === null
+  ? 1
+  : Number(searchParams.get("page"))
+
   const sortByStatusValue = {
     name: "status",
     value: searchParams.get("status"),
@@ -13,13 +17,13 @@ export function useBookings() {
   const sortByDateValue = { name: "date", value: searchParams.get("date") };
 
   const {
-    data: bookings,
+    data: {data: bookings, count} ={},
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["bookings", sortByStatusValue, sortByDateValue],
-    queryFn: () => getBookings(sortByDateValue, sortByStatusValue),
+    queryKey: ["bookings", sortByStatusValue, sortByDateValue, currentPage],
+    queryFn: () => getBookings(sortByDateValue, sortByStatusValue, currentPage),
   });
 
-  return { bookings, error, isLoading };
+  return { bookings, error, isLoading, count};
 }

@@ -46,9 +46,8 @@ function Row({ children }: PropsType) {
   );
 }
 
-function Footer({numOfData}) {
-
-  return <Pagination numOfData={numOfData}/>;
+function Footer({ numOfData }: { numOfData: number | null}) {
+  return <Pagination numOfData={numOfData} />;
 }
 
 Table.Header = Header;

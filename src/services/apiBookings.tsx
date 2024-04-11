@@ -16,6 +16,11 @@ interface BookingsDataType extends NewBookingTypes {
     phone: string;
   };
 }
+
+interface GetBookingType {
+  data: BookingsDataType[];
+  count: number | null;
+}
 interface AddOrEditDataTypes extends NewBookingTypes {
   id: number;
 }
@@ -29,10 +34,20 @@ export async function getBookings(
     name: string;
     value: string | null;
   },
-): Promise<BookingsDataType[]> {
+  currentPage: number,
+): Promise<GetBookingType> {
+  const NUM_OF_RESULTS = 10;
+
   let query = supabase
     .from("bookings")
-    .select("*, trainers(name), members(name, phone)", { count: 'exact'});
+    .select("*, trainers(name), members(name, phone)", { count: "exact" });
+
+  //PAGINATION
+  if (currentPage)
+    query = query.range(
+      (currentPage - 1) * NUM_OF_RESULTS,
+      currentPage * NUM_OF_RESULTS - 1,
+    );
 
   //WITHOUT SORTING
   if (sortByStatusValue.value === null && sortByDateValue.value === null)
@@ -57,9 +72,10 @@ export async function getBookings(
   if (query === undefined)
     throw new Error("Wystąpił błąd, dane nie mogą zostać załadowane.");
 
-  const { data: bookings, error } = await query;
+  const { data, count, error } = await query;
+
   if (error) throw new Error("Dane nie mogą zostać załadowane.");
-  return bookings;
+  return { data, count };
 }
 
 export async function addOrEditBooking(
@@ -100,7 +116,8 @@ export async function getBooking(
   const { data: booking, error } = await supabase
     .from("bookings")
     .select("*, trainers(name), members(name, phone)")
-    .eq(columnName, id).order("date", { ascending: false });
+    .eq(columnName, id)
+    .order("date", { ascending: false });
   if (error)
     throw new Error(
       "Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.",

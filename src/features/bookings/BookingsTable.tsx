@@ -11,9 +11,8 @@ import { SearchNameContext } from "../../context/SearchContext";
 
 function BookingsTable() {
   const searchNameContext = useContext(SearchNameContext);
-  const {bookings, isLoading, error } = useBookings();
+  const { bookings, isLoading, error, count } = useBookings();
 
-  
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
 
@@ -27,7 +26,7 @@ function BookingsTable() {
   );
 
   return (
-    <Table uniqueStyles="px-2 py-2" >
+    <Table uniqueStyles="px-2 py-2">
       <Table.Header>
         <p>Klient</p>
         <p>Trener</p>
@@ -67,7 +66,7 @@ function BookingsTable() {
       ) : (
         <TableNoContent />
       )}
-      <Table.Footer numOfData={bookings?.length}/>
+      <Table.Footer numOfData={count as number | null} />
     </Table>
   );
 }
