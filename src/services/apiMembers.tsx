@@ -51,15 +51,3 @@ export async function deleteMember(id: number) {
 		throw new Error("Wystapił błąd. Klient nie został usunięty.");
 	}
 }
-
-// export async function getOneMember(id: number): Promise<MembersType>{
-// 	// if (!id) return null;
-// 	const { data: member, error } = await supabase
-// 		.from("members")
-// 		.select("id, name")
-// 		.eq("id", id)
-// 		.single();
-// 	if (error) throw new Error("Klient nie został znaleziony.");
-// 	console.log(member);
-// 	return member;
-// }

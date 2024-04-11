@@ -17,7 +17,6 @@ function MemberPage() {
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => member.id === memberId);
   const { booking } = useBooking(member?.id, "memberId");
-  console.log(member);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;

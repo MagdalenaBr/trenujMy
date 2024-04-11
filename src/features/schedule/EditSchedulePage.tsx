@@ -1,19 +1,20 @@
 import { HiOutlinePencil } from "react-icons/hi2";
-import { useSchedules } from "./useSchedules";
 import MainContainer from "../../ui/MainContainer";
 import CreateScheduleModal from "./CreateScheduleModal";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BackButton from "../../ui/BackButton";
+import { useSchedules } from "./useSchedules";
 
-export default function ScheduleList() {
-  const { schedule, scheduleIsLoading } = useSchedules();
+export default function EditSchedulePage() {
+  const { schedule, scheduleIsLoading } = useSchedules("currentSchedule");
+
   if (scheduleIsLoading) return <Spinner />;
 
   return (
     <MainContainer title="Aktualny grafik">
-      <div className=" border-slate-700 bg-slate-900/70 p-4 text-slate-200 rounded-lg">
+      <div className=" rounded-lg border-slate-700 bg-slate-900/70 p-4 text-slate-200">
         <BackButton />
         <TableWithSpacing columns="grid-cols-[repeat(4,minmax(100px,_1fr))_100px]">
           <TableWithSpacing.Header>

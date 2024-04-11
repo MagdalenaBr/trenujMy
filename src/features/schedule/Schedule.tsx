@@ -4,27 +4,36 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { useOpenHours } from "./useOpenHours";
 import Spinner from "../../ui/Spinner";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { useSchedules } from "./useSchedules";
 
-interface ScheduleDataTypes {
-  date: string;
-  title: string;
-  url?: string;
+// interface ScheduleDataTypes {
+//   date: string;
+//   title: string;
+//   url?: string;
   
-}
+// }
 
 function Schedule({
-  trainerSchedule,
   page,
 }: {
-  trainerSchedule: ScheduleDataTypes[];
   page: string
 }) {
+
+  const { schedule, scheduleIsLoading } = useSchedules();
   const { openHours, isLoading: openHoursLoading } = useOpenHours();
 
-  if (openHoursLoading) return <Spinner />;
+  if (openHoursLoading || scheduleIsLoading) return <Spinner />;
+
+
   let openHour, closeHour;
   if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
-  console.log(trainerSchedule);
+
+
+  const trainerSchedule = schedule?.map((el) => ({
+    title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
+    date: el.date,
+    url: `/trenerzy/${el.trainerId}`,
+  }));
 
   return (
     <div className=" rounded-lg bg-slate-900/70 p-2 text-slate-300">

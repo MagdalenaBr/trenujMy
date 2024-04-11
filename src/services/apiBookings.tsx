@@ -30,7 +30,6 @@ export async function getBookings(
     value: string | null;
   },
 ): Promise<BookingsDataType[]> {
-  console.log(sortByStatusValue, sortByDateValue);
   let query = supabase
     .from("bookings")
     .select("*, trainers(name), members(name, phone)");
@@ -101,7 +100,7 @@ export async function getBooking(
   const { data: booking, error } = await supabase
     .from("bookings")
     .select("*, trainers(name), members(name, phone)")
-    .eq(columnName, id);
+    .eq(columnName, id).order("date", { ascending: false });
   if (error)
     throw new Error(
       "Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.",

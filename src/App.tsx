@@ -12,7 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import MemberPage from "./features/members/MemberPage";
 import SchedulePage from "./pages/SchedulePage";
-import ScheduleList from "./features/schedule/ScheduleList";
+import EditSchedulePage from "./features/schedule/EditSchedulePage";
 import DarkModeProvider from "./context/DarkModeContext";
 
 const queryClient = new QueryClient();
@@ -34,7 +34,7 @@ function App() {
               <Route path="/klienci/:memberId" element={<MemberPage />} />
               <Route path="/uzytkownicy" element={<Users />} />
               <Route path="/grafik" element={<SchedulePage />} />
-              <Route path="/grafik/zmien-grafik" element={<ScheduleList />} />
+              <Route path="/grafik/zmien-grafik" element={<EditSchedulePage />} />
               <Route path="/*" element={<PageNotFound />} />
             </Route>
           </Routes>
