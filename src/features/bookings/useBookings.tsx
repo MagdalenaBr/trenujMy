@@ -1,13 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
+import { NUM_OF_RESULTS } from "../../utils/constants";
 
 export function useBookings() {
+  const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
-  const currentPage = Number(!searchParams.get("page")) 
-  ? 1
-  : Number(searchParams.get("page"))
+  const currentPage = Number(!searchParams.get("page"))
+    ? 1
+    : Number(searchParams.get("page"));
 
   const sortByStatusValue = {
     name: "status",
@@ -17,7 +19,7 @@ export function useBookings() {
   const sortByDateValue = { name: "date", value: searchParams.get("date") };
 
   const {
-    data: {data: bookings, count} ={},
+    data: { data: bookings, count } = {},
     error,
     isLoading,
   } = useQuery({
@@ -25,5 +27,21 @@ export function useBookings() {
     queryFn: () => getBookings(sortByDateValue, sortByStatusValue, currentPage),
   });
 
-  return { bookings, error, isLoading, count};
+const numOfPages = Math.ceil(count as number / NUM_OF_RESULTS)
+
+// PREFFETCH NEXT PAGE
+if(currentPage < numOfPages)
+  queryClient.prefetchQuery({
+    queryKey: ["bookings", sortByStatusValue, sortByDateValue, currentPage+ 1],
+    queryFn: () => getBookings(sortByDateValue, sortByStatusValue, currentPage +1),
+  });
+
+// PREFETCH PREV PAGE
+if(currentPage > 1)
+  queryClient.prefetchQuery({
+    queryKey: ["bookings", sortByStatusValue, sortByDateValue, currentPage- 1],
+    queryFn: () => getBookings(sortByDateValue, sortByStatusValue, currentPage -1),
+  });
+
+  return { bookings, error, isLoading, count };
 }
