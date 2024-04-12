@@ -1,18 +1,23 @@
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
+import { NUM_OF_RESULTS } from "../utils/constants";
 
-const NUM_OF_RESULTS = 10;
-export default function Pagination({ numOfData }: { numOfData: number | null }) {
+export default function Pagination({
+  numOfData,
+}: {
+  numOfData: number | null;
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage =
     Number(searchParams.get("page")) === 0
       ? 1
       : Number(searchParams.get("page"));
-if(!numOfData) return
+  if (!numOfData) return;
   const pageNum = Math.ceil(numOfData / NUM_OF_RESULTS);
 
   function nextPage() {
     const pageNumber = currentPage === pageNum ? currentPage : currentPage + 1;
+
     searchParams.set("page", String(pageNumber));
     setSearchParams(searchParams);
   }
@@ -36,7 +41,7 @@ if(!numOfData) return
       <div className="flex gap-9">
         <button
           className="flex
-      items-center gap-1  text-sm uppercase"
+      items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-2 pr-4 py-1 rounded-md disabled:hover:bg-gray-600"
           onClick={prevPage}
           disabled={currentPage === 1}
         >
@@ -44,7 +49,8 @@ if(!numOfData) return
           <span>Poprzednia</span>
         </button>
         <button
-          className="flex items-center gap-1  text-sm uppercase"
+          className="flex
+          items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-4 pr-2 py-1 rounded-md disabled:hover:bg-gray-600"
           onClick={nextPage}
           disabled={currentPage === pageNum}
         >

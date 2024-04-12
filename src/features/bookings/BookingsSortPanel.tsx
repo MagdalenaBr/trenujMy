@@ -18,6 +18,8 @@ export default function BookingsSortPanel({
   if (dataName === "date")
     searchCategories = [{ name: "data", value: "rosnaco", label: 'rosnąco' }];
 
+
+
   return (
     <SortPanel
       dataName={dataName}

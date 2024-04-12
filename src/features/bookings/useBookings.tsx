@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 export function useBookings() {
   const [searchParams] = useSearchParams();
 
-  const currentPage = Number(searchParams.get("page")) === null
+  const currentPage = Number(!searchParams.get("page")) 
   ? 1
   : Number(searchParams.get("page"))
 

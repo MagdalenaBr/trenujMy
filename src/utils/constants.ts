@@ -1,0 +1,1 @@
+export const NUM_OF_RESULTS = 9;

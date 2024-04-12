@@ -1,3 +1,4 @@
+import { NUM_OF_RESULTS } from "../utils/constants";
 import supabase from "./supabase";
 interface NewBookingTypes {
   status: string;
@@ -36,42 +37,45 @@ export async function getBookings(
   },
   currentPage: number,
 ): Promise<GetBookingType> {
-  const NUM_OF_RESULTS = 10;
 
   let query = supabase
     .from("bookings")
     .select("*, trainers(name), members(name, phone)", { count: "exact" });
 
-  //PAGINATION
-  if (currentPage)
-    query = query.range(
-      (currentPage - 1) * NUM_OF_RESULTS,
-      currentPage * NUM_OF_RESULTS - 1,
-    );
+    // if(sortByStatusValue.value) {currentPage = 1}
 
-  //WITHOUT SORTING
-  if (sortByStatusValue.value === null && sortByDateValue.value === null)
-    query = query.order("date", { ascending: false });
+    
+    //WITHOUT SORTING
+    if (sortByStatusValue.value === null && sortByDateValue.value === null)
+      query = query.order("date", { ascending: false });
+    
+    //SORTED BY STATUS
+    if (sortByStatusValue.value !== null && sortByDateValue.value === null)
+      query = query
+    .eq(sortByStatusValue.name, sortByStatusValue.value)
+    .order(sortByDateValue.name, { ascending: false });
+    
+    //SORTED BY DATE
+    if (sortByStatusValue.value === null && sortByDateValue.value !== null)
+      query = query.order("date", { ascending: true });
+    
+    //SORTED BY DATE AND STATUS
+    if (sortByStatusValue.value !== null && sortByDateValue.value !== null)
+      query = query
+    .eq(sortByStatusValue.name, sortByStatusValue.value)
+    .order(sortByDateValue.name, { ascending: true });
+    
+    //PAGINATION
+    if (currentPage)
+      query = query.range(
+        (currentPage - 1) * NUM_OF_RESULTS,
+        currentPage * NUM_OF_RESULTS - 1,
+      );
 
-  //SORTED BY STATUS
-  if (sortByStatusValue.value !== null && sortByDateValue.value === null)
-    query = query
-      .eq(sortByStatusValue.name, sortByStatusValue.value)
-      .order(sortByDateValue.name, { ascending: false });
 
-  //SORTED BY DATE
-  if (sortByStatusValue.value === null && sortByDateValue.value !== null)
-    query = query.order("date", { ascending: true });
-
-  //SORTED BY DATE AND STATUS
-  if (sortByStatusValue.value !== null && sortByDateValue.value !== null)
-    query = query
-      .eq(sortByStatusValue.name, sortByStatusValue.value)
-      .order(sortByDateValue.name, { ascending: true });
-
-  if (query === undefined)
-    throw new Error("Wystąpił błąd, dane nie mogą zostać załadowane.");
-
+    if (query === undefined)
+      throw new Error("Wystąpił błąd, dane nie mogą zostać załadowane.");
+    
   const { data, count, error } = await query;
 
   if (error) throw new Error("Dane nie mogą zostać załadowane.");

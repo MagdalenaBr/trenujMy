@@ -8,7 +8,7 @@ export default function SortPanel({
   searchCategories: {
     name: string;
     value: string;
-    label: string
+    label: string;
   }[];
   dataName: string;
   mainSortCategory: string;
@@ -17,6 +17,11 @@ export default function SortPanel({
   const sortValue = searchParams.get(dataName || "") as string;
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+
+    if (dataName === "status") {
+      searchParams.set("page", "1");
+      setSearchParams(searchParams);
+    }
     if (e.target.value === "domyślne") {
       searchParams.delete(dataName);
       setSearchParams(searchParams);
