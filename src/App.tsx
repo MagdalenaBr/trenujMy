@@ -15,6 +15,7 @@ import SchedulePage from "./pages/SchedulePage";
 import EditSchedulePage from "./features/schedule/EditSchedulePage";
 import DarkModeProvider from "./context/DarkModeContext";
 import Login from "./pages/Login";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +27,13 @@ function App() {
         <Toaster />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index path="/" element={<Home />} />
               <Route path="/trenerzy" element={<Trainers />} />
               <Route path="/trenerzy/:trainerId" element={<TrainerPage />} />

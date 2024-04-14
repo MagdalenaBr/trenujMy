@@ -10,3 +10,19 @@ export async function userLogIn(email: string, password: string) {
 
   return data;
 }
+
+export async function loggedUser() {
+  const { data: currentSession } = await supabase.auth.getSession();
+
+  if (!currentSession) return null;
+
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error)
+    throw new Error("Wystąpił błąd podczas pobierania danych użytkownika");
+
+  return user;
+}
