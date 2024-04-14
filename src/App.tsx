@@ -14,6 +14,7 @@ import MemberPage from "./features/members/MemberPage";
 import SchedulePage from "./pages/SchedulePage";
 import EditSchedulePage from "./features/schedule/EditSchedulePage";
 import DarkModeProvider from "./context/DarkModeContext";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -34,9 +35,13 @@ function App() {
               <Route path="/klienci/:memberId" element={<MemberPage />} />
               <Route path="/uzytkownicy" element={<Users />} />
               <Route path="/grafik" element={<SchedulePage />} />
-              <Route path="/grafik/zmien-grafik" element={<EditSchedulePage />} />
-              <Route path="/*" element={<PageNotFound />} />
+              <Route
+                path="/grafik/zmien-grafik"
+                element={<EditSchedulePage />}
+              />
             </Route>
+            <Route index path="/login" element={<Login />} />
+            <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

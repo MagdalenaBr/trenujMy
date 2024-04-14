@@ -14,10 +14,9 @@ export default function SortPanel({
   mainSortCategory: string;
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortValue = searchParams.get(dataName || "") as string;
+  const sortValue = searchParams.get(dataName);
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-
     if (dataName === "status") {
       searchParams.set("page", "1");
       setSearchParams(searchParams);
@@ -35,7 +34,7 @@ export default function SortPanel({
   return (
     <select
       onChange={handleChange}
-      value={sortValue}
+      value={sortValue || ""}
       className="w-60 rounded-lg border-2 border-none bg-serchInputBg  px-2 py-1 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md"
     >
       <option value="domyślne">{mainSortCategory}</option>

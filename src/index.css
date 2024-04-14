@@ -9,6 +9,30 @@
     @apply transition duration-100 ease-linear;
   }
 
+  :root{
+    --color-primaryTextColor: 203 213 225;
+    --color-secondaryTextColor: 148 163 184;
+    --color-activeBkg: 51 65 85;
+    --color-activeText: 203 213 225;
+    --color-accentColor1: 114 80 182;
+    --color-accentColor2: 150 129 192;
+    --color-bgColor: 15 23 42;
+    --color-bgTableWithSpacing: 15 23 42;
+    --color-statusCanceled: 239 68 68;
+    --color-statusComplited: 132 204 22;
+    --color-statusUnconfirmed: 129 140 248;
+    --color-serchInputBg: 51 65 85;
+    --color-lightAccentColor: 221 214 254;
+
+    /* FullCalendar */
+
+    --fc-border-color: rgb(203, 213, 225);
+    --fc-button-hover-bg-color: rgb(150, 129, 192);
+    --fc-button-active-bg-color: rgb(150, 129, 192);
+    --fc-button-active-border-color: rgb(150, 129, 192);
+    --fc-today-bg-color: transparent;
+  }
+
   :root[class="dark"] {
     --color-primaryTextColor: 203 213 225;
     --color-secondaryTextColor: 148 163 184;

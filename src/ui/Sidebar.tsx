@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import {
   HiOutlineHome,
-  HiOutlineTrophy,
   HiOutlineCalendarDays,
   HiOutlineUserGroup,
   HiOutlineUser,
   HiOutlinePencilSquare,
+  HiOutlineIdentification,
+  HiOutlineCurrencyDollar,
 } from "react-icons/hi2";
 
 function Sidebar() {
@@ -18,8 +19,8 @@ function Sidebar() {
               to="/"
               className={({
                 isActive,
-              }) => ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-             ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`}
+              }) => ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+             ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`}
             >
               <HiOutlineHome className="text-3xl font-extrabold text-slate-300" />
               <span>Start</span>
@@ -29,11 +30,11 @@ function Sidebar() {
             <NavLink
               to="/trenerzy"
               className={({ isActive }) =>
-                ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-              ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
-              <HiOutlineTrophy className="text-3xl font-extrabold text-slate-300" />
+              <HiOutlineUserGroup className="text-3xl font-extrabold text-slate-300" />
               <span>Trenerzy</span>
             </NavLink>
           </li>
@@ -41,8 +42,8 @@ function Sidebar() {
             <NavLink
               to="/rezerwacje"
               className={({ isActive }) =>
-                ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-              ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
               <HiOutlinePencilSquare className="text-3xl font-extrabold text-slate-300" />
@@ -53,8 +54,8 @@ function Sidebar() {
             <NavLink
               to="/grafik"
               className={({ isActive }) =>
-                ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-              ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
               <HiOutlineCalendarDays className="text-3xl font-extrabold text-slate-300" />
@@ -65,20 +66,32 @@ function Sidebar() {
             <NavLink
               to="/klienci"
               className={({ isActive }) =>
-                ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-              ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
-              <HiOutlineUserGroup className="text-3xl font-extrabold text-slate-300" />
+              <HiOutlineIdentification className="text-3xl font-extrabold text-slate-300" />
               <span>Klienci</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/platnosci"
+              className={({ isActive }) =>
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
+              }
+            >
+              <HiOutlineCurrencyDollar className="text-3xl font-extrabold text-slate-300" />
+              <span>Płatności</span>
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/uzytkownicy"
               className={({ isActive }) =>
-                ` hover:bg-activeBkg hover:text-activeText flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl
-              ${isActive && "border-accentColor1  bg-activeBkg text-activeText border-l-4"}`
+                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
               <HiOutlineUser className="text-3xl font-extrabold text-slate-300" />

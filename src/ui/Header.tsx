@@ -7,7 +7,7 @@ import DarkMode from "./DarkMode";
 
 function Header() {
   return (
-    <header className="sticky top-0 col-[1_/_3] row-[1_/_2] flex justify-between px-7 py-5 ">
+    <header className="sticky top-0 col-[1_/_3] row-[1_/_2] flex justify-between px-7 py-5 bg-slate-900">
       <Logo />
       <div>
         <div className="flex items-center gap-2 text-xl dark:text-slate-200">
