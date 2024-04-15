@@ -9,7 +9,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(isPending);
   function handleClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     login({ email, password });

@@ -16,7 +16,6 @@ function BookingsTable() {
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
 
-  // console.log(bookings);
   const filteredBookings = bookings?.filter((bookings) =>
     bookings.members.name
       .toLowerCase()

@@ -26,3 +26,10 @@ export async function loggedUser() {
 
   return user;
 }
+
+export async function userLogOut() {
+  const { error } = await supabase.auth.signOut()
+
+  if (error)
+    throw new Error("Wystąpił błąd podczas wylogowywania.");
+}
