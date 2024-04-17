@@ -1,14 +1,51 @@
+import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
 import StyledButton from "../../ui/StyledButton";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../validation/UserValidation";
 
 export default function CreateUserForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <form className="flex flex-col gap-8">
-      <Input label="Nazwa" type="text" id="name" />
-      <Input label="Email" type="email" id="email" />
-      <Input label="Hasło" type="password" id="password" />
-      <Input label="Powtórz hasło" type="password" id="confirmPassword" />
-      <div className="flex gap-10 justify-end">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col  divide-y divide-slate-700">
+      <Input
+        label="Nazwa"
+        type="text"
+        id="name"
+        register={register}
+        errors={errors}
+      />
+      <Input
+        label="Email"
+        type="email"
+        id="email"
+        register={register}
+        errors={errors}
+      />
+      <Input
+        label="Hasło"
+        type="password"
+        id="password"
+        register={register}
+        errors={errors}
+      />
+      <Input
+        label="Powtórz hasło"
+        type="password"
+        id="confirmPassword"
+        register={register}
+        errors={errors}
+      />
+      <div className="flex justify-end gap-10">
         <StyledButton styleType="add">Dodaj</StyledButton>
         <StyledButton type="reset">Anuluj</StyledButton>
       </div>

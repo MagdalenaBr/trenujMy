@@ -28,8 +28,23 @@ export async function loggedUser() {
 }
 
 export async function userLogOut() {
-  const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut();
+
+  if (error) throw new Error("Wystąpił błąd podczas wylogowywania.");
+}
+
+export async function userSigUp(email, password, name) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        userName: name,
+      },
+    },
+  });
 
   if (error)
-    throw new Error("Wystąpił błąd podczas wylogowywania.");
+    throw new Error("Wystąpił błąd podczas dodawania nowego użytkownika.");
+  return data;
 }
