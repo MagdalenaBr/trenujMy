@@ -3,20 +3,30 @@ import Input from "../../ui/Input";
 import StyledButton from "../../ui/StyledButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/UserValidation";
+import useUserSignUp from "./useUserSignUp";
 
 export default function CreateUserForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, reset
   } = useForm({ resolver: yupResolver(schema) });
 
+  const { signUp } = useUserSignUp();
+
   function onSubmit(data) {
-    console.log(data);
+    const { name, email, password } = data;
+    console.log(name, email, password);
+    signUp({email, password, name}, {onSettled() {
+      reset
+    },});
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col  divide-y divide-slate-700">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col  divide-y divide-slate-700"
+    >
       <Input
         label="Nazwa"
         type="text"

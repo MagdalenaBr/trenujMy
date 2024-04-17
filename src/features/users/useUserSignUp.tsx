@@ -1,15 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { userSignUp } from "../../services/apiAuthentication";
 
 export default function useUserSignUp() {
-  const { mutate: userSignUp } = useMutation({
-    mutationFn: ({ email, password, name }: { email: string; password: string; name:string}) =>
-      userSignUp(email, password, name),
+  const { mutate: signUp } = useMutation({
+    mutationFn: (newUser: { email: string; password: string; name: string }) =>
+      userSignUp(newUser),
     onSuccess() {
-      toast.success("Użytkownik został dodany");
+      toast.success("Konto zostało utworzaone. Na podany e-mail wysłaliśmy link weryfikacyjny.");
     },
-    onError(error) {
-      toast.error(error.message);
+    onError() {
+      toast.error("Wystąpił błąd podczas dodawania użytkownika.");
     },
   });
+
+  return { signUp };
 }
