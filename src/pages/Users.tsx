@@ -1,10 +1,6 @@
 import MainContainer from "../ui/MainContainer";
 import CreateUserForm from "../features/users/CreateUserForm";
-import useLoggedUser from "../features/authentication/useLoggedUser";
-
 function Users() {
-  const { user } = useLoggedUser();
-  console.log(user);
   return (
     <MainContainer title="Użytkownicy">
       <div className="w-full rounded-md bg-slate-900/70 py-6 ">

@@ -23,7 +23,6 @@ export async function loggedUser() {
 
   if (error)
     throw new Error("Wystąpił błąd podczas pobierania danych użytkownika");
-
   return user;
 }
 
@@ -33,8 +32,12 @@ export async function userLogOut() {
   if (error) throw new Error("Wystąpił błąd podczas wylogowywania.");
 }
 
-export async function userSignUp(newUser) {
-console.log(newUser);
+export async function userSignUp(newUser: {
+  name: string;
+  password: string;
+  email: string;
+}) {
+  console.log(newUser);
   const { data, error } = await supabase.auth.signUp({
     email: newUser.email,
     password: newUser.password,
@@ -47,5 +50,24 @@ console.log(newUser);
 
   if (error)
     throw new Error("Wystąpił błąd podczas dodawania nowego użytkownika.");
+  return data;
+}
+
+export async function updateUserName({ name }: { name: string }) {
+  const { data, error } = await supabase.auth.updateUser({
+    data: { userName: name },
+  });
+
+  if (error) throw new Error("Wystąpił błąd podczas zmiany danych.");
+  return data;
+}
+export async function updateUserPassword({ password }: { password: string }) {
+  console.log(password);
+  const { data, error } = await supabase.auth.updateUser({
+    email: 'test@t.com',
+    password: password,
+  });
+
+  if (error) throw new Error("Wystąpił błąd podczas zmiany hasła");
   return data;
 }

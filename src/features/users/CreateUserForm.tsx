@@ -3,23 +3,34 @@ import Input from "../../ui/Input";
 import StyledButton from "../../ui/StyledButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/UserValidation";
-import useUserSignUp from "./useUserSignUp";
+import useUserSignUp from "../authentication/useUserSignUp";
 
 export default function CreateUserForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, reset
+    formState: { errors },
+    reset,
   } = useForm({ resolver: yupResolver(schema) });
 
   const { signUp } = useUserSignUp();
 
-  function onSubmit(data) {
+  function onSubmit(data: {
+    name: string;
+    password: string;
+    confirmPassword: string;
+    email: string;
+  }) {
     const { name, email, password } = data;
     console.log(name, email, password);
-    signUp({email, password, name}, {onSettled() {
-      reset
-    },});
+    signUp(
+      { email, password, name },
+      {
+        onSettled() {
+          reset();
+        },
+      },
+    );
   }
 
   return (
