@@ -7,7 +7,6 @@ import useLoggedUser from "../features/authentication/useLoggedUser";
 
 function Header() {
   const { user } = useLoggedUser();
-  console.log(user);
   return (
     <header className="sticky top-0 col-[1_/_3] row-[1_/_2] flex justify-between  bg-slate-900/70 px-7 py-5">
       <Logo />

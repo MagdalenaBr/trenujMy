@@ -6,7 +6,7 @@ interface TrainersDataTypes {
   image: string;
   name: string;
   phone: string;
-  price: number;
+  price?: number | null;
   category: string;
   created_at: string;
 }
@@ -14,7 +14,7 @@ interface NewTrainerDataTypes {
   image: string | FileList;
   name: string;
   phone: string;
-  price: number;
+  price?: number | null;
   category: string;
 }
 
@@ -28,6 +28,7 @@ export async function addOrEditTrainers(
   newTrainer: NewTrainerDataTypes,
   id?: number,
 ): Promise<TrainersDataTypes> {
+  console.log(newTrainer);
   const hasImage = typeof newTrainer.image === "string";
   let imageName;
   if (newTrainer.image instanceof File) {

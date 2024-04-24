@@ -22,7 +22,7 @@ export default function CreateUserForm() {
     email: string;
   }) {
     const { name, email, password } = data;
-    console.log(name, email, password);
+
     signUp(
       { email, password, name },
       {

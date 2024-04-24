@@ -11,7 +11,7 @@ type TrainerTypes = {
 	image: FileList | string;
 	name: string;
 	phone: string;
-	price: number;
+	price?: number | null;
 	category: string;
 };
 
@@ -81,7 +81,7 @@ function AddTrainerForm({
 						errors={errors}
 						inputName='price'
 						register={register}
-						formType='text'
+						formType='number'
 					/>
 				</FormRow>
 

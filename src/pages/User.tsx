@@ -1,9 +1,5 @@
-import { useForm } from "react-hook-form";
 import useLoggedUser from "../features/authentication/useLoggedUser";
-import Input from "../ui/Input";
 import MainContainer from "../ui/MainContainer";
-import StyledButton from "../ui/StyledButton";
-import { useUpdateUserName } from "../features/authentication/useUpdateUserName";
 import UpdateUserName from "../features/users/UpdateUserName";
 import UpdateUserPassword from "../features/users/updateUserPassword";
 

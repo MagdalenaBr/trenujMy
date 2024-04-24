@@ -68,7 +68,7 @@ function TrainerPage() {
 						</div>
 						<div className='flex gap-2'>
 							<h3 className='font-semibold'>Cena:</h3>
-							<span>{trainer.price} zł</span>
+							<span>{trainer.price !== null ? `${trainer.price} zł`  :'-'}</span>
 						</div>
 					</div>
 				</div>

@@ -17,7 +17,7 @@ interface TrainersDataTypes {
 	image: string;
 	name: string;
 	phone: string;
-	price: number;
+	price?: number | null;
 	category: string;
 	created_at: string;
 }

@@ -5,7 +5,7 @@ interface TrainersDataTypes {
 	image: string;
 	name: string;
 	phone: string;
-	price: number;
+	price?: number | null;
 	category: string;
 	created_at: string;
 }
@@ -23,7 +23,7 @@ function TrainerRow({ trainer }: {trainer: TrainersDataTypes}) {
 				<h2>{trainer.name}</h2>
 			</div>
 			<p>{trainer.category}</p>
-			<p>{trainer.price} zł</p>
+			<p>{trainer.price !== null ? `${trainer.price} zł`  :' - '}</p>
 			<TrainerOptions trainer={trainer} />
 		</>
 	);

@@ -8,7 +8,7 @@ export default function useUserLogIn() {
   const queryClient = useQueryClient();
 
   const { isPending, mutate: login } = useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
+    mutationFn: ({ email, password}: { email: string; password: string}) =>
       userLogIn(email, password),
     onSuccess(user) {
       queryClient.setQueryData(["user"], user.user);

@@ -37,7 +37,7 @@ export async function userSignUp(newUser: {
   password: string;
   email: string;
 }) {
-  console.log(newUser);
+ 
   const { data, error } = await supabase.auth.signUp({
     email: newUser.email,
     password: newUser.password,
@@ -62,9 +62,7 @@ export async function updateUserName({ name }: { name: string }) {
   return data;
 }
 export async function updateUserPassword({ password }: { password: string }) {
-  console.log(password);
   const { data, error } = await supabase.auth.updateUser({
-    email: 'test@t.com',
     password: password,
   });
 

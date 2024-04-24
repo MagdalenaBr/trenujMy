@@ -27,7 +27,7 @@ export default function UpdateUserName() {
   });
 
   function onSubmit(data: InputType) {
-    console.log(data);
+ 
     const { name } = data;
     updateUser(
       { name },

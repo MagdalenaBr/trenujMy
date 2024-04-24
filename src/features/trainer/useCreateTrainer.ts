@@ -6,7 +6,7 @@ type TrainerTypes = {
 	image: FileList | string;
 	name: string;
 	phone: string;
-	price: number;
+	price?: number | null;
 	category: string;
 }
 

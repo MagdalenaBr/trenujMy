@@ -16,8 +16,8 @@ export default function UpdateUserPassword() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmit(data: { password: string; confirmPassword: string }) {
-    console.log(data);
     const { password } = data;
+
     updateUserPassword(
       { password },
       {
@@ -37,7 +37,7 @@ export default function UpdateUserPassword() {
         Zmień hasło:
       </h3>
       <Input
-        label="Hasło"
+        label="Nowe hasło"
         type="password"
         id="password"
         register={register}
