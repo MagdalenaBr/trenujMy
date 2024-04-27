@@ -1,18 +1,18 @@
-type Props = {
-	name: string;
-	label: string;
-	children: React.ReactNode;
-};
+// type Props = {
+// 	name: string;
+// 	label: string;
+// 	children: React.ReactNode;
+// };
 
-function FormLabel({ name, label, children }: Props) {
-	return (
-		<>
-			<label htmlFor={name} className={`font-semibold grid grid-cols-4 my-4`}>
-				{label}
-				{children}
-			</label>
-		</>
-	);
-}
+// function FormLabel({ name, label, children }: Props) {
+// 	return (
+// 		<>
+// 			<label htmlFor={name} className={`font-semibold grid grid-cols-4`}>
+// 				{label}
+// 				{children}
+// 			</label>
+// 		</>
+// 	);
+// }
 
-export default FormLabel;
+// export default FormLabel;
