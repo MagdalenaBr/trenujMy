@@ -11,6 +11,7 @@ interface BookingsDataType extends NewBookingTypes {
   created_at: string;
   trainers: {
     name: string;
+    caategory: string;
   };
   members: {
     name: string;
@@ -40,7 +41,7 @@ export async function getBookings(
 
   let query = supabase
     .from("bookings")
-    .select("*, trainers(name), members(name, phone)", { count: "exact" });
+    .select("*, trainers(name, category), members(name, phone)", { count: "exact" });
 
     // if(sortByStatusValue.value) {currentPage = 1}
 

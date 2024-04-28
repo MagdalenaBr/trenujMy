@@ -24,6 +24,7 @@ interface BookingTypes extends CommonDataTypes {
   id: number;
   trainers: {
     name: string;
+    category: string;
   };
   members: {
     name: string;
@@ -57,26 +58,34 @@ function AddBookingForm({
   memberId,
   memberName,
 }: PropsType) {
-  const [activitiesType, setActivitiesType] = useState("groupActivities");
+  const { id, ...bookingsEditData } = booking;
+  const [activitiesType, setActivitiesType] = useState(
+    bookingsEditData.trainers.category === "trener personalny"
+      ? "personalTrainer"
+      : "groupActivities",
+  );
+
+  console.log(activitiesType);
   const { createBooking } = useCreateBooking();
   const { editBooking } = useEditBooking();
   const { trainers, trainerIsLoading } = useTrainers();
-  const { id, ...bookingsEditData } = booking;
-  const { schedule: groupActivities} = useSchedules("currentSchedule");
+  const { schedule: groupActivities } = useSchedules("currentSchedule");
 
-  console.log(groupActivities);
-
+  console.log(bookingsEditData.trainers.category);
 
   const isEditingSession = Boolean(id);
   const personalTrainer = trainers?.filter(
     (trainer) => trainer.category === "trener personalny",
   );
 
-  const { register, handleSubmit, formState:{errors} } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: isEditingSession ? bookingsEditData : {},
     resolver: yupResolver(schema),
   });
-  // const { errors } = formState;
 
   const onSubmit = (data: CommonDataTypes) => {
     if (isEditingSession) {
@@ -112,7 +121,7 @@ function AddBookingForm({
               type="radio"
               name="activitiesType"
               id="group"
-              defaultChecked
+              defaultChecked={activitiesType !== "personalTrainer"}
               onChange={() => setActivitiesType("groupActivities")}
             />
             <label htmlFor="group" className="pl-2 font-semibold uppercase">
@@ -125,6 +134,7 @@ function AddBookingForm({
               name="activitiesType"
               id="trainer"
               onChange={() => setActivitiesType("personalTrainer")}
+              defaultChecked={activitiesType === "personalTrainer"}
             />
             <label htmlFor="trainer" className="pl-2 font-semibold uppercase">
               Trener personalny
@@ -159,7 +169,6 @@ function AddBookingForm({
             inputName="date"
             register={register}
             formType="datetime-local"
-            
           />
         </FormRow>
         <FormRow name="status" label="Status">
