@@ -65,13 +65,11 @@ function AddBookingForm({
       : "groupActivities",
   );
 
-  console.log(activitiesType);
+ 
   const { createBooking } = useCreateBooking();
   const { editBooking } = useEditBooking();
   const { trainers, trainerIsLoading } = useTrainers();
   const { schedule: groupActivities } = useSchedules("currentSchedule");
-
-  console.log(bookingsEditData.trainers.category);
 
   const isEditingSession = Boolean(id);
   const personalTrainer = trainers?.filter(
@@ -98,11 +96,11 @@ function AddBookingForm({
 
   if (trainerIsLoading) return <Spinner />;
   return (
-    <div className="rounded-md bg-neutral-100 px-10 py-6">
+    <div className="rounded-md bg-slate-300 px-10 py-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="mx-auto flex flex-col divide-y py-8 "
+        className="mx-auto flex flex-col divide-y divide-slate-600/40 py-8 "
       >
         <FormRow name="memberId" label="Imię i nazwisko">
           <FormOption
@@ -115,7 +113,7 @@ function AddBookingForm({
             register={register}
           />
         </FormRow>
-        <div className="flex w-3/4 justify-center gap-11">
+        <div className="flex  gap-11 py-4">
           <div>
             <input
               type="radio"

@@ -1,8 +1,7 @@
 import useLoggedUser from "../features/authentication/useLoggedUser";
 import MainContainer from "../ui/MainContainer";
 import UpdateUserName from "../features/users/UpdateUserName";
-import UpdateUserPassword from "../features/users/updateUserPassword";
-
+import UpdateUserPassword from "../features/users/UpdateUserPassword";
 export default function User() {
   const { user } = useLoggedUser();
 

@@ -27,6 +27,7 @@ interface ClassesType extends DataTypes {
 	created_at: string;
 	trainers: {
 		name: string;
+		category: string;
 	};
 }
 function CreateScheduleForm({

@@ -17,6 +17,7 @@ interface BookingTypes {
   trainerId: number;
   trainers: {
     name: string;
+    category: string;
   };
 }
 
