@@ -8,10 +8,9 @@ import FormOption from "../../ui/FormOption";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
+import FormTrainerTypeInputs from "./FormTrainerTypeInputs";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
-import { useState } from "react";
-import { useSchedules } from "../schedule/useSchedules";
 
 interface CommonDataTypes {
   status: string;
@@ -59,22 +58,11 @@ function AddBookingForm({
   memberName,
 }: PropsType) {
   const { id, ...bookingsEditData } = booking;
-  const [activitiesType, setActivitiesType] = useState(
-    bookingsEditData.trainers.category === "trener personalny"
-      ? "personalTrainer"
-      : "groupActivities",
-  );
-
- 
   const { createBooking } = useCreateBooking();
   const { editBooking } = useEditBooking();
-  const { trainers, trainerIsLoading } = useTrainers();
-  const { schedule: groupActivities } = useSchedules("currentSchedule");
-
+  const { trainerIsLoading } = useTrainers();
   const isEditingSession = Boolean(id);
-  const personalTrainer = trainers?.filter(
-    (trainer) => trainer.category === "trener personalny",
-  );
+
 
   const {
     register,
@@ -113,54 +101,9 @@ function AddBookingForm({
             register={register}
           />
         </FormRow>
-        <div className="flex  gap-11 py-4">
-          <div>
-            <input
-              type="radio"
-              name="activitiesType"
-              id="group"
-              defaultChecked={activitiesType !== "personalTrainer"}
-              onChange={() => setActivitiesType("groupActivities")}
-            />
-            <label htmlFor="group" className="pl-2 font-semibold uppercase">
-              Zajęcia grupowe
-            </label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="activitiesType"
-              id="trainer"
-              onChange={() => setActivitiesType("personalTrainer")}
-              defaultChecked={activitiesType === "personalTrainer"}
-            />
-            <label htmlFor="trainer" className="pl-2 font-semibold uppercase">
-              Trener personalny
-            </label>
-          </div>
-        </div>
-        {activitiesType == "personalTrainer" && (
-          <FormRow name="trainerId" label="Trener">
-            <FormOption
-              value="trainers"
-              trainerData={personalTrainer}
-              errors={errors}
-              inputName="trainerId"
-              register={register}
-            />
-          </FormRow>
-        )}
-        {activitiesType == "groupActivities" && (
-          <FormRow name="trainerId" label="Trener">
-            <FormOption
-              value="groupActivities"
-              groupActivitiesData={groupActivities}
-              errors={errors}
-              inputName="trainerId"
-              register={register}
-            />
-          </FormRow>
-        )}
+
+        <FormTrainerTypeInputs bookingsEditData={bookingsEditData} errors={errors} register={register}/>
+        
         <FormRow name="date" label="Data">
           <FormInput
             errors={errors}

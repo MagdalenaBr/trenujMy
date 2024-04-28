@@ -11,7 +11,7 @@ interface BookingsDataType extends NewBookingTypes {
   created_at: string;
   trainers: {
     name: string;
-    caategory: string;
+    category: string;
   };
   members: {
     name: string;
