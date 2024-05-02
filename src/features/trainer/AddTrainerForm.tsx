@@ -6,6 +6,7 @@ import { useEditTrainer } from "./useEditTrainer";
 import { schema } from "../../validation/TrainersValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../ui/FormInput";
+import Form from "../../ui/Form";
 
 type TrainerTypes = {
 	image: FileList | string;
@@ -53,11 +54,8 @@ function AddTrainerForm({
 	};
 
 	return (
-		<div className='bg-neutral-100 py-6 px-10 rounded-md'>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				noValidate
-				className='flex flex-col mx-auto  py-8 divide-y '>
+		<Form  onSubmit={handleSubmit(onSubmit)}>
+
 				<FormRow name='name' label='Imię i nazwisko'>
 					<FormInput
 						errors={errors}
@@ -123,8 +121,8 @@ function AddTrainerForm({
 						{isEditingSession ? "Zmień" : "Dodaj"}
 					</StyledButton>
 				</div>
-			</form>
-		</div>
+		</Form>
+
 	);
 }
 

@@ -9,6 +9,7 @@ import Spinner from "../../ui/Spinner";
 import { useSchedules } from "../schedule/useSchedules";
 import { createContext, useState } from "react";
 import DateInput from "./DateInput";
+import Form from "../../ui/Form";
 
 interface CommonDataTypes {
   status: string;
@@ -117,12 +118,9 @@ function AddBookingForm({
 
   if (trainerIsLoading || scheduleIsLoading) return <Spinner />;
   return (
-    <div className="rounded-md bg-slate-300 px-10 py-6">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        noValidate
-        className="mx-auto flex flex-col divide-y divide-slate-400/30 py-8"
-      >
+    <Form onSubmit={handleSubmit(onSubmit)}>
+
+
         <BookingFormContext.Provider
           value={{
             activitiesType,
@@ -170,8 +168,7 @@ function AddBookingForm({
             </StyledButton>
           </div>
         </BookingFormContext.Provider>
-      </form>
-    </div>
+    </Form>
   );
 }
 
