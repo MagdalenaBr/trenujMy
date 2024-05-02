@@ -19,11 +19,11 @@ interface DataTypes {
 	date: string;
 	numOfPlaces: number;
 	name: string;
-	trainerId: number;
+	trainerId: string;
 }
 
 interface ClassesType extends DataTypes {
-	id: number;
+	id: string;
 	created_at: string;
 	trainers: {
 		name: string;

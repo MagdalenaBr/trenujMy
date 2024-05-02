@@ -17,11 +17,11 @@ type TrainerTypes = {
 
 interface PropsType {
 	handleCloseModal?: () => void;
-	trainer?: TrainerTypes & { id: number };
+	trainer?: TrainerTypes & { id: string };
 }
 
 function AddTrainerForm({
-	trainer = {} as TrainerTypes & { id: number },
+	trainer = {} as TrainerTypes & { id: string },
 	handleCloseModal,
 }: PropsType) {
 	const { id, ...trainerEditData } = trainer;

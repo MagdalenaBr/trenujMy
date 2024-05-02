@@ -1,23 +1,23 @@
 import supabase from "./supabase";
 
-interface ScheduleDataTypes extends NewScheduleTypes {
-  created_at: string;
-  id: number;
-  trainers: {
-    name: string;
-  };
-}
 interface NewClassesTypes {
   date: string;
   name: string;
   numOfPlaces: number;
-  trainerId: number;
+  trainerId: string;
 }
 interface NewScheduleTypes extends NewClassesTypes {
   created_at: string;
-  id: number;
+  id: string;
 }
 
+interface ScheduleDataTypes extends NewScheduleTypes {
+  created_at: string;
+  id: string;
+  trainers: {
+    name: string;
+  };
+}
 export async function getSchedule(
   scheduleDataType?: string,
 ): Promise<ScheduleDataTypes[]> {
@@ -36,7 +36,7 @@ export async function getSchedule(
 
 export async function addOrEditSchedule(
   newClasses: NewClassesTypes,
-  id?: number,
+  id?: string,
 ): Promise<NewScheduleTypes> {
   let query;
   if (!id) query = supabase.from("schedule").insert([{ ...newClasses }]);

@@ -7,7 +7,7 @@ export const schema = yup.object().shape({
 		.transform((currVal, orgVal) => (orgVal === "" ? undefined : currVal))
 		.required("Podaj ilość dostępnych miejsc na zajęciach"),
 	trainerId: yup
-		.number()
+		.string()
 		.transform((currVal, orgVal) => (orgVal === "" ? undefined : currVal))
 		.required("Wybierz trenera"),
 	date: yup.string().required("Wybierz datę zajęć"),

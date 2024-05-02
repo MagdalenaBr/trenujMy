@@ -5,7 +5,7 @@ import Button from "../../ui/Button";
 
 
 interface MemberTypes {
-	id: number;
+	id: string;
 	city: string;
 	email: string;
 	endGymMembership: string;

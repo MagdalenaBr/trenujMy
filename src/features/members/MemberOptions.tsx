@@ -15,7 +15,7 @@ interface MemberTypes {
 	created_at: string;
 	endGymMembership: string;
 	gymMembershipType: string;
-	id: number;
+	id: string;
 	startGymMembership: string;
 }
 

@@ -11,7 +11,7 @@ interface OpenHoursTypes {
 export function useEditOpenHours() {
 	const queryClient = useQueryClient();
 	const { mutate: changeOpenHours } = useMutation({
-		mutationFn: ({ newHours, id }: {newHours: OpenHoursTypes, id: number}) =>
+		mutationFn: ({ newHours, id }: {newHours: OpenHoursTypes, id: string}) =>
 			editOpenHours(newHours, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

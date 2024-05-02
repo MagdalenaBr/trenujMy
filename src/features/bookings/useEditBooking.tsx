@@ -4,15 +4,15 @@ import toast from "react-hot-toast";
 
 interface DataTypes {
 	status: string;
-	trainerId: number;
-	memberId: number;
+	trainerId: string;
+	memberId: string;
 	date: string;
 }
 
 export function useEditBooking() {
 	const queryClient = useQueryClient();
 	const { mutate: editBooking } = useMutation({
-		mutationFn: ({ newBooking, id }: { newBooking: DataTypes; id: number }) =>
+		mutationFn: ({ newBooking, id }: { newBooking: DataTypes; id: string }) =>
 			addOrEditBooking(newBooking, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

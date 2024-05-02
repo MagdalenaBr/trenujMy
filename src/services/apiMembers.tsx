@@ -12,7 +12,7 @@ interface MembersType extends CommonDataTypes {
 	created_at: string;
 	endGymMembership: string;
 	gymMembershipType: string;
-	id: number;
+	id: string;
 	startGymMembership: string;
 }
 
@@ -24,7 +24,7 @@ export async function getMembers() {
 
 export async function addOrEditMember(
 	newMember: CommonDataTypes,
-	id?: number
+	id?: string
 ): Promise<MembersType> {
 	let query;
 	/// ADD MEMBER
@@ -45,7 +45,7 @@ export async function addOrEditMember(
 	return data;
 }
 
-export async function deleteMember(id: number) {
+export async function deleteMember(id: string) {
 	const { error } = await supabase.from("members").delete().eq("id", id);
 	if (error) {
 		throw new Error("Wystapił błąd. Klient nie został usunięty.");

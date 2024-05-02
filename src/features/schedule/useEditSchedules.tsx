@@ -6,13 +6,13 @@ interface NewClassesTypes {
 	date: string;
 	name: string;
 	numOfPlaces: number;
-	trainerId: number 
+	trainerId: string 
 }
 
 export function useEditSchedules() {
 	const queryClient = useQueryClient();
 	const { mutate: editClasses } = useMutation({
-		mutationFn: ({ newClasses, id }: {newClasses: NewClassesTypes, id: number}) => addOrEditSchedule(newClasses, id),
+		mutationFn: ({ newClasses, id }: {newClasses: NewClassesTypes, id: string}) => addOrEditSchedule(newClasses, id),
 		onSuccess() {
 			queryClient.invalidateQueries({
 				queryKey: ["schedule"],

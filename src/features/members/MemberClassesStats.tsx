@@ -3,14 +3,14 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 interface BookingTypes {
   created_at: string;
   date: string;
-  id: number;
-  memberId: number;
+  id: string;
+  memberId: string;
   members: {
     name: string;
     phone: string;
   };
   status: string;
-  trainerId: number;
+  trainerId: string;
   trainers: {
     name: string;
     category:string;

@@ -6,7 +6,7 @@ interface NewHoursTypes {
 }
 interface HoursTypes extends NewHoursTypes {
 	created_at: string;
-	id: number;
+	id: string;
 }
 
 export async function getOpenHours(): Promise<HoursTypes[]> {
@@ -19,7 +19,7 @@ export async function getOpenHours(): Promise<HoursTypes[]> {
 
 export async function editOpenHours(
 	newHours: NewHoursTypes,
-	id: number
+	id: string
 ): Promise<HoursTypes> {
 	const { data, error } = await supabase
 		.from("openHours")

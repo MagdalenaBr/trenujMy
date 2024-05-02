@@ -16,7 +16,7 @@ interface CommonData {
 	startGymMembership: string;
 }
 interface MemberTypes extends CommonData {
-	id: number;
+	id: string;
 }
 
 interface PropsType {

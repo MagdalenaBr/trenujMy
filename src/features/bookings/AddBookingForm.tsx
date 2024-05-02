@@ -11,16 +11,18 @@ import StyledButton from "../../ui/StyledButton";
 import FormTrainerTypeInputs from "./FormTrainerTypeInputs";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
+import { useSchedules } from "../schedule/useSchedules";
+import { createContext, useState } from "react";
 
 interface CommonDataTypes {
   status: string;
-  trainerId: number;
-  memberId: number;
+  trainerId: string;
+  memberId: string;
   date: string;
 }
 interface BookingTypes extends CommonDataTypes {
   created_at: string;
-  id: number;
+  id: string;
   trainers: {
     name: string;
     category: string;
@@ -32,7 +34,7 @@ interface BookingTypes extends CommonDataTypes {
 }
 
 interface ActiveMemberType {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone: string;
@@ -46,9 +48,20 @@ interface PropsType {
   handleCloseModal?: () => void;
   booking?: BookingTypes;
   activeMember?: ActiveMemberType;
-  memberId?: number;
+  memberId?: string;
   memberName?: string;
 }
+
+interface ContextTypes {
+  activitiesType: string;
+  setActivitiesType: React.Dispatch<React.SetStateAction<string>>;
+  setBookingDate: React.Dispatch<React.SetStateAction<string>>;
+  isEditingSession: boolean;
+}
+
+export const BookingFormContext = createContext<ContextTypes | undefined>(
+  undefined,
+);
 
 function AddBookingForm({
   booking = {} as BookingTypes,
@@ -61,87 +74,151 @@ function AddBookingForm({
   const { createBooking } = useCreateBooking();
   const { editBooking } = useEditBooking();
   const { trainerIsLoading } = useTrainers();
+  const { scheduleIsLoading } = useSchedules("currentSchedule");
   const isEditingSession = Boolean(id);
+  const [activitiesType, setActivitiesType] = useState(
+    bookingsEditData.trainers?.category === "trener personalny"
+      ? "personalTrainer"
+      : "groupActivities",
+  );
 
+  const [bookingDate, setBookingDate] = useState(
+    isEditingSession ? bookingsEditData.date : "",
+  );
 
+  /// in case group activities adding to trainerId date, that in booking form (edit existing booking) properly displaying trainer name and data
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: isEditingSession ? bookingsEditData : {},
+    defaultValues: isEditingSession
+      ? activitiesType !== "groupActivities"
+        ? bookingsEditData
+        : {
+            ...bookingsEditData,
+            trainerId: `${bookingsEditData.trainerId} ${bookingsEditData.date}`,
+          }
+      : {},
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: CommonDataTypes) => {
-    if (isEditingSession) {
-      editBooking({ newBooking: data, id });
+    const { date, memberId, status, trainerId } = data;
+    //removing date from trainerId value
+    const trainerIdNum = trainerId.split(" ")[0];
+
+    let newBookingData;
+    if (activitiesType === "groupActivities") {
+      newBookingData = {
+        date: trainerId.split(" ")[1],
+        memberId,
+        status,
+        trainerId: trainerIdNum,
+      };
     } else {
-      createBooking(data);
+      newBookingData = {
+        date,
+        memberId,
+        status,
+        trainerId: trainerIdNum,
+      };
+    }
+
+    if (isEditingSession) {
+      editBooking({ newBooking: newBookingData, id });
+    } else {
+      createBooking(newBookingData);
     }
     handleCloseModal?.();
   };
 
-  if (trainerIsLoading) return <Spinner />;
+  if (trainerIsLoading || scheduleIsLoading) return <Spinner />;
   return (
     <div className="rounded-md bg-slate-300 px-10 py-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="mx-auto flex flex-col divide-y divide-slate-600/40 py-8 "
+        className="mx-auto flex flex-col divide-y divide-slate-600/40 py-8"
       >
-        <FormRow name="memberId" label="Imię i nazwisko">
-          <FormOption
-            value={`members`}
-            member={activeMember}
-            memberId={memberId}
-            memberName={memberName}
-            errors={errors}
-            inputName="memberId"
-            register={register}
-          />
-        </FormRow>
+        <BookingFormContext.Provider
+          value={{
+            activitiesType,
+            setActivitiesType,
+            setBookingDate,
+            isEditingSession,
+          }}
+        >
+          <FormRow name="memberId" label="Imię i nazwisko">
+            <FormOption
+              value={`members`}
+              member={activeMember}
+              memberId={memberId}
+              memberName={memberName}
+              errors={errors}
+              inputName="memberId"
+              register={register}
+            />
+          </FormRow>
+          {/* <FormInput
+          errors={errors}
+          inputName="memberId"
+          register={register}
+          formType="datetime-local"
+          
+          /> */}
+          <FormTrainerTypeInputs errors={errors} register={register} />
 
-        <FormTrainerTypeInputs bookingsEditData={bookingsEditData} errors={errors} register={register}/>
-        
-        <FormRow name="date" label="Data">
-          <FormInput
-            errors={errors}
-            inputName="date"
-            register={register}
-            formType="datetime-local"
-          />
-        </FormRow>
-        <FormRow name="status" label="Status">
-          <select
-            id="status"
-            {...register("status")}
-            className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
-          >
-            <option value=""></option>
-            <option value="zrealizowana">zrealizowana</option>
-            <option value="niepotwierdzona">niepotwierdzona</option>
-            <option value="anulowana">anulowana</option>
-          </select>
-          {errors.status?.message && (
-            <p className="col-start-4 col-end-7">
-              {errors.status.message.toString()}
-            </p>
+          {activitiesType !== "groupActivities" ? (
+            <FormRow name="date" label="Data">
+              <FormInput
+                errors={errors}
+                inputName="date"
+                register={register}
+                formType="datetime-local"
+              />
+            </FormRow>
+          ) : (
+            /* if group activities display data from chosen trainer input */
+            <div className="grid grid-cols-4 items-center py-4 font-semibold">
+              <p>Data</p>
+              <div className=" col-start-2 col-end-5 grid grid-cols-6 gap-3">
+                <p className="text-md align-self-center col-start-1 col-end-4 rounded-md border-x-2 border-slate-400 py-1 text-center font-normal">
+                  {bookingDate ? bookingDate.replace("T", " ") : "-"}
+                </p>
+              </div>
+            </div>
           )}
-        </FormRow>
-
-        <div className="flex justify-end gap-4 pt-4">
-          <StyledButton
-            styleType="close"
-            type="reset"
-            handleClick={() => handleCloseModal?.()}
-          >
-            Anuluj
-          </StyledButton>
-          <StyledButton styleType="add">
-            {isEditingSession ? "Zmień" : "Dodaj"}
-          </StyledButton>
-        </div>
+          <FormRow name="status" label="Status">
+            <select
+              id="status"
+              {...register("status")}
+              className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
+            >
+              <option value=""></option>
+              <option value="zrealizowana">zrealizowana</option>
+              <option value="niepotwierdzona">niepotwierdzona</option>
+              <option value="anulowana">anulowana</option>
+            </select>
+            {errors.status?.message && (
+              <p className="col-start-4 col-end-7">
+                {errors.status.message.toString()}
+              </p>
+            )}
+          </FormRow>
+          <div className="flex justify-end gap-4 pt-4">
+            <StyledButton
+              styleType="close"
+              type="reset"
+              handleClick={() => handleCloseModal?.()}
+            >
+              Anuluj
+            </StyledButton>
+            <StyledButton styleType="add">
+              {isEditingSession ? "Zmień" : "Dodaj"}
+            </StyledButton>
+          </div>
+        </BookingFormContext.Provider>
       </form>
     </div>
   );

@@ -5,11 +5,11 @@ import Modal from "../../ui/Modal";
 
 interface BookingTypes {
 	status: string;
-	trainerId: number;
-	memberId: number;
+	trainerId: string;
+	memberId: string;
 	date: string;
 	created_at: string;
-	id: number;
+	id: string;
 	trainers: {
 		name: string;
 		category: string;
@@ -21,7 +21,7 @@ interface BookingTypes {
 }
 
 interface ActiveMemberType{
-		id: number;
+		id: string;
 		name: string;
 		email: string;
 		phone: string;
@@ -35,7 +35,7 @@ interface PropsTypes {
 	children: React.ReactNode;
 	booking?: BookingTypes;
 	activeMember?: ActiveMemberType
-	memberId?: number
+	memberId?: string
 	memberName?: string
 }
 

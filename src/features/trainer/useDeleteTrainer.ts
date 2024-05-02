@@ -6,7 +6,7 @@ export function useDeleteTrainer() {
 	const queryClient = useQueryClient();
 
 	const { mutate: deleteOneTrainer } = useMutation({
-		mutationFn: (id: number) => deleteTrainer(id),
+		mutationFn: (id: string) => deleteTrainer(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["trainers"],

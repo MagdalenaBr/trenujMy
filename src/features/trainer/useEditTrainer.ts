@@ -18,7 +18,7 @@ export function useEditTrainer() {
 			id,
 		}: {
 			newTrainersData: TrainerTypes;
-			id: number;
+			id: string;
 		}) => addOrEditTrainers(newTrainersData, id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({

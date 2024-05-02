@@ -1,47 +1,31 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useSchedules } from "../schedule/useSchedules";
 import { useTrainers } from "../trainer/useTrainers";
 import FormOption from "../../ui/FormOption";
 import FormRow from "../../ui/FormRow";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-
-interface BookingsType {
-  created_at: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-  members: {
-    name: string;
-    phone: string;
-  };
-  status: string;
-  trainerId: number;
-  memberId: number;
-  date: string;
-}
+import { BookingFormContext } from "./AddBookingForm";
 
 export default function FormTrainerTypeInputs({
-  bookingsEditData,
   errors,
   register,
 }: {
-  bookingsEditData: BookingsType;
   errors: FieldErrors;
   register: UseFormRegister<any>;
 }) {
   const { trainers } = useTrainers();
+  const bookingContext = useContext(BookingFormContext);
 
-  const [activitiesType, setActivitiesType] = useState(
-    bookingsEditData.trainers?.category === "trener personalny"
-      ? "personalTrainer"
-      : "groupActivities",
-  );
   const { schedule: groupActivities } = useSchedules("currentSchedule");
 
   const personalTrainer = trainers?.filter(
     (trainer) => trainer.category === "trener personalny",
   );
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    bookingContext?.setBookingDate(e.target.value.split(" ")[1]);
+  }
+
   return (
     <>
       <div className="flex  gap-11 py-4">
@@ -50,8 +34,16 @@ export default function FormTrainerTypeInputs({
             type="radio"
             name="activitiesType"
             id="group"
-            defaultChecked={activitiesType !== "personalTrainer"}
-            onChange={() => setActivitiesType("groupActivities")}
+            defaultChecked={
+              bookingContext?.activitiesType !== "personalTrainer"
+            }
+            onChange={() =>
+              bookingContext?.setActivitiesType("groupActivities")
+            }
+            disabled={
+              bookingContext?.isEditingSession &&
+              bookingContext?.activitiesType !== "groupActivities"
+            }
           />
           <label htmlFor="group" className="pl-2 font-semibold uppercase">
             Zajęcia grupowe
@@ -62,15 +54,23 @@ export default function FormTrainerTypeInputs({
             type="radio"
             name="activitiesType"
             id="trainer"
-            onChange={() => setActivitiesType("personalTrainer")}
-            defaultChecked={activitiesType === "personalTrainer"}
+            defaultChecked={
+              bookingContext?.activitiesType === "personalTrainer"
+            }
+            onChange={() =>
+              bookingContext?.setActivitiesType("personalTrainer")
+            }
+            disabled={
+              bookingContext?.isEditingSession &&
+              bookingContext?.activitiesType !== "personalTrainer"
+            }
           />
           <label htmlFor="trainer" className="pl-2 font-semibold uppercase">
             Trener personalny
           </label>
         </div>
       </div>
-      {activitiesType == "personalTrainer" && (
+      {bookingContext?.activitiesType == "personalTrainer" && (
         <FormRow name="trainerId" label="Trener">
           <FormOption
             value="trainers"
@@ -81,7 +81,8 @@ export default function FormTrainerTypeInputs({
           />
         </FormRow>
       )}
-      {activitiesType == "groupActivities" && (
+
+      {bookingContext?.activitiesType == "groupActivities" && (
         <FormRow name="trainerId" label="Trener">
           <FormOption
             value="groupActivities"
@@ -89,6 +90,7 @@ export default function FormTrainerTypeInputs({
             errors={errors}
             inputName="trainerId"
             register={register}
+            onChange={handleChange}
           />
         </FormRow>
       )}

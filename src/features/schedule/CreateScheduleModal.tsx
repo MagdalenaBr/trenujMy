@@ -6,10 +6,10 @@ interface ClassesType {
 	classes?: {
 		created_at: string;
 		date: string;
-		id: number;
+		id: string;
 		numOfPlaces: number;
 		name: string;
-		trainerId: number;
+		trainerId: string;
 		trainers: {
 			name: string;
 			category: string;

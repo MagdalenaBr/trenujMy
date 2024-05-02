@@ -2,7 +2,7 @@ import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
 interface TrainersDataTypes {
-  id: number;
+  id: string;
   image: string;
   name: string;
   phone: string;
@@ -26,9 +26,9 @@ export async function getTrainers() {
 
 export async function addOrEditTrainers(
   newTrainer: NewTrainerDataTypes,
-  id?: number,
+  id?: string,
 ): Promise<TrainersDataTypes> {
-  console.log(newTrainer);
+
   const hasImage = typeof newTrainer.image === "string";
   let imageName;
   if (newTrainer.image instanceof File) {
@@ -66,7 +66,7 @@ export async function addOrEditTrainers(
   return data;
 }
 
-export async function deleteTrainer(id: number) {
+export async function deleteTrainer(id: string) {
   const { error } = await supabase.from("trainers").delete().eq("id", id);
   if (error) {
     throw new Error("Wystapił błąd. Trener nie został usunięty.");

@@ -2,12 +2,12 @@ import { NUM_OF_RESULTS } from "../utils/constants";
 import supabase from "./supabase";
 interface NewBookingTypes {
   status: string;
-  trainerId: number;
-  memberId: number;
+  trainerId: string;
+  memberId: string;
   date: string;
 }
 interface BookingsDataType extends NewBookingTypes {
-  id: number;
+  id: string;
   created_at: string;
   trainers: {
     name: string;
@@ -24,7 +24,7 @@ interface GetBookingType {
   count: number | null;
 }
 interface AddOrEditDataTypes extends NewBookingTypes {
-  id: number;
+  id: string;
 }
 
 export async function getBookings(
@@ -85,7 +85,7 @@ export async function getBookings(
 
 export async function addOrEditBooking(
   newBooking: NewBookingTypes,
-  id?: number,
+  id?: string,
 ): Promise<AddOrEditDataTypes> {
   const { date, status, trainerId, memberId } = newBooking;
   const newBookingData = {
@@ -115,12 +115,12 @@ export async function addOrEditBooking(
 }
 
 export async function getBooking(
-  id: number,
+  id: string,
   columnName: string,
 ): Promise<BookingsDataType[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
-    .select("*, trainers(name), members(name, phone)")
+    .select("*, trainers(name, category), members(name, phone)")
     .eq(columnName, id)
     .order("date", { ascending: false });
   if (error)

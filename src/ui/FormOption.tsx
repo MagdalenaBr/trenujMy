@@ -1,7 +1,7 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 type TrainersType = {
-  id: number;
+  id: string;
   name: string;
   category: string;
   price: number;
@@ -11,10 +11,10 @@ type TrainersType = {
 
 type GroupActivitiesType = {
   date: string;
-  id: number;
+  id: string;
   name: string;
   numOfPlaces: number;
-  trainerId: number;
+  trainerId: string;
   trainers: {
     name: string;
   };
@@ -25,10 +25,10 @@ type PropsType = {
   inputName: string;
   register: UseFormRegister<any>;
   value: string;
-  memberId?: number;
+  memberId?: string;
   memberName?: string;
   member?: {
-    id?: number;
+    id?: string;
     name: string;
     email: string;
     phone: string;
@@ -40,7 +40,7 @@ type PropsType = {
   };
   trainerData?: TrainersType;
   groupActivitiesData?: GroupActivitiesType;
-
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 function FormOption({
@@ -53,7 +53,7 @@ function FormOption({
   memberName,
   trainerData,
   groupActivitiesData,
-
+  onChange,
 }: PropsType) {
   const typesOfActivities = trainerData?.map((el) => el.category);
   const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
@@ -65,7 +65,12 @@ function FormOption({
       <select
         id={inputName}
         {...register(inputName)}
-        className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
+        className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:font-bold disabled:bg-slate-300 disabled:outline-none disabled:border-none"
+        onChange={(e) => {
+          if (!onChange) return;
+          onChange(e);
+        }}
+        disabled={value === "members"}
       >
         {value === "trainers" && (
           <>
@@ -86,8 +91,8 @@ function FormOption({
             <option value=""></option>
             {groupActivitiesData?.map((el) => (
               <option
-                key={el.trainerId}
-                value={el.trainerId}
+                key={`${el.trainerId}${el.date}`}
+                value={`${el.trainerId} ${el.date}`}
                 label={`${el.name}: ${el.trainers.name} ${el.date.replace("T", " ").slice(0, -3)}`}
               >
                 {el.name}
@@ -100,7 +105,6 @@ function FormOption({
             key={member ? member.id : memberId}
             value={member ? member.id : memberId}
             label={member ? member.name : memberName}
-		
           ></option>
         )}
         {value === "typeOfActivities" && (

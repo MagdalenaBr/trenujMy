@@ -1,7 +1,7 @@
 import TrainerOptions from "./TrainerOptions";
 
 interface TrainersDataTypes {
-	id: number;
+	id: string;
 	image: string;
 	name: string;
 	phone: string;

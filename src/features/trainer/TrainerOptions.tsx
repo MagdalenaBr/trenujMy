@@ -13,7 +13,7 @@ import Button from "../../ui/Button";
 import DeletePopup from "../../ui/DeletePopup";
 
 interface TrainersDataTypes {
-	id: number;
+	id: string;
 	image: string;
 	name: string;
 	phone: string;

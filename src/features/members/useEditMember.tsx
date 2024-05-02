@@ -15,7 +15,7 @@ interface DataTypes {
 export function useEditMember() {
 	const queryClient = useQueryClient();
 	const { mutate: editMember } = useMutation({
-		mutationFn: ({ newMember, id }: {newMember: DataTypes, id: number}) =>
+		mutationFn: ({ newMember, id }: {newMember: DataTypes, id: string}) =>
 			addOrEditMember(newMember, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

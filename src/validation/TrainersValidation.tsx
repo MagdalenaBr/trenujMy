@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-  id: yup.number(),
+  id: yup.string(),
   name: yup.string().required("Imie i nazwisko jest wymagane"),
   category: yup.string().required("Kategoria jest wymagana"),
   price: yup.number().nullable().transform((_, val) => val ? Number(val) : null),
