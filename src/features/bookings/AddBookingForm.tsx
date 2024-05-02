@@ -8,6 +8,7 @@ import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
 import { useSchedules } from "../schedule/useSchedules";
 import { createContext, useState } from "react";
+import DateInput from "./DateInput";
 
 interface CommonDataTypes {
   status: string;
@@ -40,6 +41,7 @@ interface ContextTypes {
   setActivitiesType: React.Dispatch<React.SetStateAction<string>>;
   setBookingDate: React.Dispatch<React.SetStateAction<string>>;
   isEditingSession: boolean;
+  bookingDate: string;
 }
 
 export const BookingFormContext = createContext<ContextTypes | undefined>(
@@ -82,7 +84,6 @@ function AddBookingForm({
             trainerId: `${bookingsEditData.trainerId} ${bookingsEditData.date}`,
           }
       : {},
-   
   });
   console.log(errors);
 
@@ -128,6 +129,7 @@ function AddBookingForm({
             setActivitiesType,
             setBookingDate,
             isEditingSession,
+            bookingDate,
           }}
         >
           <p className="text-md align-self-center   border-slate-400 py-1 text-center font-bold uppercase">
@@ -135,43 +137,12 @@ function AddBookingForm({
           </p>
 
           <TrainerInputs errors={errors} register={register} />
+          <DateInput register={register} errors={errors} />
 
-          {activitiesType !== "groupActivities" ? (
-            <FormRow name="date" label="Data">
-              {/* <FormInput
-                errors={errors}
-                inputName="date"
-                register={register}
-                formType="datetime-local"
-              /> */}
-
-              <input
-                type="datetime-local"
-                id="date"
-                {...register("date", {required:"Wybierz datę"})}
-                className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
-              />
-              {errors.date?.message && (
-                <p className="col-start-4 col-end-7">
-                  {errors.date?.message?.toString()}
-                </p>
-              )}
-            </FormRow>
-          ) : (
-            /* if group activities display data from chosen trainer input */
-            <div className="grid grid-cols-4 items-center py-4 font-semibold">
-              <p>Data</p>
-              <div className=" col-start-2 col-end-5 grid grid-cols-6 gap-3">
-                <p className="text-md align-self-center col-start-1 col-end-4  text-center font-normal">
-                  {bookingDate ? bookingDate.replace("T", " ") : "-"}
-                </p>
-              </div>
-            </div>
-          )}
           <FormRow name="status" label="Status">
             <select
               id="status"
-              {...register("status", {required:'Wybierz status'})}
+              {...register("status", { required: "Wybierz status" })}
               className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
             >
               <option value=""></option>
@@ -185,6 +156,7 @@ function AddBookingForm({
               </p>
             )}
           </FormRow>
+          
           <div className="flex justify-end gap-4 pt-4">
             <StyledButton
               styleType="close"
