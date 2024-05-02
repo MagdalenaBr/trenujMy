@@ -88,7 +88,7 @@ function MemberPage() {
           </div>
         )}
 
-        <AddBookingModal activeMember={member}>
+        <AddBookingModal  memberId={member.id} memberName={member.name}>
           <StyledButton styleType="add">Zarezerwuj zajęcia</StyledButton>
         </AddBookingModal>
       </div>

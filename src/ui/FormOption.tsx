@@ -27,17 +27,6 @@ type PropsType = {
   value: string;
   memberId?: string;
   memberName?: string;
-  member?: {
-    id?: string;
-    name: string;
-    email: string;
-    phone: string;
-    gender: string;
-    city: string;
-    startGymMembership?: string | null;
-    endGymMembership?: string | null;
-    gymMembershipType?: string | null;
-  };
   trainerData?: TrainersType;
   groupActivitiesData?: GroupActivitiesType;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -47,7 +36,6 @@ function FormOption({
   errors,
   inputName,
   register,
-  member,
   value,
   memberId,
   memberName,
@@ -65,7 +53,7 @@ function FormOption({
       <select
         id={inputName}
         {...register(inputName)}
-        className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:font-bold disabled:bg-slate-300 disabled:outline-none disabled:border-none"
+        className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
         onChange={(e) => {
           if (!onChange) return;
           onChange(e);
@@ -101,11 +89,7 @@ function FormOption({
           </>
         )}
         {value === "members" && (
-          <option
-            key={member ? member.id : memberId}
-            value={member ? member.id : memberId}
-            label={member ? member.name : memberName}
-          ></option>
+          <option key={memberId} value={memberId} label={memberName}></option>
         )}
         {value === "typeOfActivities" && (
           <>

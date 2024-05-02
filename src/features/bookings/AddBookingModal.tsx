@@ -20,30 +20,17 @@ interface BookingTypes {
 	};
 }
 
-interface ActiveMemberType{
-		id: string;
-		name: string;
-		email: string;
-		phone: string;
-		gender: string;
-		city: string;
-		startGymMembership?: string | null;
-		endGymMembership?: string | null;
-		gymMembershipType?: string | null;
-}
 interface PropsTypes {
 	children: React.ReactNode;
 	booking?: BookingTypes;
-	activeMember?: ActiveMemberType
-	memberId?: string
-	memberName?: string
+	memberId: string
+	memberName: string
 }
 
 
 function AddBookingModal({
 	children,
 	booking,
-	activeMember,
 	memberId,
 	memberName,
 }: PropsTypes) {
@@ -52,8 +39,7 @@ function AddBookingModal({
 			<Modal.Window formName='member'>
 				<AddBookingForm
 					booking={booking}
-					activeMember={activeMember}
-					memberId={memberId}
+					memberIdNumber={memberId}
 					memberName={memberName}
 				/>
 			</Modal.Window>

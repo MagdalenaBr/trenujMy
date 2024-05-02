@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
 import { schema } from "../../validation/BookingValidation";
-import FormOption from "../../ui/FormOption";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
@@ -33,23 +31,11 @@ interface BookingTypes extends CommonDataTypes {
   };
 }
 
-interface ActiveMemberType {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  gender: string;
-  city: string;
-  startGymMembership?: string | null;
-  endGymMembership?: string | null;
-  gymMembershipType?: string | null;
-}
 interface PropsType {
   handleCloseModal?: () => void;
   booking?: BookingTypes;
-  activeMember?: ActiveMemberType;
-  memberId?: string;
-  memberName?: string;
+  memberIdNumber: string;
+  memberName: string;
 }
 
 interface ContextTypes {
@@ -66,8 +52,7 @@ export const BookingFormContext = createContext<ContextTypes | undefined>(
 function AddBookingForm({
   booking = {} as BookingTypes,
   handleCloseModal,
-  activeMember,
-  memberId,
+  memberIdNumber,
   memberName,
 }: PropsType) {
   const { id, ...bookingsEditData } = booking;
@@ -102,9 +87,10 @@ function AddBookingForm({
       : {},
     resolver: yupResolver(schema),
   });
+  console.log(errors);
 
   const onSubmit = (data: CommonDataTypes) => {
-    const { date, memberId, status, trainerId } = data;
+    const { date, status, trainerId } = data;
     //removing date from trainerId value
     const trainerIdNum = trainerId.split(" ")[0];
 
@@ -112,14 +98,14 @@ function AddBookingForm({
     if (activitiesType === "groupActivities") {
       newBookingData = {
         date: trainerId.split(" ")[1],
-        memberId,
+        memberId: memberIdNumber,
         status,
         trainerId: trainerIdNum,
       };
     } else {
       newBookingData = {
         date,
-        memberId,
+        memberId: memberIdNumber,
         status,
         trainerId: trainerIdNum,
       };
@@ -139,7 +125,7 @@ function AddBookingForm({
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="mx-auto flex flex-col divide-y divide-slate-600/40 py-8"
+        className="mx-auto flex flex-col divide-y divide-slate-400/30 py-8"
       >
         <BookingFormContext.Provider
           value={{
@@ -149,24 +135,10 @@ function AddBookingForm({
             isEditingSession,
           }}
         >
-          <FormRow name="memberId" label="Imię i nazwisko">
-            <FormOption
-              value={`members`}
-              member={activeMember}
-              memberId={memberId}
-              memberName={memberName}
-              errors={errors}
-              inputName="memberId"
-              register={register}
-            />
-          </FormRow>
-          {/* <FormInput
-          errors={errors}
-          inputName="memberId"
-          register={register}
-          formType="datetime-local"
-          
-          /> */}
+          <p className="text-md align-self-center   border-slate-400 py-1 text-center font-bold uppercase">
+            {memberName}
+          </p>
+
           <FormTrainerTypeInputs errors={errors} register={register} />
 
           {activitiesType !== "groupActivities" ? (
@@ -183,7 +155,7 @@ function AddBookingForm({
             <div className="grid grid-cols-4 items-center py-4 font-semibold">
               <p>Data</p>
               <div className=" col-start-2 col-end-5 grid grid-cols-6 gap-3">
-                <p className="text-md align-self-center col-start-1 col-end-4 rounded-md border-x-2 border-slate-400 py-1 text-center font-normal">
+                <p className="text-md align-self-center col-start-1 col-end-4  text-center font-normal">
                   {bookingDate ? bookingDate.replace("T", " ") : "-"}
                 </p>
               </div>
