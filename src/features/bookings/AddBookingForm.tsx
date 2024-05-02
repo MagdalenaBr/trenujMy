@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
-import { schema } from "../../validation/BookingValidation";
-import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
 import StyledButton from "../../ui/StyledButton";
-import FormTrainerTypeInputs from "./FormTrainerTypeInputs";
+import TrainerInputs from "./TrainerInputs";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
 import { useSchedules } from "../schedule/useSchedules";
@@ -85,14 +82,12 @@ function AddBookingForm({
             trainerId: `${bookingsEditData.trainerId} ${bookingsEditData.date}`,
           }
       : {},
-    resolver: yupResolver(schema),
+   
   });
   console.log(errors);
 
   const onSubmit = (data: CommonDataTypes) => {
     const { date, status, trainerId } = data;
-    //removing date from trainerId value
-    const trainerIdNum = trainerId.split(" ")[0];
 
     let newBookingData;
     if (activitiesType === "groupActivities") {
@@ -100,14 +95,14 @@ function AddBookingForm({
         date: trainerId.split(" ")[1],
         memberId: memberIdNumber,
         status,
-        trainerId: trainerIdNum,
+        trainerId: trainerId.split(" ")[0],
       };
     } else {
       newBookingData = {
         date,
         memberId: memberIdNumber,
         status,
-        trainerId: trainerIdNum,
+        trainerId,
       };
     }
 
@@ -139,16 +134,28 @@ function AddBookingForm({
             {memberName}
           </p>
 
-          <FormTrainerTypeInputs errors={errors} register={register} />
+          <TrainerInputs errors={errors} register={register} />
 
           {activitiesType !== "groupActivities" ? (
             <FormRow name="date" label="Data">
-              <FormInput
+              {/* <FormInput
                 errors={errors}
                 inputName="date"
                 register={register}
                 formType="datetime-local"
+              /> */}
+
+              <input
+                type="datetime-local"
+                id="date"
+                {...register("date", {required:"Wybierz datę"})}
+                className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
               />
+              {errors.date?.message && (
+                <p className="col-start-4 col-end-7">
+                  {errors.date?.message?.toString()}
+                </p>
+              )}
             </FormRow>
           ) : (
             /* if group activities display data from chosen trainer input */
@@ -164,7 +171,7 @@ function AddBookingForm({
           <FormRow name="status" label="Status">
             <select
               id="status"
-              {...register("status")}
+              {...register("status", {required:'Wybierz status'})}
               className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
             >
               <option value=""></option>

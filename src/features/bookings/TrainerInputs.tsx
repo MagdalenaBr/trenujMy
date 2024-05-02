@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { useSchedules } from "../schedule/useSchedules";
 import { useTrainers } from "../trainer/useTrainers";
-import FormOption from "../../ui/FormOption";
-import FormRow from "../../ui/FormRow";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { BookingFormContext } from "./AddBookingForm";
+import TrainerInput from "./TrainerInput";
 
-export default function FormTrainerTypeInputs({
+export default function TrainerInputs({
   errors,
   register,
 }: {
@@ -70,29 +69,24 @@ export default function FormTrainerTypeInputs({
           </label>
         </div>
       </div>
+
       {bookingContext?.activitiesType == "personalTrainer" && (
-        <FormRow name="trainerId" label="Trener">
-          <FormOption
-            value="trainers"
-            trainerData={personalTrainer}
-            errors={errors}
-            inputName="trainerId"
-            register={register}
-          />
-        </FormRow>
+        <TrainerInput
+          errors={errors}
+          register={register}
+          trainerData={personalTrainer}
+          value="personalTrainers"
+        />
       )}
 
       {bookingContext?.activitiesType == "groupActivities" && (
-        <FormRow name="trainerId" label="Trener">
-          <FormOption
-            value="groupActivities"
-            groupActivitiesData={groupActivities}
-            errors={errors}
-            inputName="trainerId"
-            register={register}
-            onChange={handleChange}
-          />
-        </FormRow>
+        <TrainerInput
+          errors={errors}
+          register={register}
+          groupActivitiesData={groupActivities}
+          value="groupActivities"
+          onChange={handleChange}
+        />
       )}
     </>
   );
