@@ -72,14 +72,3 @@ export async function deleteTrainer(id: string) {
     throw new Error("Wystapił błąd. Trener nie został usunięty.");
   }
 }
-
-// export async function getOneTrainer(id: number) {
-// 	// if (!id) return null;
-// 	const { data: trainers, error } = await supabase
-// 		.from("trainers")
-// 		.select("id, name")
-// 		.eq("id", id)
-// 		.single();
-// 	if (error) throw new Error("Trener nie został znaleziony.");
-// 	return trainers;
-// }
