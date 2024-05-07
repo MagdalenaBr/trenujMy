@@ -27,7 +27,6 @@ function AddTrainerForm({
 }: PropsType) {
 	const { id, ...trainerEditData } = trainer;
 	const isEditingSession = Boolean(id);
-
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: isEditingSession ? trainerEditData : {},
 		resolver: yupResolver(schema),

@@ -1,5 +1,5 @@
 import Modal from "../../ui/Modal";
-import ChangeOpenHours from "./ChangeOpenHours";
+import ChangeOpenHoursButton from "./ChangeOpenHoursButton";
 import OpenHoursForm from "./OpenHoursForm";
 
 function OpenHoursModal() {
@@ -9,7 +9,7 @@ function OpenHoursModal() {
 				<OpenHoursForm />
 			</Modal.Window>
 			<Modal.OpenButton openForm='hours'>
-				<ChangeOpenHours />
+				<ChangeOpenHoursButton />
 			</Modal.OpenButton>
 		</Modal>
 	);

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-  name: yup.string().required("Nazwa jest wymagana."),
+  name: yup.string().required("Podaj nazwe użytkownika."),
   email: yup
     .string()
     .matches(

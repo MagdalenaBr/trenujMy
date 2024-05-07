@@ -22,7 +22,7 @@ export default function Input({
   onChange?: React.ChangeEventHandler<HTMLInputElement>
 }) {
   return (
-    <div className="grid grid-cols-[2fr_5fr_2fr] py-4">
+    <div className="grid grid-cols-[2fr_5fr_3fr] py-4">
       <label htmlFor={id} className="text-start text-lg">
         {label}:
       </label>

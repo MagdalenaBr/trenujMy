@@ -38,6 +38,19 @@ function FormOption({
         className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
 
       >
+        {value === "trainers" && (
+					<>
+						<option value=''></option>
+						{trainerData?.map(el => (
+							<option
+								key={el.id}
+								value={el.id}
+								label={`${el.name} ${el.phone}`}>
+								{el.name}
+							</option>
+						))}
+					</>
+				)}
         {value === "typeOfActivities" && (
           <>
             <option value=""></option>

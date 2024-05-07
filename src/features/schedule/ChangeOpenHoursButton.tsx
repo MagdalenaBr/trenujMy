@@ -2,7 +2,7 @@ interface PropsType {
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function ChangeOpenHours({ handleClick }: PropsType) {
+export default function ChangeOpenHoursButton({ handleClick }: PropsType) {
   return (
     <button
       onClick={handleClick}
@@ -12,4 +12,3 @@ function ChangeOpenHours({ handleClick }: PropsType) {
     </button>
   );
 }
-export default ChangeOpenHours;

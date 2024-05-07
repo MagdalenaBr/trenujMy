@@ -16,6 +16,7 @@ interface ScheduleDataTypes extends NewScheduleTypes {
   id: string;
   trainers: {
     name: string;
+    category: string
   };
 }
 export async function getSchedule(
@@ -25,7 +26,7 @@ export async function getSchedule(
  
   let query = supabase
     .from("schedule")
-    .select("*, trainers(name)")
+    .select("*, trainers(name, category)")
     .order("date", { ascending: true });
 
   if (scheduleDataType) query = query.gte("date", currentDate);

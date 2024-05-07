@@ -66,7 +66,7 @@ export default function UpdateUserName() {
 
       <div className="flex justify-end gap-10 text-sm">
         <StyledButton type="reset">Anuluj</StyledButton>
-        <StyledButton styleType="add">Dodaj</StyledButton>
+        <StyledButton styleType="add">Zmień</StyledButton>
       </div>
     </form>
   );
