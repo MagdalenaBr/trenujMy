@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useUpdateUserPassword } from "../authentication/useUpdateUserPassword";
 import Input from "../../ui/Input";
-import StyledButton from "../../ui/StyledButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/UpdateUserPaasswordValidation";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 export default function UpdateUserPassword() {
   const { updateUserPassword } = useUpdateUserPassword();
@@ -50,10 +50,7 @@ export default function UpdateUserPassword() {
         register={register}
         errors={errors}
       />
-      <div className="flex justify-end gap-10 text-sm">
-        <StyledButton type="reset">Anuluj</StyledButton>
-        <StyledButton styleType="add">Zmień</StyledButton>
-      </div>
+      <ButtonsContainer/>
     </form>
   );
 }

@@ -12,7 +12,7 @@ import {
 function Sidebar() {
   return (
     <>
-      <nav className="row-[2_/_3]">
+      <nav className="row-[2_/_3] tracking-wider">
         <ul className="flex flex-col gap-5 px-5 pt-5  ">
           <li>
             <NavLink

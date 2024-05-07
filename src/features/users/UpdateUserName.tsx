@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import {useUpdateUserName} from "../authentication/useUpdateUserName";
 import Input from "../../ui/Input";
 import useLoggedUser from "../authentication/useLoggedUser";
-import StyledButton from "../../ui/StyledButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/EditUserNameValidation";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 interface InputType {
   email?: string;
@@ -64,10 +64,7 @@ export default function UpdateUserName() {
         errors={errors}
       />
 
-      <div className="flex justify-end gap-10 text-sm">
-        <StyledButton type="reset">Anuluj</StyledButton>
-        <StyledButton styleType="add">Zmień</StyledButton>
-      </div>
+      <ButtonsContainer/>
     </form>
   );
 }

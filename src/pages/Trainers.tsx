@@ -1,7 +1,7 @@
 import Spinner from "../ui/Spinner";
 import TrainersTable from "../features/trainer/TrainersTable";
 import MainContainer from "../ui/MainContainer";
-import AddTrainer from "../features/trainer/AddTrainer";
+import AddTrainerModal from "../features/trainer/AddTrainerModal";
 import { useTrainers } from "../features/trainer/useTrainers";
 import TableNoContent from "../ui/TableNoContent";
 import SearchNameProvider from "../context/SearchContext";
@@ -14,9 +14,9 @@ function Trainers() {
   if (error) return <TableNoContent />;
 
   return (
-    <MainContainer title="Trenerzy">
+    <MainContainer title="Trenerzy" buttons={<AddTrainerModal />}>
       <SearchNameProvider>
-        <div className="mb-4 flex content-center items-center justify-end gap-4 ">
+        <div className="flex content-center items-center  gap-4 ">
           <SearchInput />
           <TrainersSortPanel
             dataName="category"
@@ -29,7 +29,7 @@ function Trainers() {
         </div>
         <TrainersTable />
       </SearchNameProvider>
-      <AddTrainer />
+      {/* <AddTrainerModal /> */}
     </MainContainer>
   );
 }

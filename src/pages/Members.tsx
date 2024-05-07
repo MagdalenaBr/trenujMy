@@ -12,15 +12,15 @@ function Members() {
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
   return (
-    <MainContainer title="Klienci">
+    <MainContainer title="Klienci" buttons={ <AddMemberModal />}>
       <>
         <SearchNameProvider>
-          <div className="mb-4">
+          <div className="mb-4 ">
             <SearchInput />
           </div>
           <MembersTable />
         </SearchNameProvider>
-        <AddMemberModal />
+        {/* <AddMemberModal /> */}
       </>
     </MainContainer>
   );

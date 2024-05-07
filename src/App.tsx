@@ -16,7 +16,6 @@ import EditSchedulePage from "./features/schedule/EditSchedulePage";
 import DarkModeProvider from "./context/DarkModeContext";
 import Login from "./pages/Login";
 import ProtectedRoute from "./ui/ProtectedRoute";
-import User from "./pages/User";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +40,6 @@ function App() {
               <Route path="/rezerwacje" element={<Bookings />} />
               <Route path="/klienci" element={<Members />} />
               <Route path="/klienci/:memberId" element={<MemberPage />} />
-              {/* <Route path="/uzytkownik" element={<User />} /> */}
               <Route path="/uzytkownicy" element={<Users />} />
               <Route path="/grafik" element={<SchedulePage />} />
               <Route

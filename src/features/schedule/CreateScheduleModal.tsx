@@ -1,8 +1,8 @@
 import Modal from "../../ui/Modal";
 import CreateScheduleForm from "./CreateScheduleForm";
+import FormButton from "../../ui/FormButton";
 
 interface ClassesType {
-	children: React.ReactNode;
 	classes?: {
 		created_at: string;
 		date: string;
@@ -17,13 +17,15 @@ interface ClassesType {
 	};
 }
 
-function CreateScheduleModal({ children, classes }: ClassesType) {
+function CreateScheduleModal({ classes }: ClassesType) {
 	return (
 		<Modal>
 			<Modal.Window formName='schedule'>
 				<CreateScheduleForm classes={classes} />
 			</Modal.Window>
-			<Modal.OpenButton openForm='schedule'>{children}</Modal.OpenButton>
+			<Modal.OpenButton openForm='schedule'>
+			<FormButton>Dodaj zajęcia</FormButton>
+			</Modal.OpenButton>
 		</Modal>
 	);
 }

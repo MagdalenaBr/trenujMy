@@ -31,7 +31,7 @@ function MembersTable() {
             <p>{member.email.toLowerCase()}</p>
             <p>{member.phone}</p>
             <Link to={`/klienci/${member.id}`}>
-              <BsInfoLg className="mx-3  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-cyan-800" />
+              <BsInfoLg className="mx-3  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
             </Link>
           </Table.Row>
         ))

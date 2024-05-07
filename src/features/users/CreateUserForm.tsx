@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
-import StyledButton from "../../ui/StyledButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/UserValidation";
 import useUserSignUp from "../authentication/useUserSignUp";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 export default function CreateUserForm() {
   const {
@@ -69,10 +69,7 @@ export default function CreateUserForm() {
         register={register}
         errors={errors}
       />
-      <div className="flex justify-end gap-10">
-        <StyledButton type="reset">Anuluj</StyledButton>
-        <StyledButton styleType="add">Dodaj</StyledButton>
-      </div>
+      <ButtonsContainer />
     </form>
   );
 }
