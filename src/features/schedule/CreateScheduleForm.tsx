@@ -48,7 +48,6 @@ function CreateScheduleForm({
   });
   const { errors } = formState;
 
-  console.log(classesData);
 
   const onSubmit = (data: DataTypes) => {
     const { date, name, numOfPlaces, trainerId } = data;

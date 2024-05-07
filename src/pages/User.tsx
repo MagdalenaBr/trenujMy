@@ -1,23 +1,23 @@
-import useLoggedUser from "../features/authentication/useLoggedUser";
-import MainContainer from "../ui/MainContainer";
-import UpdateUserName from "../features/users/UpdateUserName";
-import UpdateUserPassword from "../features/users/UpdateUserPassword";
-export default function User() {
-  const { user } = useLoggedUser();
+// import useLoggedUser from "../features/authentication/useLoggedUser";
+// import MainContainer from "../ui/MainContainer";
+// import UpdateUserName from "../features/users/UpdateUserName";
+// import UpdateUserPassword from "../features/users/UpdateUserPassword";
+// export default function User() {
+//   const { user } = useLoggedUser();
 
-  return (
-    <MainContainer title="Aktualizuj konto">
-      <div className="flex flex-col items-start gap-4">
-        <h2 className="rounded-md border-y-2 border-accentColor2 px-3 py-1 text-2xl font-bold text-accentColor2">
-          {user?.user_metadata.userName}
-        </h2>
-        <div className="w-full  py-3 text-lg">
-          <div className="mx-auto flex w-4/5 flex-col gap-10">
-            <UpdateUserName />
-            <UpdateUserPassword />
-          </div>
-        </div>
-      </div>
-    </MainContainer>
-  );
-}
+//   return (
+//     <div>
+//       <div className="flex flex-col items-start gap-4">
+//         <h2 className="rounded-md border-y-2 border-accentColor2 px-3 py-1 text-2xl font-bold text-accentColor2">
+//           {user?.user_metadata.userName}
+//         </h2>
+//         <div className="w-full  py-3 text-lg">
+//           <div className="mx-auto flex w-4/5 flex-col gap-10">
+//             <UpdateUserName />
+//             <UpdateUserPassword />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

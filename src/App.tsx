@@ -41,7 +41,7 @@ function App() {
               <Route path="/rezerwacje" element={<Bookings />} />
               <Route path="/klienci" element={<Members />} />
               <Route path="/klienci/:memberId" element={<MemberPage />} />
-              <Route path="/uzytkownik" element={<User />} />
+              {/* <Route path="/uzytkownik" element={<User />} /> */}
               <Route path="/uzytkownicy" element={<Users />} />
               <Route path="/grafik" element={<SchedulePage />} />
               <Route

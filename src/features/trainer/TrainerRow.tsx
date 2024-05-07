@@ -12,7 +12,6 @@ interface TrainersDataTypes {
 }
 
 function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
-  console.log(trainer.image.split("/").at(-1) !== "undefined");
   return (
     <>
       <div className="col-[1_/_3] flex items-center gap-9 ">

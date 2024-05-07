@@ -38,6 +38,9 @@ export default function CreateUserForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col  divide-y divide-slate-700"
     >
+      <h3 className="pb-4 text-start text-2xl text-accentColor2">
+        Dodaj nowego użytkownika:
+      </h3>
       <Input
         label="Nazwa"
         type="text"
@@ -67,8 +70,8 @@ export default function CreateUserForm() {
         errors={errors}
       />
       <div className="flex justify-end gap-10">
-        <StyledButton styleType="add">Dodaj</StyledButton>
         <StyledButton type="reset">Anuluj</StyledButton>
+        <StyledButton styleType="add">Dodaj</StyledButton>
       </div>
     </form>
   );

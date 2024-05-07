@@ -86,7 +86,6 @@ function AddBookingForm({
           }
       : {},
   });
-  console.log(errors);
 
   const onSubmit = (data: CommonDataTypes) => {
     const { date, status, trainerId } = data;

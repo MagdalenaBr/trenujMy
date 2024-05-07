@@ -12,15 +12,15 @@ import {
 function Sidebar() {
   return (
     <>
-      <nav className=" t-0 sticky  col-[1_/_2] row-[2_/_3] border-slate-700 font-semibold">
-        <ul className="flex flex-col gap-5 pl-10 pt-5 ">
+      <nav className="row-[2_/_3]">
+        <ul className="flex flex-col gap-5 px-5 pt-5  ">
           <li>
             <NavLink
               to="/"
               className={({
                 isActive,
               }) => ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
-             ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`}
+              ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`}
             >
               <HiOutlineHome className="text-3xl font-extrabold text-slate-300" />
               <span>Start</span>

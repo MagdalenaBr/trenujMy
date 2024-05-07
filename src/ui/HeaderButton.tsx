@@ -7,7 +7,7 @@ export default function HeaderButton({
 }) {
   return (
     <button
-      className="rounded-md border-2 border-transparent px-1 py-1 text-2xl hover:border-accentColor2"
+      className="rounded-md border-2 self-start border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
       onClick={onClick}
     >
       {children}

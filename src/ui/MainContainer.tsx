@@ -10,7 +10,7 @@ function MainContainer({ children, title, buttons }: PropsType) {
       className={`${title === "Grafik" ? "w-[90%]" : "w-[80%]"} relative mx-auto flex flex-col`}
     >
       <div className={buttons ? "flex justify-between" : ""}>
-        <h2 className="mb-5 text-start text-[2rem] text-primaryTextColor">
+        <h2 className="mb-5 text-start text-2xl font-semibold tracking-widest text-primaryTextColor uppercase">
           {title}
         </h2>
         {buttons}
