@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormRow from "../../ui/FormRow";
-import StyledButton from "../../ui/StyledButton";
 import { schema } from "../../validation/MembersValidation.tsx";
 import useCreateMember from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput.tsx";
 import Form from "../../ui/Form.tsx";
+import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 
 interface CommonData {
   city: string;
@@ -101,18 +101,7 @@ function AddMemberForm({
         />
       </FormRow>
 
-      <div className="flex justify-end gap-4 pt-4">
-        <StyledButton
-          styleType="close"
-          type="reset"
-          handleClick={() => handleCloseModal?.()}
-        >
-          Anuluj
-        </StyledButton>
-        <StyledButton styleType="add">
-          {isEditingSession ? "Zmień" : "Dodaj"}
-        </StyledButton>
-      </div>
+      <ButtonsContainer isEditingSession={isEditingSession} handleClick={() => handleCloseModal?.()}/>
     </Form>
   );
 }

@@ -64,7 +64,7 @@ export default function UpdateUserName() {
         errors={errors}
       />
 
-      <ButtonsContainer/>
+      <ButtonsContainer isEditingSession={true}/>
     </form>
   );
 }

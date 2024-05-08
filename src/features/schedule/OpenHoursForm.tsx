@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
-import StyledButton from "../../ui/StyledButton";
 import FormInput from "../../ui/FormInput.tsx";
 import { useEditOpenHours } from "./useEditOpenHours.ts";
 import { useOpenHours } from "./useOpenHours.ts";
 import Form from "../../ui/Form.tsx";
+import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -53,16 +53,7 @@ function OpenHoursForm({ handleCloseModal }: PropsType) {
           formType="time"
         />
       </FormRow>
-      <div className="flex justify-end gap-4 pt-4">
-        <StyledButton
-          styleType="close"
-          type="reset"
-          handleClick={() => handleCloseModal?.()}
-        >
-          Anuluj
-        </StyledButton>
-        <StyledButton styleType="add">Zmień</StyledButton>
-      </div>
+      <ButtonsContainer isEditingSession={true} handleClick={() => handleCloseModal?.()}/>
     </Form>
   );
 }

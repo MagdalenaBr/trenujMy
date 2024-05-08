@@ -50,7 +50,7 @@ export default function UpdateUserPassword() {
         register={register}
         errors={errors}
       />
-      <ButtonsContainer/>
+      <ButtonsContainer isEditingSession={true}/>
     </form>
   );
 }

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
-import StyledButton from "../../ui/StyledButton";
 import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput";
 import { useTrainers } from "../trainer/useTrainers";
 import Form from "../../ui/Form";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 interface CommonData {
   city: string;
@@ -74,16 +74,7 @@ function GymMembershipForm({ member, handleCloseModal }: PropsType) {
         </select>
       </FormRow>
 
-      <div className="flex justify-end gap-4 pt-4">
-        <StyledButton
-          styleType="close"
-          type="reset"
-          handleClick={() => handleCloseModal?.()}
-        >
-          Anuluj
-        </StyledButton>
-        <StyledButton styleType="add">Zmień</StyledButton>
-      </div>
+      <ButtonsContainer isEditingSession={true} handleClick={() => handleCloseModal?.()}/>
     </Form>
   );
 }

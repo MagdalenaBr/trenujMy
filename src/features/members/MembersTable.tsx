@@ -30,8 +30,8 @@ function MembersTable() {
             <p className="font-semibold text-lightAccentColor">{member.name}</p>
             <p>{member.email.toLowerCase()}</p>
             <p>{member.phone}</p>
-            <Link to={`/klienci/${member.id}`}>
-              <BsInfoLg className="mx-3  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
+            <Link to={`/klienci/${member.id}`} className="rounded-md border-2 self-start border-transparent px-1 py-1 text-2xl hover:border-activeBkg">
+              <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
             </Link>
           </Table.Row>
         ))

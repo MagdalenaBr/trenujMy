@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
 import FormRow from "../../ui/FormRow";
-import StyledButton from "../../ui/StyledButton";
 import TrainerInputs from "./TrainerInputs";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
@@ -10,6 +9,7 @@ import { useSchedules } from "../schedule/useSchedules";
 import { createContext, useState } from "react";
 import DateInput from "./DateInput";
 import Form from "../../ui/Form";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 interface CommonDataTypes {
   status: string;
@@ -154,18 +154,7 @@ function AddBookingForm({
             )}
           </FormRow>
           
-          <div className="flex justify-end gap-4 pt-4">
-            <StyledButton
-              styleType="close"
-              type="reset"
-              handleClick={() => handleCloseModal?.()}
-            >
-              Anuluj
-            </StyledButton>
-            <StyledButton styleType="add">
-              {isEditingSession ? "Zmień" : "Dodaj"}
-            </StyledButton>
-          </div>
+          <ButtonsContainer isEditingSession={isEditingSession} handleClick={() => handleCloseModal?.()}/>
         </BookingFormContext.Provider>
     </Form>
   );

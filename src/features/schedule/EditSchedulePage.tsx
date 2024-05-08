@@ -36,11 +36,13 @@ export default function EditSchedulePage() {
                 </p>
               </div>
               <p>{el.numOfPlaces}</p>
-              <CreateScheduleModal classes={el}>
-                <Button>
-                  <HiOutlinePencil className="text-2xl" />
-                </Button>
-              </CreateScheduleModal>
+              <div>
+                <CreateScheduleModal classes={el}>
+                  <Button>
+                    <HiOutlinePencil className="text-2xl" />
+                  </Button>
+                </CreateScheduleModal>
+              </div>
             </TableWithSpacing.Row>
           ))}
         </TableWithSpacing>

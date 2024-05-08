@@ -1,13 +1,18 @@
 import FormButton from "./FormButton";
 
-export default function ButtonsContainer() {
+interface Props {
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isEditingSession?: boolean
+}
+
+export default function ButtonsContainer({handleClick, isEditingSession}: Props) {
   return (
     <div className="flex justify-end gap-10 py-4 text-sm">
-      <FormButton px="3" py="2" action="cancel">
+      <FormButton px="3" py="2" type="reset" handleClick={handleClick}>
         Anuluj
       </FormButton>
-      <FormButton px="3" py="2">
-        Zmień
+      <FormButton px="3" py="2" type="submit" >
+        {isEditingSession ? 'Zmień' : 'Dodaj'}
       </FormButton>
     </div>
   );

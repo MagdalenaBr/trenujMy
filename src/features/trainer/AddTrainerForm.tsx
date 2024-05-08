@@ -1,4 +1,4 @@
-import StyledButton from "../../ui/StyledButton";
+
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateTrainer } from "./useCreateTrainer";
@@ -7,6 +7,7 @@ import { schema } from "../../validation/TrainersValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../ui/FormInput";
 import Form from "../../ui/Form";
+import ButtonsContainer from "../../ui/ButtonsContainer";
 
 type TrainerTypes = {
 	image: FileList | string;
@@ -108,18 +109,7 @@ function AddTrainerForm({
 						</p>
 					)}
 				</label>
-
-				<div className='flex gap-4 justify-end pt-4'>
-					<StyledButton
-						styleType='close'
-						type='reset'
-						handleClick={() => handleCloseModal?.()}>
-						Anuluj
-					</StyledButton>
-					<StyledButton styleType='add'>
-						{isEditingSession ? "Zmień" : "Dodaj"}
-					</StyledButton>
-				</div>
+				<ButtonsContainer isEditingSession={isEditingSession} handleClick={() => handleCloseModal?.()}/>
 		</Form>
 
 	);

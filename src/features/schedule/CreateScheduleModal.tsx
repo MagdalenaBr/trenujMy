@@ -1,6 +1,5 @@
 import Modal from "../../ui/Modal";
 import CreateScheduleForm from "./CreateScheduleForm";
-import FormButton from "../../ui/FormButton";
 
 interface ClassesType {
 	classes?: {
@@ -15,16 +14,17 @@ interface ClassesType {
 			category: string;
 		};
 	};
+	children: React.ReactNode
 }
 
-function CreateScheduleModal({ classes }: ClassesType) {
+function CreateScheduleModal({ classes, children }: ClassesType) {
 	return (
 		<Modal>
 			<Modal.Window formName='schedule'>
 				<CreateScheduleForm classes={classes} />
 			</Modal.Window>
 			<Modal.OpenButton openForm='schedule'>
-			<FormButton>Dodaj zajęcia</FormButton>
+			{children}
 			</Modal.OpenButton>
 		</Modal>
 	);

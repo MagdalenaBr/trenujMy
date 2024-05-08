@@ -5,11 +5,11 @@ import MemberOptions from "./MemberOptions";
 import EditGymMembershipModal from "./EditGymMembershipModal";
 import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
-import StyledButton from "../../ui/StyledButton";
 import AddBookingModal from "../bookings/AddBookingModal";
 import MemberClasses from "./MemberClasses";
 import MemberClassesStats from "./MemberClassesStats";
 import { useBooking } from "../bookings/useBooking";
+import FormButton from "../../ui/FormButton";
 
 function MemberPage() {
   const memberIdParams = useParams();
@@ -27,19 +27,19 @@ function MemberPage() {
       <div className="flex justify-around">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2">
-            <h3 className="text-lightAccentColor font-semibold">E-mail:</h3>
+            <h3 className="font-semibold text-lightAccentColor">E-mail:</h3>
             <p>{member.email.toLowerCase()}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="text-lightAccentColor font-semibold">Telefon:</h3>
+            <h3 className="font-semibold text-lightAccentColor">Telefon:</h3>
             <p>{member.phone}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="text-lightAccentColor font-semibold">Płeć:</h3>
+            <h3 className="font-semibold text-lightAccentColor">Płeć:</h3>
             <p>{member.gender}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="text-lightAccentColor font-semibold">Miasto:</h3>
+            <h3 className="font-semibold text-lightAccentColor">Miasto:</h3>
             <p>{member.city}</p>
           </div>
           <div className="flex flex-col gap-2">
@@ -87,10 +87,11 @@ function MemberPage() {
             <p>Brak dostępnych rezerwacji</p>
           </div>
         )}
-
-        <AddBookingModal  memberId={member.id} memberName={member.name}>
-          <StyledButton styleType="add">Zarezerwuj zajęcia</StyledButton>
-        </AddBookingModal>
+        <div className="py-3">
+          <AddBookingModal memberId={member.id} memberName={member.name}>
+            <FormButton>Zarezerwuj zajęcia</FormButton>
+          </AddBookingModal>
+        </div>
       </div>
 
       <MemberOptions member={member} />

@@ -69,7 +69,7 @@ export default function CreateUserForm() {
         register={register}
         errors={errors}
       />
-      <ButtonsContainer />
+      <ButtonsContainer isEditingSession={true} />
     </form>
   );
 }

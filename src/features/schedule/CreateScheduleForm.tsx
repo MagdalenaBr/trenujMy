@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
-import StyledButton from "../../ui/StyledButton";
 import FormInput from "../../ui/FormInput.tsx";
 import { useTrainers } from "../trainer/useTrainers.tsx";
 import FormOption from "../../ui/FormOption.tsx";
@@ -10,6 +9,7 @@ import { schema } from "../../validation/ScheduleValidation.tsx";
 import { useEditSchedules } from "./useEditSchedules.tsx";
 import Spinner from "../../ui/Spinner.tsx";
 import Form from "../../ui/Form.tsx";
+import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -103,16 +103,10 @@ function CreateScheduleForm({
         />
       </FormRow>
 
-      <div className="flex justify-end gap-4 pt-4">
-        <StyledButton
-          styleType="close"
-          type="reset"
-          handleClick={() => handleCloseModal?.()}
-        >
-          Anuluj
-        </StyledButton>
-        <StyledButton styleType="add">Dodaj</StyledButton>
-      </div>
+      <ButtonsContainer  handleClick={() => handleCloseModal?.()}/>
+
+
+  
     </Form>
   );
 }
