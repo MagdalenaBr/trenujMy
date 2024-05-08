@@ -16,6 +16,7 @@ import EditSchedulePage from "./features/schedule/EditSchedulePage";
 import DarkModeProvider from "./context/DarkModeContext";
 import Login from "./pages/Login";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Payments from "./pages/Payments";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ function App() {
                 path="/grafik/zmien-grafik"
                 element={<EditSchedulePage />}
               />
+               <Route path="/platnosci" element={<Payments />} />
             </Route>
             <Route index path="/login" element={<Login />} />
             <Route path="/*" element={<PageNotFound />} />
