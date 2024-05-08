@@ -40,6 +40,7 @@ function TrainersTable() {
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   return (
+    
     <Table columns="grid-cols-5">
       {filteredTrainers ? (
         filteredTrainers.map((trainer) => (
