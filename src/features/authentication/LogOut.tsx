@@ -1,7 +1,7 @@
 import { IoLogOutOutline } from "react-icons/io5";
 import useUserLogOut from "./useUserLogOut";
 import { useNavigate } from "react-router-dom";
-import HeaderButton from "../../ui/HeaderButton";
+import Button from "../../ui/Button";
 
 export default function LogOut() {
   const logout = useUserLogOut();
@@ -11,8 +11,8 @@ export default function LogOut() {
     logout();
   }
   return (
-    <HeaderButton onClick={handleClick}>
+    <Button handleClick={handleClick}>
       <IoLogOutOutline  />
-    </HeaderButton>
+    </Button>
   );
 }

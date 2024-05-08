@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import { DarkModeContext } from "../context/DarkModeContext";
-import HeaderButton from "./HeaderButton";
+import Button from "./Button";
+
 export default function DarkMode() {
   const ModeContext = useContext(DarkModeContext);
   
@@ -16,8 +17,8 @@ export default function DarkMode() {
   }, [ModeContext?.darkMode]);
 
   return (
-    <HeaderButton onClick={ModeContext?.toggleDarkMode as React.MouseEventHandler<HTMLButtonElement>}>
+    <Button handleClick={ModeContext?.toggleDarkMode as React.MouseEventHandler<HTMLButtonElement>}>
       {ModeContext?.darkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
-    </HeaderButton>
+    </Button>
   );
 }
