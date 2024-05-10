@@ -1,6 +1,8 @@
 import { HiPlus } from "react-icons/hi2";
 import Table from "../../ui/Table";
 import { usePayments } from "./usePayments";
+import AddPaymentModal from "./AddPaymentModal";
+import Button from "../../ui/Button";
 
 export default function PaymentsTable() {
   const { payments } = usePayments();
@@ -16,7 +18,7 @@ export default function PaymentsTable() {
         </Table.Header>
         <div className="h-60 overflow-auto bg-slate-800">
           {payments?.map((payment) => (
-            <Table.Row>
+            <Table.Row key={payment.id}>
               <div>
                 <h2 className="font-semibold">{payment.members.name}</h2>
                 <p className="text-start text-sm text-secondaryTextColor">
@@ -45,8 +47,16 @@ export default function PaymentsTable() {
           ))}
         </div>
       </Table>
-
-      <HiPlus className=" self-center  text-3xl text-accentColor2 " />
+      <AddPaymentModal>
+        <Button styles=" mx-2 my-1">
+          <div className="flex gap-2 items-center">
+            <HiPlus className="text-3xl text-accentColor2 " />
+            <span className="text-lg text-accentColor2 uppercase tracking-wide">
+              Dodaj
+            </span>
+          </div>
+        </Button>
+      </AddPaymentModal>
     </div>
   );
 }

@@ -8,7 +8,12 @@ type TrainersType = {
   phone: string;
   image: any;
 }[];
-
+type gymMembershipType = {
+  created_at: string;
+  gymMembershipName: string;
+  id: string;
+  price: string;
+}[];
 
 type PropsType = {
   errors?: FieldErrors;
@@ -16,6 +21,8 @@ type PropsType = {
   register: UseFormRegister<any>;
   value: string;
   trainerData?: TrainersType;
+  gymMembershipData?: gymMembershipType;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 function FormOption({
@@ -24,6 +31,8 @@ function FormOption({
   register,
   value,
   trainerData,
+  gymMembershipData,
+  onChange
 }: PropsType) {
   const typesOfActivities = trainerData?.map((el) => el.category);
   const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
@@ -36,26 +45,43 @@ function FormOption({
         id={inputName}
         {...register(inputName)}
         className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
-
+        onChange={(e) => {
+          if (!onChange) return;
+          onChange(e);
+        }}
       >
         {value === "trainers" && (
-					<>
-						<option value=''></option>
-						{trainerData?.map(el => (
-							<option
-								key={el.id}
-								value={el.id}
-								label={`${el.name} ${el.phone}`}>
-								{el.name}
-							</option>
-						))}
-					</>
-				)}
+          <>
+            <option value=""></option>
+            {trainerData?.map((el) => (
+              <option
+                key={el.id}
+                value={el.id}
+                label={`${el.name} ${el.phone}`}
+              >
+                {el.name}
+              </option>
+            ))}
+          </>
+        )}
         {value === "typeOfActivities" && (
           <>
             <option value=""></option>
             {uniqueTypesOfActivities?.map((category) => (
               <option key={category} value={category} label={category}></option>
+            ))}
+          </>
+        )}
+        {value === "gymMembership" && (
+          <>
+           <option value=""></option>
+            {gymMembershipData?.map((membership) => (
+              <option
+                key={membership.gymMembershipName}
+                value={membership.id}
+                label={membership.gymMembershipName}
+                defaultValue={membership.id}
+              />
             ))}
           </>
         )}

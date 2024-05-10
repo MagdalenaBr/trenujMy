@@ -1,4 +1,4 @@
-import GymMembershipTypesContainer from "../features/payments/GymMembershipTypesContainer";
+import GymMembershipTypesContainer from "../features/gymMembership/GymMembershipTypesContainer";
 import PaymentsTable from "../features/payments/PaymentsTable";
 import MainContainer from "../ui/MainContainer";
 
