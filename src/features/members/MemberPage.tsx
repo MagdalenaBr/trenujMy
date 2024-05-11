@@ -9,7 +9,11 @@ import AddBookingModal from "../bookings/AddBookingModal";
 import MemberClasses from "./MemberClasses";
 import MemberClassesStats from "./MemberClassesStats";
 import { useBooking } from "../bookings/useBooking";
-import FormButton from "../../ui/FormButton";
+import PaymentsTable from "../payments/PaymentsTable";
+import { useUserPayments } from "../payments/useUserPayments";
+import Button from "../../ui/Button";
+import { HiPlus } from "react-icons/hi2";
+import AddPaymentModal from "../payments/AddPaymentModal";
 
 function MemberPage() {
   const memberIdParams = useParams();
@@ -17,6 +21,7 @@ function MemberPage() {
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => member.id === memberId);
   const { booking } = useBooking(member?.id, "memberId");
+  const { payment } = useUserPayments(memberId);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
@@ -84,16 +89,38 @@ function MemberPage() {
           booking && <MemberClasses memberBookings={booking} />
         ) : (
           <div className="h-48 text-sm text-slate-300">
-            <p>Brak dostępnych rezerwacji</p>
+            <p>Brak dostępnych rezerwacji.</p>
           </div>
         )}
-        <div className="py-3">
-          <AddBookingModal memberId={member.id} memberName={member.name}>
-            <FormButton>Zarezerwuj zajęcia</FormButton>
-          </AddBookingModal>
-        </div>
+
+        <AddBookingModal memberId={member.id} memberName={member.name}>
+          <Button styles=" mx-2 my-1">
+            <div className="flex items-center gap-2">
+              <HiPlus className="text-3xl text-accentColor2 " />
+              <span className="text-lg uppercase tracking-wide text-accentColor2">
+                Zarezerwuj zajęcia
+              </span>
+            </div>
+          </Button>
+        </AddBookingModal>
       </div>
 
+      <div>
+        <div className="flex items-center justify-center py-5">
+          <hr className="mx-3 w-[17rem]" />
+          <h3 className="font-semibold uppercase">Zakupione karnety</h3>
+          <hr className="mx-3 w-[17rem]" />
+        </div>
+        {payment?.length !== 0 ? (
+          <PaymentsTable payments={payment} height="h-48" isMemberPage={true} />
+        ) : (
+          <div className="h-48 text-sm text-slate-300">
+            <p>Brak dostępnych karnetów.</p>
+          </div>
+        )}
+
+        <AddPaymentModal activeMemberData={member} isMemberPage={true} />
+      </div>
       <MemberOptions member={member} />
     </Container>
   );

@@ -1,62 +1,76 @@
-import { HiPlus } from "react-icons/hi2";
-import Table from "../../ui/Table";
-import { usePayments } from "./usePayments";
-import AddPaymentModal from "./AddPaymentModal";
-import Button from "../../ui/Button";
+import { HiOutlinePencil } from "react-icons/hi2";
+import TableWithSpacing from "../../ui/TableWithSpacing";
 
-export default function PaymentsTable() {
-  const { payments } = usePayments();
-
+export default function PaymentsTable({
+  payments,
+  height = "h-[19rem]",
+  isMemberPage,
+}: {
+  payments:
+    | {
+        endDay: string;
+        startDay: string;
+        gymMembership: {
+          price: number;
+          gymMembershipName: string;
+        };
+        gymMembershipId: string;
+        id: string;
+        memberId: string;
+        members: {
+          name: string;
+          phone: string;
+          startDay: string;
+        };
+      }[]
+    | undefined;
+  height: string;
+  isMemberPage: boolean;
+}) {
   return (
-    <div className="col-span-4 flex h-[22rem] flex-col gap-3 rounded-2xl bg-slate-900   shadow-2xl shadow-slate-900 ">
-      <Table uniqueStyles="px-2 py-2" columns="grid-cols-[1fr_1fr_2fr_1fr]">
-        <Table.Header>
-          <p>Klient</p>
-          <p className="text-center">Karnet</p>
-          <p className="text-center">Okres</p>
-          <p className="text-center">kwota</p>
-        </Table.Header>
-        <div className="h-60 overflow-auto bg-slate-800">
-          {payments?.map((payment) => (
-            <Table.Row key={payment.id}>
-              <div>
-                <h2 className="font-semibold">{payment.members.name}</h2>
-                <p className="text-start text-sm text-secondaryTextColor">
-                  {payment.members.phone}
-                </p>
-              </div>
-              <p className="text-center">
-                {payment.gymMembership.gymMembershipName}
+    <TableWithSpacing
+      uniqueStyles="px-2"
+      columns={
+        isMemberPage
+          ? "grid-cols-[2fr_2fr_3fr_2fr_1fr]"
+          : "grid-cols-[1fr_1fr_2fr_1fr]"
+      }
+    >
+      <div className={`${height} overflow-auto`}>
+        {payments?.map((payment) => (
+          <TableWithSpacing.Row key={payment.id}>
+            <div>
+              <h2 className="text-start font-semibold">
+                {payment.members.name}
+              </h2>
+              <p className="text-start text-sm text-secondaryTextColor">
+                {payment.members.phone}
               </p>
-              <div className="flex">
-                <span className="w-full text-center">
-                  <p>{payment.startDay.split("T").at(0)}</p>
-                  <p className=" text-center text-sm text-secondaryTextColor">
-                    {payment.startDay.split("T").at(1)}
-                  </p>
-                </span>
-                <span className="w-full text-center">
-                  <p>{payment.endDay.split("T").at(0)}</p>
-                  <p className="text-center text-sm text-secondaryTextColor">
-                    {payment.endDay.split("T").at(1)}
-                  </p>
-                </span>
-              </div>
-              <p className="text-center">{payment.gymMembership.price}</p>
-            </Table.Row>
-          ))}
-        </div>
-      </Table>
-      <AddPaymentModal>
-        <Button styles=" mx-2 my-1">
-          <div className="flex gap-2 items-center">
-            <HiPlus className="text-3xl text-accentColor2 " />
-            <span className="text-lg text-accentColor2 uppercase tracking-wide">
-              Dodaj
-            </span>
-          </div>
-        </Button>
-      </AddPaymentModal>
-    </div>
+            </div>
+            <p className="text-center">
+              {payment.gymMembership.gymMembershipName}
+            </p>
+            <div className="flex">
+              <span className="w-full text-center">
+                <p>{payment.startDay.split("T").at(0)}</p>
+                <p className=" text-center text-sm text-secondaryTextColor">
+                  {payment.startDay.split("T").at(1)}
+                </p>
+              </span>
+              <span> - </span>
+              <span className="w-full text-center">
+                <p>{payment.endDay.split("T").at(0)}</p>
+                <p className="text-center text-sm text-secondaryTextColor">
+                  {payment.endDay.split("T").at(1)}
+                </p>
+              </span>
+            </div>
+            <p className="text-center">{payment.gymMembership.price} zł</p>
+
+            {isMemberPage && <HiOutlinePencil className="text-2xl" />}
+          </TableWithSpacing.Row>
+        ))}
+      </div>
+    </TableWithSpacing>
   );
 }

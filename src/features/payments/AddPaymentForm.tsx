@@ -15,6 +15,15 @@ import MembershipTime from "./MembershipTime";
 
 interface PropsType {
   handleCloseModal?: () => void;
+  isMemberPage?: boolean;
+  activeMemberData?: {
+    id: string;
+    city: string;
+    email: string;
+    gender: string;
+    name: string;
+    phone: string;
+  };
 }
 interface gymMembershipType {
   memberId: string;
@@ -35,8 +44,8 @@ interface ContextTypes {
       }[]
     | undefined;
   errors: FieldErrors;
-  setSelectedDate: React.Dispatch<React.SetStateAction<string>>,
-  setCalculatedDate: React.Dispatch<React.SetStateAction<string>>,
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
+  setCalculatedDate: React.Dispatch<React.SetStateAction<string>>;
   selectedDate: string;
   selectedGymMembership: string;
 }
@@ -45,7 +54,11 @@ export const PurchasedMembershipContext = createContext<
   ContextTypes | undefined
 >(undefined);
 
-export default function AddPaymentForm({ handleCloseModal }: PropsType) {
+export default function AddPaymentForm({
+  handleCloseModal,
+  isMemberPage,
+  activeMemberData,
+}: PropsType) {
   const todayDay = DateTime.now();
   const todayDayString = todayDay.toISO().slice(0, 16);
   const { members } = useMembers();
@@ -64,34 +77,61 @@ export default function AddPaymentForm({ handleCloseModal }: PropsType) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      memberId: "",
-      gymMembershipId: "",
       startDay: todayDayString,
     },
-    values: { endDay: calculatedDate } as gymMembershipType,
+    values: !isMemberPage
+      ? ({ endDay: calculatedDate } as gymMembershipType)
+      : ({
+          memberId: activeMemberData?.id,
+          endDay: calculatedDate,
+        } as gymMembershipType),
     resolver: yupResolver(schema),
   });
 
   function onSubmit(data: gymMembershipType) {
-    const memberName = data.memberId.split(" ").slice(0, 2).join(" ");
-    const memberConvertedToId = members?.filter(
-      (member) => member.name === memberName,
-    )[0].id;
-    const newData = { ...data, memberId: memberConvertedToId };
+    let newData;
+    if (!isMemberPage) {
+      const memberName = data.memberId.split(" ").slice(0, 2).join(" ");
+      const memberConvertedToId = members?.filter(
+        (member) => member.name === memberName,
+      )[0].id;
+      newData = { ...data, memberId: memberConvertedToId };
+    }
+    if (isMemberPage) newData = { ...data, memberId: activeMemberData?.id };
 
-    addPayment(newData);
+    addPayment(
+      newData as {
+        endDay: string;
+        gymMembershipId: string;
+        memberId: string;
+        startDay: string;
+      },
+    );
   }
 
   function handleMembershipChange(e: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedGymMembership(e.target.value);
   }
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <PurchasedMembershipContext.Provider
-        value={{ register, members, errors, setSelectedDate, selectedDate, selectedGymMembership, setCalculatedDate }}
+        value={{
+          register,
+          members,
+          errors,
+          setSelectedDate,
+          selectedDate,
+          selectedGymMembership,
+          setCalculatedDate,
+        }}
       >
-        <GymMembershipMember />
+        {!isMemberPage ? (
+          <GymMembershipMember />
+        ) : (
+          <p className="text-md align-self-center   border-slate-400 py-1 text-center font-bold uppercase">
+            {activeMemberData?.name}
+          </p>
+        )}
         <FormRow name="gymMembershipId" label="Rodzaj karnetu">
           <FormOption
             errors={errors}
@@ -102,7 +142,7 @@ export default function AddPaymentForm({ handleCloseModal }: PropsType) {
             onChange={handleMembershipChange}
           />
         </FormRow>
-        <MembershipTime/>
+        <MembershipTime />
       </PurchasedMembershipContext.Provider>
 
       <ButtonsContainer handleClick={() => handleCloseModal?.()} />
