@@ -43,7 +43,9 @@ export async function addOrEditPayments(newData: {
   return data;
 }
 
-export async function getUserPayments(memberId: string): Promise<PaymentsType[]> {
+export async function getUserPayments(
+  memberId: string,
+): Promise<PaymentsType[]> {
   const { data: payments, error } = await supabase
     .from("payments")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
@@ -52,4 +54,16 @@ export async function getUserPayments(memberId: string): Promise<PaymentsType[]>
 
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
   return payments;
+}
+
+export async function cancelPayment(value: boolean, id: string) {
+  const { data, error } = await supabase
+    .from("payments")
+    .update({ isValid: value })
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error("Karnet nie został anulowany.");
+
+  return data;
 }

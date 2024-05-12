@@ -94,7 +94,7 @@ function MemberPage() {
         )}
 
         <AddBookingModal memberId={member.id} memberName={member.name}>
-          <Button styles=" mx-2 my-1">
+          <Button styles="mx-2 my-1">
             <div className="flex items-center gap-2">
               <HiPlus className="text-3xl text-accentColor2 " />
               <span className="text-lg uppercase tracking-wide text-accentColor2">

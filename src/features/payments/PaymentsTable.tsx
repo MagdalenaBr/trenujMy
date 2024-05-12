@@ -1,5 +1,5 @@
-import { HiOutlinePencil } from "react-icons/hi2";
 import TableWithSpacing from "../../ui/TableWithSpacing";
+import { useCancelPayment } from "./useCancelPayment";
 
 export default function PaymentsTable({
   payments,
@@ -22,11 +22,17 @@ export default function PaymentsTable({
           phone: string;
           startDay: string;
         };
+        isValid: boolean
       }[]
     | undefined;
   height: string;
   isMemberPage: boolean;
 }) {
+  const { cancelPayment } = useCancelPayment();
+  function handleClick(id: string, value: boolean) {
+    cancelPayment({ id, value });
+  }
+
   return (
     <TableWithSpacing
       uniqueStyles="px-2"
@@ -40,7 +46,9 @@ export default function PaymentsTable({
         {payments?.map((payment) => (
           <TableWithSpacing.Row key={payment.id}>
             <div>
-              <h2 className="text-start font-semibold">
+              <h2
+                className={`text-start font-semibold ${!payment.isValid && "line-through"}`}
+              >
                 {payment.members.name}
               </h2>
               <p className="text-start text-sm text-secondaryTextColor">
@@ -65,9 +73,23 @@ export default function PaymentsTable({
                 </p>
               </span>
             </div>
-            <p className="text-center">{payment.gymMembership.price} zł</p>
+            <p className={`text-center ${!payment.isValid && "line-through"}`}>
+              {payment.gymMembership.price} zł
+            </p>
 
-            {isMemberPage && <HiOutlinePencil className="text-2xl" />}
+            {isMemberPage &&
+              (payment.isValid ? (
+                <button
+                  className="rounded-lg border border-red-300 text-[11px] font-semibold uppercase"
+                  onClick={() => handleClick(payment.id, false)}
+                >
+                  Anuluj
+                </button>
+              ) : (
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
+                  Anulowano
+                </p>
+              ))}
           </TableWithSpacing.Row>
         ))}
       </div>
