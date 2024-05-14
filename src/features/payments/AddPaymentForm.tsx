@@ -11,7 +11,7 @@ import { useAddPaymets } from "./useAddPayments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/PaymentValidation";
 import GymMembershipMember from "./GymMembershipMember";
-import MembershipTime from "./MembershipTime";
+import GymMembershipTime from "./GymMembershipTime";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -107,6 +107,7 @@ export default function AddPaymentForm({
         startDay: string;
       },
     );
+    handleCloseModal?.();
   }
 
   function handleMembershipChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -142,7 +143,7 @@ export default function AddPaymentForm({
             onChange={handleMembershipChange}
           />
         </FormRow>
-        <MembershipTime />
+        <GymMembershipTime />
       </PurchasedMembershipContext.Provider>
 
       <ButtonsContainer handleClick={() => handleCloseModal?.()} />

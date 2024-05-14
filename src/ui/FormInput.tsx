@@ -6,7 +6,8 @@ type PropsType = {
   register: UseFormRegister<any>;
   inputName: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  readOnly?: boolean
+  readOnly?: boolean;
+  value?: string;
 };
 
 function FormInput({
@@ -15,13 +16,16 @@ function FormInput({
   register,
   formType,
   onChange,
-  readOnly
+  readOnly,
+  value,
 }: PropsType) {
+
   return (
     <>
       <input
         type={formType}
         id={inputName}
+        defaultValue={value}
         readOnly={readOnly}
         {...register(inputName)}
         className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"

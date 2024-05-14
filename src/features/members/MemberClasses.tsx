@@ -38,11 +38,9 @@ function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
               memberId={el.memberId}
               memberName={el.members?.name}
             >
-              <div>
-                <Button>
-                  <HiOutlinePencil className="text-2xl text-accentColor2" />
-                </Button>
-              </div>
+              <Button>
+                <HiOutlinePencil className="text-2xl text-accentColor2" />
+              </Button>
             </AddBookingModal>
           </TableWithSpacing.Row>
         ))}

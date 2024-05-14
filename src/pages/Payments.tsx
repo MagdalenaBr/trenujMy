@@ -4,8 +4,6 @@ import { usePayments } from "../features/payments/usePayments";
 import MainContainer from "../ui/MainContainer";
 import PaymentHeading from "../ui/PaymentHeading";
 import AddPaymentModal from "../features/payments/AddPaymentModal";
-import Button from "../ui/Button";
-import { HiPlus } from "react-icons/hi2";
 
 export default function Payments() {
   const { payments } = usePayments();
