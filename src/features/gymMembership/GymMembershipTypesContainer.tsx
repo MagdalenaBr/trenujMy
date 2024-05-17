@@ -7,7 +7,7 @@ import EditMembershipModal from "./EditMembershipModal";
 export default function GymMembershipTypesContainer() {
   const { gymMembership } = useGymMembership();
   return (
-    <div className="col-span-2  flex h-72 flex-col gap-3 rounded-lg border-2 border-slate-900 bg-slate-900 p-4 shadow-2xl shadow-slate-900 ">
+    <div className="col-span-2  flex h-[18.4rem] flex-col gap-3 rounded-lg border-2 border-slate-900 bg-slate-900 pt-4 px-4 shadow-2xl shadow-slate-900 ">
       <PaymentHeading>Dostępne karnety</PaymentHeading>
       <div className="h-60 overflow-auto">
         <TableWithSpacing columns="grid-cols-2">
@@ -17,8 +17,10 @@ export default function GymMembershipTypesContainer() {
               <p>{membership.price}</p>
             </TableWithSpacing.Row>
           ))}
-      <EditMembershipModal/>
-         
+          <div className="text-start">
+
+          <EditMembershipModal />
+          </div>
         </TableWithSpacing>
       </div>
     </div>

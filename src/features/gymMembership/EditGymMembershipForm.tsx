@@ -5,6 +5,8 @@ import FormRow from "../../ui/FormRow";
 import { useGymMembership } from "./useGymMembership";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 import { useChangeMembershipPrice } from "./useChangeMembershipPrice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../validation/GymMembershipValidation";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -19,13 +21,8 @@ export default function EditGymMembershipForm({ handleCloseModal }: PropsType) {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
-  function onSubmit(data :{
-    1: number;
-    2: number;
-    3: number;
-    4: number;
-  }) {
+  } = useForm({ resolver: yupResolver(schema) });
+  function onSubmit(data: { 1: number; 2: number; 3: number; 4: number }) {
     changePrice(data);
     handleCloseModal?.();
   }
