@@ -12,6 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/PaymentValidation";
 import GymMembershipMember from "./GymMembershipMember";
 import GymMembershipTime from "./GymMembershipTime";
+import FormInput from "../../ui/FormInput";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -30,6 +31,7 @@ interface gymMembershipType {
   gymMembershipId: string;
   startDay: string;
   endDay: string;
+  price: number;
 }
 
 interface ContextTypes {
@@ -142,6 +144,13 @@ export default function AddPaymentForm({
             gymMembershipData={gymMembership}
             onChange={handleMembershipChange}
           />
+        </FormRow>
+        <FormRow name="price" label="Cena">
+          <FormInput
+            register={register}
+            formType="number"
+            inputName="price"
+          ></FormInput>
         </FormRow>
         <GymMembershipTime />
       </PurchasedMembershipContext.Provider>

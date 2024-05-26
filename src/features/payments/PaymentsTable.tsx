@@ -1,32 +1,33 @@
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import { useCancelPayment } from "./useCancelPayment";
 
+interface PaymentsType {
+  endDay: string;
+  startDay: string;
+  price: number;
+  isValid: boolean;
+  gymMembership: {
+    price: number;
+    gymMembershipName: string;
+  };
+  gymMembershipId: string;
+  id: string;
+  memberId: string;
+  members: {
+    name: string;
+    phone: string;
+    startDay: string;
+  };
+}
+
 export default function PaymentsTable({
   payments,
   height = "h-[19rem]",
   isMemberPage,
 }: {
-  payments:
-    | {
-        endDay: string;
-        startDay: string;
-        gymMembership: {
-          price: number;
-          gymMembershipName: string;
-        };
-        gymMembershipId: string;
-        id: string;
-        memberId: string;
-        members: {
-          name: string;
-          phone: string;
-          startDay: string;
-        };
-        isValid: boolean
-      }[]
-    | undefined;
-  height: string;
-  isMemberPage: boolean;
+  payments: PaymentsType[] | undefined;
+  height?: string;
+  isMemberPage?: boolean;
 }) {
   const { cancelPayment } = useCancelPayment();
   function handleClick(id: string, value: boolean) {
@@ -74,7 +75,7 @@ export default function PaymentsTable({
               </span>
             </div>
             <p className={`text-center ${!payment.isValid && "line-through"}`}>
-              {payment.gymMembership.price} zł
+              {payment.price} zł
             </p>
 
             {isMemberPage &&

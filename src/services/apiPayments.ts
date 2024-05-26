@@ -3,6 +3,8 @@ import supabase from "./supabase";
 interface PaymentsType {
   endDay: string;
   startDay: string;
+  price:number;
+  isValid: boolean;
   gymMembership: {
     price: number;
     gymMembershipName: string;
@@ -18,7 +20,7 @@ interface PaymentsType {
 }
 [];
 
-export async function getPayments() {
+export async function getPayments(): Promise<PaymentsType[]> {
   const { data: payments, error } = await supabase
     .from("payments")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
