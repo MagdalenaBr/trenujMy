@@ -1,5 +1,5 @@
 import Modal from "../../ui/Modal";
-import EditGymMembershipForm from "./EditGymMembershipForm";
+import EditGymMembershipTypesForm from "./EditGymMembershipTypesForm";
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 
@@ -7,7 +7,7 @@ export default function EditMembershipModal() {
   return (
     <Modal>
       <Modal.Window formName="gymMembership">
-        <EditGymMembershipForm />
+        <EditGymMembershipTypesForm />
       </Modal.Window>
       <Modal.OpenButton openForm="gymMembership">
         

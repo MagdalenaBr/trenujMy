@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPayments } from "../../services/apiPayments";
+import { getPurchasedMemberschips } from "../../services/apiPurchaseMembership";
 
-export function usePayments() {
+export function usePurchasedMembership() {
   const { data: payments, isLoading } = useQuery({
     queryKey: ["payments"],
-    queryFn: getPayments,
+    queryFn: getPurchasedMemberschips,
   });
 
   return { payments, isLoading };

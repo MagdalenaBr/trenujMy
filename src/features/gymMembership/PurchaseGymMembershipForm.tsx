@@ -2,12 +2,12 @@ import { FieldErrors, UseFormRegister, useForm } from "react-hook-form";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 import Form from "../../ui/Form";
 import { useMembers } from "../members/useMembers";
-import { useGymMembership } from "../gymMembership/useGymMembership";
+import { useGymMembership } from "./useGymMembership";
 import FormOption from "../../ui/FormOption";
 import FormRow from "../../ui/FormRow";
 import { DateTime } from "luxon";
 import { createContext, useState } from "react";
-import { useAddPaymets } from "./useAddPayments";
+import { usePurchaseMembership } from "./usePurchaseMembership";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/PaymentValidation";
 import GymMembershipMember from "./GymMembershipMember";
@@ -56,7 +56,7 @@ export const PurchasedMembershipContext = createContext<
   ContextTypes | undefined
 >(undefined);
 
-export default function AddPaymentForm({
+export default function PurchaseGymMembershipForm({
   handleCloseModal,
   isMemberPage,
   activeMemberData,
@@ -65,7 +65,7 @@ export default function AddPaymentForm({
   const todayDayString = todayDay.toISO().slice(0, 16);
   const { members } = useMembers();
   const { gymMembership } = useGymMembership();
-  const { addPayment } = useAddPaymets();
+  const { addPayment } = usePurchaseMembership();
 
   const [calculatedDate, setCalculatedDate] = useState(
     todayDay.plus({ day: 1 }).toISO().slice(0, 16),

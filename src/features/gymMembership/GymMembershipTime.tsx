@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
-import { PurchasedMembershipContext } from "./AddPaymentForm";
+import { PurchasedMembershipContext } from "../gymMembership/PurchaseGymMembershipForm";
 import { UseFormRegister } from "react-hook-form";
 import { DateTime } from "luxon";
 

@@ -1,9 +1,9 @@
 import Modal from "../../ui/Modal";
-import AddPaymentForm from "./AddPaymentForm";
+import PurchaseGymMembershipForm from "./PurchaseGymMembershipForm";
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 
-export default function AddPaymentModal({
+export default function PurchaseGymMembershipModal({
   isMemberPage,
   activeMemberData,
 }: {
@@ -20,7 +20,7 @@ export default function AddPaymentModal({
   return (
     <Modal>
       <Modal.Window formName="payment">
-        <AddPaymentForm
+        <PurchaseGymMembershipForm
           isMemberPage={isMemberPage}
           activeMemberData={activeMemberData}
         />

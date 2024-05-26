@@ -1,5 +1,5 @@
 import TableWithSpacing from "../../ui/TableWithSpacing";
-import { useCancelPayment } from "./useCancelPayment";
+import { useCancelPurchase } from "./useCancelPurchase";
 
 interface PaymentsType {
   endDay: string;
@@ -20,7 +20,7 @@ interface PaymentsType {
   };
 }
 
-export default function PaymentsTable({
+export default function PurchasedGymMembershipTable({
   payments,
   height = "h-[19rem]",
   isMemberPage,
@@ -29,7 +29,7 @@ export default function PaymentsTable({
   height?: string;
   isMemberPage?: boolean;
 }) {
-  const { cancelPayment } = useCancelPayment();
+  const { cancelPayment } = useCancelPurchase();
   function handleClick(id: string, value: boolean) {
     cancelPayment({ id, value });
   }

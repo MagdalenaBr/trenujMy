@@ -12,7 +12,9 @@ interface PropsType {
   handleCloseModal?: () => void;
 }
 
-export default function EditGymMembershipForm({ handleCloseModal }: PropsType) {
+export default function EditGymMembershipTypesForm({
+  handleCloseModal,
+}: PropsType) {
   const { gymMembership } = useGymMembership();
   const { changePrice } = useChangeMembershipPrice();
   console.log(gymMembership);

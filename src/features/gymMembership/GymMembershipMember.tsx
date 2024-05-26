@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import FormRow from "../../ui/FormRow";
-import { PurchasedMembershipContext } from "./AddPaymentForm";
+import { PurchasedMembershipContext } from "./PurchaseGymMembershipForm";
 
 export default function GymMembershipMember() {
   const context = useContext(PurchasedMembershipContext);

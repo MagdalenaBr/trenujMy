@@ -9,11 +9,11 @@ import AddBookingModal from "../bookings/AddBookingModal";
 import MemberClasses from "./MemberClasses";
 import MemberClassesStats from "./MemberClassesStats";
 import { useBooking } from "../bookings/useBooking";
-import PaymentsTable from "../payments/PaymentsTable";
-import { useUserPayments } from "../payments/useUserPayments";
+import PurchasedGymMembershipTable from "../gymMembership/PurchasedGymMembershipTable";
+import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
-import AddPaymentModal from "../payments/AddPaymentModal";
+import PurchaseGymMembershipModal from "../gymMembership/PurchaseGymMembershipModal";
 
 function MemberPage() {
   const memberIdParams = useParams();
@@ -21,7 +21,7 @@ function MemberPage() {
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => member.id === memberId);
   const { booking } = useBooking(member?.id, "memberId");
-  const { payment } = useUserPayments(memberId);
+  const { payment } = useUserPurchasedMemberships(memberId);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
@@ -112,14 +112,21 @@ function MemberPage() {
           <hr className="mx-3 w-[17rem]" />
         </div>
         {payment?.length !== 0 ? (
-          <PaymentsTable payments={payment} height="h-48" isMemberPage={true} />
+          <PurchasedGymMembershipTable
+            payments={payment}
+            height="h-48"
+            isMemberPage={true}
+          />
         ) : (
           <div className="h-48 text-sm text-slate-300">
             <p>Brak dostępnych karnetów.</p>
           </div>
         )}
 
-        <AddPaymentModal activeMemberData={member} isMemberPage={true} />
+        <PurchaseGymMembershipModal
+          activeMemberData={member}
+          isMemberPage={true}
+        />
       </div>
       <MemberOptions member={member} />
     </Container>

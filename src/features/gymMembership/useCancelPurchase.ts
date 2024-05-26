@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { cancelPayment as cancelFn } from "../../services/apiPayments";
+import { cancelPurchase as cancelFn } from "../../services/apiPurchaseMembership";
 import toast from "react-hot-toast";
 
-export function useCancelPayment() {
+export function useCancelPurchase() {
   const queryClient = useQueryClient();
   const { mutate: cancelPayment } = useMutation({
     mutationFn: ({ value, id }: { value: boolean; id: string }) =>

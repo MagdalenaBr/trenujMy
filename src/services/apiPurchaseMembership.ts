@@ -20,7 +20,7 @@ interface PaymentsType {
 }
 [];
 
-export async function getPayments(): Promise<PaymentsType[]> {
+export async function getPurchasedMemberschips(): Promise<PaymentsType[]> {
   const { data: payments, error } = await supabase
     .from("payments")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
@@ -29,7 +29,7 @@ export async function getPayments(): Promise<PaymentsType[]> {
   return payments;
 }
 
-export async function addOrEditPayments(newData: {
+export async function addOrEditMembershipPurchase(newData: {
   endDay: string;
   gymMembershipId: string;
   memberId: string;
@@ -45,7 +45,7 @@ export async function addOrEditPayments(newData: {
   return data;
 }
 
-export async function getUserPayments(
+export async function getUserPurchasedMemberships(
   memberId: string,
 ): Promise<PaymentsType[]> {
   const { data: payments, error } = await supabase
@@ -58,7 +58,7 @@ export async function getUserPayments(
   return payments;
 }
 
-export async function cancelPayment(value: boolean, id: string) {
+export async function cancelPurchase(value: boolean, id: string) {
   const { data, error } = await supabase
     .from("payments")
     .update({ isValid: value })
