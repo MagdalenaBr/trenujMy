@@ -8,7 +8,7 @@ export function usePurchaseMembership() {
   const { mutate: addPayment } = useMutation({
     mutationFn: addOrEditMembershipPurchase,
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ["payments"] });
+      queryClient.invalidateQueries({ queryKey: ["purchasedMemberships"] });
       toast.success("Karnet został dodany.");
     },
     onError(error) {

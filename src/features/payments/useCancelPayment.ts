@@ -1,21 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { cancelPurchase as cancelFn } from "../../services/apiPurchaseMembership";
+import { cancelPayment as cancelFn } from "../../services/apiPayments";
 import toast from "react-hot-toast";
 
-export function useCancelPurchase() {
+export function useCancelPayment() {
   const queryClient = useQueryClient();
-  const { mutate: cancelPurchase } = useMutation({
+  const { mutate: cancelPayment } = useMutation({
     mutationFn: ({ value, id }: { value: boolean; id: string }) =>
       cancelFn(value, id),
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ["purchasedMemberships"],
+        queryKey: ["payments"],
       });
-      toast.success("Karnet został anulownay.");
+      toast.success("Płatność została anulowana.");
     },
     onError(error) {
       toast.error(error.message);
     },
   });
-  return { cancelPurchase };
+  return { cancelPayment };
 }

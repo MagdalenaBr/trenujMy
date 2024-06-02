@@ -21,12 +21,12 @@ interface PaymentsType {
 [];
 
 export async function getPurchasedMemberschips(): Promise<PaymentsType[]> {
-  const { data: payments, error } = await supabase
-    .from("payments")
+  const { data: purchasedMemberships, error } = await supabase
+    .from("purchasedMemberships")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
     .order("startDay", { ascending: false });
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
-  return payments;
+  return purchasedMemberships;
 }
 
 export async function addOrEditMembershipPurchase(newData: {
@@ -37,7 +37,7 @@ export async function addOrEditMembershipPurchase(newData: {
 }) {
   console.log(newData);
   const { data, error } = await supabase
-    .from("payments")
+    .from("purchasedMemberships")
     .insert([newData])
     .select();
 
@@ -48,19 +48,19 @@ export async function addOrEditMembershipPurchase(newData: {
 export async function getUserPurchasedMemberships(
   memberId: string,
 ): Promise<PaymentsType[]> {
-  const { data: payments, error } = await supabase
-    .from("payments")
+  const { data: purchasedMemberships, error } = await supabase
+    .from("purchasedMemberships")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
     .eq("memberId", memberId)
     .order("startDay", { ascending: false });
 
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
-  return payments;
+  return purchasedMemberships;
 }
 
 export async function cancelPurchase(value: boolean, id: string) {
   const { data, error } = await supabase
-    .from("payments")
+    .from("purchasedMemberships")
     .update({ isValid: value })
     .eq("id", id)
     .select();

@@ -21,7 +21,7 @@ function Header({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns} mb-4 rounded-md border-2 bg-slate-800 py-1 font-bold`}
+      className={`grid ${ColumnsContext?.columns} mb-4 rounded-md border-2 bg-slate-800 py-1 font-bold uppercase text-sm tracking-widest`}
     >
       {children}
     </div>

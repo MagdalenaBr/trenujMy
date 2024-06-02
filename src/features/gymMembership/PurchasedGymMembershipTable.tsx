@@ -21,17 +21,17 @@ interface PaymentsType {
 }
 
 export default function PurchasedGymMembershipTable({
-  payments,
-  height = "h-[19rem]",
+  purchasedMemberships,
+  height = "h-60",
   isMemberPage,
 }: {
-  payments: PaymentsType[] | undefined;
+  purchasedMemberships: PaymentsType[] | undefined;
   height?: string;
   isMemberPage?: boolean;
 }) {
-  const { cancelPayment } = useCancelPurchase();
+  const { cancelPurchase } = useCancelPurchase();
   function handleClick(id: string, value: boolean) {
-    cancelPayment({ id, value });
+    cancelPurchase({ id, value });
   }
 
   return (
@@ -44,45 +44,47 @@ export default function PurchasedGymMembershipTable({
       }
     >
       <div className={`${height} overflow-auto`}>
-        {payments?.map((payment) => (
-          <TableWithSpacing.Row key={payment.id}>
+        {purchasedMemberships?.map((membership) => (
+          <TableWithSpacing.Row key={membership.id}>
             <div>
               <h2
-                className={`text-start font-semibold ${!payment.isValid && "line-through"}`}
+                className={`text-start font-semibold ${!membership.isValid && "line-through"}`}
               >
-                {payment.members.name}
+                {membership.members.name}
               </h2>
               <p className="text-start text-sm text-secondaryTextColor">
-                {payment.members.phone}
+                {membership.members.phone}
               </p>
             </div>
             <p className="text-center">
-              {payment.gymMembership.gymMembershipName}
+              {membership.gymMembership.gymMembershipName}
             </p>
             <div className="flex">
               <span className="w-full text-center">
-                <p>{payment.startDay.split("T").at(0)}</p>
+                <p>{membership.startDay.split("T").at(0)}</p>
                 <p className=" text-center text-sm text-secondaryTextColor">
-                  {payment.startDay.split("T").at(1)}
+                  {membership.startDay.split("T").at(1)}
                 </p>
               </span>
               <span> - </span>
               <span className="w-full text-center">
-                <p>{payment.endDay.split("T").at(0)}</p>
+                <p>{membership.endDay.split("T").at(0)}</p>
                 <p className="text-center text-sm text-secondaryTextColor">
-                  {payment.endDay.split("T").at(1)}
+                  {membership.endDay.split("T").at(1)}
                 </p>
               </span>
             </div>
-            <p className={`text-center ${!payment.isValid && "line-through"}`}>
-              {payment.price} zł
+            <p
+              className={`text-center ${!membership.isValid && "line-through"}`}
+            >
+              {membership.price} zł
             </p>
 
             {isMemberPage &&
-              (payment.isValid ? (
+              (membership.isValid ? (
                 <button
                   className="rounded-lg border border-red-300 text-[11px] font-semibold uppercase"
-                  onClick={() => handleClick(payment.id, false)}
+                  onClick={() => handleClick(membership.id, false)}
                 >
                   Anuluj
                 </button>

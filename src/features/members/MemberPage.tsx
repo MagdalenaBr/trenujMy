@@ -14,6 +14,8 @@ import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMe
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 import PurchaseGymMembershipModal from "../gymMembership/PurchaseGymMembershipModal";
+import PaymentTable from "../payments/PaymentTabe";
+import { useUserPayments } from "../payments/useUserPayments";
 
 function MemberPage() {
   const memberIdParams = useParams();
@@ -21,7 +23,9 @@ function MemberPage() {
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => member.id === memberId);
   const { booking } = useBooking(member?.id, "memberId");
-  const { payment } = useUserPurchasedMemberships(memberId);
+  const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
+  const { userPayments } = useUserPayments(memberId);
+  console.log(userPayments);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
@@ -111,9 +115,9 @@ function MemberPage() {
           <h3 className="font-semibold uppercase">Zakupione karnety</h3>
           <hr className="mx-3 w-[17rem]" />
         </div>
-        {payment?.length !== 0 ? (
+        {purchasedMemberships?.length !== 0 ? (
           <PurchasedGymMembershipTable
-            payments={payment}
+            purchasedMemberships={purchasedMemberships}
             height="h-48"
             isMemberPage={true}
           />
@@ -128,6 +132,16 @@ function MemberPage() {
           isMemberPage={true}
         />
       </div>
+
+      <div>
+        <div className="flex items-center justify-center py-5">
+          <hr className="mx-3 w-[17rem]" />
+          <h3 className="font-semibold uppercase">Płatności</h3>
+          <hr className="mx-3 w-[17rem]" />
+        </div>
+        <PaymentTable payments={userPayments}  isMemberPage={true} />
+      </div>
+
       <MemberOptions member={member} />
     </Container>
   );
