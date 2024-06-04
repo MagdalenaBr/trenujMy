@@ -1,65 +1,74 @@
 import { useForm } from "react-hook-form";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
-import { useMembers } from "../members/useMembers";
+import FormInput from "../../ui/FormInput";
 import ButtonsContainer from "../../ui/ButtonsContainer";
+import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";
+import { useAddPayment } from "./useAddPayment";
+import { useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../validation/PaymentValidation";
 
-export default function PaymentForm(handleCloseModal) {
+interface PropsType {
+  handleCloseModal?: () => void;
+}
 
-    const {members}=useMembers()
+export default function PaymentForm({ handleCloseModal }: PropsType) {
+  const memberIdParams = useParams();
+  const memberId = memberIdParams.memberId as string;
+  console.log(memberId);
+  const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
+
+  const { addUserPayment } = useAddPayment();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit(data: { purchasedMembershipId: string; amount: number }) {
+    console.log(typeof data.amount);
+    const newData = { ...data, memberId };
+    addUserPayment({ ...newData });
     handleCloseModal?.();
   }
-
+console.log(errors);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow name="member" label="Klient">
+      <FormRow name="purchasedMembershipId" label="Zakupiony karnet">
         <input
-          list="member"
-          {...register("memberId")}
+          list="purchasedMembershipId"
+          {...register("purchasedMembershipId")}
           className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
         />
-        <datalist id="member">
-          {members?.map((member) => (
+        <datalist id="purchasedMembershipId">
+          {purchasedMemberships?.map((purchasedMembership) => (
             <option
-              key={member.phone}
-              value={`${member.name} ${member.phone}`}
+              key={purchasedMembership.id}
+              value={purchasedMembership.id}
+              label={`${purchasedMembership.gymMembership.gymMembershipName}, data zakupu: ${purchasedMembership.created_at.slice(0, 10)} `}
             />
           ))}
         </datalist>
 
-        {errors &&errors.memberId?.message && (
+        {errors && errors.purchasedMembershipId?.message && (
           <p className="col-start-4 col-end-7">
-            {errors.memberId.message?.toString()}
+            {errors.purchasedMembershipId.message?.toString()}
           </p>
         )}
       </FormRow>
 
-      {/* <FormRow name="gymMembershipId" label="Rodzaj karnetu">
-        <FormOption
-          errors={errors}
-          inputName="gymMembershipId"
-          register={register}
-          value="gymMembership"
-          gymMembershipData={gymMembership}
-          onChange={handleMembershipChange}
-        />
-      </FormRow>
-      <FormRow name="price" label="Cena">
+      <FormRow name="amount" label="Kwota">
         <FormInput
+        errors={errors}
           register={register}
           formType="number"
-          inputName="price"
+          inputName="amount"
         ></FormInput>
-      </FormRow> */}
-      
+      </FormRow>
 
       <ButtonsContainer handleClick={() => handleCloseModal?.()} />
     </Form>

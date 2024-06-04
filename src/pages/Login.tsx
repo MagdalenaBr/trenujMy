@@ -16,7 +16,7 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-5 bg-slate-900 text-slate-200">
-      <Logo textSize="text-5xl" />
+      <Logo />
       <div className="mt-4  w-96 rounded-md bg-slate-700 pt-5 ">
         <h2 className="text-center text-2xl text-accentColor2">
           Zaloguj się do konta

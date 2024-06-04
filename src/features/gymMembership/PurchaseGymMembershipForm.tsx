@@ -9,7 +9,7 @@ import { DateTime } from "luxon";
 import { createContext, useState } from "react";
 import { usePurchaseMembership } from "./usePurchaseMembership";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validation/PaymentValidation";
+import { schema } from "../../validation/PurchaseGymMembershipValidation";
 import GymMembershipMember from "./GymMembershipMember";
 import GymMembershipTime from "./GymMembershipTime";
 import FormInput from "../../ui/FormInput";

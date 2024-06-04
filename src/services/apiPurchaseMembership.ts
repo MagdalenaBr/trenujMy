@@ -1,6 +1,7 @@
 import supabase from "./supabase";
 
 interface PaymentsType {
+  created_at: string
   endDay: string;
   startDay: string;
   price:number;
@@ -35,7 +36,6 @@ export async function addOrEditMembershipPurchase(newData: {
   memberId: string;
   startDay: string;
 }) {
-  console.log(newData);
   const { data, error } = await supabase
     .from("purchasedMemberships")
     .insert([newData])
@@ -57,6 +57,7 @@ export async function getUserPurchasedMemberships(
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
   return purchasedMemberships;
 }
+
 
 export async function cancelPurchase(value: boolean, id: string) {
   const { data, error } = await supabase

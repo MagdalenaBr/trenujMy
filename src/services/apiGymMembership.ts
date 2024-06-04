@@ -18,7 +18,6 @@ export async function changeMembershipPrice(values: {
   3: number;
   4: number;
 }) {
-  console.log(values);
   const updatedValuesArr = ARR_OF_GYM_MEMBERSHIP_ID.map((id) => {
     return { id: id, price: values[id as keyof typeof values] };
   });

@@ -12,7 +12,7 @@ export default function GymMembershipTypesContainer() {
       <div className="h-60 overflow-auto">
         <TableWithSpacing columns="grid-cols-2">
           {gymMembership?.map((membership) => (
-            <TableWithSpacing.Row>
+            <TableWithSpacing.Row key={membership.id}>
               <p>{membership.gymMembershipName}</p>
               <p>{membership.price}</p>
             </TableWithSpacing.Row>

@@ -6,13 +6,6 @@ import Spinner from "../../ui/Spinner";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useSchedules } from "./useSchedules";
 
-// interface ScheduleDataTypes {
-//   date: string;
-//   title: string;
-//   url?: string;
-  
-// }
-
 function Schedule({
   page,
 }: {

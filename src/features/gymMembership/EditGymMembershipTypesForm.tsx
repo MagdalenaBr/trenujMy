@@ -17,7 +17,6 @@ export default function EditGymMembershipTypesForm({
 }: PropsType) {
   const { gymMembership } = useGymMembership();
   const { changePrice } = useChangeMembershipPrice();
-  console.log(gymMembership);
 
   const {
     register,

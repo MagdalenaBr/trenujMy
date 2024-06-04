@@ -16,19 +16,23 @@ import { HiPlus } from "react-icons/hi2";
 import PurchaseGymMembershipModal from "../gymMembership/PurchaseGymMembershipModal";
 import PaymentTable from "../payments/PaymentTabe";
 import { useUserPayments } from "../payments/useUserPayments";
+import PaymentModal from "../payments/PaymentModal";
 
 function MemberPage() {
   const memberIdParams = useParams();
-  const memberId = Number(memberIdParams.memberId);
+  const memberId = memberIdParams.memberId as string;
+  console.log(memberId);
   const { members, isLoading } = useMembers();
-  const member = members?.find((member) => member.id === memberId);
+  const member = members?.find((member) => String(member.id) === memberId);
   const { booking } = useBooking(member?.id, "memberId");
   const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
   const { userPayments } = useUserPayments(memberId);
-  console.log(userPayments);
+
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
+
+
 
   return (
     <Container>
@@ -139,7 +143,14 @@ function MemberPage() {
           <h3 className="font-semibold uppercase">Płatności</h3>
           <hr className="mx-3 w-[17rem]" />
         </div>
-        <PaymentTable payments={userPayments}  isMemberPage={true} />
+        {userPayments?.length !== 0 ? (
+          <PaymentTable payments={userPayments} isMemberPage={true} />
+        ) : (
+          <div className="h-48 text-sm text-slate-300">
+            <p>Brak dostępnych karnetów.</p>
+          </div>
+        )}
+        <PaymentModal/>
       </div>
 
       <MemberOptions member={member} />
