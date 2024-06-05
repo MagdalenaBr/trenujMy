@@ -17,20 +17,39 @@ import PurchaseGymMembershipModal from "../gymMembership/PurchaseGymMembershipMo
 import PaymentTable from "../payments/PaymentTabe";
 import { useUserPayments } from "../payments/useUserPayments";
 import PaymentModal from "../payments/PaymentModal";
+import { DateTime } from "luxon";
+import { useUserAactivePurchasedMemberships } from "../gymMembership/useUserActivePurchasedMemberships";
+import ActiveMembershipInfo from "../gymMembership/ActiveMembershipInfo";
 
 function MemberPage() {
+  // const todayDay = DateTime.now().toString();
+  // console.log(todayDay);
   const memberIdParams = useParams();
   const memberId = memberIdParams.memberId as string;
-  console.log(memberId);
   const { members, isLoading } = useMembers();
   const member = members?.find((member) => String(member.id) === memberId);
   const { booking } = useBooking(member?.id, "memberId");
-  const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
-  const { userPayments } = useUserPayments(memberId);
 
+  const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
+
+  const { userPayments } = useUserPayments(memberId);
 
   if (isLoading) return <Spinner />;
   if (member === undefined) return;
+
+  const todayDay = DateTime.now().toString().slice(0, 10);
+
+  const activeMembership = purchasedMemberships?.filter(
+    (membership) =>
+      todayDay >= membership.startDay && todayDay <= membership.endDay,
+  );
+
+  const activeMembershipPayments = userPayments?.filter(payments => payments.isValid && payments.purchasedMembershipId === activeMembership?.at(0)?.id).reduce((acc, payment)=> { return acc + payment.amount}, 0)
+
+
+function paymentDeadline(todayDay, typeOfMembership)  {
+
+}
 
 
 
@@ -58,11 +77,26 @@ function MemberPage() {
           <div className="flex flex-col gap-2">
             <div className="flex gap-2">
               <h3 className="font-semibold text-accentColor2">
-                Wykupiony karnet:
+                Aktywny karnet:
               </h3>
-              <span className="uppercase">{member.gymMembershipType}</span>
+              {activeMembership?.length === 0 ? (
+                <p className="font-semibold uppercase tracking-wider">brak</p>
+              ) : (
+                <p className="text-md self-end font-semibold uppercase tracking-wider">
+                  {activeMembership?.at(0)?.gymMembership.gymMembershipName}
+                </p>
+              )}
             </div>
             <div>
+              {activeMembership?.length !== 0 && (
+                <p className="font-semibold uppercase tracking-wider">
+                  {activeMembership?.at(0)?.startDay} -{" "}
+                  {activeMembership?.at(0)?.endDay}
+                </p>
+              )}
+            </div>
+
+            {/* <div>
               {member.startGymMembership === null ? (
                 <>
                   <span>brak</span>
@@ -80,7 +114,23 @@ function MemberPage() {
                   <EditGymMembershipModal member={member} />
                 </>
               )}
-            </div>
+            </div> */}
+          </div>
+          <div className="flex gap-2">
+            <h3 className="font-semibold text-lightAccentColor">
+              Płtaność za karnet:
+            </h3>
+            <p className={`${activeMembershipPayments === activeMembership?.at(0)?.price && 'text-lime-500'} font-semibold`}>
+              <span>{activeMembershipPayments}</span> / <span>{activeMembership?.at(0)?.price}</span>
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <h3 className="font-semibold text-lightAccentColor">
+              Data kolejnej płatności:
+            </h3>
+            <p>
+              {/* <span>0 zł</span> / <span>129 zł</span> */}
+            </p>
           </div>
         </div>
         {booking && <MemberClassesStats memberBookings={booking} />}
@@ -150,7 +200,7 @@ function MemberPage() {
             <p>Brak dostępnych karnetów.</p>
           </div>
         )}
-        <PaymentModal/>
+        <PaymentModal />
       </div>
 
       <MemberOptions member={member} />
