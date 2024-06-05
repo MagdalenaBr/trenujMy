@@ -10,10 +10,7 @@ interface CommonDataTypes {
 
 interface MembersType extends CommonDataTypes {
 	created_at: string;
-	endGymMembership: string;
-	gymMembershipType: string;
 	id: string;
-	startGymMembership: string;
 }
 
 export async function getMembers() {

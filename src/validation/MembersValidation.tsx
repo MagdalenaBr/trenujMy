@@ -15,7 +15,4 @@ export const schema = yup.object().shape({
 		.matches(/^(?:[0+]48)?\d{9}$/, "Podany numer telefonu jest nieprawidłowy."),
 	gender: yup.string().required("Wybierz płeć."),
 	city: yup.string().required("Podaj miejsce zamieszkania."),
-	startGymMembership: yup.string().nullable(),
-	endGymMembership: yup.string().nullable(),
-	gymMembershipType: yup.string().nullable(),
 });

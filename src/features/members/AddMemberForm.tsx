@@ -11,12 +11,9 @@ import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 interface CommonData {
   city: string;
   email: string;
-  endGymMembership?: string | null;
   gender: string;
-  gymMembershipType?: string | null;
   name: string;
   phone: string;
-  startGymMembership?: string | null;
 }
 interface MemberTypes extends CommonData {
   id: string;
@@ -101,7 +98,10 @@ function AddMemberForm({
         />
       </FormRow>
 
-      <ButtonsContainer isEditingSession={isEditingSession} handleClick={() => handleCloseModal?.()}/>
+      <ButtonsContainer
+        isEditingSession={isEditingSession}
+        handleClick={() => handleCloseModal?.()}
+      />
     </Form>
   );
 }

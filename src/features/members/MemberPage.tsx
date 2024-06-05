@@ -98,7 +98,7 @@ function MemberPage() {
     activeMembership?.at(0)?.gymMembership.price as number,
     activeMembership?.at(0)?.gymMembershipId as string,
   );
-// console.log(activeMembershipPaymentLength);
+ 
   return (
     <Container>
       <h2 className="font-bold uppercase">{member.name}</h2>
@@ -141,26 +141,6 @@ function MemberPage() {
                 </p>
               )}
             </div>
-
-            {/* <div>
-              {member.startGymMembership === null ? (
-                <>
-                  <span>brak</span>
-                  <EditGymMembershipModal member={member} />
-                </>
-              ) : (
-                <>
-                  <span className="font-semibold">
-                    {member.startGymMembership}
-                  </span>{" "}
-                  do{" "}
-                  <span className="font-semibold">
-                    {member.endGymMembership}
-                  </span>
-                  <EditGymMembershipModal member={member} />
-                </>
-              )}
-            </div> */}
           </div>
           <div className="flex gap-2">
             <h3 className="font-semibold text-lightAccentColor">

@@ -13,10 +13,7 @@ interface MemberTypes {
 	name: string;
 	phone: string;
 	created_at: string;
-	endGymMembership: string;
-	gymMembershipType: string;
 	id: string;
-	startGymMembership: string;
 }
 
 function MemberOptions({ member }: { member: MemberTypes }) {
