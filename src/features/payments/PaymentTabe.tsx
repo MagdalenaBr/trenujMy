@@ -1,4 +1,5 @@
 import TableWithSpacing from "../../ui/TableWithSpacing";
+import { PRICE_TO_PAY } from "../../utils/functions";
 import { useCancelPayment } from "./useCancelPayment";
 
 interface PaymentsType {
@@ -30,15 +31,15 @@ export default function PaymentTable({
   payments: PaymentsType[] | undefined;
   isMemberPage: boolean;
 }) {
-  function priceToPay(amount: number, membershipTypeId: string) {
-    let price;
-    if (String(membershipTypeId) === "1") price = amount;
-    if (String(membershipTypeId) === "2") price = amount;
-    if (String(membershipTypeId) === "3") price = amount * 6;
-    if (String(membershipTypeId) === "4") price = amount * 12;
+  // function priceToPay(amount: number, membershipTypeId: string) {
+  //   let price;
+  //   if (String(membershipTypeId) === "1") price = amount;
+  //   if (String(membershipTypeId) === "2") price = amount;
+  //   if (String(membershipTypeId) === "3") price = amount * 6;
+  //   if (String(membershipTypeId) === "4") price = amount * 12;
 
-    return price;
-  }
+  //   return price;
+  // }
   const { cancelPayment } = useCancelPayment();
   function handleClick(id: string, value: boolean) {
     cancelPayment({ id, value });
@@ -72,7 +73,7 @@ export default function PaymentTable({
               {payment.purchasedMemberships.gymMembership.gymMembershipName}
             </p>
             <p>
-              {priceToPay(
+              {PRICE_TO_PAY(
                 payment.purchasedMemberships.price,
                 payment.purchasedMemberships.gymMembership.id,
               )}

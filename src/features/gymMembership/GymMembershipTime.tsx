@@ -4,6 +4,7 @@ import FormRow from "../../ui/FormRow";
 import { PurchasedMembershipContext } from "../gymMembership/PurchaseGymMembershipForm";
 import { UseFormRegister } from "react-hook-form";
 import { DateTime } from "luxon";
+import { ARR_OF_GYM_MEMBERSHIP_ID } from "../../utils/constants";
 
 export default function MembershipTime() {
   const context = useContext(PurchasedMembershipContext);
@@ -24,13 +25,13 @@ export default function MembershipTime() {
     });
 
     let calculateDate;
-    if (context?.selectedGymMembership === "1")
+    if (context?.selectedGymMembership === ARR_OF_GYM_MEMBERSHIP_ID[0].toString())
       calculateDate = convertedSelectedDate.plus({ day: 1 });
-    if (context?.selectedGymMembership === "2")
+    if (context?.selectedGymMembership === ARR_OF_GYM_MEMBERSHIP_ID[1].toString())
       calculateDate = convertedSelectedDate.plus({ month: 1 });
-    if (context?.selectedGymMembership === "3")
+    if (context?.selectedGymMembership === ARR_OF_GYM_MEMBERSHIP_ID[2].toString())
       calculateDate = convertedSelectedDate.plus({ month: 6 });
-    if (context?.selectedGymMembership === "4")
+    if (context?.selectedGymMembership === ARR_OF_GYM_MEMBERSHIP_ID[3].toString())
       calculateDate = convertedSelectedDate.plus({ year: 1 });
 
     const receivedDay = calculateDate?.toISO()?.slice(0, 19);

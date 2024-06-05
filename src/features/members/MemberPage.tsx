@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import Container from "../../ui/Container";
 import BackButton from "../../ui/BackButton";
 import MemberOptions from "./MemberOptions";
-import EditGymMembershipModal from "./EditGymMembershipModal";
 import { useMembers } from "./useMembers";
 import Spinner from "../../ui/Spinner";
 import AddBookingModal from "../bookings/AddBookingModal";
@@ -18,12 +17,10 @@ import PaymentTable from "../payments/PaymentTabe";
 import { useUserPayments } from "../payments/useUserPayments";
 import PaymentModal from "../payments/PaymentModal";
 import { DateTime } from "luxon";
-import { useUserAactivePurchasedMemberships } from "../gymMembership/useUserActivePurchasedMemberships";
-import ActiveMembershipInfo from "../gymMembership/ActiveMembershipInfo";
+import { ARR_OF_GYM_MEMBERSHIP_ID } from "../../utils/constants";
+import { PRICE_TO_PAY } from "../../utils/functions";
 
 function MemberPage() {
-  // const todayDay = DateTime.now().toString();
-  // console.log(todayDay);
   const memberIdParams = useParams();
   const memberId = memberIdParams.memberId as string;
   const { members, isLoading } = useMembers();
@@ -43,16 +40,65 @@ function MemberPage() {
     (membership) =>
       todayDay >= membership.startDay && todayDay <= membership.endDay,
   );
+  console.log(activeMembership);
 
-  const activeMembershipPayments = userPayments?.filter(payments => payments.isValid && payments.purchasedMembershipId === activeMembership?.at(0)?.id).reduce((acc, payment)=> { return acc + payment.amount}, 0)
+  const activeMembershipPaymentLength = userPayments?.filter(
+    (payments) =>
+      payments.isValid &&
+      payments.purchasedMembershipId === activeMembership?.at(0)?.id,
+  ).length;
 
+  const activeMembershipPayments = userPayments
+    ?.filter(
+      (payments) =>
+        payments.isValid &&
+        payments.purchasedMembershipId === activeMembership?.at(0)?.id,
+    )
+    .reduce((acc, payment) => {
+      return acc + payment.amount;
+    }, 0);
 
-function paymentDeadline(todayDay, typeOfMembership)  {
+  function calculateDeadline(typeOfMembership, numOfPayments, dateOfPurchase) {
+    const dateOfPurchaseArr = dateOfPurchase.slice(0, 10).split("-");
+    const convertedDateOfPurchase = DateTime.fromObject({
+      year: +dateOfPurchaseArr[0],
+      month: +dateOfPurchaseArr[1],
+      day: +dateOfPurchaseArr[2],
+    });
 
-}
+    const numOfMonths =
+      typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[2] ? 6 : 12;
+    let deadline = dateOfPurchase;
+    if (numOfPayments >= 1 && numOfPayments <= numOfMonths)
+      deadline = convertedDateOfPurchase
+        .plus({ month: numOfPayments })
+        .toString();
 
+    return deadline;
+  }
 
+  function paymentDeadline(typeOfMembership, dateOfPurchase, numOfPayments) {
+    let paymentDeadline = dateOfPurchase;
+    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[0]) paymentDeadline;
+    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[1]) paymentDeadline;
+    if (
+      typeOfMembership ===
+      (ARR_OF_GYM_MEMBERSHIP_ID[2] || ARR_OF_GYM_MEMBERSHIP_ID[3])
+    )
+      paymentDeadline = calculateDeadline(
+        typeOfMembership,
+        numOfPayments,
+        dateOfPurchase,
+      );
 
+    return paymentDeadline;
+  }
+
+  const fullMembershipPrice = PRICE_TO_PAY(
+    activeMembership?.at(0)?.gymMembership.price as number,
+    activeMembership?.at(0)?.gymMembershipId as string,
+  );
+// console.log(activeMembershipPaymentLength);
   return (
     <Container>
       <h2 className="font-bold uppercase">{member.name}</h2>
@@ -120,16 +166,30 @@ function paymentDeadline(todayDay, typeOfMembership)  {
             <h3 className="font-semibold text-lightAccentColor">
               Płtaność za karnet:
             </h3>
-            <p className={`${activeMembershipPayments === activeMembership?.at(0)?.price && 'text-lime-500'} font-semibold`}>
-              <span>{activeMembershipPayments}</span> / <span>{activeMembership?.at(0)?.price}</span>
-            </p>
+            {activeMembership?.length !== 0 ? (
+              <p
+                className={`${activeMembershipPayments === fullMembershipPrice && "text-lime-500"} font-semibold`}
+              >
+                <span>{activeMembershipPayments}</span> /{" "}
+                <span>{fullMembershipPrice}</span>
+              </p>
+            ) : (
+              <p>Brak aktywnego karnetu.</p>
+            )}
           </div>
           <div className="flex gap-2">
             <h3 className="font-semibold text-lightAccentColor">
               Data kolejnej płatności:
             </h3>
             <p>
-              {/* <span>0 zł</span> / <span>129 zł</span> */}
+              {activeMembershipPayments !== fullMembershipPrice &&
+              activeMembership?.length !== 0
+                ? paymentDeadline(
+                    activeMembership?.at(0)?.gymMembershipId,
+                    activeMembership?.at(0)?.startDay,
+                    activeMembershipPaymentLength,
+                  ).slice(0, 10)
+                : "-"}
             </p>
           </div>
         </div>
@@ -197,7 +257,7 @@ function paymentDeadline(todayDay, typeOfMembership)  {
           <PaymentTable payments={userPayments} isMemberPage={true} />
         ) : (
           <div className="h-48 text-sm text-slate-300">
-            <p>Brak dostępnych karnetów.</p>
+            <p>Brak dostępnych płatności.</p>
           </div>
         )}
         <PaymentModal />
