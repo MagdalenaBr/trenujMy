@@ -29,7 +29,9 @@ function MemberPage() {
 
   const activeMembership = purchasedMemberships?.filter(
     (membership) =>
-      todayDay >= membership.startDay && todayDay <= membership.endDay,
+      todayDay >= membership.startDay &&
+      todayDay <= membership.endDay &&
+      membership.isValid,
   );
 
   const activeMembershipPaymentLength = userPayments?.filter(
@@ -49,7 +51,7 @@ function MemberPage() {
     }, 0);
 
   function calculateDeadline(
-    typeOfMembership: string,
+    typeOfMembership: number,
     numOfPayments: number,
     dateOfPurchase: string,
   ) {
@@ -61,7 +63,7 @@ function MemberPage() {
     });
 
     const numOfMonths =
-      typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[2].toString() ? 6 : 12;
+      typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[2] ? 6 : 12;
     let deadline = dateOfPurchase;
     if (numOfPayments >= 1 && numOfPayments <= numOfMonths)
       deadline = convertedDateOfPurchase
@@ -72,16 +74,16 @@ function MemberPage() {
   }
 
   function paymentDeadline(
-    typeOfMembership: string,
+    typeOfMembership: number,
     numOfPayments: number,
     dateOfPurchase: string,
   ) {
     let paymentDeadline = dateOfPurchase;
-    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[0].toString()) paymentDeadline;
-    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[1].toString()) paymentDeadline;
+    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[0]) paymentDeadline;
+    if (typeOfMembership === ARR_OF_GYM_MEMBERSHIP_ID[1]) paymentDeadline;
     if (
       typeOfMembership ===
-      (ARR_OF_GYM_MEMBERSHIP_ID[2].toString() || ARR_OF_GYM_MEMBERSHIP_ID[3].toString())
+      (ARR_OF_GYM_MEMBERSHIP_ID[2] || ARR_OF_GYM_MEMBERSHIP_ID[3])
     )
       paymentDeadline = calculateDeadline(
         typeOfMembership,
@@ -96,6 +98,11 @@ function MemberPage() {
     activeMembership?.at(0)?.gymMembership.price as number,
     activeMembership?.at(0)?.gymMembershipId as string,
   );
+  const paymentDate = paymentDeadline(
+    activeMembership?.at(0)?.gymMembershipId,
+    activeMembershipPaymentLength,
+    activeMembership?.at(0)?.startDay,
+  )?.slice(0, 10);
 
   if (member === undefined) return;
   if (isLoading) return <Spinner />;
@@ -133,7 +140,7 @@ function MemberPage() {
                 </p>
               )}
             </div>
-            <div>
+            <div className="flex gap-2">
               {activeMembership?.length !== 0 && (
                 <p className="font-semibold uppercase tracking-wider">
                   {activeMembership?.at(0)?.startDay} -{" "}
@@ -161,14 +168,10 @@ function MemberPage() {
             <h3 className="font-semibold text-lightAccentColor">
               Data kolejnej płatności:
             </h3>
-            <p>
-              { activeMembershipPayments !== fullMembershipPrice &&
+            <p className={paymentDate <= todayDay ? "text-red-500" : ""}>
+              {activeMembershipPayments !== fullMembershipPrice &&
               activeMembership?.length !== 0
-                ? paymentDeadline(
-                    activeMembership?.at(0)?.gymMembershipId as string,
-                    activeMembershipPaymentLength as number,
-                    activeMembership?.at(0)?.startDay as string,
-                  ).slice(0, 10)
+                ? paymentDate
                 : "-"}
             </p>
           </div>
