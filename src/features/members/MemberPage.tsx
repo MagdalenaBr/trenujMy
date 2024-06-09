@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { DateTime } from "luxon";
 
 import { ARR_OF_GYM_MEMBERSHIP_ID, TODAY_DAY } from "../../utils/constants";
-import { PRICE_TO_PAY } from "../../utils/functions";
+import { PRICE_TO_PAY } from "../../utils/helpers";
 import { useBooking } from "../bookings/useBooking";
 import { useMembers } from "./useMembers";
 import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";

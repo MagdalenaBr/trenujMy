@@ -1,4 +1,4 @@
-
+import { TODAY_DAY } from "../utils/constants";
 import supabase from "./supabase";
 
 interface PaymentsType {
@@ -22,11 +22,42 @@ interface PaymentsType {
 }
 [];
 
-export async function getPurchasedMemberschips(): Promise<PaymentsType[]> {
-  const { data: purchasedMemberships, error } = await supabase
+export async function getPurchasedMemberschips(
+  selectedTimeRange: string | null,
+): Promise<PaymentsType[]> {
+  const todayDay = TODAY_DAY.set({
+    hour: 23,
+    minute: 59,
+    second: 59,
+  }).toString();
+
+  let startDay;
+  if (selectedTimeRange === "7") startDay = TODAY_DAY.minus({ day: 7 });
+  if (selectedTimeRange === "30") startDay = TODAY_DAY.minus({ day: 30 });
+  if (selectedTimeRange === "90") startDay = TODAY_DAY.minus({ day: 90 });
+  if (selectedTimeRange === "rok") startDay = TODAY_DAY.minus({ year: 1 });
+  console.log(startDay?.set({ hour: 0, minute: 0, second: 0 }).toString());
+
+  let query = supabase
     .from("purchasedMemberships")
-    .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
-    .order("startDay", { ascending: false });
+    .select("*, members(name, phone), gymMembership(price, gymMembershipName)");
+
+  if (selectedTimeRange)
+    query = query
+      .lte("created_at", todayDay)
+      .gte(
+        "created_at",
+        startDay?.set({ hour: 0, minute: 0, second: 0 }).toString(),
+      );
+
+  const { data: purchasedMemberships, error } = await query.order("startDay", {
+    ascending: false,
+  });
+
+  // const { data: purchasedMemberships, error } = await supabase
+  //   .from("purchasedMemberships")
+  //   .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
+  //   .order("startDay", { ascending: false });
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
   return purchasedMemberships;
 }

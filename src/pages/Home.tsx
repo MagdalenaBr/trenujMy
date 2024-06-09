@@ -4,6 +4,7 @@ import { TODAY_DAY } from "../utils/constants";
 import MainContainer from "../ui/MainContainer";
 import { DateTime } from "luxon";
 import TodaysBookings from "../features/homePage/TodaysBookings";
+import PurchasedMembershipsStats from "../features/homePage/PurchasedMembershipsStats";
 
 function Home() {
   const { user } = useLoggedUser();
@@ -21,9 +22,9 @@ function Home() {
         </p>
         <FilterPanel />
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-5 gap-10">
       <TodaysBookings/>
-      <div className="col-span-1">najczęściej kupowane karnety</div>
+      <PurchasedMembershipsStats/>
 
       </div>
     </MainContainer>

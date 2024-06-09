@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+
 import { NUM_OF_RESULTS, TODAY_DAY } from "../utils/constants";
 import supabase from "./supabase";
 interface NewBookingTypes {

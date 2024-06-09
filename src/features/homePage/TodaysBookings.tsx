@@ -4,6 +4,7 @@ import BookingStatus from "../../ui/BookingStatus";
 import { useTodayBookings } from "./useTodayBookings";
 import Heading from "../../ui/Heading";
 import { useUpdateBookingStatus } from "./useUpdateBookingStatus";
+import HomePageContainer from "../../ui/HomePageContainer";
 
 export default function TodaysBookings() {
   const { todayBookings } = useTodayBookings();
@@ -15,7 +16,7 @@ export default function TodaysBookings() {
     updateStatus({ statusValue, id });
   }
   return (
-    <div className="col-span-2 h-72 overflow-auto rounded-lg border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900">
+    <HomePageContainer colGrid='col-span-3'>
       <Heading>Rezerwacje</Heading>
       <TableWithSpacing>
         {todayBookings?.map((booking) => (
@@ -53,6 +54,6 @@ export default function TodaysBookings() {
 
         {todayBookings?.length === 0 && <p>Brak dostępnych rezerwacji.</p>}
       </TableWithSpacing>
-    </div>
+    </HomePageContainer>
   );
 }
