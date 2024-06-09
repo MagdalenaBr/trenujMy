@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { DateTime } from "luxon";
 
-import { ARR_OF_GYM_MEMBERSHIP_ID } from "../../utils/constants";
+import { ARR_OF_GYM_MEMBERSHIP_ID, TODAY_DAY } from "../../utils/constants";
 import { PRICE_TO_PAY } from "../../utils/functions";
 import { useBooking } from "../bookings/useBooking";
 import { useMembers } from "./useMembers";
@@ -25,7 +25,7 @@ function MemberPage() {
   const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
   const { userPayments } = useUserPayments(memberId);
 
-  const todayDay = DateTime.now().toString().slice(0, 10);
+  const todayDay = TODAY_DAY.toString().slice(0, 10);
 
   const activeMembership = purchasedMemberships?.filter(
     (membership) =>

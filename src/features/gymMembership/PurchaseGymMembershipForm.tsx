@@ -5,7 +5,6 @@ import { useMembers } from "../members/useMembers";
 import { useGymMembership } from "./useGymMembership";
 import FormOption from "../../ui/FormOption";
 import FormRow from "../../ui/FormRow";
-import { DateTime } from "luxon";
 import { createContext, useState } from "react";
 import { usePurchaseMembership } from "./usePurchaseMembership";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +12,7 @@ import { schema } from "../../validation/PurchaseGymMembershipValidation";
 import GymMembershipMember from "./GymMembershipMember";
 import GymMembershipTime from "./GymMembershipTime";
 import FormInput from "../../ui/FormInput";
+import { TODAY_DAY } from "../../utils/constants";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -61,14 +61,13 @@ export default function PurchaseGymMembershipForm({
   isMemberPage,
   activeMemberData,
 }: PropsType) {
-  const todayDay = DateTime.now();
-  const todayDayString = todayDay.toISO().slice(0, 16);
+  const todayDayString = TODAY_DAY.toISO().slice(0, 16);
   const { members } = useMembers();
   const { gymMembership } = useGymMembership();
   const { addPayment } = usePurchaseMembership();
 
   const [calculatedDate, setCalculatedDate] = useState(
-    todayDay.plus({ day: 1 }).toISO().slice(0, 16),
+    TODAY_DAY.plus({ day: 1 }).toISO().slice(0, 16),
   );
   const [selectedGymMembership, setSelectedGymMembership] = useState("");
   const [selectedDate, setSelectedDate] = useState(todayDayString);

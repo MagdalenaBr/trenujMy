@@ -1,4 +1,5 @@
-import { NUM_OF_RESULTS } from "../utils/constants";
+import { DateTime } from "luxon";
+import { NUM_OF_RESULTS, TODAY_DAY } from "../utils/constants";
 import supabase from "./supabase";
 interface NewBookingTypes {
   status: string;
@@ -38,45 +39,44 @@ export async function getBookings(
   },
   currentPage: number,
 ): Promise<GetBookingType> {
-
   let query = supabase
     .from("bookings")
-    .select("*, trainers(name, category), members(name, phone)", { count: "exact" });
+    .select("*, trainers(name, category), members(name, phone)", {
+      count: "exact",
+    });
 
-    // if(sortByStatusValue.value) {currentPage = 1}
+  // if(sortByStatusValue.value) {currentPage = 1}
 
-    
-    //WITHOUT SORTING
-    if (sortByStatusValue.value === null && sortByDateValue.value === null)
-      query = query.order("date", { ascending: false });
-    
-    //SORTED BY STATUS
-    if (sortByStatusValue.value !== null && sortByDateValue.value === null)
-      query = query
-    .eq(sortByStatusValue.name, sortByStatusValue.value)
-    .order(sortByDateValue.name, { ascending: false });
-    
-    //SORTED BY DATE
-    if (sortByStatusValue.value === null && sortByDateValue.value !== null)
-      query = query.order("date", { ascending: true });
-    
-    //SORTED BY DATE AND STATUS
-    if (sortByStatusValue.value !== null && sortByDateValue.value !== null)
-      query = query
-    .eq(sortByStatusValue.name, sortByStatusValue.value)
-    .order(sortByDateValue.name, { ascending: true });
-    
-    //PAGINATION
-    if (currentPage)
-      query = query.range(
-        (currentPage - 1) * NUM_OF_RESULTS,
-        currentPage * NUM_OF_RESULTS - 1,
-      );
+  //WITHOUT SORTING
+  if (sortByStatusValue.value === null && sortByDateValue.value === null)
+    query = query.order("date", { ascending: false });
 
+  //SORTED BY STATUS
+  if (sortByStatusValue.value !== null && sortByDateValue.value === null)
+    query = query
+      .eq(sortByStatusValue.name, sortByStatusValue.value)
+      .order(sortByDateValue.name, { ascending: false });
 
-    if (query === undefined)
-      throw new Error("Wystąpił błąd, dane nie mogą zostać załadowane.");
-    
+  //SORTED BY DATE
+  if (sortByStatusValue.value === null && sortByDateValue.value !== null)
+    query = query.order("date", { ascending: true });
+
+  //SORTED BY DATE AND STATUS
+  if (sortByStatusValue.value !== null && sortByDateValue.value !== null)
+    query = query
+      .eq(sortByStatusValue.name, sortByStatusValue.value)
+      .order(sortByDateValue.name, { ascending: true });
+
+  //PAGINATION
+  if (currentPage)
+    query = query.range(
+      (currentPage - 1) * NUM_OF_RESULTS,
+      currentPage * NUM_OF_RESULTS - 1,
+    );
+
+  if (query === undefined)
+    throw new Error("Wystąpił błąd, dane nie mogą zostać załadowane.");
+
   const { data, count, error } = await query;
 
   if (error) throw new Error("Dane nie mogą zostać załadowane.");
@@ -129,4 +129,34 @@ export async function getBooking(
     );
 
   return booking;
+}
+
+export async function getTodayBookings() {
+  const todayDayStart = TODAY_DAY.set({hour: 0, minute: 0, second:0}).toString()
+  const todayDayEnd = TODAY_DAY.set({hour: 23, minute: 59, second:59}).toString()
+  const { data: booking, error } = await supabase
+    .from("bookings")
+    .select("id, date, status, trainers(name), members(name, phone)")
+    .lte("date", todayDayEnd )
+    .gte("date", todayDayStart )
+    .order("date", { ascending: false });
+  if (error)
+    throw new Error(
+      "Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.",
+    );
+
+  return booking;
+}
+
+export async function updateBookingStatus(statusValue: string, id: string) {
+  console.log(statusValue, id);
+  const { data, error } = await supabase
+    .from("bookings")
+    .update({ status: statusValue })
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error("Status nie został zaktualizowany.");
+
+  return data;
 }

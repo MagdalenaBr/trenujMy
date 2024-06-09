@@ -1,3 +1,4 @@
+import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import { useCancelPurchase } from "./useCancelPurchase";
 
@@ -82,12 +83,7 @@ export default function PurchasedGymMembershipTable({
 
             {isMemberPage &&
               (membership.isValid ? (
-                <button
-                  className="rounded-lg border border-red-300 text-[11px] font-semibold uppercase"
-                  onClick={() => handleClick(membership.id, false)}
-                >
-                  Anuluj
-                </button>
+                <StatusButton status='cancel' onClick={() => handleClick(membership.id, false)}>Anuluj</StatusButton>
               ) : (
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
                   Anulowano

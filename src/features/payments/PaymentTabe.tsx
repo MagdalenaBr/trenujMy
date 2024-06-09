@@ -1,6 +1,7 @@
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import { PRICE_TO_PAY } from "../../utils/functions";
 import { useCancelPayment } from "./useCancelPayment";
+import StatusButton from "../../ui/StatusButton";
 
 interface PaymentsType {
   id: string;
@@ -29,7 +30,7 @@ export default function PaymentTable({
   isMemberPage,
 }: {
   payments: PaymentsType[] | undefined;
-  isMemberPage: boolean;
+  isMemberPage?: boolean;
 }) {
   // function priceToPay(amount: number, membershipTypeId: string) {
   //   let price;
@@ -104,12 +105,8 @@ export default function PaymentTable({
 
             {isMemberPage &&
               (payment.isValid ? (
-                <button
-                  className="rounded-lg border border-red-300 text-[11px] font-semibold uppercase"
-                  onClick={() => handleClick(payment.id, false)}
-                >
-                  Anuluj
-                </button>
+                <StatusButton  status='cancel' onClick={() => handleClick(payment.id, false)}>Anuluj</StatusButton>
+              
               ) : (
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
                   Anulowano

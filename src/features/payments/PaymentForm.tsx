@@ -16,7 +16,6 @@ interface PropsType {
 export default function PaymentForm({ handleCloseModal }: PropsType) {
   const memberIdParams = useParams();
   const memberId = memberIdParams.memberId as string;
-  console.log(memberId);
   const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
 
   const { addUserPayment } = useAddPayment();
@@ -30,12 +29,11 @@ export default function PaymentForm({ handleCloseModal }: PropsType) {
   });
 
   function onSubmit(data: { purchasedMembershipId: string; amount: number }) {
-    console.log(typeof data.amount);
     const newData = { ...data, memberId };
     addUserPayment({ ...newData });
     handleCloseModal?.();
   }
-console.log(errors);
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow name="purchasedMembershipId" label="Zakupiony karnet">

@@ -55,7 +55,6 @@ export async function addPayment(newData: {
   purchasedMembershipId: string;
   amount: number;
 }) {
-  console.log(newData);
   const { data, error } = await supabase
     .from("payments")
     .insert([newData])

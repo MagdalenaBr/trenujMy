@@ -1,7 +1,7 @@
 import { HiOutlinePencil } from "react-icons/hi2";
 import Button from "../../ui/Button";
 import TableWithSpacing from "../../ui/TableWithSpacing";
-import BookingStatus from "../bookings/BookingStatus";
+import BookingStatus from "../../ui/BookingStatus";
 import AddBookingModal from "../bookings/AddBookingModal";
 
 interface BookingTypes {

@@ -6,11 +6,6 @@ import SidebarOptions from "./SidebarOptions";
 function AppLayout() {
   return (
     <div className="relative grid h-screen w-full grid-cols-[auto_1fr] bg-slate-900 text-primaryTextColor">
-      {/* <img
-        src="../public/background.jpg"
-        aria-hidden="true"
-        className="absolute z-[-100] h-full w-full object-cover"
-      /> */}
       <div className="grid grid-rows-[auto_1fr] font-semibold">
         <Logo />
         <Sidebar />

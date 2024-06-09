@@ -5,6 +5,7 @@ type PropsType = {
   children: React.ReactNode;
   columns?: string;
   uniqueStyles?: string
+  noBorder?: boolean
 };
 
 function TableWithSpacing({ children, columns = "grid-cols-4", uniqueStyles='' }: PropsType) {
@@ -28,11 +29,11 @@ function Header({ children }: PropsType) {
   );
 }
 
-function Row({ children }: PropsType) {
+function Row({ children, noBorder }: PropsType) {
   const ColumnsContext = useContext(TableContext);
 
   return (
-    <div className="my-2 rounded-md border-2  border-slate-200 bg-bgTableWithSpacing/60 py-1 text-sm">
+    <div className={`my-2 rounded-md ${!noBorder? ' border-2  border-slate-200' : ''} bg-bgTableWithSpacing/60 py-1 text-sm`}>
       <div className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles} items-center`}>
         {children}
       </div>
