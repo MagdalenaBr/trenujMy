@@ -1,16 +1,16 @@
-import useLoggedUser from "../features/authentication/useLoggedUser";
-import FilterPanel from "../ui/FilterPanel";
-import { TODAY_DAY } from "../utils/constants";
-import MainContainer from "../ui/MainContainer";
 import { DateTime } from "luxon";
-import TodaysBookings from "../features/homePage/TodaysBookings";
+import { TODAY_DAY } from "../utils/constants";
+import useLoggedUser from "../features/authentication/useLoggedUser";
 import PurchasedMembershipsStats from "../features/homePage/PurchasedMembershipsStats";
+import HomePageBookingsContainer from "../features/homePage/HomePageBookingsContainer";
+import FilterPanel from "../ui/FilterPanel";
+import MainContainer from "../ui/MainContainer";
 
 function Home() {
   const { user } = useLoggedUser();
   return (
     <MainContainer>
-      <h1 className="text-start text-2xl tracking-wider pb-4">
+      <h1 className="pb-4 text-start text-2xl tracking-wider">
         Witaj,{" "}
         <span className="font-bold uppercase text-accentColor2">
           {user?.user_metadata.userName}
@@ -23,9 +23,8 @@ function Home() {
         <FilterPanel />
       </div>
       <div className="grid grid-cols-5 gap-10">
-      <TodaysBookings/>
-      <PurchasedMembershipsStats/>
-
+        <HomePageBookingsContainer />
+        <PurchasedMembershipsStats />
       </div>
     </MainContainer>
   );

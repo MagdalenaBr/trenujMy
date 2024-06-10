@@ -7,7 +7,7 @@ type PropsType = {
 function MainContainer({ children, title, buttons }: PropsType) {
   return (
     <div
-      className={`${title === "Grafik" ? "w-[90%]" : "w-[80%]"} relative mx-auto flex flex-col gap-3`}
+      className={`${title === "Grafik" || !title ? "w-[90%]" : "w-[80%]"} relative mx-auto flex flex-col gap-3`}
     >
       <div className={buttons ? "flex justify-between" : ""}>
         <h2 className="mb-5 text-start text-2xl font-semibold tracking-widest text-primaryTextColor uppercase">

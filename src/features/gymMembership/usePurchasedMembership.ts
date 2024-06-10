@@ -6,7 +6,6 @@ export function usePurchasedMembership() {
   const [searchParams] = useSearchParams();
   const selectedTimeRange =  !searchParams.get('zakres') ? '7': searchParams.get('zakres')
 
-  console.log(selectedTimeRange);
   const { data: purchasedMemberships, isLoading } = useQuery({
     queryKey: ["purchasedMemberships", selectedTimeRange],
     queryFn: ()=>getPurchasedMemberschips(selectedTimeRange),

@@ -6,7 +6,6 @@ import HomePageContainer from "../../ui/HomePageContainer";
 
 export default function PurchasedMembershipsStats() {
   const { purchasedMemberships } = usePurchasedMembership();
-  console.log(purchasedMemberships);
 
   const oneDay = purchasedMemberships?.filter(
     (membership) =>
@@ -28,8 +27,6 @@ export default function PurchasedMembershipsStats() {
       membership.gymMembershipId === ARR_OF_GYM_MEMBERSHIP_ID[3] &&
       membership.isValid === true,
   ).length;
-
-  console.log(oneDay);
 
   const data = [
     { name: "1 dzień", value: oneDay },
