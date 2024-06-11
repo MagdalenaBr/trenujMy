@@ -34,7 +34,9 @@ interface AddOrEditDataTypes extends NewBookingTypes {
   date: string;
   status: string;
   trainers: {
+    id: string;
     name: string;
+    category: string;
   };
   members: {
     name: string;
@@ -150,7 +152,7 @@ export async function getBooking(
 export async function getBookingsAfterDate(selectedTimeRange: string | null): Promise<BookingsAfterDateTypes[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
-    .select("id, date, status, trainers(name), members(name, phone)")
+    .select("id, date, status, trainers(id, name, category), members(name, phone)")
     .lte("date", TODAY_DAY_END )
     .gte("date", START_DAY(selectedTimeRange) )
     .order("date", { ascending: false });

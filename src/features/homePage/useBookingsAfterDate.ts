@@ -12,5 +12,10 @@ export function useBookingsAfterDate() {
     queryFn: () => getBookingsAfterDate(selectedTimeRange),
   });
 
-  return { bookingsAfterDate, isLoading };
+  const personalTrainerBookings = bookingsAfterDate?.filter(booking=> booking.trainers.category === 'trener personalny' && booking.status === 'zrealizowana')
+
+  const groupActivitiesBookings = bookingsAfterDate?.filter(booking => booking.trainers.category !== 'trener personalny' && booking.status === 'zrealizowana')
+
+
+  return { bookingsAfterDate, isLoading, personalTrainerBookings, groupActivitiesBookings };
 }

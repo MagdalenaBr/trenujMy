@@ -12,7 +12,7 @@ function AppLayout() {
         <SidebarOptions />
       </div>
       <div className=" overflow-auto grid  bg-slate-600 ">
-        <main className="text-md self-center h-[90%] overflow-auto bg-slate-600  text-center">
+        <main className="text-md self-center h-full py-10 overflow-auto bg-slate-600  text-center">
           <Outlet />
         </main>
       </div>

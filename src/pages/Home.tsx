@@ -5,6 +5,9 @@ import PurchasedMembershipsStats from "../features/homePage/PurchasedMemberships
 import HomePageBookingsContainer from "../features/homePage/HomePageBookingsContainer";
 import FilterPanel from "../ui/FilterPanel";
 import MainContainer from "../ui/MainContainer";
+import PersonalTrainersStats from "../features/homePage/PersonalTrainersStats";
+import { GroupActivitiesTrainersStats } from "../features/homePage/GroupActivitiesTrainersStats";
+import PaymentsStats from "../features/homePage/PaymentsStats";
 
 function Home() {
   const { user } = useLoggedUser();
@@ -26,6 +29,12 @@ function Home() {
         <HomePageBookingsContainer />
         <PurchasedMembershipsStats />
       </div>
+      <div className="grid grid-cols-2 gap-10">
+      <PersonalTrainersStats/>
+<GroupActivitiesTrainersStats/>
+      </div>
+      <PaymentsStats/>
+
     </MainContainer>
   );
 }
