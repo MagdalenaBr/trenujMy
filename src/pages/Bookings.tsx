@@ -8,18 +8,20 @@ function Bookings() {
   return (
     <MainContainer title="Rezerwacje">
       <SearchNameProvider>
-        <div className="mb-4 flex content-center items-center justify-end gap-4 ">
-          <SearchInput />
-          <BookingsSortPanel
-            dataName="status"
-            mainSortCategory="status: wszystko"
-          />
-          <BookingsSortPanel
-            dataName="date"
-            mainSortCategory="data: malejąco"
-          />
+        <div>
+          <div className="mb-5 flex content-center items-center justify-end gap-4 ">
+            <SearchInput />
+            <BookingsSortPanel
+              dataName="status"
+              mainSortCategory="status: wszystko"
+            />
+            <BookingsSortPanel
+              dataName="date"
+              mainSortCategory="data: malejąco"
+            />
+          </div>
+          <BookingsTable />
         </div>
-        <BookingsTable />
       </SearchNameProvider>
     </MainContainer>
   );

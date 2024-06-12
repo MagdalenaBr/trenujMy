@@ -16,18 +16,20 @@ function Trainers() {
   return (
     <MainContainer title="Trenerzy" buttons={<AddTrainerModal />}>
       <SearchNameProvider>
-        <div className="flex content-center items-center  gap-4 ">
-          <SearchInput />
-          <TrainersSortPanel
-            dataName="category"
-            mainSortCategory="kategoria: wszystko"
-          />
-          <TrainersSortPanel
-            dataName="price"
-            mainSortCategory="cena: domyślna"
-          />
+        <div>
+          <div className="flex content-center items-center  gap-4 mb-5">
+            <SearchInput />
+            <TrainersSortPanel
+              dataName="category"
+              mainSortCategory="kategoria: wszystko"
+            />
+            <TrainersSortPanel
+              dataName="price"
+              mainSortCategory="cena: domyślna"
+            />
+          </div>
+          <TrainersTable />
         </div>
-        <TrainersTable />
       </SearchNameProvider>
       {/* <AddTrainerModal /> */}
     </MainContainer>

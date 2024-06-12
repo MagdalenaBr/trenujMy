@@ -12,8 +12,8 @@ export default function Payments() {
   const { payments } = usePayments();
   return (
     <MainContainer title="Płatności">
-      <div className="grid grid-cols-6 grid-rows-2 gap-20">
-        <div className="col-span-6 flex h-[18.4rem] flex-col gap-3 rounded-lg border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900 ">
+      <div className="grid grid-cols-6 grid-rows-2 gap-10">
+        <div className="col-span-6 flex  flex-col gap-3 rounded-lg border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900 ">
           <Heading>Płatności</Heading>
           <div className="h-60 overflow-auto">
             <PaymentTable payments={payments} />
