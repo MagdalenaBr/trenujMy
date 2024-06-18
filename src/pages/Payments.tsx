@@ -3,7 +3,6 @@ import PurchasedGymMembershipTable from "../features/gymMembership/PurchasedGymM
 import { usePurchasedMembership } from "../features/gymMembership/usePurchasedMembership";
 import MainContainer from "../ui/MainContainer";
 import Heading from "../ui/Heading";
-import PurchaseGymMembershipModal from "../features/gymMembership/PurchaseGymMembershipModal";
 import PaymentTable from "../features/payments/PaymentTabe";
 import { usePayments } from "../features/payments/usePayments";
 
@@ -25,7 +24,6 @@ export default function Payments() {
           <PurchasedGymMembershipTable
             purchasedMemberships={purchasedMemberships}
           ></PurchasedGymMembershipTable>
-          <PurchaseGymMembershipModal />
         </div>
         <GymMembershipTypesContainer />
       </div>

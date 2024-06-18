@@ -16,6 +16,8 @@ function FormOption({
   children
 }: PropsType) {
 
+  console.log(errors);
+
   return (
     <>
       <select
