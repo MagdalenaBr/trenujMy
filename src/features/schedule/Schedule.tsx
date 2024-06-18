@@ -7,8 +7,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import { useSchedules } from "./useSchedules";
 
 function Schedule({
+  trainerSchedule,
   page,
 }: {
+  trainerSchedule?: any
   page: string
 }) {
 
@@ -21,19 +23,21 @@ function Schedule({
   let openHour, closeHour;
   if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
 
-
-  const trainerSchedule = schedule?.map((el) => ({
-    title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
-    date: el.date,
-    url: `/trenerzy/${el.trainerId}`,
-  }));
+  let scheduleData; 
+  if(page === 'trainer') {scheduleData = trainerSchedule;} else {
+    scheduleData = schedule?.map((el) => ({
+        title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
+        date: el.date,
+        url: `/trenerzy/${el.trainerId}`,
+      }));
+  }
 
   return (
     <div className=" rounded-lg bg-slate-900/70 p-2 text-slate-300">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView={page === "trainer" ? "timeGridWeek" : "dayGridMonth"}
-        events={trainerSchedule}
+        events={scheduleData}
         eventColor={"rgb(119, 103, 151)"}
         locale="pl"
         height={"39rem"}

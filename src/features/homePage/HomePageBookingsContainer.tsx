@@ -1,18 +1,13 @@
 import { useBookingsAfterDate } from "./useBookingsAfterDate";
-import { useUpdateBookingStatus } from "./useUpdateBookingStatus";
-import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
+import StatusChange from "../bookings/StatusChange";
 
 export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
-  const { updateStatus } = useUpdateBookingStatus();
 
-  function handleClick(statusValue: string, id: string) {
-    updateStatus({ statusValue, id });
-  }
   return (
     <HomePageContainer colGrid="col-span-3">
       <Heading>Rezerwacje</Heading>
@@ -34,22 +29,7 @@ export default function HomePageBookingsContainer() {
             </div>
             <BookingStatus status={booking.status} />
             <div className="flex justify-end gap-4">
-              <StatusButton
-                width="w-20"
-                status="confirm"
-                disabled={booking.status === "zrealizowana"}
-                onClick={() => handleClick("zrealizowana", booking.id)}
-              >
-                zrealizuj
-              </StatusButton>
-              <StatusButton
-                width="w-20"
-                status="cancel"
-                disabled={booking.status === "anulowana"}
-                onClick={() => handleClick("anulowana", booking.id)}
-              >
-                anuluj
-              </StatusButton>
+              <StatusChange booking={booking} />
             </div>
           </TableWithSpacing.Row>
         ))}

@@ -8,12 +8,6 @@ import { useSchedules } from "../schedule/useSchedules";
 import { useBooking } from "../bookings/useBooking";
 import Spinner from "../../ui/Spinner";
 
-type ScheduleDataTypes = {
-	date: string;
-	title: string;
-	url?: string;
-}[];
-
 function TrainerPage() {
 	const trainerIdParams = useParams();
 	const trainerId = Number(trainerIdParams.trainerId);
@@ -49,6 +43,7 @@ function TrainerPage() {
 				  }
 				: {}
 		);
+		console.log(trainerSchedule);
 
 	return (
 		<Container>
@@ -73,8 +68,7 @@ function TrainerPage() {
 					</div>
 				</div>
 			</div>
-			{/* <StyledButton styleType='add'>Zarezerwuj trenera</StyledButton> */}
-			<Schedule trainerSchedule={trainerSchedule as ScheduleDataTypes} page="trainer"/>
+			<Schedule trainerSchedule={trainerSchedule} page="trainer"/>
 		</Container>
 	);
 }

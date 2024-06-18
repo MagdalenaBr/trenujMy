@@ -8,8 +8,10 @@ import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import { useContext } from "react";
 import { SearchNameContext } from "../../context/SearchContext";
+import { TODAY_DAY } from "../../utils/constants";
 
 function BookingsTable() {
+  const todayDay = TODAY_DAY.toString().slice(0, 10);
   const searchNameContext = useContext(SearchNameContext);
   const { bookings, isLoading, error, count } = useBookings();
 
@@ -48,17 +50,22 @@ function BookingsTable() {
                 {booking.date.split("T")[1]}
               </p>
             </div>
+
             <div className="flex w-full justify-between">
               <BookingStatus status={booking?.status} />
-              <AddBookingModal
-                booking={booking}
-                memberId={booking.memberId}
-                memberName={booking.members?.name}
-              >
-                <Button>
-                  <HiOutlinePencil className="text-2xl" />
-                </Button>
-              </AddBookingModal>
+              {todayDay < booking.date ? (
+                <AddBookingModal
+                  booking={booking}
+                  memberId={booking.memberId}
+                  memberName={booking.members?.name}
+                >
+                  <Button>
+                    <HiOutlinePencil className="text-2xl" />
+                  </Button>
+                </AddBookingModal>
+              ) : (
+                ""
+              )}
             </div>
           </Table.Row>
         ))
