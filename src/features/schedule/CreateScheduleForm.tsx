@@ -48,7 +48,6 @@ function CreateScheduleForm({
   });
   const { errors } = formState;
 
-
   const onSubmit = (data: DataTypes) => {
     const { date, name, numOfPlaces, trainerId } = data;
     const newData = {
@@ -65,26 +64,33 @@ function CreateScheduleForm({
     handleCloseModal?.();
   };
 
+  const typesOfActivities = trainers?.map((trainer) => trainer.category);
+  const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
+    (trainerCategory) => trainerCategory !== "trener personalny",
+  );
+
   if (trainerIsLoading) return <Spinner />;
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow name="name" label="Rodzaj zajęć">
-        <FormOption
-          trainerData={trainers}
-          value="typeOfActivities"
-          errors={errors}
-          inputName="name"
-          register={register}
-        />
+        <FormOption errors={errors} inputName="name" register={register}>
+          {uniqueTypesOfActivities?.map((category) => (
+            <option key={category} value={category} label={category}></option>
+          ))}
+        </FormOption>
       </FormRow>
       <FormRow name="trainerId" label="Trener">
-        <FormOption
-          trainerData={trainers}
-          errors={errors}
-          value="trainers"
-          inputName="trainerId"
-          register={register}
-        />
+        <FormOption errors={errors} inputName="trainerId" register={register}>
+          {trainers?.map((trainer) => (
+            <option
+              key={trainer.id}
+              value={trainer.id}
+              label={`${trainer.name} ${trainer.phone}`}
+            >
+              {trainer.name}
+            </option>
+          ))}
+        </FormOption>
       </FormRow>
       <FormRow name="date" label="Data">
         <FormInput
@@ -103,10 +109,7 @@ function CreateScheduleForm({
         />
       </FormRow>
 
-      <ButtonsContainer  handleClick={() => handleCloseModal?.()}/>
-
-
-  
+      <ButtonsContainer handleClick={() => handleCloseModal?.()} />
     </Form>
   );
 }

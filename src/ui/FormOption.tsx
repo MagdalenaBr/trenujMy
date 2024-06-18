@@ -1,43 +1,20 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-type TrainersType = {
-  id: string;
-  name: string;
-  category: string;
-  price: number;
-  phone: string;
-  image: any;
-}[];
-type gymMembershipType = {
-  created_at: string;
-  gymMembershipName: string;
-  id: string;
-  price: string;
-}[];
-
 type PropsType = {
   errors?: FieldErrors;
   inputName: string;
   register: UseFormRegister<any>;
-  value: string;
-  trainerData?: TrainersType;
-  gymMembershipData?: gymMembershipType;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  children: React.ReactNode
 };
 
 function FormOption({
   errors,
   inputName,
   register,
-  value,
-  trainerData,
-  gymMembershipData,
-  onChange
+  onChange,
+  children
 }: PropsType) {
-  const typesOfActivities = trainerData?.map((el) => el.category);
-  const uniqueTypesOfActivities = [...new Set(typesOfActivities)].filter(
-    (el) => el !== "trener personalny",
-  );
 
   return (
     <>
@@ -50,41 +27,9 @@ function FormOption({
           onChange(e);
         }}
       >
-        {value === "trainers" && (
-          <>
-            <option value=""></option>
-            {trainerData?.map((el) => (
-              <option
-                key={el.id}
-                value={el.id}
-                label={`${el.name} ${el.phone}`}
-              >
-                {el.name}
-              </option>
-            ))}
-          </>
-        )}
-        {value === "typeOfActivities" && (
-          <>
-            <option value=""></option>
-            {uniqueTypesOfActivities?.map((category) => (
-              <option key={category} value={category} label={category}></option>
-            ))}
-          </>
-        )}
-        {value === "gymMembership" && (
-          <>
-           <option value=""></option>
-            {gymMembershipData?.map((membership) => (
-              <option
-                key={membership.gymMembershipName}
-                value={membership.id}
-                label={membership.gymMembershipName}
-                defaultValue={membership.id}
-              />
-            ))}
-          </>
-        )}
+        <option value=''></option>
+        {children}
+       
       </select>
       {errors && errors[inputName]?.message && (
         <p className="col-start-4 col-end-7">
@@ -93,6 +38,7 @@ function FormOption({
       )}
     </>
   );
+
 }
 
 export default FormOption;

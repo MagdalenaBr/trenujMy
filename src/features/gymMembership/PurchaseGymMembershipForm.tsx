@@ -139,10 +139,17 @@ export default function PurchaseGymMembershipForm({
             errors={errors}
             inputName="gymMembershipId"
             register={register}
-            value="gymMembership"
-            gymMembershipData={gymMembership}
             onChange={handleMembershipChange}
-          />
+          >
+            {gymMembership?.map((membership) => (
+              <option
+                key={membership.gymMembershipName}
+                value={membership.id}
+                label={membership.gymMembershipName}
+                defaultValue={membership.id}
+              />
+            ))}
+          </FormOption>
         </FormRow>
         <FormRow name="price" label="Cena">
           <FormInput
