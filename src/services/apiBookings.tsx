@@ -1,4 +1,3 @@
-
 import { NUM_OF_RESULTS, TODAY_DAY_END } from "../utils/constants";
 import { START_DAY } from "../utils/helpers";
 import supabase from "./supabase";
@@ -29,7 +28,10 @@ interface AddOrEditDataTypes extends NewBookingTypes {
   id: string;
 }
 
- interface BookingsAfterDateTypes {
+interface BookingsAfterDateTypes {
+  created_at: string;
+  trainerId: string;
+  memberId: string;
   id: string;
   date: string;
   status: string;
@@ -40,11 +42,9 @@ interface AddOrEditDataTypes extends NewBookingTypes {
   };
   members: {
     name: string;
-    phone: string
-  }
+    phone: string;
+  };
 }
-
-
 
 export async function getBookings(
   sortByDateValue: {
@@ -149,12 +149,16 @@ export async function getBooking(
   return booking;
 }
 
-export async function getBookingsAfterDate(selectedTimeRange: string | null): Promise<BookingsAfterDateTypes[]> {
+export async function getBookingsAfterDate(
+  selectedTimeRange: string | null,
+): Promise<BookingsAfterDateTypes[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
-    .select("id, date, status, trainers(id, name, category), members(name, phone)")
-    .lte("date", TODAY_DAY_END )
-    .gte("date", START_DAY(selectedTimeRange) )
+    .select(
+      "id, date, status, trainers(id, name, category), members(name, phone)",
+    )
+    .lte("date", TODAY_DAY_END)
+    .gte("date", START_DAY(selectedTimeRange))
     .order("date", { ascending: false });
   if (error)
     throw new Error(
@@ -165,7 +169,6 @@ export async function getBookingsAfterDate(selectedTimeRange: string | null): Pr
 }
 
 export async function updateBookingStatus(statusValue: string, id: string) {
-
   const { data, error } = await supabase
     .from("bookings")
     .update({ status: statusValue })

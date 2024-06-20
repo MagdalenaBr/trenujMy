@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import { useCancelPurchase } from "./useCancelPurchase";
@@ -40,7 +41,7 @@ export default function PurchasedGymMembershipTable({
       uniqueStyles="px-2"
       columns={
         isMemberPage
-          ? "grid-cols-[2fr_2fr_3fr_2fr_1fr]"
+          ? "grid-cols-[2fr_2fr_3fr_2fr_100px]"
           : "grid-cols-[1fr_1fr_2fr_1fr]"
       }
     >
@@ -62,17 +63,11 @@ export default function PurchasedGymMembershipTable({
             </p>
             <div className="flex">
               <span className="w-full text-center">
-                <p>{membership.startDay.split("T").at(0)}</p>
-                <p className=" text-center text-sm text-secondaryTextColor">
-                  {membership.startDay.split("T").at(1)}
-                </p>
+                <p>{DateTime.fromISO(membership.startDay.split("T").at(0) as string).toLocaleString()}</p>
               </span>
               <span> - </span>
               <span className="w-full text-center">
-                <p>{membership.endDay.split("T").at(0)}</p>
-                <p className="text-center text-sm text-secondaryTextColor">
-                  {membership.endDay.split("T").at(1)}
-                </p>
+                <p>{DateTime.fromISO(membership.endDay.split("T").at(0) as string).toLocaleString()}</p>
               </span>
             </div>
             <p

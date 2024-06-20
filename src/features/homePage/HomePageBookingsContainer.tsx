@@ -4,6 +4,7 @@ import BookingStatus from "../../ui/BookingStatus";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
 import StatusChange from "../bookings/StatusChange";
+import { DateTime } from "luxon";
 
 export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
@@ -22,14 +23,16 @@ export default function HomePageBookingsContainer() {
             </div>
             <p className="px-2 text-start">{booking.trainers.name}</p>
             <div className="text-start">
-              <p>{booking.date.split("T")[0]}</p>
+              <p>
+                {DateTime.fromISO(booking.date.split("T")[0]).toLocaleString()}
+              </p>
               <p className="text-sm text-secondaryTextColor">
                 {booking.date.split("T")[1]}
               </p>
             </div>
             <BookingStatus status={booking.status} />
             <div className="flex justify-end gap-4">
-              <StatusChange booking={booking} />
+              <StatusChange currentPage="home" booking={booking} />
             </div>
           </TableWithSpacing.Row>
         ))}

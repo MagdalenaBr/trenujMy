@@ -1,6 +1,7 @@
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
 import StatusChange from "../bookings/StatusChange";
+import { DateTime } from "luxon";
 
 interface BookingTypes {
   created_at: string;
@@ -27,7 +28,7 @@ function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
           <TableWithSpacing.Row key={booking.id}>
             <p>{booking.trainers.name}</p>
             <div>
-              <p>{booking.date.split("T")[0]}</p>
+              <p>{DateTime.fromISO(booking.date.split("T")[0]).toLocaleString()}</p>
               <p className="text-sm text-slate-600">
                 {booking.date.split("T")[1]}
               </p>

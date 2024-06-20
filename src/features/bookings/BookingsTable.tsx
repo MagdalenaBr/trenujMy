@@ -9,6 +9,7 @@ import Spinner from "../../ui/Spinner";
 import { useContext } from "react";
 import { SearchNameContext } from "../../context/SearchContext";
 import { TODAY_DAY } from "../../utils/constants";
+import { DateTime } from "luxon";
 
 function BookingsTable() {
   const todayDay = TODAY_DAY.toString().slice(0, 10);
@@ -45,7 +46,7 @@ function BookingsTable() {
             </div>
             <p>{booking.trainers.name}</p>
             <div>
-              <p>{booking.date.split("T")[0]}</p>
+              <p>{DateTime.fromISO(booking.date.split("T")[0]).toLocaleString()}</p>
               <p className="text-start text-sm text-secondaryTextColor">
                 {booking.date.split("T")[1]}
               </p>

@@ -6,6 +6,7 @@ import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BackButton from "../../ui/BackButton";
 import { useSchedules } from "./useSchedules";
+import { DateTime } from "luxon";
 
 export default function EditSchedulePage() {
   const { schedule, scheduleIsLoading } = useSchedules("currentSchedule");
@@ -30,7 +31,7 @@ export default function EditSchedulePage() {
               </p>
               <p>{el.name}</p>
               <div>
-                <p>{el.date.slice(0, -3).split("T")[0]}</p>
+                <p>{DateTime.fromISO(el.date.slice(0, -3).split("T")[0]).toLocaleString()}</p>
                 <p className="text-sm text-slate-300">
                   {el.date.slice(0, -3).split("T")[1]}
                 </p>

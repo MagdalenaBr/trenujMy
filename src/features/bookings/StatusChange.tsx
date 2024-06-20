@@ -7,22 +7,22 @@ import { HiOutlinePencil } from "react-icons/hi2";
 
 interface BookingTypes {
   created_at: string;
+  trainerId: string;
+  memberId: string;
   date: string;
   id: string;
-  memberId: string;
   members: {
     name: string;
     phone: string;
   };
   status: string;
-  trainerId: string;
   trainers: {
     name: string;
     category: string;
   };
 }
 
-export default function StatusChange({ booking }: { booking: BookingTypes }) {
+export default function StatusChange({ booking, currentPage }: { booking: BookingTypes, currentPage?: string }) {
   const { updateStatus } = useUpdateBookingStatus();
 
   const todayDay = TODAY_DAY.toString().slice(0, 10);
@@ -32,7 +32,7 @@ export default function StatusChange({ booking }: { booking: BookingTypes }) {
   }
   return (
     <>
-      {booking.date >= todayDay ? (
+      {booking.date >= todayDay && currentPage !== 'home' ? (
         <AddBookingModal
           booking={booking}
           memberId={booking.memberId}

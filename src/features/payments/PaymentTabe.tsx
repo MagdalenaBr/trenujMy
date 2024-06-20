@@ -2,6 +2,7 @@ import TableWithSpacing from "../../ui/TableWithSpacing";
 import { PRICE_TO_PAY } from "../../utils/helpers";
 import { useCancelPayment } from "./useCancelPayment";
 import StatusButton from "../../ui/StatusButton";
+import { DateTime } from "luxon";
 
 interface PaymentsType {
   id: string;
@@ -47,7 +48,7 @@ export default function PaymentTable({
   }
 
   return (
-    <TableWithSpacing columns="grid-cols-6">
+    <TableWithSpacing columns="grid-cols-[2fr_1fr_2fr_1fr_2fr_100px]">
       <div>
         <TableWithSpacing.Header>
           {!isMemberPage && <p>Imie i nazwisko</p>}
@@ -82,11 +83,15 @@ export default function PaymentTable({
             <div className="flex">
               <span className="w-full text-center">
                 <p>
-                  {payment.purchasedMemberships.created_at.split("T").at(0)}
+                  {DateTime.fromISO(
+                    payment.purchasedMemberships.created_at
+                      .split("T")
+                      .at(0) as string,
+                  ).toLocaleString()}
                 </p>
                 <p className=" text-center text-sm text-secondaryTextColor">
                   {payment.purchasedMemberships.created_at
-                    ?.split("T")[0]
+                    ?.split("T")[1]
                     .slice(0, 8)}
                 </p>
               </span>
@@ -95,7 +100,11 @@ export default function PaymentTable({
 
             <div className="flex">
               <span className="w-full text-center">
-                <p>{payment.created_at.split("T").at(0)}</p>
+                <p>
+                  {DateTime.fromISO(
+                    payment.created_at.split("T").at(0) as string,
+                  ).toLocaleString()}
+                </p>
                 <p className=" text-center text-sm text-secondaryTextColor">
                   {payment.created_at.split("T")[1].slice(0, 8)}
                 </p>
