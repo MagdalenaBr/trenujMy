@@ -19,7 +19,7 @@ function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
           <img
             src={trainer.image}
             alt="trener"
-            className="h-28 w-20 object-cover"
+            className="h-20 w-20 object-cover"
           />
         ) : (
           <HiMiniUser className="h-28 w-20 object-cover" />

@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput.tsx";
-import { useTrainers } from "../trainer/useTrainers.tsx";
+import { useTrainers } from "../trainer/useTrainers.ts";
 import FormOption from "../../ui/FormOption.tsx";
-import { useCreateSchedules } from "./useCreateSchedules.tsx";
+import { useCreateSchedules } from "./useCreateSchedules.ts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/ScheduleValidation.tsx";
-import { useEditSchedules } from "./useEditSchedules.tsx";
+import { useEditSchedules } from "./useEditSchedules.ts";
 import Spinner from "../../ui/Spinner.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";

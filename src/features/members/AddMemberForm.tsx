@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormRow from "../../ui/FormRow";
 import { schema } from "../../validation/MembersValidation.tsx";
-import useCreateMember from "./useCreateMember";
+import useCreateMember from "./useCreateMember.ts";
 import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput.tsx";
 import Form from "../../ui/Form.tsx";
