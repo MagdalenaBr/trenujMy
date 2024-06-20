@@ -8,7 +8,7 @@ function Users() {
 
   const { user } = useLoggedUser();
 
-  const displayUserName= <h2 className="self-start rounded-md border-y-2 border-accentColor2 px-3 py-1 text-2xl font-bold text-accentColor2">
+  const displayUserName= <h2 className="self-start border-y-2 border-accentColor2 px-3 py-1 text-2xl font-bold text-accentColor2">
   {user?.user_metadata.userName}
 </h2>
   return (

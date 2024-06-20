@@ -9,7 +9,7 @@ export default function GymMembershipMember() {
       <input
         list="member"
         {...context?.register("memberId")}
-        className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
+        className="col-start-1 col-end-4 h-9 w-80 border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
       />
       <datalist id="member">
         {context?.members?.map((member) => (

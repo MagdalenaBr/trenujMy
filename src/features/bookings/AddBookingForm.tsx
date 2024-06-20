@@ -140,7 +140,7 @@ function AddBookingForm({
             <select
               id="status"
               {...register("status", { required: "Wybierz status" })}
-              className="col-start-1 col-end-4 h-9 w-80 rounded-md border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
+              className="col-start-1 col-end-4 h-9 w-80  border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
             >
               <option value=""></option>
               <option value="zrealizowana">zrealizowana</option>

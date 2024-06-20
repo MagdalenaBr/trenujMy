@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				notoSans: "Noto Sans, sans-serif",
+				libre: ['Libre Franklin', 'sans-serif'],
 			},
 			colors: {
 				primaryTextColor: "rgb(var(--color-primaryTextColor) / <alpha-value>)",

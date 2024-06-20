@@ -8,7 +8,7 @@ interface PropsTypes{
 
 export default function Form({ onSubmit, children }:PropsTypes) {
   return (
-    <div className="rounded-md bg-slate-300 px-10 py-6 z-10">
+    <div className=" bg-slate-300 px-10 py-6 z-10">
       <form
         onSubmit={onSubmit}
         noValidate

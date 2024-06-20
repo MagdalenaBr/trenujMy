@@ -35,7 +35,7 @@ function MembersTable() {
             <div className="flex">
               <Link
                 to={`/klienci/${member.id}`}
-                className="self-start rounded-md border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
+                className="self-start  border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
               >
                 <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
               </Link>

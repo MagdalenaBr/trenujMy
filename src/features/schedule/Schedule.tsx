@@ -33,7 +33,7 @@ function Schedule({
   }
 
   return (
-    <div className=" rounded-lg bg-slate-900/70 p-2 text-slate-300">
+    <div className=" bg-slate-900/70 p-2 text-slate-300">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView={page === "trainer" ? "timeGridWeek" : "dayGridMonth"}

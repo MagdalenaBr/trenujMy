@@ -94,7 +94,7 @@ function AddTrainerForm({
 
 				<label
 					htmlFor='image'
-					className='font-semibold bg-slate-600 text-violet-100  w-[165px] px-7 rounded-md uppercase text-[15px] py-1 my-4'>
+					className='font-semibold bg-slate-600 text-violet-100  w-[165px] px-7 uppercase text-[15px] py-1 my-4'>
 					Dodaj zdjęcie
 					<input
 						type='file'

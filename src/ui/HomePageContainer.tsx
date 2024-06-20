@@ -7,7 +7,7 @@ export default function HomePageContainer({
 }) {
   return (
     <div
-      className={`${colGrid} h-72 overflow-auto rounded-lg border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900`}
+      className={`${colGrid} h-72 overflow-auto border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900`}
     >
       {children}
     </div>

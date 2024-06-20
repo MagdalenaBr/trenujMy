@@ -33,7 +33,7 @@ export default function Input({
         value={value}
         disabled={disabled}
         onChange={onChange}
-        className={`${disabled === true ? " border-none outline-none" : " border-accentColor1"} w-5/6 self-start rounded-lg border-2 bg-serchInputBg px-2 py-1 pr-2 text-slate-300 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none`}
+        className={`${disabled === true ? " border-none outline-none" : " border-accentColor1"} w-5/6 self-start border-2 bg-serchInputBg px-2 py-1 pr-2 text-slate-300 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none`}
       />
       {errors && errors[id]?.message && (
         <p className="text-start">{errors[id]?.message?.toString()}</p>

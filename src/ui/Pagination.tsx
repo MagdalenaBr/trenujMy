@@ -41,7 +41,7 @@ export default function Pagination({
       <div className="flex gap-9">
         <button
           className="flex
-      items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-2 pr-4 py-1 rounded-md disabled:hover:bg-gray-600"
+      items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-2 pr-4 py-1 disabled:hover:bg-gray-600"
           onClick={prevPage}
           disabled={currentPage === 1}
         >
@@ -50,7 +50,7 @@ export default function Pagination({
         </button>
         <button
           className="flex
-          items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-4 pr-2 py-1 rounded-md disabled:hover:bg-gray-600"
+          items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-4 pr-2 py-1 disabled:hover:bg-gray-600"
           onClick={nextPage}
           disabled={currentPage === pageNum}
         >

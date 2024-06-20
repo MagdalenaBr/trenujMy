@@ -15,7 +15,7 @@ export default function EditSchedulePage() {
 
   return (
     <MainContainer title="Aktualny grafik">
-      <div className=" rounded-lg border-slate-700 bg-slate-900/70 p-4 text-slate-200">
+      <div className=" border-slate-700 bg-slate-900/70 p-4 text-slate-200">
         <BackButton />
         <TableWithSpacing columns="grid-cols-[repeat(4,minmax(100px,_1fr))_100px]">
           <TableWithSpacing.Header>

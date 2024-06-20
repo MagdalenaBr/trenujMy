@@ -30,7 +30,7 @@ function TrainerOptions({ trainer }: { trainer: TrainersDataTypes }) {
     <div className="flex gap-2 px-5 text-2xl text-accentColor2">
       <Link
         to={`/trenerzy/${id}`}
-        className="self-start rounded-md border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
+        className="self-start border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
       >
         <HiOutlineCalendar />
       </Link>

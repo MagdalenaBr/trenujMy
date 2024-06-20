@@ -21,7 +21,7 @@ function Home() {
           </span>
         </h1>
         <div className="flex justify-between">
-          <p className="rounded-md border border-slate-900 bg-slate-800 px-2 py-1 font-semibold tracking-wide">
+          <p className=" border border-slate-900 bg-slate-800 px-2 py-1 font-semibold tracking-wide">
             {TODAY_DAY.toLocaleString(DateTime.DATE_HUGE)}
           </p>
           <FilterPanel />

@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply transition duration-100 ease-linear;
+    @apply transition duration-100 ease-linear font-libre ;
   }
 
   :root{

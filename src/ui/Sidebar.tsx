@@ -19,7 +19,7 @@ function Sidebar() {
               to="/"
               className={({
                 isActive,
-              }) => ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+              }) => ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`}
             >
               <HiOutlineHome className="text-3xl font-extrabold text-slate-300" />
@@ -30,7 +30,7 @@ function Sidebar() {
             <NavLink
               to="/trenerzy"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
@@ -42,7 +42,7 @@ function Sidebar() {
             <NavLink
               to="/rezerwacje"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
@@ -54,7 +54,7 @@ function Sidebar() {
             <NavLink
               to="/grafik"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
@@ -66,7 +66,7 @@ function Sidebar() {
             <NavLink
               to="/klienci"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
@@ -78,7 +78,7 @@ function Sidebar() {
             <NavLink
               to="/platnosci"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
@@ -90,7 +90,7 @@ function Sidebar() {
             <NavLink
               to="/uzytkownicy"
               className={({ isActive }) =>
-                ` flex w-full items-center gap-2 rounded-md px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
+                ` flex w-full items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText
               ${isActive && "border-l-4  border-accentColor1 bg-activeBkg text-activeText"}`
               }
             >
