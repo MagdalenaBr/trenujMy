@@ -53,7 +53,7 @@ export default function TrainerInput({
 
         {value === "personalTrainers" &&
           trainerData?.map((el) => (
-            <option key={el.id} value={el.id} label={`${el.name} ${el.phone}`}>
+            <option key={el.id} value={el.id} label={`${el.name}`}>
               {el.name}
             </option>
           ))}

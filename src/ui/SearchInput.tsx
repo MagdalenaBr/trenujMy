@@ -11,7 +11,7 @@ export default function SearchInput() {
         <input
           value={searchNameContext?.name}
           onChange={(e) => searchNameContext?.setName(e.target.value)}
-          className="w-80 border-2 border-violet-300 bg-serchInputBg  py-1 pl-8 pr-2 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none"
+          className="w-80 border-2 border-accentColor2 bg-serchInputBg  py-1 pl-8 pr-2 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none"
         />
       </div>
     </div>

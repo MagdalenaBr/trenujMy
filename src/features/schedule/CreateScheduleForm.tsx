@@ -85,7 +85,7 @@ function CreateScheduleForm({
             <option
               key={trainer.id}
               value={trainer.id}
-              label={`${trainer.name} ${trainer.phone}`}
+              label={`${trainer.name}`}
             >
               {trainer.name}
             </option>

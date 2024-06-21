@@ -24,10 +24,10 @@ function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
         ) : (
           <HiMiniUser className="h-28 w-20 object-cover" />
         )}
-        <h2>{trainer.name}</h2>
+        <h2 className="uppercase text-sm font-semibold tracking-wide">{trainer.name}</h2>
       </div>
-      <p>{trainer.category}</p>
-      <p>{trainer.price !== null ? `${trainer.price} zł` : " - "}</p>
+      <p className="text-slate-400">{trainer.category}</p>
+      <p  className="text-slate-400">{trainer.price !== null ? `${trainer.price} zł` : " - "}</p>
       <TrainerOptions trainer={trainer} />
     </>
   );
