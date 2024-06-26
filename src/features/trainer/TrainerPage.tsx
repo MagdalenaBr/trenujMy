@@ -7,6 +7,7 @@ import { useTrainers } from "./useTrainers";
 import { useSchedules } from "../schedule/useSchedules";
 import { useBooking } from "../bookings/useBooking";
 import Spinner from "../../ui/Spinner";
+import GridContainer from "../../ui/GridContainer";
 
 function TrainerPage() {
   const trainerIdParams = useParams();
@@ -30,7 +31,6 @@ function TrainerPage() {
         (memberBooking) => memberBooking.date === el.date,
       ).length;
 
-      console.log(numberOfBookings);
      return el.trainerId === trainer.id
         ? {
             title: `${el.name}: ${numberOfBookings}/${el.numOfPlaces}`,
@@ -47,30 +47,29 @@ function TrainerPage() {
           }
         : {},
     );
-  console.log(trainerSchedule);
 
   return (
     <Container>
       <div className="flex gap-5">
-        <img src={trainer.image} alt="" className="h-96 w-96 object-cover" />
+        <img src={trainer.image} alt="" className="aspect-square h-60 object-cover" />
         <div className="flex w-[100%] flex-col">
           <BackButton />
           <div className="flex flex-col gap-5 self-start">
             <h2 className="text-2xl font-bold">{trainer.name}</h2>
-            <div className="flex gap-2">
+            <GridContainer gridWidth="[80px_1fr]">
               <h3 className="font-semibold">Kategoria:</h3>
               <span>{trainer.category}</span>
-            </div>
-            <div className="flex gap-2">
+            </GridContainer>
+            <GridContainer gridWidth="[80px_1fr]" >
               <h3 className="font-semibold">Telefon:</h3>
               <span>{trainer.phone}</span>
-            </div>
-            <div className="flex gap-2">
+            </GridContainer>
+            <GridContainer gridWidth="[80px_1fr]">
               <h3 className="font-semibold">Cena:</h3>
               <span>
                 {trainer.price !== null ? `${trainer.price} zł` : "-"}
               </span>
-            </div>
+            </GridContainer>
           </div>
         </div>
       </div>

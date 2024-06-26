@@ -10,7 +10,7 @@ export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
 
   return (
-    <HomePageContainer colGrid="col-span-3">
+    <HomePageContainer colGrid="col-span-4">
       <Heading>Rezerwacje</Heading>
       <TableWithSpacing columns="grid-cols-5">
         {bookingsAfterDate?.map((booking) => (

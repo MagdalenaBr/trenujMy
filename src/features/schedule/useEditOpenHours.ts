@@ -17,7 +17,7 @@ export function useEditOpenHours() {
 			queryClient.invalidateQueries({
 				queryKey: ["openHours"],
 			});
-			toast.success("Godziny otwarcia zostały edytowane.");
+			toast.success("Godziny otwarcia zostały zmienione.");
 		},
 		onError(error) {
 			toast.error(error.message);

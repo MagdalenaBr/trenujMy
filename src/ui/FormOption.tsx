@@ -5,7 +5,8 @@ type PropsType = {
   inputName: string;
   register: UseFormRegister<any>;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  children: React.ReactNode
+  children: React.ReactNode;
+
 };
 
 function FormOption({
@@ -13,34 +14,35 @@ function FormOption({
   inputName,
   register,
   onChange,
-  children
-}: PropsType) {
+  children,
 
-  console.log(errors);
+}: PropsType) {
 
   return (
     <>
       <select
         id={inputName}
         {...register(inputName)}
-        className="col-start-1 col-end-4 h-9 w-80 border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
+        className="
+        col-span-2 h-9 w-[26rem]  border-b-2 border-r-2 border-slate-600 bg-slate-700 px-2  text-sm font-semibold tracking-wider text-textLight focus:bg-slate-400 focus:text-textDark disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
         onChange={(e) => {
           if (!onChange) return;
           onChange(e);
         }}
       >
-        <option value=''></option>
+        <option value="" hidden>
+        </option>
         {children}
-       
       </select>
-      {errors && errors[inputName]?.message && (
-        <p className="col-start-4 col-end-7">
+      {errors && errors[inputName]?.message ? (
+        <p className="col-span-2  my-1 h-6  text-end text-red-500">
           {errors[inputName]?.message?.toString()}
         </p>
+      ) : (
+        <p className=" my-1 h-6"></p>
       )}
     </>
   );
-
 }
 
 export default FormOption;

@@ -48,7 +48,7 @@ export default function PaymentTable({
   }
 
   return (
-    <TableWithSpacing columns="grid-cols-[2fr_1fr_2fr_1fr_2fr_100px]">
+    <TableWithSpacing columns="grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]">
       <div>
         <TableWithSpacing.Header>
           {!isMemberPage && <p>Imie i nazwisko</p>}

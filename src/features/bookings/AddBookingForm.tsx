@@ -6,16 +6,18 @@ import TrainerInputs from "./TrainerInputs";
 import { useTrainers } from "../trainer/useTrainers";
 import Spinner from "../../ui/Spinner";
 import { useSchedules } from "../schedule/useSchedules";
-import { createContext, useState } from "react";
 import DateInput from "./DateInput";
 import Form from "../../ui/Form";
-import ButtonsContainer from "../../ui/ButtonsContainer";
+import FormOption from "../../ui/FormOption";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema as classesValidation } from "../../validation/BookingClassesValidation";
+import { schema as personalTrainerValidation } from "../../validation/PersonalTrainerBooking";
+import FormButton from "../../ui/FormButton";
 
 interface CommonDataTypes {
   status: string;
   trainerId: string;
-  memberId: string;
-  date: string;
+  date?: string;
 }
 interface BookingTypes extends CommonDataTypes {
   created_at: string;
@@ -34,26 +36,16 @@ interface PropsType {
   handleCloseModal?: () => void;
   booking?: BookingTypes;
   memberIdNumber: string;
-  memberName: string;
+  closeSelectModal?:  () => void;
+  typeOfActivities: string;
 }
-
-interface ContextTypes {
-  activitiesType: string;
-  setActivitiesType: React.Dispatch<React.SetStateAction<string>>;
-  setBookingDate: React.Dispatch<React.SetStateAction<string>>;
-  isEditingSession: boolean;
-  bookingDate: string;
-}
-
-export const BookingFormContext = createContext<ContextTypes | undefined>(
-  undefined,
-);
 
 function AddBookingForm({
   booking = {} as BookingTypes,
   handleCloseModal,
   memberIdNumber,
-  memberName,
+  closeSelectModal,
+  typeOfActivities,
 }: PropsType) {
   const { id, ...bookingsEditData } = booking;
   const { createBooking } = useCreateBooking();
@@ -61,37 +53,33 @@ function AddBookingForm({
   const { trainerIsLoading } = useTrainers();
   const { scheduleIsLoading } = useSchedules("currentSchedule");
   const isEditingSession = Boolean(id);
-  const [activitiesType, setActivitiesType] = useState(
-    bookingsEditData.trainers?.category === "trener personalny"
-      ? "personalTrainer"
-      : "groupActivities",
-  );
 
-  const [bookingDate, setBookingDate] = useState(
-    isEditingSession ? bookingsEditData.date : "",
-  );
-
-  /// in case group activities adding to trainerId date, that in booking form (edit existing booking) properly displaying trainer name and data
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: isEditingSession
-      ? activitiesType !== "groupActivities"
+      ? typeOfActivities !== "groupActivities"
         ? bookingsEditData
         : {
             ...bookingsEditData,
             trainerId: `${bookingsEditData.trainerId} ${bookingsEditData.date}`,
           }
       : {},
+    resolver: yupResolver(
+      typeOfActivities === "groupActivities"
+        ? classesValidation
+        : personalTrainerValidation,
+    ),
   });
 
   const onSubmit = (data: CommonDataTypes) => {
+    console.log(data);
     const { date, status, trainerId } = data;
 
-    let newBookingData;
-    if (activitiesType === "groupActivities") {
+    let newBookingData
+    if (typeOfActivities === "groupActivities") {
       newBookingData = {
         date: trainerId.split(" ")[1],
         memberId: memberIdNumber,
@@ -104,6 +92,11 @@ function AddBookingForm({
         memberId: memberIdNumber,
         status,
         trainerId,
+      } as {
+        date: string;
+        status: string;
+        trainerId: string;
+        memberId: string;
       };
     }
 
@@ -114,48 +107,51 @@ function AddBookingForm({
     }
     handleCloseModal?.();
   };
-
   if (trainerIsLoading || scheduleIsLoading) return <Spinner />;
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <p className="text-md align-self-center py-1 text-center font-bold uppercase tracking-wider text-textLight">
+        {typeOfActivities === "personalTrainer"
+          ? "Trener personalny"
+          : "Zajęcia grupowe"}
+      </p>
 
+      <TrainerInputs
+        errors={errors}
+        register={register}
+        typeOfActivities={typeOfActivities}
+      />
 
-        <BookingFormContext.Provider
-          value={{
-            activitiesType,
-            setActivitiesType,
-            setBookingDate,
-            isEditingSession,
-            bookingDate,
-          }}
-        >
-          <p className="text-md align-self-center   border-slate-400 py-1 text-center font-bold uppercase">
-            {memberName}
-          </p>
+      {typeOfActivities === "personalTrainer" && (
+        <DateInput register={register} errors={errors} />
+      )}
 
-          <TrainerInputs errors={errors} register={register} />
-          <DateInput register={register} errors={errors} />
+      <FormRow name="status" label="Status">
+        <FormOption errors={errors} inputName="status" register={register}>
+          <option value="zrealizowana">zrealizowana</option>
+          <option value="niepotwierdzona">niepotwierdzona</option>
+          <option value="anulowana">anulowana</option>
+        </FormOption>
+      </FormRow>
 
-          <FormRow name="status" label="Status">
-            <select
-              id="status"
-              {...register("status", { required: "Wybierz status" })}
-              className="col-start-1 col-end-4 h-9 w-80  border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
-            >
-              <option value=""></option>
-              <option value="zrealizowana">zrealizowana</option>
-              <option value="niepotwierdzona">niepotwierdzona</option>
-              <option value="anulowana">anulowana</option>
-            </select>
-            {errors.status?.message && (
-              <p className="col-start-4 col-end-7">
-                {errors.status.message.toString()}
-              </p>
-            )}
-          </FormRow>
-          
-          <ButtonsContainer isEditingSession={isEditingSession} handleClick={() => handleCloseModal?.()}/>
-        </BookingFormContext.Provider>
+      <div>
+        <div className="flex justify-center gap-5 py-4 text-sm">
+          <FormButton
+            px="3"
+            py="2"
+            type="reset"
+            handleClick={() => {
+              handleCloseModal?.();
+              closeSelectModal?.();
+            }}
+          >
+            Anuluj
+          </FormButton>
+          <FormButton px="3" py="2" type="submit">
+            {isEditingSession ? "Zmień" : "Dodaj"}
+          </FormButton>
+        </div>
+      </div>
     </Form>
   );
 }

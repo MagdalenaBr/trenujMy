@@ -37,7 +37,7 @@ function OpenHoursForm({ handleCloseModal }: PropsType) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow name="openHour" label="Godzina otwarcia">
+      <FormRow name="openHour" label="Godzina otwarcia:">
         <FormInput
           errors={errors}
           inputName="openHour"
@@ -45,7 +45,7 @@ function OpenHoursForm({ handleCloseModal }: PropsType) {
           formType="time"
         />
       </FormRow>
-      <FormRow name="closeHour" label="Godzina zamknięcia">
+      <FormRow name="closeHour" label="Godzina zamknięcia:">
         <FormInput
           errors={errors}
           inputName="closeHour"

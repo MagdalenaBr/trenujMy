@@ -22,7 +22,6 @@ function Members() {
             <MembersTable />
           </div>
         </SearchNameProvider>
-        {/* <AddMemberModal /> */}
       </>
     </MainContainer>
   );

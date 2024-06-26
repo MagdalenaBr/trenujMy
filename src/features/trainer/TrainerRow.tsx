@@ -19,15 +19,17 @@ function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
           <img
             src={trainer.image}
             alt="trener"
-            className="h-20 w-20 object-cover"
+            className="aspect-square h-20 object-top object-cover"
           />
         ) : (
           <HiMiniUser className="h-28 w-20 object-cover" />
         )}
-        <h2 className="uppercase text-sm font-semibold tracking-wide">{trainer.name}</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-wide">
+          {trainer.name}
+        </h2>
       </div>
-      <p className="text-slate-400">{trainer.category}</p>
-      <p  className="text-slate-400">{trainer.price !== null ? `${trainer.price} zł` : " - "}</p>
+      <p>{trainer.category}</p>
+      <p>{trainer.price !== null ? `${trainer.price} zł` : " - "}</p>
       <TrainerOptions trainer={trainer} />
     </>
   );

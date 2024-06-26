@@ -16,6 +16,7 @@ function BookingsTable() {
   const searchNameContext = useContext(SearchNameContext);
   const { bookings, isLoading, error, count } = useBookings();
 
+
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
 
@@ -40,14 +41,14 @@ function BookingsTable() {
           <Table.Row key={booking.id}>
             <div>
               <h2 className="font-semibold">{booking.members?.name}</h2>
-              <p className="text-start text-sm text-secondaryTextColor">
+              <p className="text-start text-[13px] text-secondaryTextColor">
                 {booking.members?.phone}
               </p>
             </div>
             <p>{booking.trainers.name}</p>
             <div>
               <p>{DateTime.fromISO(booking.date.split("T")[0]).toLocaleString()}</p>
-              <p className="text-start text-sm text-secondaryTextColor">
+              <p className="text-start text-[12px] text-secondaryTextColor">
                 {booking.date.split("T")[1]}
               </p>
             </div>
@@ -58,7 +59,7 @@ function BookingsTable() {
                 <AddBookingModal
                   booking={booking}
                   memberId={booking.memberId}
-                  memberName={booking.members?.name}
+                  typeOfActivities={booking.trainers.category === 'trener personalny' ? 'personalTrainer' : 'groupActivities'}
                 >
                   <Button>
                     <HiOutlinePencil className="text-2xl" />

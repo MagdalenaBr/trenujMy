@@ -58,7 +58,7 @@ export default function PurchasedMembershipsStats() {
               />
               <Pie
                 data={data}
-                cx="50%"
+                cx="40%"
                 cy="50%"
                 labelLine={false}
                 fill="#13c51c9d"

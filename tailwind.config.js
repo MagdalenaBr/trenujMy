@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				libre: ['Libre Franklin', 'sans-serif'],
+				libre: ["Libre Franklin", "sans-serif"],
 			},
 			colors: {
 				primaryTextColor: "rgb(var(--color-primaryTextColor) / <alpha-value>)",
@@ -23,6 +23,11 @@ export default {
 				serchInputBg: "rgb(var(--color-serchInputBg) / <alpha-value>)",
 				bgTableWithSpacing:
 					"rgb(var(--color-bgTableWithSpacing) / <alpha-value>)",
+
+
+				textLight: "rgb(var(--text-light) / <alpha-value>)",
+				textMedium: "rgb(var(--text-medium) / <alpha-value>)",
+				textDark: "rgb(var(--text-dark) / <alpha-value>)",
 			},
 			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},

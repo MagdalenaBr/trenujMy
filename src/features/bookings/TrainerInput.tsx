@@ -1,5 +1,6 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
+import FormOption from "../../ui/FormOption";
 
 type TrainersType = {
   id: string;
@@ -27,7 +28,6 @@ type PropsType = {
   value: string;
   trainerData?: TrainersType;
   groupActivitiesData?: GroupActivitiesType;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export default function TrainerInput({
@@ -36,21 +36,10 @@ export default function TrainerInput({
   register,
   value,
   groupActivitiesData,
-  onChange
 }: PropsType) {
   return (
-    <FormRow name="trainerId" label="Trener">
-      <select
-        id="trainerId"
-        {...register("trainerId", { required: "Wybierz trenera." })}
-        className="col-start-1 col-end-4 h-9 w-80  border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800 disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none"
-        onChange={(e) => {
-          if (!onChange) return;
-          onChange(e);
-        }}
-      >
-        <option value=""></option>
-
+    <FormRow name="trainerId" label="Trener:">
+      <FormOption errors={errors} inputName="trainerId" register={register}>
         {value === "personalTrainers" &&
           trainerData?.map((el) => (
             <option key={el.id} value={el.id} label={`${el.name}`}>
@@ -68,13 +57,7 @@ export default function TrainerInput({
               {el.name}
             </option>
           ))}
-      </select>
-
-      {errors.trainerId?.message && (
-        <p className="col-start-4 col-end-7">
-          {errors.trainerId.message?.toString()}
-        </p>
-      )}
+      </FormOption>
     </FormRow>
   );
 }

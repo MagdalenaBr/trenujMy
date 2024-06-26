@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput.tsx";
 import { useTrainers } from "../trainer/useTrainers.ts";
 import FormOption from "../../ui/FormOption.tsx";
@@ -10,6 +9,7 @@ import { useEditSchedules } from "./useEditSchedules.ts";
 import Spinner from "../../ui/Spinner.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
+import FormRow from "../../ui/FormRow.tsx";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -72,14 +72,15 @@ function CreateScheduleForm({
   if (trainerIsLoading) return <Spinner />;
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow name="name" label="Rodzaj zajęć">
+      <FormRow name="name" label="Rodzaj zajęć:">
         <FormOption errors={errors} inputName="name" register={register}>
           {uniqueTypesOfActivities?.map((category) => (
             <option key={category} value={category} label={category}></option>
           ))}
         </FormOption>
       </FormRow>
-      <FormRow name="trainerId" label="Trener">
+
+      <FormRow name="trainerId" label="Trener:">
         <FormOption errors={errors} inputName="trainerId" register={register}>
           {trainers?.map((trainer) => (
             <option
@@ -92,7 +93,8 @@ function CreateScheduleForm({
           ))}
         </FormOption>
       </FormRow>
-      <FormRow name="date" label="Data">
+
+      <FormRow name="date" label="Data:">
         <FormInput
           errors={errors}
           inputName="date"
@@ -100,14 +102,16 @@ function CreateScheduleForm({
           formType="datetime-local"
         />
       </FormRow>
-      <FormRow name="numOfPlaces" label="Ilość miejsc">
-        <FormInput
-          errors={errors}
-          inputName="numOfPlaces"
-          register={register}
-          formType="number"
-        />
-      </FormRow>
+
+<FormRow name="numOfPlaces" label="Ilość miejsc:">
+      <FormInput
+        errors={errors}
+        inputName="numOfPlaces"
+        register={register}
+        formType="number"
+      />
+
+</FormRow>
 
       <ButtonsContainer handleClick={() => handleCloseModal?.()} />
     </Form>

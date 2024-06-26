@@ -1,5 +1,5 @@
 import MemberClasses from "./MemberClasses";
-import AddBookingModal from "../bookings/AddBookingModal";
+import SelectBookingTypeModal from "../bookings/SelectBookingTypeModal";
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 
@@ -18,8 +18,8 @@ export default function BookingTableContainer({booking, member}) {
         <p>Brak dostępnych rezerwacji.</p>
       </div>
     )}
-
-    <AddBookingModal memberId={member.id} memberName={member.name}>
+ {/* memberId={member.id} memberName={member.name} */}
+    <SelectBookingTypeModal memberId={member.id}>
       <Button styles="mx-2 my-1">
         <div className="flex items-center gap-2">
           <HiPlus className="text-3xl text-accentColor2 " />
@@ -28,7 +28,7 @@ export default function BookingTableContainer({booking, member}) {
           </span>
         </div>
       </Button>
-    </AddBookingModal>
+    </SelectBookingTypeModal>
   </div>
 
   );

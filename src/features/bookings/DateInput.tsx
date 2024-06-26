@@ -1,37 +1,30 @@
-import { useContext } from "react"
-import { BookingFormContext } from "./AddBookingForm"
-import FormRow from "../../ui/FormRow";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
+import FormRow from "../../ui/FormRow";
 
-export default function DateInput({register, errors}:{
-    errors: FieldErrors;
-    register: UseFormRegister<any>;
-  }) {
-
-    const bookingContext = useContext(BookingFormContext);
-    return <>{bookingContext?.activitiesType !== "groupActivities" ? (
-        <FormRow name="date" label="Data">
-          <input
-            type="datetime-local"
-            id="date"
-            {...register("date", {required:"Wybierz datę"})}
-            className="col-start-1 col-end-4 h-9 w-80  border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
-          />
-          {errors.date?.message && (
-            <p className="col-start-4 col-end-7">
-              {errors.date?.message?.toString()}
-            </p>
-          )}
-        </FormRow>
-      ) : (
-        /* if group activities display data from chosen trainer input */
-        <div className="grid grid-cols-4 items-center py-4 font-semibold">
-          <p>Data</p>
-          <div className=" col-start-2 col-end-5 grid grid-cols-6 gap-3">
-            <p className="text-md align-self-center col-start-1 col-end-4  text-center font-normal">
-              {bookingContext.bookingDate ? bookingContext.bookingDate.replace("T", " ") : "-"}
-            </p>
-          </div>
-        </div>
-      )}</>
+export default function DateInput({
+  register,
+  errors,
+}: {
+  errors: FieldErrors;
+  register: UseFormRegister<any>;
+}) {
+  return (
+    <>
+      <FormRow name="date" label="Data:">
+        <input
+          type="datetime-local"
+          id="date"
+          {...register("date", { required: "Wybierz datę." })}
+          className="col-span-2 h-9 w-[26rem] border-b-2 border-r-2 border-slate-600 bg-slate-700 px-2 text-sm  font-semibold tracking-wider text-textLight placeholder:text-textLight focus:bg-slate-400 focus:text-textDark focus:outline-none focus:ring-1 focus:ring-slate-400"
+        />
+        {errors.date?.message ? (
+          <p className="col-span-2  my-1 h-6  text-end text-red-500">
+            {errors.date?.message?.toString()}
+          </p>
+        ) : (
+          <p className=" my-1 h-6"></p>
+        )}
+      </FormRow>
+    </>
+  );
 }

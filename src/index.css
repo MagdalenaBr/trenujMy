@@ -5,11 +5,18 @@
 /* dark mode */
 
 @layer base {
+  html {
+    @apply bg-slate-900;
+}
   * {
-    @apply transition duration-100 ease-linear font-libre ;
+    @apply font-libre transition duration-100 ease-linear;
   }
 
-  :root{
+  :root {
+    --text-light: 226 232 240; /* slate 200*/
+    --text-medium: 203 213 225; /* slate 300*/
+    --text-dark: 15 23 42; /* slate 900*/
+
     --color-primaryTextColor: 203 213 225;
     --color-secondaryTextColor: 148 163 184;
     --color-activeBkg: 51 65 85;
@@ -34,6 +41,10 @@
   }
 
   :root[class="dark"] {
+    --text-light: 226 232 240; /* slate 200*/
+    --text-medium: 203 213 225; /* slate 300*/
+    --text-dark: 15 23 42; /* slate 900*/
+
     --color-primaryTextColor: 203 213 225;
     --color-secondaryTextColor: 148 163 184;
     --color-activeBkg: 51 65 85;
@@ -57,6 +68,10 @@
     --fc-today-bg-color: transparent;
   }
   :root[class="light"] {
+    --text-light: 226 232 240; /* slate 200*/
+    --text-medium: 203 213 225; /* slate 300*/
+    --text-dark: 15 23 42; /* slate 900*/
+
     --color-primaryTextColor: 30 41 59;
     --color-secondaryTextColor: 168 183 204;
     --color-activeText: 203 213 225;

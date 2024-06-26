@@ -1,4 +1,3 @@
-
 type Props = {
   name: string;
   label: string;
@@ -7,12 +6,12 @@ type Props = {
 
 function FormRow({ name, label, children }: Props) {
   return (
-    <label htmlFor={name} className='grid grid-cols-4 font-semibold py-4 items-center'>
-      {label}
-      <div className=" col-start-2 col-end-5 grid grid-cols-6 gap-3">
-        {children}
-      </div>
-    </label>
+    <>
+      <label htmlFor={name} className="font-semibold text-textLight">
+        {label}
+      </label>
+      {children}
+    </>
   );
 }
 

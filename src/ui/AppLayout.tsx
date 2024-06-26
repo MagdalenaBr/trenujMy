@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import Logo from "./Logo";
 import SidebarOptions from "./SidebarOptions";
 
+
 function AppLayout() {
   return (
     <div className="relative grid h-screen w-full grid-cols-[auto_1fr] bg-slate-900 text-primaryTextColor">

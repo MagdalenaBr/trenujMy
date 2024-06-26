@@ -36,7 +36,7 @@ export default function StatusChange({ booking, currentPage }: { booking: Bookin
         <AddBookingModal
           booking={booking}
           memberId={booking.memberId}
-          memberName={booking.members?.name}
+          typeOfActivities={booking.trainers.category === 'trener personalny' ? 'personalTrainer' : 'groupActivities'}
         >
           <Button>
             <HiOutlinePencil className="text-2xl text-accentColor2" />

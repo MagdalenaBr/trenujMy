@@ -15,6 +15,7 @@ import MemberClassesStats from "./MemberClassesStats";
 import BookingTableContainer from "./BookingTableContainer";
 import PurchasedMembershipContainer from "./PurchasedMembershipsContainer";
 import PaymentTableContainer from "./PaymentTableContainer";
+import GridContainer from "../../ui/GridContainer";
 
 function MemberPage() {
   const memberIdParams = useParams();
@@ -110,52 +111,62 @@ function MemberPage() {
     <Container>
       <h2 className="font-bold uppercase">{member.name}</h2>
       <div className="flex justify-around">
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2">
+        < div className="flex flex-col gap-4">
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">E-mail:</h3>
             <p>{member.email.toLowerCase()}</p>
-          </div>
-          <div className="flex gap-2">
+          </GridContainer>
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">Telefon:</h3>
             <p>{member.phone}</p>
-          </div>
-          <div className="flex gap-2">
+          </GridContainer>
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">Płeć:</h3>
             <p>{member.gender}</p>
-          </div>
-          <div className="flex gap-2">
+          </GridContainer>
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">Miasto:</h3>
             <p>{member.city}</p>
-          </div>
+          </GridContainer>
           <div className="flex flex-col gap-2">
-            <div className="flex gap-2">
+            <GridContainer>
               <h3 className="font-semibold text-accentColor2">
                 Aktywny karnet:
               </h3>
               {activeMembership?.length === 0 ? (
-                <p className="font-semibold uppercase tracking-wider">brak</p>
+                <p className="uppercase tracking-wider">brak</p>
               ) : (
-                <p className="text-md self-end font-semibold uppercase tracking-wider">
+                <p className="text-md self-end uppercase tracking-wider">
                   {activeMembership?.at(0)?.gymMembership.gymMembershipName}
                 </p>
               )}
-            </div>
-            <div className="flex gap-2">
+            </GridContainer>
+            <GridContainer>
               {activeMembership?.length !== 0 && (
-                <p className="font-semibold uppercase tracking-wider">
-                  {activeMembership?.at(0)?.startDay} -{" "}
-                  {activeMembership?.at(0)?.endDay}
+                <p className="text-sm">
+                  (
+                  {DateTime.fromISO(
+                    activeMembership
+                      ?.at(0)
+                      ?.startDay.split("T")
+                      .at(0) as string,
+                  ).toLocaleString()}{" "}
+                  -{" "}
+                  {DateTime.fromISO(
+                    activeMembership?.at(0)?.endDay as string,
+                  ).toLocaleString()}
+                  )
                 </p>
               )}
-            </div>
+            </GridContainer>
           </div>
-          <div className="flex gap-2">
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">
               Płtaność za karnet:
             </h3>
             {activeMembership?.length !== 0 ? (
               <p
-                className={`${activeMembershipPayments === fullMembershipPrice && "text-lime-500"} font-semibold`}
+                className={`${activeMembershipPayments === fullMembershipPrice && "text-lime-500"}`}
               >
                 <span>{activeMembershipPayments}</span> /{" "}
                 <span>{fullMembershipPrice}</span>
@@ -163,18 +174,18 @@ function MemberPage() {
             ) : (
               <p>Brak aktywnego karnetu.</p>
             )}
-          </div>
-          <div className="flex gap-2">
+          </GridContainer>
+          <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">
               Data kolejnej płatności:
             </h3>
             <p className={paymentDate <= todayDay ? "text-red-500" : ""}>
               {activeMembershipPayments !== fullMembershipPrice &&
               activeMembership?.length !== 0
-                ? paymentDate
+                ? DateTime.fromISO(paymentDate).toLocaleString()
                 : "-"}
             </p>
-          </div>
+          </GridContainer>
         </div>
         {booking && <MemberClassesStats memberBookings={booking} />}
         <BackButton />

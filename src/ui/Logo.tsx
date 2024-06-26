@@ -1,10 +1,10 @@
-function Logo() {
+function Logo({ width = "w-28" }) {
   return (
-    <div className="row-[1_/_2] py-8  w-full flex  justify-center">
+    <div className="row-[1_/_2] flex  w-full justify-center  py-8">
       <img
         src="../public/logo-new-rbg.png"
         aria-hidden="true"
-        className="w-28 "
+        className={width}
       />
     </div>
   );

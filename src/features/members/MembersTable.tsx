@@ -29,7 +29,7 @@ function MembersTable() {
       {filteredMembers ? (
         filteredMembers.map((member) => (
           <Table.Row key={member.id}>
-            <p className="font-semibold text-lightAccentColor">{member.name}</p>
+            <p className="font-semibold text-lightAccentColor uppercase tracking-wide">{member.name}</p>
             <p>{member.email.toLowerCase()}</p>
             <p>{member.phone}</p>
             <div className="flex">

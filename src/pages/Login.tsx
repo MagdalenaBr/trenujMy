@@ -16,8 +16,8 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-5 bg-slate-900 text-slate-200">
-      <Logo />
-      <div className="mt-4  w-96  bg-slate-700 pt-5 ">
+      <Logo  width="w-60"/>
+      <div className=" w-96  bg-slate-700 pt-5 ">
         <h2 className="text-center text-2xl text-accentColor2">
           Zaloguj się do konta
         </h2>
@@ -36,7 +36,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className=" px-3 py-1 text-slate-900"
+              className=" bg-slate-300 px-2 py-1 pr-2 focus:border-slate-300 text-slate-800 "
             />
           </div>
           <div className="flex w-4/5 flex-col gap-3">
@@ -50,10 +50,10 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className=" px-3 py-1 text-slate-900"
+              className="  bg-slate-300 px-2 py-1 pr-2 focus:border-slate-300 text-slate-800"
             />
           </div>
-          <button className=" border-2 border-slate-300 bg-accentColor1 px-5 py-2 font-semibold uppercase">
+          <button className=" bg-accentColor1 px-6 py-2 mt-2 font-semibold uppercase">
             {isPending ? <SmallSpinner /> : "Zaloguj się"}
           </button>
         </form>

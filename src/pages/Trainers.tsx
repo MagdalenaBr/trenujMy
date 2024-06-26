@@ -31,7 +31,6 @@ function Trainers() {
           <TrainersTable />
         </div>
       </SearchNameProvider>
-      {/* <AddTrainerModal /> */}
     </MainContainer>
   );
 }

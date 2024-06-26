@@ -27,7 +27,7 @@ function Home() {
           <FilterPanel />
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-10">
+      <div className="grid grid-cols-6 gap-10">
         <HomePageBookingsContainer />
         <PurchasedMembershipsStats />
       </div>

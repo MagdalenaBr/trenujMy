@@ -7,6 +7,7 @@ import { useEditMember } from "./useEditMember";
 import FormInput from "../../ui/FormInput.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
+import FormOption from "../../ui/FormOption.tsx";
 
 interface CommonData {
   city: string;
@@ -50,7 +51,7 @@ function AddMemberForm({
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow name="name" label="Imię i nazwisko">
+      <FormRow name="name" label="Imię i nazwisko:">
         <FormInput
           errors={errors}
           inputName="name"
@@ -58,7 +59,7 @@ function AddMemberForm({
           formType="text"
         />
       </FormRow>
-      <FormRow name="email" label="E-mail">
+      <FormRow name="email" label="E-mail:">
         <FormInput
           errors={errors}
           inputName="email"
@@ -66,7 +67,7 @@ function AddMemberForm({
           formType="email"
         />
       </FormRow>
-      <FormRow name="phone" label="Telefon">
+      <FormRow name="phone" label="Telefon:">
         <FormInput
           errors={errors}
           inputName="phone"
@@ -74,22 +75,14 @@ function AddMemberForm({
           formType="text"
         />
       </FormRow>
-      <FormRow name="gender" label="Płeć">
-        <select
-          id="gender"
-          {...register("gender")}
-          className="col-start-1 col-end-4 h-9 w-80  border-2 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-slate-800"
-        >
-          <option value="">Wybierz płeć</option>
+      <FormRow name="gender" label="Płeć:">
+        <FormOption errors={errors} inputName="gender" register={register}>
           <option value="Kobieta">Kobieta</option>
           <option value="Mężczyzna">Mężczyzna</option>
           <option value="Inna">Inna</option>
-        </select>
-        {errors.gender?.message && (
-          <p className="col-start-4 col-end-7">{errors.gender.message}</p>
-        )}
+        </FormOption>
       </FormRow>
-      <FormRow name="city" label="Miasto">
+      <FormRow name="city" label="Miasto:">
         <FormInput
           errors={errors}
           inputName="city"

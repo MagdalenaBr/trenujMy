@@ -26,7 +26,7 @@ function Schedule({
   let scheduleData; 
   if(page === 'trainer') {scheduleData = trainerSchedule;} else {
     scheduleData = schedule?.map((el) => ({
-        title: `${el.name} ${el.trainers.name.split(' ')[1]}`,
+        title: `${el.trainers.name.split(' ')[1]}: ${el.name}`,
         date: el.date,
         url: `/trenerzy/${el.trainerId}`,
       }));
