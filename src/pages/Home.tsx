@@ -21,13 +21,13 @@ function Home() {
           </span>
         </h1>
         <div className="flex flex-col lg:flex-row justify-between gap-2">
-          <p className=" border border-slate-900 bg-slate-800 px-2 py-1 font-semibold tracking-wide">
+          <p className=" self-start  bg-slate-800 px-2 py-1 font-semibold tracking-wide">
             {TODAY_DAY.toLocaleString(DateTime.DATE_HUGE)}
           </p>
           <FilterPanel />
         </div>
       </div>
-      <div className=" flex  flex-col lg:grid grid-cols-6 gap-10">
+      <div className=" flex  flex-col xl:grid grid-cols-6 gap-10 ">
         <HomePageBookingsContainer />
         <PurchasedMembershipsStats />
       </div>

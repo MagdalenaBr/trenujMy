@@ -10,7 +10,9 @@ export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
 
   return (
-    <HomePageContainer colGrid="col-span-4">
+    <div className="overflow-x-scroll xl:overflow-x-hidden col-span-4">
+
+    <HomePageContainer colGrid="col-span-4" width="w-[50rem]">
       <Heading>Rezerwacje</Heading>
       <TableWithSpacing columns="grid-cols-5">
         {bookingsAfterDate?.map((booking) => (
@@ -40,5 +42,6 @@ export default function HomePageBookingsContainer() {
         {bookingsAfterDate?.length === 0 && <p>Brak dostępnych rezerwacji.</p>}
       </TableWithSpacing>
     </HomePageContainer>
+    </div>
   );
 }

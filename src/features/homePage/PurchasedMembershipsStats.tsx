@@ -43,30 +43,30 @@ export default function PurchasedMembershipsStats() {
   ];
 
   return (
-    <HomePageContainer colGrid="col-span-2">
+    <HomePageContainer colGrid="col-span-2" width="md:w-96">
       <Heading>Zakupione karnety</Heading>
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           {purchasedMemberships?.length !== 0 ? (
             <>
               <Legend
-                height={70}
                 layout="vertical"
-                align="right"
+                align="left"
                 verticalAlign="middle"
                 iconType="circle"
+                iconSize={8}
               />
               <Pie
                 data={data}
-                cx="40%"
+                cx="50%"
                 cy="50%"
                 labelLine={false}
                 fill="#13c51c9d"
                 nameKey="name"
                 dataKey="value"
                 label
-                innerRadius={70}
-                outerRadius={90}
+                innerRadius={60}
+                outerRadius={70}
               >
                 {data.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={colors[index]} />
@@ -83,11 +83,12 @@ export default function PurchasedMembershipsStats() {
                 iconType="circle"
               />
               <Pie
-                data={[{ name: "brak zakupionych karnetów", value: 100 }]}
-                cx="50%"
+                data={[{ name: "brak danych", value: 100 }]}
+                cx="40%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={80}
+                innerRadius={60}
+                outerRadius={70}
                 fill="#13c51c9d"
                 nameKey="name"
                 dataKey="value"
