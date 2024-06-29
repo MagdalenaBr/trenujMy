@@ -8,9 +8,8 @@ import {
   HiOutlineIdentification,
   HiOutlineCurrencyDollar,
 } from "react-icons/hi2";
-import SidebarOptions from "./SidebarOptions";
 
-function Sidebar({ navigationVisibility }: { navigationVisibility: string }) {
+function Sidebar({ setNavigationVisibility }) {
   const navItems = [
     { title: "Start", url: "/", icon: <HiOutlineHome /> },
     { title: "Trenerzy", url: "/trenerzy", icon: <HiOutlineUserGroup /> },
@@ -30,12 +29,13 @@ function Sidebar({ navigationVisibility }: { navigationVisibility: string }) {
   ];
   return (
     <>
-      <nav className="row-[2_/_3] tracking-wider">
-        <ul className="flex flex-col gap-2 lg:gap-5 px-5 pt-5 items-center ">
+      <nav className="tracking-wider">
+        <ul className="flex flex-col items-center gap-2 px-5 pt-5 lg:items-start lg:gap-5 ">
           {navItems.map((navItem) => (
             <li>
               <NavLink
                 to={navItem.url}
+                onClick={() => setNavigationVisibility("hidden")}
                 className={({
                   isActive,
                 }) => ` flex w-[12rem] items-center gap-2 px-2 py-2 text-xl hover:bg-activeBkg hover:text-activeText

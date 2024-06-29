@@ -26,10 +26,10 @@ function AppLayout() {
         <HiMenuAlt3 />
       </button>
       <div
-        className={`${navigationVisibility === "hidden" ? "absolute right-0 top-0 translate-x-full" : " absolute bottom-0 left-0 right-0 top-0 z-10 overflow-hidden bg-slate-900"} grid-rows-[auto_1fr] font-semibold lg:relative lg:grid lg:translate-x-0`}
+        className={`${navigationVisibility === "hidden" ? "absolute right-0 top-0 translate-x-full" : " absolute bottom-0 left-0 right-0 top-0 z-10 overflow-hidden  bg-slate-900"}  font-semibold lg:relative lg:translate-x-0`}
       >
         <Logo />
-        <Sidebar navigationVisibility={navigationVisibility} />
+        <Sidebar setNavigationVisibility={setNavigationVisibility} />
 
         <SidebarOptions />
       </div>
