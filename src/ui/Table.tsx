@@ -17,7 +17,7 @@ function Table({
 }: PropsType) {
   return (
     <TableContext.Provider value={{ columns, uniqueStyles, smColumns }}>
-      <div className=" text-sm divide-slate-00 divide-y divide-slate-700 xl:overflow-hidden  bg-slate-900 text-slate-300 overflow-scroll">
+      <div className=" text-sm divide-y  divide-slate-700 xl:overflow-hidden  bg-slate-900 text-slate-300 overflow-scroll">
         {children}
       </div>
     </TableContext.Provider>
@@ -29,7 +29,7 @@ function Header({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns}  text-start bg-slate-900 px-2 py-4 font-bold uppercase`}
+      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} text-start bg-slate-900 px-2 py-4 font-bold uppercase`}
     >
       {children}
     </div>
@@ -41,7 +41,7 @@ function Row({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} ${ColumnsContext?.uniqueStyles} items-center text-start `}
+      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} ${ColumnsContext?.uniqueStyles}  items-center text-start `}
     >
       {children}
     </div>

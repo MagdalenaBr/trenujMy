@@ -49,11 +49,11 @@ function TrainerPage() {
 
   return (
     <Container>
-      <div className="flex flex-col gap-5 xl:flex-row">
+      <div className="flex flex-col gap-5 md:flex-row">
         <img
           src={trainer.image}
           alt=""
-          className="aspect-square h-60 object-cover"
+          className="w-60 h-60 object-cover"
         />
         <div className="flex w-[100%] flex-col">
           <BackButton />

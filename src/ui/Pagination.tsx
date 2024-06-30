@@ -29,7 +29,7 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex justify-between px-2 py-1 text-accentColor2">
+    <div className="flex justify-between px-2 py-1 text-accentColor2 w-[40rem] lg:w-auto">
       <div>
         <span>{(currentPage - 1) * NUM_OF_RESULTS + 1}</span> -{" "}
         <span>

@@ -7,6 +7,7 @@ import TableNoContent from "../ui/TableNoContent";
 import SearchNameProvider from "../context/SearchContext";
 import SearchInput from "../ui/SearchInput";
 import TrainersSortPanel from "../features/trainer/TrainersSortPanel";
+import SearchAndFiltterContainer from "../ui/SearchAndFilterContainer";
 
 function Trainers() {
   const { trainerIsLoading, error } = useTrainers();
@@ -17,7 +18,7 @@ function Trainers() {
     <MainContainer title="Trenerzy" buttons={<AddTrainerModal />}>
       <SearchNameProvider>
         <div>
-          <div className="flex flex-col lg:flex-row content-center lg:items-center gap-1 lg:gap-4 mb-5">
+          <SearchAndFiltterContainer>
             <SearchInput />
             <TrainersSortPanel
               dataName="category"
@@ -27,7 +28,7 @@ function Trainers() {
               dataName="price"
               mainSortCategory="cena: domyślna"
             />
-          </div>
+          </SearchAndFiltterContainer>
           <TrainersTable />
         </div>
       </SearchNameProvider>

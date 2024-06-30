@@ -3,13 +3,14 @@ import BookingsTable from "../features/bookings/BookingsTable";
 import BookingsSortPanel from "../features/bookings/BookingsSortPanel";
 import MainContainer from "../ui/MainContainer";
 import SearchInput from "../ui/SearchInput";
+import SearchAndFiltterContainer from "../ui/SearchAndFilterContainer";
 
 function Bookings() {
   return (
     <MainContainer title="Rezerwacje">
       <SearchNameProvider>
         <div>
-          <div className="mb-5 flex content-center items-center justify-end gap-4 ">
+          <SearchAndFiltterContainer>
             <SearchInput />
             <BookingsSortPanel
               dataName="status"
@@ -19,7 +20,7 @@ function Bookings() {
               dataName="date"
               mainSortCategory="data: malejąco"
             />
-          </div>
+          </SearchAndFiltterContainer>
           <BookingsTable />
         </div>
       </SearchNameProvider>
