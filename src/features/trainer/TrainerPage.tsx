@@ -26,12 +26,11 @@ function TrainerPage() {
   if (!trainer) return;
   if (trainer.category !== "trener personalny")
     trainerSchedule = schedule?.map((el) => {
-
       const numberOfBookings = booking?.filter(
         (memberBooking) => memberBooking.date === el.date,
       ).length;
 
-     return el.trainerId === trainer.id
+      return el.trainerId === trainer.id
         ? {
             title: `${el.name}: ${numberOfBookings}/${el.numOfPlaces}`,
             date: el.date,
@@ -50,21 +49,25 @@ function TrainerPage() {
 
   return (
     <Container>
-      <div className="flex gap-5">
-        <img src={trainer.image} alt="" className="aspect-square h-60 object-cover" />
+      <div className="flex flex-col gap-5 xl:flex-row">
+        <img
+          src={trainer.image}
+          alt=""
+          className="aspect-square h-60 object-cover"
+        />
         <div className="flex w-[100%] flex-col">
           <BackButton />
           <div className="flex flex-col gap-5 self-start">
             <h2 className="text-2xl font-bold">{trainer.name}</h2>
-            <GridContainer gridWidth="[80px_1fr]">
+            <GridContainer gridWidth="grid-cols-[80px_1fr]">
               <h3 className="font-semibold">Kategoria:</h3>
               <span>{trainer.category}</span>
             </GridContainer>
-            <GridContainer gridWidth="[80px_1fr]" >
+            <GridContainer gridWidth="grid-cols-[80px_1fr]">
               <h3 className="font-semibold">Telefon:</h3>
               <span>{trainer.phone}</span>
             </GridContainer>
-            <GridContainer gridWidth="[80px_1fr]">
+            <GridContainer gridWidth="grid-cols-[80px_1fr]">
               <h3 className="font-semibold">Cena:</h3>
               <span>
                 {trainer.price !== null ? `${trainer.price} zł` : "-"}

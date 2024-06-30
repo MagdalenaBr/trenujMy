@@ -1,8 +1,8 @@
 export default function GridContainer({
-  children, gridWidth ='2'
+  children, gridWidth ='grid-cols-2'
 }: {
   children: React.ReactNode;
   gridWidth?: string
 }) {
-  return <div className={`grid grid-cols-${gridWidth}  text-start gap-4`}>{children}</div>;
+  return <div className={`grid ${gridWidth}  text-start gap-4`}>{children}</div>;
 }
