@@ -17,7 +17,7 @@ function Trainers() {
     <MainContainer title="Trenerzy" buttons={<AddTrainerModal />}>
       <SearchNameProvider>
         <div>
-          <div className="flex content-center items-center  gap-4 mb-5">
+          <div className="flex flex-col lg:flex-row content-center lg:items-center gap-1 lg:gap-4 mb-5">
             <SearchInput />
             <TrainersSortPanel
               dataName="category"

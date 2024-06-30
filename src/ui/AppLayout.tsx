@@ -38,7 +38,7 @@ function AppLayout() {
 
         <SidebarOptions />
       </div>
-      <div className={`grid bg-slate-600 overflow-auto `}>
+      <div className={`grid bg-slate-600 overflow-auto h-screen `}>
         <main className="lg:text-md h-full self-center overflow-auto bg-slate-600 py-10  text-center text-sm">
           <Outlet />
         </main>

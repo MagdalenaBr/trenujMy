@@ -37,7 +37,7 @@ export default function PersonalTrainersStats() {
     <HomePageContainer colGrid="col-span-1">
       <Heading>Liczba zajęć: trener personalny</Heading>
 
-      {uniqeData?.length > 0 ? (
+      {uniqeData && uniqeData?.length > 0 ? (
         <ResponsiveContainer width="100%" height="75%">
           <BarChart
             width={500}
