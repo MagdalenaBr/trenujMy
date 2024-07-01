@@ -34,7 +34,7 @@ function Schedule({
 
   return (
     <div className=" overflow-x-scroll bg-slate-900 p-2 lg:overflow-hidden">
-      <div className=" w-[40rem] mx-auto lg:w-full">
+      <div className=" w-[60rem] mx-auto lg:w-full">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin]}
           initialView={page === "trainer" ? "timeGridWeek" : "dayGridMonth"}

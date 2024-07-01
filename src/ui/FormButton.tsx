@@ -17,7 +17,7 @@ export default function FormButton({
     <button
       type={type}
       onClick={handleClick}
-      className={`self-center border-2 text-[10px] xl:text-sm text-slate-200 px-${px} py-${py} font-semibold uppercase tracking-wider shadow-md  hover:scale-105 ${type === "reset" ? "border-accentColor1  bg-slate-900" : "border-accentColor1 bg-accentColor1 "}`}
+      className={` lg:self-center border-2 text-[10px] xl:text-sm text-slate-200 px-${px} py-${py} font-semibold uppercase tracking-wider shadow-md  hover:scale-105 ${type === "reset" ? "border-accentColor1  bg-slate-900" : "border-accentColor1 bg-accentColor1 "}`}
     >
       {children}
     </button>

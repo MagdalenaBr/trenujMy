@@ -17,7 +17,7 @@ function Table({
 }: PropsType) {
   return (
     <TableContext.Provider value={{ columns, uniqueStyles, smColumns }}>
-      <div className=" text-sm divide-y  divide-slate-700 xl:overflow-hidden  bg-slate-900 text-slate-300 overflow-scroll">
+      <div className=" text-sm divide-y  divide-slate-700 xl:overflow-hidden  bg-slate-900 text-slate-300 overflow-x-scroll">
         {children}
       </div>
     </TableContext.Provider>
