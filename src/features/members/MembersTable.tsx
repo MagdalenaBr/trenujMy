@@ -20,32 +20,40 @@ function MembersTable() {
   );
 
   return (
-    <Table uniqueStyles="px-2 py-2" columns="grid-cols-[2fr_1fr_1fr_1fr]">
-      <Table.Header>
-        <p>Imie i nazwisko</p>
-        <p>e-mail</p>
-        <p>telefon</p>
-      </Table.Header>
-      {filteredMembers ? (
-        filteredMembers.map((member) => (
-          <Table.Row key={member.id}>
-            <p className="font-semibold text-lightAccentColor uppercase tracking-wide">{member.name}</p>
-            <p>{member.email.toLowerCase()}</p>
-            <p>{member.phone}</p>
-            <div className="flex">
-              <Link
-                to={`/klienci/${member.id}`}
-                className="self-start  border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
-              >
-                <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
-              </Link>
-            </div>
-          </Table.Row>
-        ))
-      ) : (
-        <TableNoContent />
-      )}
-    </Table>
+    <div>
+      <Table
+        uniqueStyles="px-2 py-2 w-[36rem] md:w-auto"
+        columns="md:grid-cols-[2fr_2fr_1fr_1fr]"
+        smColumns="grid-cols-[200px_200px_100px_50px]"
+      >
+        <Table.Header>
+          <p>Imie i nazwisko</p>
+          <p>e-mail</p>
+          <p>telefon</p>
+        </Table.Header>
+        {filteredMembers ? (
+          filteredMembers.map((member) => (
+            <Table.Row key={member.id}>
+              <p className="font-semibold uppercase text-[12px] lg:text-sm tracking-wide text-lightAccentColor">
+                {member.name}
+              </p>
+              <p>{member.email.toLowerCase()}</p>
+              <p>{member.phone}</p>
+              <div className="flex">
+                <Link
+                  to={`/klienci/${member.id}`}
+                  className="self-start  border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
+                >
+                  <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-accentColor2 hover:scale-125 hover:text-slate-300" />
+                </Link>
+              </div>
+            </Table.Row>
+          ))
+        ) : (
+          <TableNoContent />
+        )}
+      </Table>
+    </div>
   );
 }
 
