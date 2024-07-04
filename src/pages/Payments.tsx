@@ -21,7 +21,7 @@ export default function Payments() {
           </div>
         </div>
 
-        <div className="col-span-4 flex flex-col gap-3  bg-slate-900  px-2 py-4   shadow-2xl shadow-slate-900 ">
+        <div className=" col-span-6 xl:col-span-4 flex flex-col gap-3  bg-slate-900  px-4 py-4   shadow-2xl shadow-slate-900 ">
           <Heading>Zakupione karnety</Heading>
           <PurchasedGymMembershipTable
             purchasedMemberships={purchasedMemberships}

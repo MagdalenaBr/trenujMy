@@ -8,7 +8,7 @@ export default function PaymentTableContainer({ userPayments }) {
     <MemberDataConainer name='Płatności'>
       <div>
         {userPayments?.length !== 0 ? (
-          <PaymentTable  payments={userPayments} isMemberPage={true} />
+          <PaymentTable height='h-48'  payments={userPayments} isMemberPage={true} />
         ) : (
           <div className="h-48">
             <NoDataContainer />

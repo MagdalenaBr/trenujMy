@@ -26,6 +26,7 @@ export default function PurchasedGymMembershipTable({
   purchasedMemberships,
   height = "h-60",
   isMemberPage,
+  
 }: {
   purchasedMemberships: PaymentsType[] | undefined;
   height?: string;
@@ -38,12 +39,13 @@ export default function PurchasedGymMembershipTable({
 
   return (
     <TableWithSpacing
-      columns={
+smColumns="grid-cols-[130px_120px_200px_100px]"
+    columns={
         isMemberPage
-          ? "grid-cols-[2fr_2fr_3fr_2fr_100px]"
-          : "grid-cols-[1fr_1fr_2fr_1fr]"
+          ? "xl:grid-cols-[2fr_2fr_3fr_2fr_100px]"
+          : "xl:grid-cols-[1fr_1fr_2fr_1fr]"
       }
-      uniqueStyles="w-[45rem] md:w-full px-2"
+      uniqueStyles="w-[35rem] md:w-[45] xl:w-full px-2"
     >
       <div className={`${height} overflow-auto`}>
         {purchasedMemberships?.map((membership) => (

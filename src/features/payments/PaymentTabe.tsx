@@ -29,9 +29,11 @@ interface PaymentsType {
 export default function PaymentTable({
   payments,
   isMemberPage,
+  height
 }: {
   payments: PaymentsType[] | undefined;
   isMemberPage?: boolean;
+  height?: string
 }) {
   const { cancelPayment } = useCancelPayment();
   function handleClick(id: string, value: boolean) {
@@ -39,12 +41,12 @@ export default function PaymentTable({
   }
 
   return (
-    <div className="h-48 overflow-y-auto">
+    <div className={`overflow-y-auto ${height}`}>
 
     <TableWithSpacing
       columns="lg:grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]"
-      smColumns="grid-cols-[100px_100px_100px_100px_100px_150px]"
-      uniqueStyles="w-[42rem] lg:w-full px-2"
+      smColumns="grid-cols-[130px_100px_100px_100px_100px_150px]"
+      uniqueStyles="w-[43rem] lg:w-full px-2"
     >
       <div className="overflow-auto">
         <TableWithSpacing.Header>
