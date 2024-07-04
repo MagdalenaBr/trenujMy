@@ -36,7 +36,6 @@ export default function PurchasedGymMembershipTable({
     cancelPurchase({ id, value });
   }
 
-
   return (
     <TableWithSpacing
       columns={
@@ -89,6 +88,7 @@ export default function PurchasedGymMembershipTable({
               {isMemberPage &&
                 (membership.isValid ? (
                   <StatusButton
+                    paddingX="px-5"
                     status="cancel"
                     onClick={() => handleClick(membership.id, false)}
                   >

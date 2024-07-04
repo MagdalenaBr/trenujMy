@@ -39,12 +39,14 @@ export default function PaymentTable({
   }
 
   return (
+    <div className="h-48 overflow-y-auto">
+
     <TableWithSpacing
-      columns="md:grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]"
+      columns="lg:grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]"
       smColumns="grid-cols-[100px_100px_100px_100px_100px_150px]"
-      uniqueStyles="w-[42rem] md:w-full px-2"
+      uniqueStyles="w-[42rem] lg:w-full px-2"
     >
-      <div>
+      <div className="overflow-auto">
         <TableWithSpacing.Header>
           {!isMemberPage && <p>Imie i nazwisko</p>}
           <p>Karnet</p>
@@ -109,6 +111,7 @@ export default function PaymentTable({
               {isMemberPage &&
                 (payment.isValid ? (
                   <StatusButton
+                  paddingX="px-5"
                     status="cancel"
                     onClick={() => handleClick(payment.id, false)}
                   >
@@ -124,5 +127,6 @@ export default function PaymentTable({
         ))}
       </div>
     </TableWithSpacing>
+    </div>
   );
 }
