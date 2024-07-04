@@ -7,8 +7,10 @@ import PaymentTable from "../features/payments/PaymentTabe";
 import { usePayments } from "../features/payments/usePayments";
 
 export default function Payments() {
-  const { purchasedMemberships } = usePurchasedMembership();
+  const { purchasedMemberships } = usePurchasedMembership(true);
   const { payments } = usePayments();
+
+  console.log(purchasedMemberships);
   return (
     <MainContainer title="Płatności">
       <div className="grid grid-cols-6 grid-rows-2 gap-10">

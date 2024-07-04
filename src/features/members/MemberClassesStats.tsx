@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { DEVICE_WIDTH } from "../../utils/constants";
 
 interface BookingTypes {
   created_at: string;
@@ -13,7 +15,7 @@ interface BookingTypes {
   trainerId: string;
   trainers: {
     name: string;
-    category:string;
+    category: string;
   };
 }
 
@@ -22,6 +24,8 @@ export default function MemberClassesStats({
 }: {
   memberBookings: BookingTypes[];
 }) {
+ 
+
   if (!memberBookings) return [];
   const unconfirmedClasses = memberBookings.filter(
     (el) => el.status === "niepotwierdzona",
@@ -49,15 +53,18 @@ export default function MemberClassesStats({
   );
 
   return (
-    <ResponsiveContainer width="50%" height={250}>
+    <ResponsiveContainer
+      width={DEVICE_WIDTH > 1023 ? "50%" : "100%"}
+      height={300}
+    >
       <PieChart>
         {checkIfDataExists ? (
           <>
             <Legend
-              height={70}
+              height={0}
               layout="vertical"
-              align="right"
-              verticalAlign="middle"
+              align={DEVICE_WIDTH > 767 ? "right" : "center"}
+              verticalAlign={DEVICE_WIDTH > 767 ? "middle" : "bottom"}
               iconType="circle"
             />
             <Pie

@@ -11,3 +11,5 @@ export const TODAY_DAY_END = TODAY_DAY.set({
   minute: 59,
   second: 59,
 }).toString();
+
+export const DEVICE_WIDTH = window.innerWidth;

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { DateTime } from "luxon";
 
-import { ARR_OF_GYM_MEMBERSHIP_ID, TODAY_DAY } from "../../utils/constants";
+import { ARR_OF_GYM_MEMBERSHIP_ID, DEVICE_WIDTH, TODAY_DAY } from "../../utils/constants";
 import { PRICE_TO_PAY } from "../../utils/helpers";
 import { useBooking } from "../bookings/useBooking";
 import { useMembers } from "./useMembers";
@@ -105,16 +105,28 @@ function MemberPage() {
     activeMembership?.at(0)?.startDay,
   )?.slice(0, 10);
 
-  if (member === undefined) return;
+  if (member === undefined) return null;
   if (isLoading) return <Spinner />;
+
+  const memberEmailLength = member.email.split("").length;
+  const dividedMemberEmail = member.email.match(/.{1,17}/g);
+
   return (
     <Container>
       <h2 className="font-bold uppercase">{member.name}</h2>
-      <div className="flex justify-around">
-        < div className="flex flex-col gap-4">
+      <div className="flex flex-col justify-around lg:flex-row">
+        <div className="flex flex-col flex-wrap gap-4">
           <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">E-mail:</h3>
-            <p>{member.email.toLowerCase()}</p>
+            {memberEmailLength > 17 && DEVICE_WIDTH < 768 ? (
+              <p className="flex flex-col">
+                {dividedMemberEmail.map((el: string) => (
+                  <span>{el.toLowerCase()}</span>
+                ))}
+              </p>
+            ) : (
+              <p>{member.email.toLowerCase()}</p>
+            )}
           </GridContainer>
           <GridContainer>
             <h3 className="font-semibold text-lightAccentColor">Telefon:</h3>

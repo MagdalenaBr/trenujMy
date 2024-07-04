@@ -36,14 +36,15 @@ export default function PurchasedGymMembershipTable({
     cancelPurchase({ id, value });
   }
 
+
   return (
     <TableWithSpacing
-      uniqueStyles="px-2"
       columns={
         isMemberPage
           ? "grid-cols-[2fr_2fr_3fr_2fr_100px]"
           : "grid-cols-[1fr_1fr_2fr_1fr]"
       }
+      uniqueStyles="w-[45rem] md:w-full px-2"
     >
       <div className={`${height} overflow-auto`}>
         {purchasedMemberships?.map((membership) => (
@@ -63,11 +64,19 @@ export default function PurchasedGymMembershipTable({
             </p>
             <div className="flex">
               <span className="w-full text-center">
-                <p>{DateTime.fromISO(membership.startDay.split("T").at(0) as string).toLocaleString()}</p>
+                <p>
+                  {DateTime.fromISO(
+                    membership.startDay.split("T").at(0) as string,
+                  ).toLocaleString()}
+                </p>
               </span>
               <span> - </span>
               <span className="w-full text-center">
-                <p>{DateTime.fromISO(membership.endDay.split("T").at(0) as string).toLocaleString()}</p>
+                <p>
+                  {DateTime.fromISO(
+                    membership.endDay.split("T").at(0) as string,
+                  ).toLocaleString()}
+                </p>
               </span>
             </div>
             <p
@@ -76,14 +85,21 @@ export default function PurchasedGymMembershipTable({
               {membership.price} zł
             </p>
 
-            {isMemberPage &&
-              (membership.isValid ? (
-                <StatusButton status='cancel' onClick={() => handleClick(membership.id, false)}>Anuluj</StatusButton>
-              ) : (
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
-                  Anulowano
-                </p>
-              ))}
+            <div>
+              {isMemberPage &&
+                (membership.isValid ? (
+                  <StatusButton
+                    status="cancel"
+                    onClick={() => handleClick(membership.id, false)}
+                  >
+                    Anuluj
+                  </StatusButton>
+                ) : (
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
+                    Anulowano
+                  </p>
+                ))}
+            </div>
           </TableWithSpacing.Row>
         ))}
       </div>

@@ -33,22 +33,17 @@ export default function PaymentTable({
   payments: PaymentsType[] | undefined;
   isMemberPage?: boolean;
 }) {
-  // function priceToPay(amount: number, membershipTypeId: string) {
-  //   let price;
-  //   if (String(membershipTypeId) === "1") price = amount;
-  //   if (String(membershipTypeId) === "2") price = amount;
-  //   if (String(membershipTypeId) === "3") price = amount * 6;
-  //   if (String(membershipTypeId) === "4") price = amount * 12;
-
-  //   return price;
-  // }
   const { cancelPayment } = useCancelPayment();
   function handleClick(id: string, value: boolean) {
     cancelPayment({ id, value });
   }
 
   return (
-    <TableWithSpacing columns="grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]">
+    <TableWithSpacing
+      columns="md:grid-cols-[2fr_1fr_2fr_1fr_1fr_1fr]"
+      smColumns="grid-cols-[100px_100px_100px_100px_100px_150px]"
+      uniqueStyles="w-[42rem] md:w-full px-2"
+    >
       <div>
         <TableWithSpacing.Header>
           {!isMemberPage && <p>Imie i nazwisko</p>}
@@ -110,20 +105,21 @@ export default function PaymentTable({
                 </p>
               </span>
             </div>
-
-            {isMemberPage &&
-              (payment.isValid ? (
-                <StatusButton
-                  status="cancel"
-                  onClick={() => handleClick(payment.id, false)}
-                >
-                  Anuluj
-                </StatusButton>
-              ) : (
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
-                  Anulowano
-                </p>
-              ))}
+            <div>
+              {isMemberPage &&
+                (payment.isValid ? (
+                  <StatusButton
+                    status="cancel"
+                    onClick={() => handleClick(payment.id, false)}
+                  >
+                    Anuluj
+                  </StatusButton>
+                ) : (
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-red-600">
+                    Anulowano
+                  </p>
+                ))}
+            </div>
           </TableWithSpacing.Row>
         ))}
       </div>

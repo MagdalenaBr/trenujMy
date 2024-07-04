@@ -5,7 +5,7 @@ import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
 
 export default function PurchasedMembershipsStats() {
-  const { purchasedMemberships } = usePurchasedMembership();
+  const { purchasedMemberships } = usePurchasedMembership(false);
 
   const oneDay = purchasedMemberships?.filter(
     (membership) =>

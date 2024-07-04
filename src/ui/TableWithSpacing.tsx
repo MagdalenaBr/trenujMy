@@ -4,13 +4,19 @@ import TableContext from "../context/TableContext";
 type PropsType = {
   children: React.ReactNode;
   columns?: string;
-  uniqueStyles?: string
-  noBorder?: boolean
+  uniqueStyles?: string;
+  noBorder?: boolean;
+  smColumns?: string;
 };
 
-function TableWithSpacing({ children, columns = "grid-cols-4", uniqueStyles='' }: PropsType) {
+function TableWithSpacing({
+  children,
+  columns = "grid-cols-4",
+  uniqueStyles = "",
+  smColumns,
+}: PropsType) {
   return (
-    <TableContext.Provider value={{ columns, uniqueStyles }}>
+    <TableContext.Provider value={{ columns, uniqueStyles, smColumns }}>
       <div role="table">{children}</div>
     </TableContext.Provider>
   );
@@ -22,7 +28,7 @@ function Header({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns} mb-4 border-2 bg-slate-800 py-1 font-bold uppercase text-sm tracking-widest`}
+      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles}  ${ColumnsContext?.smColumns} mb-4 border-2 bg-slate-800 py-1 text-sm font-bold uppercase tracking-widest`}
     >
       {children}
     </div>
@@ -33,8 +39,12 @@ function Row({ children, noBorder }: PropsType) {
   const ColumnsContext = useContext(TableContext);
 
   return (
-    <div className={`my-2 ${!noBorder? ' border-2  border-slate-200' : ''} bg-bgTableWithSpacing/60 py-1 text-sm`}>
-      <div className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles} items-center`}>
+    <div
+      className={`my-2 ${!noBorder ? " border-2  border-slate-200" : ""}  ${ColumnsContext?.uniqueStyles} bg-bgTableWithSpacing/60 py-1 text-sm `}
+    >
+      <div
+        className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} ${ColumnsContext?.uniqueStyles} items-center`}
+      >
         {children}
       </div>
     </div>

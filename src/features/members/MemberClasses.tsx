@@ -23,10 +23,10 @@ interface BookingTypes {
 function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
   return (
     <div className="h-48 overflow-auto">
-      <TableWithSpacing columns="grid-cols-[repeat(4,minmax(100px,_1fr))]">
+      <TableWithSpacing columns="grid-cols-[repeat(4,minmax(100px,_1fr))]" uniqueStyles="w-[40rem] md:w-full" >
         {memberBookings?.map((booking) => (
           <TableWithSpacing.Row key={booking.id}>
-            <p>{booking.trainers.name}</p>
+            <p className="text-start">{booking.trainers.name}</p>
             <div>
               <p>{DateTime.fromISO(booking.date.split("T")[0]).toLocaleString()}</p>
               <p className="text-sm text-slate-600">
