@@ -11,7 +11,7 @@ export default function ProtectedRoute({
   const { user, isLoading } = useLoggedUser();
 
   if (isLoading) return <Spinner />;
-  if (!user?.role && !isLoading) return navigate("/login");
+  if (!user?.role && !isLoading) navigate("/login");
 
   return children;
 }

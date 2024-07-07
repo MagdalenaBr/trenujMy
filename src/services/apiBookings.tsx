@@ -155,7 +155,7 @@ export async function getBookingsAfterDate(
   const { data: booking, error } = await supabase
     .from("bookings")
     .select(
-      "id, date, status, trainers(id, name, category), members(name, phone)",
+      "*, trainers(id, name, category), members(name, phone)",
     )
     .lte("date", TODAY_DAY_END)
     .gte("date", START_DAY(selectedTimeRange))

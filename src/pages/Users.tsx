@@ -12,7 +12,7 @@ function Users() {
   const displayUserName= <h2 className="self-start border-y-2 border-accentColor2 px-3 py-1 text-2xl font-bold text-accentColor2">
   {user?.user_metadata.userName}
 </h2>
-console.log(DEVICE_WIDTH);
+
   return (
     <MainContainer title="Użytkownicy" buttons={DEVICE_WIDTH > 767 && displayUserName }>
       <div className="flex flex-col gap-12">

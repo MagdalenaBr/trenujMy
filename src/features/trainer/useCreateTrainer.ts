@@ -3,7 +3,7 @@ import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
 
 type TrainerTypes = {
-	image: FileList | string;
+	image?: FileList | string;
 	name: string;
 	phone: string;
 	price?: number | null;

@@ -9,6 +9,7 @@ import { DateTime } from "luxon";
 export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
 
+
   return (
     <div className="col-span-4 overflow-x-scroll xl:overflow-x-hidden">
       <HomePageContainer colGrid="col-span-4" width="w-[50rem]">

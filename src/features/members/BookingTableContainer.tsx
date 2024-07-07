@@ -5,7 +5,40 @@ import { HiPlus } from "react-icons/hi2";
 import NoDataContainer from "../../ui/NoDataContainer";
 import MemberDataConainer from "../../ui/MemberDataContainer";
 
-export default function BookingTableContainer({ booking, member }) {
+
+interface BookingsDataType {
+  status: string;
+  trainerId: string;
+  memberId: string;
+  date: string;
+  id: string;
+  created_at: string;
+  trainers: {
+    name: string;
+    category: string;
+  };
+  members: {
+    name: string;
+    phone: string;
+  };
+}
+
+
+
+interface MembersType {
+	created_at: string;
+	id: string;
+  city: string;
+	email: string;
+	gender: string;
+	name: string;
+	phone: string;
+}
+
+
+
+export default function BookingTableContainer({ booking, member }: {booking: BookingsDataType[] | undefined, member: MembersType}) {
+
   return (
     <MemberDataConainer name='Zajęcia'>
       <div>

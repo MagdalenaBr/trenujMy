@@ -10,7 +10,7 @@ export default function Payments() {
   const { purchasedMemberships } = usePurchasedMembership(true);
   const { payments } = usePayments();
 
-  console.log(purchasedMemberships);
+
   return (
     <MainContainer title="Płatności">
       <div className="grid grid-cols-6 grid-rows-2 gap-10">

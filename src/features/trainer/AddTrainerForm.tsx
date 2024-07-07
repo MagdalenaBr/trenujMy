@@ -9,7 +9,7 @@ import Form from "../../ui/Form";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 
 type TrainerTypes = {
-  image: FileList | string;
+  image?: FileList | string ;
   name: string;
   phone: string;
   price?: number | null;

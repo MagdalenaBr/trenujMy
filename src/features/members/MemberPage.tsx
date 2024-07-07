@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { DateTime } from "luxon";
 
-import { ARR_OF_GYM_MEMBERSHIP_ID, DEVICE_WIDTH, TODAY_DAY } from "../../utils/constants";
+import {
+  ARR_OF_GYM_MEMBERSHIP_ID,
+  DEVICE_WIDTH,
+  TODAY_DAY,
+} from "../../utils/constants";
 import { PRICE_TO_PAY } from "../../utils/helpers";
 import { useBooking } from "../bookings/useBooking";
 import { useMembers } from "./useMembers";
@@ -52,7 +56,7 @@ function MemberPage() {
     }, 0);
 
   function calculateDeadline(
-    typeOfMembership: number,
+    typeOfMembership: string,
     numOfPayments: number,
     dateOfPurchase: string,
   ) {
@@ -75,7 +79,7 @@ function MemberPage() {
   }
 
   function paymentDeadline(
-    typeOfMembership: number,
+    typeOfMembership: string,
     numOfPayments: number,
     dateOfPurchase: string,
   ) {
@@ -100,9 +104,9 @@ function MemberPage() {
     activeMembership?.at(0)?.gymMembershipId as string,
   );
   const paymentDate = paymentDeadline(
-    activeMembership?.at(0)?.gymMembershipId,
-    activeMembershipPaymentLength,
-    activeMembership?.at(0)?.startDay,
+    activeMembership?.at(0)?.gymMembershipId as string,
+    activeMembershipPaymentLength as number,
+    activeMembership?.at(0)?.startDay as string,
   )?.slice(0, 10);
 
   if (member === undefined) return null;

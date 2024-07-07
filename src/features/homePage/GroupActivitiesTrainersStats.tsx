@@ -32,7 +32,7 @@ export function GroupActivitiesTrainersStats() {
   return (
     <HomePageContainer colGrid="col-span-1">
       <Heading>Liczba uczestników: zajęcia grupowe</Heading>
-      {uniqeData?.length > 0 ? (
+      {uniqeData && uniqeData?.length > 0 ? (
           <ResponsiveContainer width="100%" height="75%">
             <BarChart
               width={500}

@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { DEVICE_WIDTH } from "../../utils/constants";
 
@@ -24,8 +23,6 @@ export default function MemberClassesStats({
 }: {
   memberBookings: BookingTypes[];
 }) {
- 
-
   if (!memberBookings) return [];
   const unconfirmedClasses = memberBookings.filter(
     (el) => el.status === "niepotwierdzona",

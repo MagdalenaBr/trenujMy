@@ -4,7 +4,7 @@ export default function HomePageContainer({
   width,
 }: {
   children: React.ReactNode;
-  colGrid: string;
+  colGrid?: string;
   width?: string
 }) {
   return (

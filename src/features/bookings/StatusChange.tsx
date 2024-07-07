@@ -30,6 +30,7 @@ export default function StatusChange({ booking, currentPage }: { booking: Bookin
   function handleClick(statusValue: string, id: string) {
     updateStatus({ statusValue, id });
   }
+
   return (
     <>
       {booking.date >= todayDay && currentPage !== 'home' ? (

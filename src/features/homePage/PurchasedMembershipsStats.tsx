@@ -7,24 +7,25 @@ import HomePageContainer from "../../ui/HomePageContainer";
 export default function PurchasedMembershipsStats() {
   const { purchasedMemberships } = usePurchasedMembership(false);
 
+  console.log(typeof ARR_OF_GYM_MEMBERSHIP_ID[0], typeof purchasedMemberships?.[0].gymMembershipId);
   const oneDay = purchasedMemberships?.filter(
     (membership) =>
-      membership.gymMembershipId === ARR_OF_GYM_MEMBERSHIP_ID[0] &&
+      String(membership.gymMembershipId) === ARR_OF_GYM_MEMBERSHIP_ID[0] &&
       membership.isValid === true,
   ).length;
   const oneMonth = purchasedMemberships?.filter(
     (membership) =>
-      membership.gymMembershipId === ARR_OF_GYM_MEMBERSHIP_ID[1] &&
+      String(membership.gymMembershipId) === ARR_OF_GYM_MEMBERSHIP_ID[1] &&
       membership.isValid === true,
   ).length;
   const sixMonths = purchasedMemberships?.filter(
     (membership) =>
-      membership.gymMembershipId === ARR_OF_GYM_MEMBERSHIP_ID[2] &&
+      String(membership.gymMembershipId) === ARR_OF_GYM_MEMBERSHIP_ID[2] &&
       membership.isValid === true,
   ).length;
   const year = purchasedMemberships?.filter(
     (membership) =>
-      membership.gymMembershipId === ARR_OF_GYM_MEMBERSHIP_ID[3] &&
+      String(membership.gymMembershipId) === ARR_OF_GYM_MEMBERSHIP_ID[3] &&
       membership.isValid === true,
   ).length;
 

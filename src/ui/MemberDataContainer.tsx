@@ -1,4 +1,10 @@
-export default function MemberDataConainer({children, name}) {
+export default function MemberDataConainer({
+  children,
+  name,
+}: {
+  children: React.ReactNode;
+  name: string;
+}) {
   return (
     <div>
       <div className="flex items-center justify-center py-5">

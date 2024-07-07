@@ -19,7 +19,7 @@ export async function changeMembershipPrice(values: {
   4: number;
 }) {
   const updatedValuesArr = ARR_OF_GYM_MEMBERSHIP_ID.map((id) => {
-    return { id: id, price: values[id as keyof typeof values] };
+    return { id: id, price: values[Number(id) as keyof typeof values] };
   });
 
   const { data, error } = await supabase

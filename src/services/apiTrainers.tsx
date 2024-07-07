@@ -11,7 +11,7 @@ interface TrainersDataTypes {
   created_at: string;
 }
 interface NewTrainerDataTypes {
-  image: string | FileList;
+  image?: string | FileList;
   name: string;
   phone: string;
   price?: number | null;
