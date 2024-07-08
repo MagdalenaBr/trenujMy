@@ -7,7 +7,6 @@ import HomePageContainer from "../../ui/HomePageContainer";
 export default function PurchasedMembershipsStats() {
   const { purchasedMemberships } = usePurchasedMembership(false);
 
-  console.log(typeof ARR_OF_GYM_MEMBERSHIP_ID[0], typeof purchasedMemberships?.[0].gymMembershipId);
   const oneDay = purchasedMemberships?.filter(
     (membership) =>
       String(membership.gymMembershipId) === ARR_OF_GYM_MEMBERSHIP_ID[0] &&

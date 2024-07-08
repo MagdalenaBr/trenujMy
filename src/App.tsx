@@ -18,9 +18,17 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Payments from "./pages/Payments";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
+
+  
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
@@ -47,7 +55,7 @@ function App() {
                 path="/grafik/zmien-grafik"
                 element={<EditSchedulePage />}
               />
-               <Route path="/platnosci" element={<Payments />} />
+              <Route path="/platnosci" element={<Payments />} />
             </Route>
             <Route index path="/login" element={<Login />} />
             <Route path="/*" element={<PageNotFound />} />

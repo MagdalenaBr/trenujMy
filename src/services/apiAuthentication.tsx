@@ -14,7 +14,7 @@ export async function userLogIn(email: string, password: string) {
 export async function loggedUser() {
   const { data: currentSession } = await supabase.auth.getSession();
 
-  if (!currentSession) return null;
+  if (!currentSession.session) return null;
 
   const {
     data: { user },
@@ -37,7 +37,6 @@ export async function userSignUp(newUser: {
   password: string;
   email: string;
 }) {
- 
   const { data, error } = await supabase.auth.signUp({
     email: newUser.email,
     password: newUser.password,

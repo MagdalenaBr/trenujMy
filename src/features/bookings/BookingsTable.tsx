@@ -29,7 +29,7 @@ function BookingsTable() {
   );
 
   return (
-    <Table uniqueStyles="px-2 py-2 w-[37rem] lg:w-auto" columns="lg:grid-cols-4" smColumns="grid-cols-[150px_160px_100px_100px_100px]">
+    <Table uniqueStyles="px-2 py-2 w-[40rem]  lg:w-auto" columns="lg:grid-cols-4" smColumns="grid-cols-[150px_160px_100px_200px]">
       <Table.Header>
         <p>Klient</p>
         <p>Trener</p>
@@ -61,7 +61,7 @@ function BookingsTable() {
                   memberId={booking.memberId}
                   typeOfActivities={booking.trainers.category === 'trener personalny' ? 'personalTrainer' : 'groupActivities'}
                 >
-                  <Button>
+                  <Button >
                     <HiOutlinePencil className="text-2xl" />
                   </Button>
                 </AddBookingModal>

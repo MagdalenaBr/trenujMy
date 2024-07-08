@@ -20,7 +20,13 @@ function AppLayout() {
     <div
       className={` h-screen w-screen bg-slate-900 text-primaryTextColor transition-all lg:relative lg:grid lg:grid-cols-[auto_1fr]`}
     >
-      <div className="absolute left-0 right-0 z-20 h-9 w-full  bg-slate-900/80 backdrop-blur-sm lg:hidden">
+      <div
+        className={
+          navigationVisibility
+            ? "absolute left-0 right-0 z-20 h-9 w-full  bg-slate-900/80 backdrop-blur-sm lg:hidden"
+            : ""
+        }
+      >
         <button
           className="absolute right-1 top-1 z-20 text-2xl lg:hidden"
           onClick={showNav}
