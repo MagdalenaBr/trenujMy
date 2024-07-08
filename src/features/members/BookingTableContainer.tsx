@@ -49,7 +49,6 @@ export default function BookingTableContainer({ booking, member }: {booking: Boo
             <NoDataContainer />
           </div>
         )}
-        {/* memberId={member.id} memberName={member.name} */}
         <SelectBookingTypeModal memberId={member.id}>
           <Button styles="mx-2 my-1">
             <div className="flex items-center gap-2">

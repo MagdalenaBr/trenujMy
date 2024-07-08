@@ -11,7 +11,7 @@ function MainContainer({ children, title, buttons }: PropsType) {
     >
       {title ? (
         <div className={buttons ? "flex  justify-between" : ""}>
-          <h2 className="text-start text-2xl font-semibold uppercase tracking-widest text-primaryTextColor">
+          <h2 className={`text-start ${title === 'Aktualny grafik' ? 'text-xl' : 'text-2xl'}  font-semibold uppercase tracking-widest text-primaryTextColor`}>
             {title}
           </h2>
           {buttons}

@@ -102,7 +102,7 @@ function AddTrainerForm({
           accept="image/png, image/jpeg"
         />
         {errors.image?.message && (
-          <p className="col-start-4 col-end-7">
+          <p className="col-start-4 col-end-7 text-[12px] md:text-sm">
             {errors.image.message?.toString()}
           </p>
         )}

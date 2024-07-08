@@ -30,14 +30,14 @@ function FormInput({
         defaultValue={value}
         readOnly={readOnly}
         {...register(inputName)}
-        className="text-textLight placeholder:text-textLight focus:text-textDark col-span-2 h-9 w-[26rem] border-b-2 border-r-2 border-slate-600  bg-slate-700 px-2 text-sm font-semibold tracking-wider focus:bg-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
+        className="text-textLight placeholder:text-textLight focus:text-textDark col-span-2 h-9 md:w-[26rem] border-b-2 border-r-2 border-slate-600  bg-slate-700 px-2 text-sm font-semibold tracking-wider focus:bg-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
         onChange={(e) => {
           if (!onChange) return;
           onChange(e);
         }}
       />
       {errors && errors[inputName]?.message ? (
-        <p className="col-span-2  my-1 h-6  text-end text-red-500">
+        <p className="col-span-2 text-[12px] md:text-sm  my-1 h-6  text-end text-red-500">
           {errors[inputName]?.message?.toString()}
         </p>
       ) : (

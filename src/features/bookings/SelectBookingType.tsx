@@ -10,7 +10,7 @@ export default function SelectBookingType({
   memberId: string;
 }) {
   return (
-    <div className="relative flex h-40  flex-col bg-slate-900  px-8 pt-4 uppercase text-textLight">
+    <div className=" relative flex  md:h-40 flex-col bg-slate-900  px-8 py-10 uppercase text-textLight gap-7">
       <h1>Wybierz rodzaj zajęć</h1>
       <button
         className="absolute right-0 top-0 px-2 py-2 text-2xl font-bold text-accentColor2"
@@ -18,7 +18,7 @@ export default function SelectBookingType({
       >
         <HiOutlineXMark />
       </button>
-      <div className="flex h-full gap-10">
+      <div className="flex flex-col md:flex-row h-full gap-5 md:gap-10">
         <AddBookingModal
           memberId={memberId}
           closeSelectModal={handleCloseModal}
