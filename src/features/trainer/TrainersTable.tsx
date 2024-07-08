@@ -41,7 +41,7 @@ function TrainersTable() {
 
   return (
     
-    <Table columns="xl:grid-cols-5" smColumns={'grid-cols-[150px_100px_100px_50px_100px]'}>
+    <Table  uniqueStyles="w-[36rem] md:w-auto" columns="xl:grid-cols-5" smColumns={'grid-cols-[150px_100px_100px_50px_100px]'}>
       {filteredTrainers ? (
         filteredTrainers.map((trainer) => (
           <Table.Row key={trainer.id}>

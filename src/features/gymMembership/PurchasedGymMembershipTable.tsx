@@ -38,14 +38,14 @@ export default function PurchasedGymMembershipTable({
   }
 
   return (
-    <TableWithSpacing
-smColumns="grid-cols-[130px_120px_200px_100px]"
+    <TableWithSpacing 
+smColumns="grid-cols-[130px_120px_200px_100px_100px]"
     columns={
         isMemberPage
           ? "xl:grid-cols-[2fr_2fr_3fr_2fr_100px]"
           : "xl:grid-cols-[1fr_1fr_2fr_1fr]"
       }
-      uniqueStyles="w-[35rem] md:w-[45] xl:w-full px-2"
+      uniqueStyles="w-[43rem] md:w-[45] xl:w-full px-2"
     >
       <div className={`${height} overflow-auto`}>
         {purchasedMemberships?.map((membership) => (

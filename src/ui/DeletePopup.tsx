@@ -5,7 +5,7 @@ type PropsType = {
 
 function DeletePopup({ handleDeleteItem, handleCloseModal }: PropsType) {
 	return (
-		<div className='w-[20%] mx-auto bg-slate-50  border border-neutral-30 overflow-hidden  p-7 text-center'>
+		<div className=' mx-auto bg-slate-800  border border-neutral-30 overflow-hidden text-slate-200   p-7 text-center'>
 			<p className='pb-7 font-bold text-xl'>Czy chcesz usunąć dane?</p>
 			<div>
 				<button
