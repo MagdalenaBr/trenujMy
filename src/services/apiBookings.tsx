@@ -1,50 +1,8 @@
+import { AddOrEditDataTypes, BookingsDataType, GetBookingType, NewBookingTypes } from "../types/BookingTypes";
 import { NUM_OF_RESULTS, TODAY_DAY_END } from "../utils/constants";
 import { START_DAY } from "../utils/helpers";
 import supabase from "./supabase";
-interface NewBookingTypes {
-  status: string;
-  trainerId: string;
-  memberId: string;
-  date: string;
-}
-interface BookingsDataType extends NewBookingTypes {
-  id: string;
-  created_at: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-  members: {
-    name: string;
-    phone: string;
-  };
-}
 
-interface GetBookingType {
-  data: BookingsDataType[];
-  count: number | null;
-}
-interface AddOrEditDataTypes extends NewBookingTypes {
-  id: string;
-}
-
-interface BookingsAfterDateTypes {
-  created_at: string;
-  trainerId: string;
-  memberId: string;
-  id: string;
-  date: string;
-  status: string;
-  trainers: {
-    id: string;
-    name: string;
-    category: string;
-  };
-  members: {
-    name: string;
-    phone: string;
-  };
-}
 
 export async function getBookings(
   sortByDateValue: {
@@ -63,7 +21,6 @@ export async function getBookings(
       count: "exact",
     });
 
-  // if(sortByStatusValue.value) {currentPage = 1}
 
   //WITHOUT SORTING
   if (sortByStatusValue.value === null && sortByDateValue.value === null)
@@ -138,7 +95,7 @@ export async function getBooking(
 ): Promise<BookingsDataType[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
-    .select("*, trainers(name, category), members(name, phone)")
+    .select("*, trainers(id, name, category), members(name, phone)")
     .eq(columnName, id)
     .order("date", { ascending: false });
   if (error)
@@ -151,7 +108,7 @@ export async function getBooking(
 
 export async function getBookingsAfterDate(
   selectedTimeRange: string | null,
-): Promise<BookingsAfterDateTypes[]> {
+): Promise<BookingsDataType[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
     .select(

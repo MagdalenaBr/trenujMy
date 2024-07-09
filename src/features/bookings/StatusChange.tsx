@@ -4,25 +4,11 @@ import { useUpdateBookingStatus } from "../homePage/useUpdateBookingStatus";
 import AddBookingModal from "./AddBookingModal";
 import Button from "../../ui/Button";
 import { HiOutlinePencil } from "react-icons/hi2";
+import { BookingsDataType } from "../../types/BookingTypes";
 
-interface BookingTypes {
-  created_at: string;
-  trainerId: string;
-  memberId: string;
-  date: string;
-  id: string;
-  members: {
-    name: string;
-    phone: string;
-  };
-  status: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-}
 
-export default function StatusChange({ booking, currentPage }: { booking: BookingTypes, currentPage?: string }) {
+
+export default function StatusChange({ booking, currentPage }: { booking: BookingsDataType, currentPage?: string }) {
   const { updateStatus } = useUpdateBookingStatus();
 
   const todayDay = TODAY_DAY.toString().slice(0, 10);

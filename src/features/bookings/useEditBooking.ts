@@ -1,18 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditBooking } from "../../services/apiBookings";
 import toast from "react-hot-toast";
+import { NewBookingTypes } from "../../types/BookingTypes";
 
-interface DataTypes {
-	status: string;
-	trainerId: string;
-	memberId: string;
-	date: string;
-}
+
 
 export function useEditBooking() {
 	const queryClient = useQueryClient();
 	const { mutate: editBooking } = useMutation({
-		mutationFn: ({ newBooking, id }: { newBooking: DataTypes; id: string }) =>
+		mutationFn: ({ newBooking, id }: { newBooking: NewBookingTypes; id: string }) =>
 			addOrEditBooking(newBooking, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

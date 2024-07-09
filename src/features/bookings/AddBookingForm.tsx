@@ -23,6 +23,7 @@ interface BookingTypes extends CommonDataTypes {
   created_at: string;
   id: string;
   trainers: {
+    id: string
     name: string;
     category: string;
   };
