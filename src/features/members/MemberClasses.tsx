@@ -2,25 +2,9 @@ import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
 import StatusChange from "../bookings/StatusChange";
 import { DateTime } from "luxon";
+import { BookingsDataType } from "../../types/bookingTypes";
 
-interface BookingTypes {
-  created_at: string;
-  date: string;
-  id: string;
-  memberId: string;
-  members: {
-    name: string;
-    phone: string;
-  };
-  status: string;
-  trainerId: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-}
-
-function MemberClasses({ memberBookings }: { memberBookings: BookingTypes[] }) {
+function MemberClasses({ memberBookings }: { memberBookings: BookingsDataType[] }) {
   return (
     <div className="h-48 overflow-auto">
       <TableWithSpacing columns="grid-cols-[repeat(4,minmax(100px,_1fr))]" uniqueStyles="w-[40rem] md:w-full" >

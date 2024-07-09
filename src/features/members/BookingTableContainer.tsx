@@ -4,36 +4,8 @@ import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 import NoDataContainer from "../../ui/NoDataContainer";
 import MemberDataConainer from "../../ui/MemberDataContainer";
-
-
-interface BookingsDataType {
-  status: string;
-  trainerId: string;
-  memberId: string;
-  date: string;
-  id: string;
-  created_at: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-  members: {
-    name: string;
-    phone: string;
-  };
-}
-
-
-
-interface MembersType {
-	created_at: string;
-	id: string;
-  city: string;
-	email: string;
-	gender: string;
-	name: string;
-	phone: string;
-}
+import { BookingsDataType } from "../../types/bookingTypes";
+import { MembersType } from "../../types/membersTypes";
 
 
 

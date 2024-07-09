@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema as classesValidation } from "../../validation/BookingClassesValidation";
 import { schema as personalTrainerValidation } from "../../validation/PersonalTrainerBooking";
 import FormButton from "../../ui/FormButton";
+import { NewBookingTypes } from "../../types/bookingTypes";
 
 interface CommonDataTypes {
   status: string;
@@ -93,12 +94,7 @@ function AddBookingForm({
         memberId: memberIdNumber,
         status,
         trainerId,
-      } as {
-        date: string;
-        status: string;
-        trainerId: string;
-        memberId: string;
-      };
+      } as NewBookingTypes;
     }
 
     if (isEditingSession) {

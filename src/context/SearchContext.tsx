@@ -14,6 +14,7 @@ export default function SearchNameProvider({
 }: {
   children: React.ReactNode;
 }) {
+  
   const [name, setName] = useState("");
 
   return (
