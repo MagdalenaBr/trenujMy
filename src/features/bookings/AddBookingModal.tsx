@@ -1,12 +1,12 @@
 import AddBookingForm from "./AddBookingForm";
 import Modal from "../../ui/Modal";
-import { BookingsDataType } from "../../types/BookingTypes";
+import { BookingsDataType } from "../../types/bookingTypes";
 interface PropsTypes {
   children: React.ReactNode;
   booking?: BookingsDataType;
   memberId: string;
   typeOfActivities?: string;
-  closeSelectModal?:  () => void
+  closeSelectModal?: () => void;
 }
 
 function AddBookingModal({

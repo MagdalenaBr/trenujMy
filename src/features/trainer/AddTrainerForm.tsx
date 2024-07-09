@@ -7,22 +7,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../ui/FormInput";
 import Form from "../../ui/Form";
 import ButtonsContainer from "../../ui/ButtonsContainer";
-
-type TrainerTypes = {
-  image?: FileList | string ;
-  name: string;
-  phone: string;
-  price?: number | null;
-  category: string;
-};
+import { NewTrainerDataTypes } from "../../types/trainersTypes";
 
 interface PropsType {
   handleCloseModal?: () => void;
-  trainer?: TrainerTypes & { id: string };
+  trainer?: NewTrainerDataTypes & { id: string };
 }
 
 function AddTrainerForm({
-  trainer = {} as TrainerTypes & { id: string },
+  trainer = {} as NewTrainerDataTypes & { id: string },
   handleCloseModal,
 }: PropsType) {
   const { id, ...trainerEditData } = trainer;
@@ -36,18 +29,18 @@ function AddTrainerForm({
   const { createTrainer } = useCreateTrainer();
   const { editTrainer } = useEditTrainer();
 
-  const onSubmit = (newTrainer: TrainerTypes) => {
+  const onSubmit = (newTrainer: NewTrainerDataTypes) => {
     const image =
       typeof newTrainer.image === "string"
         ? newTrainer.image
         : newTrainer.image?.[0];
     if (isEditingSession) {
       editTrainer({
-        newTrainersData: { ...newTrainer, image } as TrainerTypes,
+        newTrainersData: { ...newTrainer, image } as NewTrainerDataTypes,
         id,
       });
     } else {
-      createTrainer({ ...newTrainer, image } as TrainerTypes);
+      createTrainer({ ...newTrainer, image } as NewTrainerDataTypes);
     }
     handleCloseModal?.();
   };

@@ -1,17 +1,5 @@
+import { CommonMemberDataTypes, MembersType } from "../types/membersTypes";
 import supabase from "./supabase";
-
-interface CommonDataTypes {
-	city: string;
-	email: string;
-	gender: string;
-	name: string;
-	phone: string;
-}
-
-interface MembersType extends CommonDataTypes {
-	created_at: string;
-	id: string;
-}
 
 export async function getMembers() {
 	const { data: members, error } = await supabase.from("members").select("*");
@@ -20,7 +8,7 @@ export async function getMembers() {
 }
 
 export async function addOrEditMember(
-	newMember: CommonDataTypes,
+	newMember: CommonMemberDataTypes,
 	id?: string
 ): Promise<MembersType> {
 	let query;

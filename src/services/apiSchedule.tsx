@@ -1,24 +1,6 @@
+import { NewClassesTypes, NewScheduleTypes, ScheduleDataTypes } from "../types/scheduleTypes";
 import supabase from "./supabase";
 
-interface NewClassesTypes {
-  date: string;
-  name: string;
-  numOfPlaces: number;
-  trainerId: string;
-}
-interface NewScheduleTypes extends NewClassesTypes {
-  created_at: string;
-  id: string;
-}
-
-interface ScheduleDataTypes extends NewScheduleTypes {
-  created_at: string;
-  id: string;
-  trainers: {
-    name: string;
-    category: string
-  };
-}
 export async function getSchedule(
   scheduleDataType?: string,
 ): Promise<ScheduleDataTypes[]> {

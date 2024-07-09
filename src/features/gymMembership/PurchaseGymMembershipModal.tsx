@@ -2,20 +2,14 @@ import Modal from "../../ui/Modal";
 import PurchaseGymMembershipForm from "./PurchaseGymMembershipForm";
 import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
+import { ActiveMemberTypes } from "../../types/membersTypes";
 
 export default function PurchaseGymMembershipModal({
   isMemberPage,
   activeMemberData,
 }: {
   isMemberPage?: boolean;
-  activeMemberData?: {
-    id: string;
-    city: string;
-    email: string;
-    gender: string;
-    name: string;
-    phone: string;
-  };
+  activeMemberData?: ActiveMemberTypes;
 }) {
   return (
     <Modal>

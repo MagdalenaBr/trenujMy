@@ -10,29 +10,15 @@ import Spinner from "../../ui/Spinner.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 import FormRow from "../../ui/FormRow.tsx";
+import { NewClassesTypes, ScheduleDataTypes } from "../../types/scheduleTypes.ts";
 
 interface PropsType {
   handleCloseModal?: () => void;
-  classes?: ClassesType;
+  classes?: ScheduleDataTypes;
 }
 
-interface DataTypes {
-  date: string;
-  numOfPlaces: number;
-  name: string;
-  trainerId: string;
-}
-
-interface ClassesType extends DataTypes {
-  id: string;
-  created_at: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-}
 function CreateScheduleForm({
-  classes = {} as ClassesType,
+  classes = {} as ScheduleDataTypes,
   handleCloseModal,
 }: PropsType) {
   const { id, ...classesData } = classes;
@@ -48,7 +34,7 @@ function CreateScheduleForm({
   });
   const { errors } = formState;
 
-  const onSubmit = (data: DataTypes) => {
+  const onSubmit = (data: NewClassesTypes) => {
     const { date, name, numOfPlaces, trainerId } = data;
     const newData = {
       date,
@@ -103,15 +89,14 @@ function CreateScheduleForm({
         />
       </FormRow>
 
-<FormRow name="numOfPlaces" label="Ilość miejsc:">
-      <FormInput
-        errors={errors}
-        inputName="numOfPlaces"
-        register={register}
-        formType="number"
-      />
-
-</FormRow>
+      <FormRow name="numOfPlaces" label="Ilość miejsc:">
+        <FormInput
+          errors={errors}
+          inputName="numOfPlaces"
+          register={register}
+          formType="number"
+        />
+      </FormRow>
 
       <ButtonsContainer handleClick={() => handleCloseModal?.()} />
     </Form>

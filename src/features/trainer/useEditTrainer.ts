@@ -1,14 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditTrainers } from "../../services/apiTrainers";
 import toast from "react-hot-toast";
+import { NewTrainerDataTypes } from "../../types/trainersTypes";
 
-type TrainerTypes = {
-	image?: FileList | string;
-	name: string;
-	phone: string;
-	price?: number | null;
-	category: string;
-};
 
 export function useEditTrainer() {
 	const queryClient = useQueryClient();
@@ -17,7 +11,7 @@ export function useEditTrainer() {
 			newTrainersData,
 			id,
 		}: {
-			newTrainersData: TrainerTypes;
+			newTrainersData: NewTrainerDataTypes;
 			id: string;
 		}) => addOrEditTrainers(newTrainersData, id),
 		onSuccess: () => {

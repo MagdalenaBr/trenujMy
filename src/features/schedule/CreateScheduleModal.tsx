@@ -1,23 +1,13 @@
+import { ScheduleDataTypes } from "../../types/scheduleTypes";
 import Modal from "../../ui/Modal";
 import CreateScheduleForm from "./CreateScheduleForm";
 
-interface ClassesType {
-	classes?: {
-		created_at: string;
-		date: string;
-		id: string;
-		numOfPlaces: number;
-		name: string;
-		trainerId: string;
-		trainers: {
-			name: string;
-			category: string;
-		};
-	};
+interface PropsType {
+	classes?: ScheduleDataTypes;
 	children: React.ReactNode
 }
 
-function CreateScheduleModal({ classes, children }: ClassesType) {
+function CreateScheduleModal({ classes, children }: PropsType) {
 	return (
 		<Modal>
 			<Modal.Window formName='schedule'>

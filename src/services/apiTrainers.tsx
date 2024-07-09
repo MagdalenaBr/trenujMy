@@ -1,22 +1,7 @@
+import { NewTrainerDataTypes, TrainersDataTypes } from "../types/trainersTypes";
 import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
-interface TrainersDataTypes {
-  id: string;
-  image: string;
-  name: string;
-  phone: string;
-  price?: number | null;
-  category: string;
-  created_at: string;
-}
-interface NewTrainerDataTypes {
-  image?: string | FileList;
-  name: string;
-  phone: string;
-  price?: number | null;
-  category: string;
-}
 
 export async function getTrainers() {
   const { data: trainers, error } = await supabase.from("trainers").select("*");

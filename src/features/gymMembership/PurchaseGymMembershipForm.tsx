@@ -13,18 +13,12 @@ import GymMembershipMember from "./GymMembershipMember";
 import GymMembershipTime from "./GymMembershipTime";
 import FormInput from "../../ui/FormInput";
 import { TODAY_DAY } from "../../utils/constants";
+import { ActiveMemberTypes, CommonMemberDataTypes } from "../../types/membersTypes";
 
 interface PropsType {
   handleCloseModal?: () => void;
   isMemberPage?: boolean;
-  activeMemberData?: {
-    id: string;
-    city: string;
-    email: string;
-    gender: string;
-    name: string;
-    phone: string;
-  };
+  activeMemberData?: ActiveMemberTypes;
 }
 interface gymMembershipType {
   memberId: string;
@@ -37,13 +31,7 @@ interface gymMembershipType {
 interface ContextTypes {
   register: UseFormRegister<any>;
   members:
-    | {
-        city: string;
-        email: string;
-        gender: string;
-        name: string;
-        phone: string;
-      }[]
+    | CommonMemberDataTypes[]
     | undefined;
   errors: FieldErrors;
   setSelectedDate: React.Dispatch<React.SetStateAction<string>>;

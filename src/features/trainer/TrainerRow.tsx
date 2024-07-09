@@ -1,15 +1,7 @@
 import { HiMiniUser } from "react-icons/hi2";
 import TrainerOptions from "./TrainerOptions";
+import { TrainersDataTypes } from "../../types/trainersTypes";
 
-interface TrainersDataTypes {
-  id: string;
-  image: string;
-  name: string;
-  phone: string;
-  price?: number | null;
-  category: string;
-  created_at: string;
-}
 
 function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
   return (

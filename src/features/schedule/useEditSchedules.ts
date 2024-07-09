@@ -1,13 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditSchedule } from "../../services/apiSchedule";
 import toast from "react-hot-toast";
-
-interface NewClassesTypes {
-	date: string;
-	name: string;
-	numOfPlaces: number;
-	trainerId: string 
-}
+import { NewClassesTypes } from "../../types/scheduleTypes";
 
 export function useEditSchedules() {
 	const queryClient = useQueryClient();

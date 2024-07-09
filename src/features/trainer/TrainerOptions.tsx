@@ -11,16 +11,8 @@ import AddTrainerForm from "./AddTrainerForm";
 
 import Button from "../../ui/Button";
 import DeletePopup from "../../ui/DeletePopup";
+import { TrainersDataTypes } from "../../types/trainersTypes";
 
-interface TrainersDataTypes {
-  id: string;
-  image: string;
-  name: string;
-  phone: string;
-  price?: number | null;
-  category: string;
-  created_at: string;
-}
 
 function TrainerOptions({ trainer }: { trainer: TrainersDataTypes }) {
   const id = trainer?.id;

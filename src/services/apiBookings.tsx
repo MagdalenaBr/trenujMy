@@ -1,8 +1,12 @@
-import { AddOrEditDataTypes, BookingsDataType, GetBookingType, NewBookingTypes } from "../types/BookingTypes";
+import {
+  AddOrEditDataTypes,
+  BookingsDataType,
+  GetBookingType,
+  NewBookingTypes,
+} from "../types/bookingTypes";
 import { NUM_OF_RESULTS, TODAY_DAY_END } from "../utils/constants";
 import { START_DAY } from "../utils/helpers";
 import supabase from "./supabase";
-
 
 export async function getBookings(
   sortByDateValue: {
@@ -20,7 +24,6 @@ export async function getBookings(
     .select("*, trainers(name, category), members(name, phone)", {
       count: "exact",
     });
-
 
   //WITHOUT SORTING
   if (sortByStatusValue.value === null && sortByDateValue.value === null)
@@ -111,9 +114,7 @@ export async function getBookingsAfterDate(
 ): Promise<BookingsDataType[]> {
   const { data: booking, error } = await supabase
     .from("bookings")
-    .select(
-      "*, trainers(id, name, category), members(name, phone)",
-    )
+    .select("*, trainers(id, name, category), members(name, phone)")
     .lte("date", TODAY_DAY_END)
     .gte("date", START_DAY(selectedTimeRange))
     .order("date", { ascending: false });

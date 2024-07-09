@@ -4,11 +4,15 @@ import { useUpdateBookingStatus } from "../homePage/useUpdateBookingStatus";
 import AddBookingModal from "./AddBookingModal";
 import Button from "../../ui/Button";
 import { HiOutlinePencil } from "react-icons/hi2";
-import { BookingsDataType } from "../../types/BookingTypes";
+import { BookingsDataType } from "../../types/bookingTypes";
 
-
-
-export default function StatusChange({ booking, currentPage }: { booking: BookingsDataType, currentPage?: string }) {
+export default function StatusChange({
+  booking,
+  currentPage,
+}: {
+  booking: BookingsDataType;
+  currentPage?: string;
+}) {
   const { updateStatus } = useUpdateBookingStatus();
 
   const todayDay = TODAY_DAY.toString().slice(0, 10);
@@ -19,11 +23,15 @@ export default function StatusChange({ booking, currentPage }: { booking: Bookin
 
   return (
     <>
-      {booking.date >= todayDay && currentPage !== 'home' ? (
+      {booking.date >= todayDay && currentPage !== "home" ? (
         <AddBookingModal
           booking={booking}
           memberId={booking.memberId}
-          typeOfActivities={booking.trainers.category === 'trener personalny' ? 'personalTrainer' : 'groupActivities'}
+          typeOfActivities={
+            booking.trainers.category === "trener personalny"
+              ? "personalTrainer"
+              : "groupActivities"
+          }
         >
           <Button>
             <HiOutlinePencil className="text-2xl text-accentColor2" />
