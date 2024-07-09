@@ -24,7 +24,7 @@ function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
         ) : (
           <HiMiniUser className="h-28 w-20 object-cover" />
         )}
-        <h2 className="text-sm font-semibold uppercase tracking-wide">
+        <h2 className="font-semibold uppercase text-[12px] lg:text-sm tracking-wide text-lightAccentColor">
           {trainer.name}
         </h2>
       </div>
