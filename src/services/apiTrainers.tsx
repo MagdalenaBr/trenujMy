@@ -2,7 +2,6 @@ import { NewTrainerDataTypes, TrainersDataTypes } from "../types/trainersTypes";
 import supabase, { supabaseUrl } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
 
-
 export async function getTrainers() {
   const { data: trainers, error } = await supabase.from("trainers").select("*");
   if (error) throw new Error("Dane nie mogą zostać załadowane.");
@@ -13,13 +12,12 @@ export async function addOrEditTrainers(
   newTrainer: NewTrainerDataTypes,
   id?: string,
 ): Promise<TrainersDataTypes> {
-
   const hasImage = typeof newTrainer.image === "string";
   let imageName;
   if (newTrainer.image instanceof File) {
     imageName = uuidv4() + newTrainer?.image?.name;
+    
     ///upload image
-
     const { error: storageError } = await supabase.storage
       .from("trainersimage")
       .upload(imageName, newTrainer.image);

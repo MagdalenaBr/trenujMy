@@ -25,4 +25,3 @@ export interface GetBookingType {
 export interface AddOrEditDataTypes extends NewBookingTypes {
   id: string;
 }
-

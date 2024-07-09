@@ -1,8 +1,8 @@
-import Modal from "../../ui/Modal";
-import PurchaseGymMembershipForm from "./PurchaseGymMembershipForm";
-import Button from "../../ui/Button";
 import { HiPlus } from "react-icons/hi2";
 import { ActiveMemberTypes } from "../../types/membersTypes";
+import PurchaseGymMembershipForm from "./PurchaseGymMembershipForm";
+import Modal from "../../ui/Modal";
+import Button from "../../ui/Button";
 
 export default function PurchaseGymMembershipModal({
   isMemberPage,

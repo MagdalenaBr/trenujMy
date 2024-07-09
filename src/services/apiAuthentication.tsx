@@ -7,13 +7,11 @@ export async function userLogIn(email: string, password: string) {
   });
 
   if (error) throw new Error("Wystąpił problem z logowaniem, spróbuj ponownie");
-
   return data;
 }
 
 export async function loggedUser() {
   const { data: currentSession } = await supabase.auth.getSession();
-
   if (!currentSession.session) return null;
 
   const {
@@ -28,7 +26,6 @@ export async function loggedUser() {
 
 export async function userLogOut() {
   const { error } = await supabase.auth.signOut();
-
   if (error) throw new Error("Wystąpił błąd podczas wylogowywania.");
 }
 

@@ -1,6 +1,6 @@
+import { BookingsDataType } from "../../types/bookingTypes";
 import AddBookingForm from "./AddBookingForm";
 import Modal from "../../ui/Modal";
-import { BookingsDataType } from "../../types/bookingTypes";
 interface PropsTypes {
   children: React.ReactNode;
   booking?: BookingsDataType;

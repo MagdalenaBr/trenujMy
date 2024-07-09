@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";
+import { useAddPayment } from "./useAddPayment";
+import { schema } from "../../validation/PaymentValidation";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput";
 import ButtonsContainer from "../../ui/ButtonsContainer";
-import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";
-import { useAddPayment } from "./useAddPayment";
-import { useParams } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validation/PaymentValidation";
 import FormOption from "../../ui/FormOption";
 
 interface PropsType {
@@ -18,7 +18,6 @@ export default function PaymentForm({ handleCloseModal }: PropsType) {
   const memberIdParams = useParams();
   const memberId = memberIdParams.memberId as string;
   const { purchasedMemberships } = useUserPurchasedMemberships(memberId);
-
   const { addUserPayment } = useAddPayment();
 
   const {

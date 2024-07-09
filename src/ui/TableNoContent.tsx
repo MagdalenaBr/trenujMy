@@ -1,5 +1,12 @@
 function TableNoContent() {
-	return <div role='row' className="h-40 flex justify-center items-center text-slate-800 font-semibold">Brak dostępnych danych.</div>;
+  return (
+    <div
+      role="row"
+      className="flex h-40 items-center justify-center font-semibold text-slate-800"
+    >
+      Brak dostępnych danych.
+    </div>
+  );
 }
 
 export default TableNoContent;

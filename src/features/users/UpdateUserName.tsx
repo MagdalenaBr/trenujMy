@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import {useUpdateUserName} from "../authentication/useUpdateUserName";
-import Input from "../../ui/Input";
-import useLoggedUser from "../authentication/useLoggedUser";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useUpdateUserName } from "../authentication/useUpdateUserName";
+import useLoggedUser from "../authentication/useLoggedUser";
 import { schema } from "../../validation/EditUserNameValidation";
+import Input from "../../ui/Input";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 
 interface InputType {
@@ -13,7 +13,6 @@ interface InputType {
 
 export default function UpdateUserName() {
   const { user } = useLoggedUser();
-
   const { updateUser } = useUpdateUserName();
 
   const {
@@ -27,7 +26,6 @@ export default function UpdateUserName() {
   });
 
   function onSubmit(data: InputType) {
- 
     const { name } = data;
     updateUser(
       { name },
@@ -64,7 +62,7 @@ export default function UpdateUserName() {
         errors={errors}
       />
 
-      <ButtonsContainer isEditingSession={true}/>
+      <ButtonsContainer isEditingSession={true} />
     </form>
   );
 }

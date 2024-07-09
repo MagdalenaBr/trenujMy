@@ -4,20 +4,18 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi2";
-
 import { useDeleteTrainer } from "./useDeleteTrainer";
-import Modal from "../../ui/Modal";
+import { TrainersDataTypes } from "../../types/trainersTypes";
 import AddTrainerForm from "./AddTrainerForm";
-
+import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";
 import DeletePopup from "../../ui/DeletePopup";
-import { TrainersDataTypes } from "../../types/trainersTypes";
-
 
 function TrainerOptions({ trainer }: { trainer: TrainersDataTypes }) {
   const id = trainer?.id;
   const { deleteOneTrainer } = useDeleteTrainer();
   if (!id) return null;
+  
   return (
     <div className="flex gap-2 px-5 text-2xl text-accentColor2">
       <Link

@@ -1,14 +1,14 @@
-import MainContainer from "../ui/MainContainer";
+import { useMembers } from "../features/members/useMembers";
 import MembersTable from "../features/members/MembersTable";
 import AddMemberModal from "../features/members/AddMemberModal";
+import SearchNameProvider from "../context/SearchContext";
+import MainContainer from "../ui/MainContainer";
 import Spinner from "../ui/Spinner";
-import { useMembers } from "../features/members/useMembers";
 import TableNoContent from "../ui/TableNoContent";
 import SearchInput from "../ui/SearchInput";
-import SearchNameProvider from "../context/SearchContext";
 function Members() {
   const { isLoading, error } = useMembers();
-
+  
   if (isLoading) return <Spinner />;
   if (error) return <TableNoContent />;
   return (

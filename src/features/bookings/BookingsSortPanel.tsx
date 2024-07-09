@@ -10,21 +10,20 @@ export default function BookingsSortPanel({
   let searchCategories;
   if (dataName === "status")
     searchCategories = [
-      { name: "status", value: "anulowana", label: 'anulowana' },
-      { name: "status", value: "niepotwierdzona", label: 'niepotwierdzona' },
-      { name: "status", value: "zrealizowana", label: 'zrealizowana' },
+      { name: "status", value: "anulowana", label: "anulowana" },
+      { name: "status", value: "niepotwierdzona", label: "niepotwierdzona" },
+      { name: "status", value: "zrealizowana", label: "zrealizowana" },
     ];
-
   if (dataName === "date")
-    searchCategories = [{ name: "data", value: "rosnaco", label: 'rosnąco' }];
-
-
+    searchCategories = [{ name: "data", value: "rosnaco", label: "rosnąco" }];
 
   return (
     <SortPanel
       dataName={dataName}
       mainSortCategory={mainSortCategory}
-      searchCategories={searchCategories as { name: string; value: string; label: string }[]}
+      searchCategories={
+        searchCategories as { name: string; value: string; label: string }[]
+      }
     />
   );
 }

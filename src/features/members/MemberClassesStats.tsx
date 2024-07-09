@@ -1,27 +1,11 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { DEVICE_WIDTH } from "../../utils/constants";
-
-interface BookingTypes {
-  created_at: string;
-  date: string;
-  id: string;
-  memberId: string;
-  members: {
-    name: string;
-    phone: string;
-  };
-  status: string;
-  trainerId: string;
-  trainers: {
-    name: string;
-    category: string;
-  };
-}
+import { BookingsDataType } from "../../types/bookingTypes";
 
 export default function MemberClassesStats({
   memberBookings,
 }: {
-  memberBookings: BookingTypes[];
+  memberBookings: BookingsDataType[];
 }) {
   if (!memberBookings) return [];
   const unconfirmedClasses = memberBookings.filter(

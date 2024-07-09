@@ -1,4 +1,3 @@
-
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 export default function Input({
@@ -9,8 +8,7 @@ export default function Input({
   errors,
   disabled,
   value,
-  onChange
-
+  onChange,
 }: {
   label: string;
   id: string;
@@ -19,10 +17,10 @@ export default function Input({
   errors?: FieldErrors;
   disabled?: boolean;
   value?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
-    <div className="flex flex-col  xl:grid grid-cols-[2fr_5fr_3fr] py-4">
+    <div className="flex grid-cols-[2fr_5fr_3fr]  flex-col py-4 xl:grid">
       <label htmlFor={id} className="text-start text-lg">
         {label}:
       </label>
@@ -33,10 +31,12 @@ export default function Input({
         value={value}
         disabled={disabled}
         onChange={onChange}
-        className={`${disabled === true ? " border-none outline-none" : " border-accentColor1"} w-full md:w-5/6 self-start border-2 bg-serchInputBg px-2 py-1 pr-2 text-slate-300 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none`}
+        className={`${disabled === true ? " border-none outline-none" : " border-accentColor1"} w-full self-start border-2 bg-serchInputBg px-2 py-1 pr-2 text-slate-300 focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md focus:outline-none md:w-5/6`}
       />
       {errors && errors[id]?.message && (
-        <p className="text-[12px] md:text-sm text-end text-red-500">{errors[id]?.message?.toString()}</p>
+        <p className="text-end text-[12px] text-red-500 md:text-sm">
+          {errors[id]?.message?.toString()}
+        </p>
       )}
     </div>
   );

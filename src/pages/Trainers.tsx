@@ -1,16 +1,17 @@
-import Spinner from "../ui/Spinner";
-import TrainersTable from "../features/trainer/TrainersTable";
-import MainContainer from "../ui/MainContainer";
-import AddTrainerModal from "../features/trainer/AddTrainerModal";
 import { useTrainers } from "../features/trainer/useTrainers";
-import TableNoContent from "../ui/TableNoContent";
-import SearchNameProvider from "../context/SearchContext";
-import SearchInput from "../ui/SearchInput";
+import TrainersTable from "../features/trainer/TrainersTable";
+import AddTrainerModal from "../features/trainer/AddTrainerModal";
 import TrainersSortPanel from "../features/trainer/TrainersSortPanel";
+import SearchNameProvider from "../context/SearchContext";
+import Spinner from "../ui/Spinner";
+import MainContainer from "../ui/MainContainer";
+import TableNoContent from "../ui/TableNoContent";
+import SearchInput from "../ui/SearchInput";
 import SearchAndFiltterContainer from "../ui/SearchAndFilterContainer";
 
 function Trainers() {
   const { trainerIsLoading, error } = useTrainers();
+
   if (trainerIsLoading) return <Spinner />;
   if (error) return <TableNoContent />;
 

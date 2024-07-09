@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import FormRow from "../../ui/FormRow";
-import FormInput from "../../ui/FormInput.tsx";
 import { useEditOpenHours } from "./useEditOpenHours.ts";
 import { useOpenHours } from "./useOpenHours.ts";
+import FormRow from "../../ui/FormRow";
+import FormInput from "../../ui/FormInput.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 
@@ -16,18 +16,18 @@ interface OpenHoursTypes {
 }
 
 function OpenHoursForm({ handleCloseModal }: PropsType) {
+  const { openHours } = useOpenHours();
+  const { changeOpenHours } = useEditOpenHours();
+
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       openHour: "08:00",
       closeHour: "20:00",
     },
   });
-  const { openHours } = useOpenHours();
-
-  const { changeOpenHours } = useEditOpenHours();
-
   const { errors } = formState;
-  if (!openHours) return;
+
+  if (!openHours) return null;
   const id = openHours[0].id;
 
   const onSubmit = (data: OpenHoursTypes) => {
@@ -53,7 +53,10 @@ function OpenHoursForm({ handleCloseModal }: PropsType) {
           formType="time"
         />
       </FormRow>
-      <ButtonsContainer isEditingSession={true} handleClick={() => handleCloseModal?.()}/>
+      <ButtonsContainer
+        isEditingSession={true}
+        handleClick={() => handleCloseModal?.()}
+      />
     </Form>
   );
 }

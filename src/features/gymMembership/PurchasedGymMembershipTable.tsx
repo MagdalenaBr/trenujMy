@@ -1,46 +1,28 @@
 import { DateTime } from "luxon";
+import { useCancelPurchase } from "./useCancelPurchase";
+import { PurchasedMemberschipTypes } from "../../types/purchaseMembershipTypes";
 import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
-import { useCancelPurchase } from "./useCancelPurchase";
-
-interface PaymentsType {
-  endDay: string;
-  startDay: string;
-  price: number;
-  isValid: boolean;
-  gymMembership: {
-    price: number;
-    gymMembershipName: string;
-  };
-  gymMembershipId: string;
-  id: string;
-  memberId: string;
-  members: {
-    name: string;
-    phone: string;
-    startDay: string;
-  };
-}
 
 export default function PurchasedGymMembershipTable({
   purchasedMemberships,
   height = "h-60",
   isMemberPage,
-  
 }: {
-  purchasedMemberships: PaymentsType[] | undefined;
+  purchasedMemberships: PurchasedMemberschipTypes[] | undefined;
   height?: string;
   isMemberPage?: boolean;
 }) {
   const { cancelPurchase } = useCancelPurchase();
+  
   function handleClick(id: string, value: boolean) {
     cancelPurchase({ id, value });
   }
 
   return (
-    <TableWithSpacing 
-smColumns="grid-cols-[130px_120px_200px_100px_100px]"
-    columns={
+    <TableWithSpacing
+      smColumns="grid-cols-[130px_120px_200px_100px_100px]"
+      columns={
         isMemberPage
           ? "xl:grid-cols-[2fr_2fr_3fr_2fr_100px]"
           : "xl:grid-cols-[1fr_1fr_2fr_1fr]"

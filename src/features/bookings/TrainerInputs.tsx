@@ -1,6 +1,6 @@
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useSchedules } from "../schedule/useSchedules";
 import { useTrainers } from "../trainer/useTrainers";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
 import TrainerInput from "./TrainerInput";
 
 export default function TrainerInputs({

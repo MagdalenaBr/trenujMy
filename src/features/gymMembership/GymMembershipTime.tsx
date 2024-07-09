@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import FormInput from "../../ui/FormInput";
-import FormRow from "../../ui/FormRow";
-import { PurchasedMembershipContext } from "../gymMembership/PurchaseGymMembershipForm";
 import { UseFormRegister } from "react-hook-form";
 import { DateTime } from "luxon";
+import { PurchasedMembershipContext } from "../gymMembership/PurchaseGymMembershipForm";
 import { ARR_OF_GYM_MEMBERSHIP_ID } from "../../utils/constants";
+import FormInput from "../../ui/FormInput";
+import FormRow from "../../ui/FormRow";
 
 export default function MembershipTime() {
   const context = useContext(PurchasedMembershipContext);

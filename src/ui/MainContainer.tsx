@@ -7,11 +7,13 @@ type PropsType = {
 function MainContainer({ children, title, buttons }: PropsType) {
   return (
     <div
-      className={`${title === "Grafik" || !title ? "w-[90%]" : "w-[80%]"} mt-4 xl:mt-0 relative mx-auto flex flex-col gap-10`}
+      className={`${title === "Grafik" || !title ? "w-[90%]" : "w-[80%]"} relative mx-auto mt-4 flex flex-col gap-10 xl:mt-0`}
     >
       {title ? (
         <div className={buttons ? "flex  justify-between" : ""}>
-          <h2 className={`text-start ${title === 'Aktualny grafik' ? 'text-xl' : 'text-2xl'}  font-semibold uppercase tracking-widest text-primaryTextColor`}>
+          <h2
+            className={`text-start ${title === "Aktualny grafik" ? "text-xl" : "text-2xl"}  font-semibold uppercase tracking-widest text-primaryTextColor`}
+          >
             {title}
           </h2>
           {buttons}

@@ -6,18 +6,18 @@ type PropsType = {
   children: React.ReactNode;
   columns?: string;
   uniqueStyles?: string;
-  smColumns?: string
+  smColumns?: string;
 };
 
 function Table({
   children,
   columns = "grid-cols-4",
   uniqueStyles = "",
-  smColumns
+  smColumns,
 }: PropsType) {
   return (
     <TableContext.Provider value={{ columns, uniqueStyles, smColumns }}>
-      <div className=" text-sm divide-y  divide-slate-700 xl:overflow-hidden  bg-slate-900 text-slate-300 overflow-x-scroll">
+      <div className=" divide-y divide-slate-700  overflow-x-scroll bg-slate-900  text-sm text-slate-300 xl:overflow-hidden">
         {children}
       </div>
     </TableContext.Provider>
@@ -29,7 +29,7 @@ function Header({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} text-start bg-slate-900 px-2 py-4 font-bold uppercase`}
+      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} bg-slate-900 px-2 py-4 text-start font-bold uppercase`}
     >
       {children}
     </div>
@@ -48,7 +48,7 @@ function Row({ children }: PropsType) {
   );
 }
 
-function Footer({ numOfData }: { numOfData: number | null}) {
+function Footer({ numOfData }: { numOfData: number | null }) {
   return <Pagination numOfData={numOfData} />;
 }
 

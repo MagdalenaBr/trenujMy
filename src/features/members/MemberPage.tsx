@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { DateTime } from "luxon";
-
 import {
   ARR_OF_GYM_MEMBERSHIP_ID,
   DEVICE_WIDTH,
@@ -11,14 +10,14 @@ import { useBooking } from "../bookings/useBooking";
 import { useMembers } from "./useMembers";
 import { useUserPurchasedMemberships } from "../gymMembership/useUserPurchasedMemberships";
 import { useUserPayments } from "../payments/useUserPayments";
-import Container from "../../ui/Container";
-import BackButton from "../../ui/BackButton";
 import MemberOptions from "./MemberOptions";
-import Spinner from "../../ui/Spinner";
 import MemberClassesStats from "./MemberClassesStats";
 import BookingTableContainer from "./BookingTableContainer";
 import PurchasedMembershipContainer from "./PurchasedMembershipsContainer";
 import PaymentTableContainer from "./PaymentTableContainer";
+import Container from "../../ui/Container";
+import BackButton from "../../ui/BackButton";
+import Spinner from "../../ui/Spinner";
 import GridContainer from "../../ui/GridContainer";
 
 function MemberPage() {

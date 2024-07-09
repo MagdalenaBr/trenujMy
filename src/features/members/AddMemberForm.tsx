@@ -1,32 +1,25 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import FormRow from "../../ui/FormRow";
 import { schema } from "../../validation/MembersValidation.tsx";
-import useCreateMember from "./useCreateMember.ts";
 import { useEditMember } from "./useEditMember";
+import useCreateMember from "./useCreateMember.ts";
+import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 import FormOption from "../../ui/FormOption.tsx";
-
-interface CommonData {
-  city: string;
-  email: string;
-  gender: string;
-  name: string;
-  phone: string;
-}
-interface MemberTypes extends CommonData {
-  id: string;
-}
+import {
+  ActiveMemberTypes,
+  CommonMemberDataTypes,
+} from "../../types/membersTypes.ts";
 
 interface PropsType {
   handleCloseModal?: () => void;
-  member?: MemberTypes;
+  member?: ActiveMemberTypes;
 }
 
 function AddMemberForm({
-  member = {} as MemberTypes,
+  member = {} as ActiveMemberTypes,
   handleCloseModal,
 }: PropsType) {
   const { id, ...memberEditData } = member;
@@ -40,7 +33,7 @@ function AddMemberForm({
   });
   const { errors } = formState;
 
-  const onSubmit = (data: CommonData) => {
+  const onSubmit = (data: CommonMemberDataTypes) => {
     if (isEditingSession) {
       editMember({ newMember: data, id });
     } else {

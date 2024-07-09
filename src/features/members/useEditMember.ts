@@ -1,18 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addOrEditMember } from "../../services/apiMembers";
 import toast from "react-hot-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CommonMemberDataTypes } from "../../types/membersTypes";
+import { addOrEditMember } from "../../services/apiMembers";
 
-interface DataTypes {
-	city: string;
-	email: string;
-	gender: string;
-	name: string;
-	phone: string;
-}
+
 export function useEditMember() {
 	const queryClient = useQueryClient();
+	
 	const { mutate: editMember } = useMutation({
-		mutationFn: ({ newMember, id }: {newMember: DataTypes, id: string}) =>
+		mutationFn: ({ newMember, id }: {newMember: CommonMemberDataTypes, id: string}) =>
 			addOrEditMember(newMember, id),
 		onSuccess() {
 			queryClient.invalidateQueries({

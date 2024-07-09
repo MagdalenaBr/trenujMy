@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form";
-import FormInput from "../../ui/FormInput.tsx";
-import { useTrainers } from "../trainer/useTrainers.ts";
-import FormOption from "../../ui/FormOption.tsx";
-import { useCreateSchedules } from "./useCreateSchedules.ts";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validation/ScheduleValidation.tsx";
+import { useTrainers } from "../trainer/useTrainers.ts";
 import { useEditSchedules } from "./useEditSchedules.ts";
+import { useCreateSchedules } from "./useCreateSchedules.ts";
+import { schema } from "../../validation/ScheduleValidation.tsx";
+import {
+  NewClassesTypes,
+  ScheduleDataTypes,
+} from "../../types/scheduleTypes.ts";
+import FormInput from "../../ui/FormInput.tsx";
+import FormOption from "../../ui/FormOption.tsx";
 import Spinner from "../../ui/Spinner.tsx";
 import Form from "../../ui/Form.tsx";
 import ButtonsContainer from "../../ui/ButtonsContainer.tsx";
 import FormRow from "../../ui/FormRow.tsx";
-import { NewClassesTypes, ScheduleDataTypes } from "../../types/scheduleTypes.ts";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -23,7 +26,6 @@ function CreateScheduleForm({
 }: PropsType) {
   const { id, ...classesData } = classes;
   const isEditingSession = Boolean(id);
-
   const { createClasses } = useCreateSchedules();
   const { editClasses } = useEditSchedules();
   const { trainers, trainerIsLoading } = useTrainers();
@@ -56,6 +58,7 @@ function CreateScheduleForm({
   );
 
   if (trainerIsLoading) return <Spinner />;
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow name="name" label="Rodzaj zajęć:">

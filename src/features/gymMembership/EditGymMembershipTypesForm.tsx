@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useGymMembership } from "./useGymMembership";
+import { useChangeMembershipPrice } from "./useChangeMembershipPrice";
+import { schema } from "../../validation/GymMembershipValidation";
 import Form from "../../ui/Form";
 import FormInput from "../../ui/FormInput";
 import FormRow from "../../ui/FormRow";
-import { useGymMembership } from "./useGymMembership";
 import ButtonsContainer from "../../ui/ButtonsContainer";
-import { useChangeMembershipPrice } from "./useChangeMembershipPrice";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../validation/GymMembershipValidation";
 
 interface PropsType {
   handleCloseModal?: () => void;

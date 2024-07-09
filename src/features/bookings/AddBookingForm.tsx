@@ -1,18 +1,18 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateBooking } from "./useCreateBooking";
 import { useEditBooking } from "./useEditBooking";
-import FormRow from "../../ui/FormRow";
-import TrainerInputs from "./TrainerInputs";
-import { useTrainers } from "../trainer/useTrainers";
-import Spinner from "../../ui/Spinner";
 import { useSchedules } from "../schedule/useSchedules";
+import { useTrainers } from "../trainer/useTrainers";
+import TrainerInputs from "./TrainerInputs";
+import FormRow from "../../ui/FormRow";
+import Spinner from "../../ui/Spinner";
 import DateInput from "./DateInput";
 import Form from "../../ui/Form";
 import FormOption from "../../ui/FormOption";
-import { yupResolver } from "@hookform/resolvers/yup";
+import FormButton from "../../ui/FormButton";
 import { schema as classesValidation } from "../../validation/BookingClassesValidation";
 import { schema as personalTrainerValidation } from "../../validation/PersonalTrainerBooking";
-import FormButton from "../../ui/FormButton";
 import { NewBookingTypes } from "../../types/bookingTypes";
 
 interface CommonDataTypes {
@@ -104,7 +104,9 @@ function AddBookingForm({
     }
     handleCloseModal?.();
   };
+
   if (trainerIsLoading || scheduleIsLoading) return <Spinner />;
+  
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <p className="text-md align-self-center py-1 text-center font-bold uppercase tracking-wider text-textLight">

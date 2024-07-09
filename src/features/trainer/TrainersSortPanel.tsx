@@ -1,5 +1,5 @@
-import SortPanel from "../../ui/SortPanel";
 import { useTrainers } from "./useTrainers";
+import SortPanel from "../../ui/SortPanel";
 
 export default function TrainersSortPanel({
   dataName,
@@ -28,13 +28,13 @@ export default function TrainersSortPanel({
     searchCategories = [
       {
         name: "cena",
-        value: 'rosnaco',
-        label: 'rosnąco'
+        value: "rosnaco",
+        label: "rosnąco",
       },
       {
         name: "cena",
-        value: 'malejaco',
-        label: 'malejąco'
+        value: "malejaco",
+        label: "malejąco",
       },
     ];
 

@@ -1,6 +1,6 @@
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditMembershipPurchase} from "../../services/apiPurchaseMembership";
-import toast from "react-hot-toast";
 
 export function usePurchaseMembership() {
   const queryClient = useQueryClient();

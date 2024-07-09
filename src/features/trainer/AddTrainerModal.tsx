@@ -1,5 +1,5 @@
-import Modal from "../../ui/Modal";
 import AddTrainerForm from "./AddTrainerForm";
+import Modal from "../../ui/Modal";
 import FormButton from "../../ui/FormButton";
 
 export default function AddTrainerModal() {

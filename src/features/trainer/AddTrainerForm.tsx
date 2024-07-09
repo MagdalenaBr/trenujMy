@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import FormRow from "../../ui/FormRow";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateTrainer } from "./useCreateTrainer";
 import { useEditTrainer } from "./useEditTrainer";
 import { schema } from "../../validation/TrainersValidation";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { NewTrainerDataTypes } from "../../types/trainersTypes";
+import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput";
 import Form from "../../ui/Form";
 import ButtonsContainer from "../../ui/ButtonsContainer";
-import { NewTrainerDataTypes } from "../../types/trainersTypes";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -18,16 +18,16 @@ function AddTrainerForm({
   trainer = {} as NewTrainerDataTypes & { id: string },
   handleCloseModal,
 }: PropsType) {
+  const { createTrainer } = useCreateTrainer();
+  const { editTrainer } = useEditTrainer();
   const { id, ...trainerEditData } = trainer;
   const isEditingSession = Boolean(id);
+
   const { register, handleSubmit, formState } = useForm({
     defaultValues: isEditingSession ? trainerEditData : {},
     resolver: yupResolver(schema),
   });
-
   const { errors } = formState;
-  const { createTrainer } = useCreateTrainer();
-  const { editTrainer } = useEditTrainer();
 
   const onSubmit = (newTrainer: NewTrainerDataTypes) => {
     const image =

@@ -1,12 +1,12 @@
 import { HiOutlinePencil } from "react-icons/hi2";
-import MainContainer from "../../ui/MainContainer";
+import { DateTime } from "luxon";
+import { useSchedules } from "./useSchedules";
 import CreateScheduleModal from "./CreateScheduleModal";
+import MainContainer from "../../ui/MainContainer";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BackButton from "../../ui/BackButton";
-import { useSchedules } from "./useSchedules";
-import { DateTime } from "luxon";
 
 export default function EditSchedulePage() {
   const { schedule, scheduleIsLoading } = useSchedules("currentSchedule");
@@ -16,9 +16,12 @@ export default function EditSchedulePage() {
   return (
     <MainContainer title="Aktualny grafik">
       <div className="overflow-auto">
-        <div className=" w-[41rem] md:w-auto border-slate-700 bg-slate-900/70 p-4 text-slate-200">
+        <div className=" w-[41rem] border-slate-700 bg-slate-900/70 p-4 text-slate-200 md:w-auto">
           <BackButton />
-          <TableWithSpacing smColumns="grid-cols-[170px_130px_150px_100px_50px]" columns="md:grid-cols-[repeat(4,minmax(100px,_1fr))_100px]">
+          <TableWithSpacing
+            smColumns="grid-cols-[170px_130px_150px_100px_50px]"
+            columns="md:grid-cols-[repeat(4,minmax(100px,_1fr))_100px]"
+          >
             <TableWithSpacing.Header>
               <p>Trener</p>
               <p>Kategoria</p>

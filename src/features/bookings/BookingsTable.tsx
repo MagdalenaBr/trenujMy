@@ -1,4 +1,7 @@
 import { HiOutlinePencil } from "react-icons/hi2";
+import { useContext } from "react";
+import { DateTime } from "luxon";
+import { SearchNameContext } from "../../context/SearchContext";
 import { useBookings } from "./useBookings";
 import AddBookingModal from "./AddBookingModal";
 import BookingStatus from "../../ui/BookingStatus";
@@ -6,10 +9,7 @@ import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
 import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
-import { useContext } from "react";
-import { SearchNameContext } from "../../context/SearchContext";
 import { TODAY_DAY } from "../../utils/constants";
-import { DateTime } from "luxon";
 
 function BookingsTable() {
   const todayDay = TODAY_DAY.toString().slice(0, 10);

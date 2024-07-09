@@ -4,14 +4,14 @@ export default function StatusButton({
   status,
   width,
   disabled,
-  paddingX ='px-2'
+  paddingX = "px-2",
 }: {
   children: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   status: "cancel" | "confirm";
   width?: string;
   disabled?: boolean;
-  paddingX?: string
+  paddingX?: string;
 }) {
   return (
     <button

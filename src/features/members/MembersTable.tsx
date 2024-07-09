@@ -1,10 +1,10 @@
 import { BsInfoLg } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useMembers } from "./useMembers";
+import { SearchNameContext } from "../../context/SearchContext";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
-import { Link } from "react-router-dom";
-import { useMembers } from "./useMembers";
-import { useContext } from "react";
-import { SearchNameContext } from "../../context/SearchContext";
 
 function MembersTable() {
   const searchNameContext = useContext(SearchNameContext);
@@ -34,7 +34,7 @@ function MembersTable() {
         {filteredMembers ? (
           filteredMembers.map((member) => (
             <Table.Row key={member.id}>
-              <p className="font-semibold uppercase text-[12px] lg:text-sm tracking-wide text-lightAccentColor">
+              <p className="text-[12px] font-semibold uppercase tracking-wide text-lightAccentColor lg:text-sm">
                 {member.name}
               </p>
               <p>{member.email.toLowerCase()}</p>

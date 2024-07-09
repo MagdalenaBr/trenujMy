@@ -8,9 +8,9 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
+import { useBookingsAfterDate } from "./useBookingsAfterDate";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
-import { useBookingsAfterDate } from "./useBookingsAfterDate";
 import NoDataContainer from "../../ui/NoDataContainer";
 
 export default function PersonalTrainersStats() {

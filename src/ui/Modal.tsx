@@ -37,7 +37,7 @@ function Window({ children, formName }: PropsType) {
 
   if (formName !== isOpen) return null;
   return createPortal(
-    <div className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-md bg-slate-600 bg-opacity-80 ">
+    <div className="fixed inset-0 z-50 h-screen w-screen bg-slate-600 bg-opacity-80 backdrop-blur-md ">
       <div className="flex h-full items-center justify-center ">
         {cloneElement(children as React.ReactElement, {
           handleCloseModal: () => setIsOpen(""),

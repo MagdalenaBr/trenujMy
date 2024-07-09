@@ -1,13 +1,13 @@
+import { useGymMembership } from "./useGymMembership";
+import EditMembershipModal from "./EditMembershipModal";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import Heading from "../../ui/Heading";
-import { useGymMembership } from "./useGymMembership";
-
-import EditMembershipModal from "./EditMembershipModal";
 
 export default function GymMembershipTypesContainer() {
   const { gymMembership } = useGymMembership();
+  
   return (
-    <div className=" col-span-6 md:col-span-3 xl:col-span-2  flex h-[18.4rem] flex-col gap-3  border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900 ">
+    <div className=" col-span-6 flex h-[18.4rem]  flex-col gap-3 border-2 border-slate-900  bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900 md:col-span-3 xl:col-span-2 ">
       <Heading>Dostępne karnety</Heading>
       <div className="h-60 overflow-auto">
         <TableWithSpacing columns="grid-cols-2">

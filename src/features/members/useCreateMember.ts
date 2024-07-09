@@ -1,6 +1,6 @@
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOrEditMember } from "../../services/apiMembers";
-import toast from "react-hot-toast";
 
 function useCreateMember() {
 	const queryClient = useQueryClient();

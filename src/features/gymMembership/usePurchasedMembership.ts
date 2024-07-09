@@ -1,6 +1,6 @@
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPurchasedMemberschips } from "../../services/apiPurchaseMembership";
-import { useSearchParams } from "react-router-dom";
 
 export function usePurchasedMembership(isPaymentPage : boolean) {
   const [searchParams] = useSearchParams();

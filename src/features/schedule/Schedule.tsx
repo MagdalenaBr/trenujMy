@@ -1,10 +1,10 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import { useSchedules } from "./useSchedules";
 import { useOpenHours } from "./useOpenHours";
 import Spinner from "../../ui/Spinner";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import { useSchedules } from "./useSchedules";
 
 function Schedule({
   trainerSchedule,
@@ -15,8 +15,6 @@ function Schedule({
 }) {
   const { schedule, scheduleIsLoading } = useSchedules();
   const { openHours, isLoading: openHoursLoading } = useOpenHours();
-
-  if (openHoursLoading || scheduleIsLoading) return <Spinner />;
 
   let openHour, closeHour;
   if (openHours !== undefined) ({ openHour, closeHour } = openHours[0]);
@@ -32,9 +30,10 @@ function Schedule({
     }));
   }
 
+  if (openHoursLoading || scheduleIsLoading) return <Spinner />;
   return (
     <div className=" overflow-x-scroll bg-slate-900 p-2 lg:overflow-hidden">
-      <div className=" w-[60rem] mx-auto lg:w-full">
+      <div className=" mx-auto w-[60rem] lg:w-full">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin]}
           initialView={page === "trainer" ? "timeGridWeek" : "dayGridMonth"}

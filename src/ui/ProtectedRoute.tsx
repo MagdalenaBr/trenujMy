@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import useLoggedUser from "../features/authentication/useLoggedUser";
 import Spinner from "./Spinner";
-import { useEffect } from "react";
 
 export default function ProtectedRoute({
   children,
@@ -12,8 +12,6 @@ export default function ProtectedRoute({
   const { user, isLoading } = useLoggedUser();
   const userIsAuthenticated = user?.role === "authenticated";
 
-  // if (!user?.role && !isLoading) navigate("/login");
-  
   useEffect(
     function () {
       if (!userIsAuthenticated && !isLoading) navigate("/login");

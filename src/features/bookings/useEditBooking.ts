@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addOrEditBooking } from "../../services/apiBookings";
 import toast from "react-hot-toast";
+import { addOrEditBooking } from "../../services/apiBookings";
 import { NewBookingTypes } from "../../types/bookingTypes";
 
 export function useEditBooking() {

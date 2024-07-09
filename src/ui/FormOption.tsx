@@ -21,7 +21,7 @@ function FormOption({
         id={inputName}
         {...register(inputName)}
         className="
-        col-span-2 h-9 border-b-2   border-r-2 border-slate-600 bg-slate-700 px-2 text-sm  font-semibold tracking-wider text-textLight focus:bg-slate-400 focus:text-textDark disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none w-48 md:w-[26rem]"
+        col-span-2 h-9 w-48   border-b-2 border-r-2 border-slate-600 bg-slate-700 px-2  text-sm font-semibold tracking-wider text-textLight focus:bg-slate-400 focus:text-textDark disabled:border-none disabled:bg-slate-300 disabled:font-bold disabled:outline-none md:w-[26rem]"
         onChange={(e) => {
           if (!onChange) return;
           onChange(e);

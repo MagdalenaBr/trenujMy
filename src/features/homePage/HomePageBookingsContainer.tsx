@@ -1,14 +1,13 @@
+import { DateTime } from "luxon";
 import { useBookingsAfterDate } from "./useBookingsAfterDate";
+import StatusChange from "../bookings/StatusChange";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
-import StatusChange from "../bookings/StatusChange";
-import { DateTime } from "luxon";
 
 export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
-
 
   return (
     <div className="col-span-4 overflow-x-scroll xl:overflow-x-hidden">

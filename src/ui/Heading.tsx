@@ -1,6 +1,6 @@
-export default function Heading({children}: {children:React.ReactNode}) {
+export default function Heading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-lg text-start px-4 lg:text-center font-semibold uppercase tracking-wider pb-2 ">
+    <h2 className="px-4 pb-2 text-start text-lg font-semibold uppercase tracking-wider lg:text-center ">
       {children}
     </h2>
   );

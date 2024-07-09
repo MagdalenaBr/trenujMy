@@ -1,7 +1,6 @@
 import { PaymentsType } from "../types/paymentsTypes";
 import supabase from "./supabase";
 
-
 export async function getPayments(): Promise<PaymentsType[]> {
   const { data: payments, error } = await supabase
     .from("payments")
@@ -11,7 +10,6 @@ export async function getPayments(): Promise<PaymentsType[]> {
 
   if (error)
     throw new Error("Dane na temat płatności nie mogły zostać pobrane.");
-
   return payments;
 }
 

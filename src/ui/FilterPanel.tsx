@@ -14,13 +14,14 @@ export default function FilterPanel() {
     searchParams.set(name, value);
     setSearchParams(searchParams);
   }
-// return 7 if there is no filter chosen
-  const valueFromParams = searchParams.get("zakres") || '7'
+  // return 7 if there is no filter chosen
+  const valueFromParams = searchParams.get("zakres") || "7";
 
   return (
     <div className="flex  w-80  gap-3  justify-self-end bg-slate-300 ">
       {searchCategories.map((category) => (
-        <button key={category.value}
+        <button
+          key={category.value}
           onClick={() => handleClick(category.name, category.value)}
           className={`w-20 py-1 text-sm  font-semibold uppercase tracking-widest  shadow-lg hover:scale-105 hover:bg-slate-900 hover:text-slate-300 ${valueFromParams === category.value ? "bg-slate-900 text-slate-300" : "text-slate-900"}`}
         >

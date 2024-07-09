@@ -1,15 +1,14 @@
+import { usePayments } from "../features/payments/usePayments";
 import GymMembershipTypesContainer from "../features/gymMembership/GymMembershipTypesContainer";
 import PurchasedGymMembershipTable from "../features/gymMembership/PurchasedGymMembershipTable";
 import { usePurchasedMembership } from "../features/gymMembership/usePurchasedMembership";
+import PaymentTable from "../features/payments/PaymentTabe";
 import MainContainer from "../ui/MainContainer";
 import Heading from "../ui/Heading";
-import PaymentTable from "../features/payments/PaymentTabe";
-import { usePayments } from "../features/payments/usePayments";
 
 export default function Payments() {
   const { purchasedMemberships } = usePurchasedMembership(true);
   const { payments } = usePayments();
-
 
   return (
     <MainContainer title="Płatności">
@@ -21,7 +20,7 @@ export default function Payments() {
           </div>
         </div>
 
-        <div className=" col-span-6 xl:col-span-4 flex flex-col gap-3  bg-slate-900  px-4 py-4   shadow-2xl shadow-slate-900 ">
+        <div className=" col-span-6 flex flex-col gap-3 bg-slate-900  px-4  py-4 shadow-2xl   shadow-slate-900 xl:col-span-4 ">
           <Heading>Zakupione karnety</Heading>
           <PurchasedGymMembershipTable
             purchasedMemberships={purchasedMemberships}

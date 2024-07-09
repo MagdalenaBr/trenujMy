@@ -8,9 +8,9 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
+import { useBookingsAfterDate } from "./useBookingsAfterDate";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
-import { useBookingsAfterDate } from "./useBookingsAfterDate";
 import NoDataContainer from "../../ui/NoDataContainer";
 
 export function GroupActivitiesTrainersStats() {
@@ -24,11 +24,13 @@ export function GroupActivitiesTrainersStats() {
       ).length,
     };
   });
+
   const uniqeData = data?.filter(
     (value, index, self) =>
       index ===
       self.findIndex((t) => t.name === value.name && t.osoby === value.osoby),
   );
+  
   return (
     <HomePageContainer colGrid="col-span-1">
       <Heading>Liczba uczestników: zajęcia grupowe</Heading>

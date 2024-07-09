@@ -1,22 +1,22 @@
+import { useSearchParams } from "react-router-dom";
+import { useContext } from "react";
+import { useTrainers } from "./useTrainers";
+import { SearchNameContext } from "../../context/SearchContext";
+import TrainerRow from "./TrainerRow";
 import TableNoContent from "../../ui/TableNoContent";
 import Table from "../../ui/Table";
-import { useTrainers } from "./useTrainers";
-import TrainerRow from "./TrainerRow";
-import { useContext } from "react";
-import { SearchNameContext } from "../../context/SearchContext";
-import { useSearchParams } from "react-router-dom";
 
 function TrainersTable() {
   const { trainers } = useTrainers();
-
   const [searchParams] = useSearchParams();
+  const searchNameContext = useContext(SearchNameContext);
+
   const sortValueCategory = {
     name: "category",
     value: searchParams.get("category"),
   };
   const sortValuePrice = { name: "price", value: searchParams.get("price") };
-  const searchNameContext = useContext(SearchNameContext);
-  
+
   //SEARCH TRAINER NAME
   let filteredTrainers = trainers?.filter((trainer) =>
     trainer.name
@@ -30,7 +30,9 @@ function TrainersTable() {
   if (sortValueCategory.value === null) filteredTrainers;
   if (sortValueCategory.name === "category" && sortValueCategory.value !== null)
     filteredTrainers = filteredTrainers?.filter(
-      (trainer) => trainer.category.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === sortValueCategory.value,
+      (trainer) =>
+        trainer.category.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ===
+        sortValueCategory.value,
     );
 
   // SORT PRICE
@@ -40,8 +42,11 @@ function TrainersTable() {
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   return (
-    
-    <Table  uniqueStyles="w-[38rem] md:w-auto" columns="xl:grid-cols-5" smColumns={'grid-cols-[200px_100px_100px_50px_100px]'}>
+    <Table
+      uniqueStyles="w-[38rem] md:w-auto"
+      columns="xl:grid-cols-5"
+      smColumns={"grid-cols-[200px_100px_100px_50px_100px]"}
+    >
       {filteredTrainers ? (
         filteredTrainers.map((trainer) => (
           <Table.Row key={trainer.id}>

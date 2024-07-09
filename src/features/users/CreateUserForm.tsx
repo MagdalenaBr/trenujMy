@@ -1,19 +1,19 @@
 import { useForm } from "react-hook-form";
-import Input from "../../ui/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/UserValidation";
 import useUserSignUp from "../authentication/useUserSignUp";
+import Input from "../../ui/Input";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 
 export default function CreateUserForm() {
+  const { signUp } = useUserSignUp();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm({ resolver: yupResolver(schema) });
-
-  const { signUp } = useUserSignUp();
 
   function onSubmit(data: {
     name: string;
@@ -22,7 +22,6 @@ export default function CreateUserForm() {
     email: string;
   }) {
     const { name, email, password } = data;
-
     signUp(
       { email, password, name },
       {

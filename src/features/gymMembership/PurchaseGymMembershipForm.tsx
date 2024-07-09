@@ -1,19 +1,22 @@
 import { FieldErrors, UseFormRegister, useForm } from "react-hook-form";
-import ButtonsContainer from "../../ui/ButtonsContainer";
-import Form from "../../ui/Form";
+import { createContext, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useMembers } from "../members/useMembers";
 import { useGymMembership } from "./useGymMembership";
-import FormOption from "../../ui/FormOption";
-import FormRow from "../../ui/FormRow";
-import { createContext, useState } from "react";
 import { usePurchaseMembership } from "./usePurchaseMembership";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../validation/PurchaseGymMembershipValidation";
+import { TODAY_DAY } from "../../utils/constants";
+import {
+  ActiveMemberTypes,
+  CommonMemberDataTypes,
+} from "../../types/membersTypes";
 import GymMembershipMember from "./GymMembershipMember";
 import GymMembershipTime from "./GymMembershipTime";
+import ButtonsContainer from "../../ui/ButtonsContainer";
+import Form from "../../ui/Form";
+import FormOption from "../../ui/FormOption";
+import FormRow from "../../ui/FormRow";
 import FormInput from "../../ui/FormInput";
-import { TODAY_DAY } from "../../utils/constants";
-import { ActiveMemberTypes, CommonMemberDataTypes } from "../../types/membersTypes";
 
 interface PropsType {
   handleCloseModal?: () => void;
@@ -30,9 +33,7 @@ interface gymMembershipType {
 
 interface ContextTypes {
   register: UseFormRegister<any>;
-  members:
-    | CommonMemberDataTypes[]
-    | undefined;
+  members: CommonMemberDataTypes[] | undefined;
   errors: FieldErrors;
   setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
   setCalculatedDate: React.Dispatch<React.SetStateAction<string>>;
@@ -102,6 +103,7 @@ export default function PurchaseGymMembershipForm({
   function handleMembershipChange(e: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedGymMembership(e.target.value);
   }
+  
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <PurchasedMembershipContext.Provider

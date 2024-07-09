@@ -1,9 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateUserPassword as update } from "../../services/apiAuthentication";
 import toast from "react-hot-toast";
+import { updateUserPassword as update } from "../../services/apiAuthentication";
 
 export function useUpdateUserPassword() {
   const queryClient = useQueryClient();
+
   const { mutate: updateUserPassword } = useMutation({
     mutationFn: update,
     onSuccess() {

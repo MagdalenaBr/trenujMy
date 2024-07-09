@@ -8,7 +8,6 @@ export async function getGymMembership() {
     .order("id", { ascending: true });
 
   if (error) throw new Error("Dane nie mogły zostać pobrane.");
-
   return gymMembership;
 }
 
@@ -28,6 +27,5 @@ export async function changeMembershipPrice(values: {
     .select();
 
   if (error) throw new Error("Cena nie została zmieniona.");
-
   return data;
 }

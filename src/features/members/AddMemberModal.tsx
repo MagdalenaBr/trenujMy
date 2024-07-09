@@ -1,5 +1,5 @@
-import Modal from "../../ui/Modal";
 import AddMemberForm from "./AddMemberForm";
+import Modal from "../../ui/Modal";
 import FormButton from "../../ui/FormButton";
 
 function AddMemberModal() {

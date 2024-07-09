@@ -29,7 +29,7 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex justify-between px-2 py-1 text-accentColor2 w-[37rem] lg:w-auto">
+    <div className="flex w-[37rem] justify-between px-2 py-1 text-accentColor2 lg:w-auto">
       <div>
         <span>{(currentPage - 1) * NUM_OF_RESULTS + 1}</span> -{" "}
         <span>
@@ -41,7 +41,7 @@ export default function Pagination({
       <div className="flex gap-9">
         <button
           className="flex
-      items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-2 pr-4 py-1 disabled:hover:bg-gray-600"
+      items-center gap-1  py-1 pl-2 pr-4 text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 disabled:hover:bg-gray-600"
           onClick={prevPage}
           disabled={currentPage === 1}
         >
@@ -50,7 +50,7 @@ export default function Pagination({
         </button>
         <button
           className="flex
-          items-center gap-1  text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 pl-4 pr-2 py-1 disabled:hover:bg-gray-600"
+          items-center gap-1  py-1 pl-4 pr-2 text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 disabled:hover:bg-gray-600"
           onClick={nextPage}
           disabled={currentPage === pageNum}
         >

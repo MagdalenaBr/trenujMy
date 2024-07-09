@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useUpdateUserPassword } from "../authentication/useUpdateUserPassword";
-import Input from "../../ui/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useUpdateUserPassword } from "../authentication/useUpdateUserPassword";
 import { schema } from "../../validation/UpdateUserPaasswordValidation";
+import Input from "../../ui/Input";
 import ButtonsContainer from "../../ui/ButtonsContainer";
 
 export default function UpdateUserPassword() {
@@ -17,7 +17,6 @@ export default function UpdateUserPassword() {
 
   function onSubmit(data: { password: string; confirmPassword: string }) {
     const { password } = data;
-
     updateUserPassword(
       { password },
       {
@@ -50,7 +49,7 @@ export default function UpdateUserPassword() {
         register={register}
         errors={errors}
       />
-      <ButtonsContainer isEditingSession={true}/>
+      <ButtonsContainer isEditingSession={true} />
     </form>
   );
 }

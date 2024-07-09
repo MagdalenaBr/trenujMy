@@ -1,9 +1,10 @@
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { changeMembershipPrice } from "../../services/apiGymMembership";
-import toast from "react-hot-toast";
 
 export function useChangeMembershipPrice() {
   const queryClient = useQueryClient();
+  
   const { mutate: changePrice } = useMutation({
     mutationFn: changeMembershipPrice,
     onSuccess() {

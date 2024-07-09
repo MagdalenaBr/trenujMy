@@ -122,7 +122,6 @@ export async function getBookingsAfterDate(
     throw new Error(
       "Wystąpił błąd podczas wyszukiwania rezerwacji. Spróbuj ponownie.",
     );
-
   return booking;
 }
 
@@ -134,6 +133,5 @@ export async function updateBookingStatus(statusValue: string, id: string) {
     .select();
 
   if (error) throw new Error("Status nie został zaktualizowany.");
-
   return data;
 }

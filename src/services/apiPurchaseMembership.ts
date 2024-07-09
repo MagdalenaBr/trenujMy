@@ -1,31 +1,11 @@
+import { PurchasedMemberschipTypes } from "../types/purchaseMembershipTypes";
 import { TODAY_DAY_END } from "../utils/constants";
 import { START_DAY } from "../utils/helpers";
 import supabase from "./supabase";
 
-interface PaymentsType {
-  created_at: string;
-  endDay: string;
-  startDay: string;
-  price: number;
-  isValid: boolean;
-  gymMembership: {
-    price: number;
-    gymMembershipName: string;
-  };
-  gymMembershipId: string;
-  id: string;
-  memberId: string;
-  members: {
-    name: string;
-    phone: string;
-    startDay: string;
-  };
-}
-[];
-
 export async function getPurchasedMemberschips(
   selectedTimeRange: string | null,
-): Promise<PaymentsType[]> {
+): Promise<PurchasedMemberschipTypes[]> {
   let query = supabase
     .from("purchasedMemberships")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)");
@@ -60,7 +40,7 @@ export async function addOrEditMembershipPurchase(newData: {
 
 export async function getUserPurchasedMemberships(
   memberId: string,
-): Promise<PaymentsType[]> {
+): Promise<PurchasedMemberschipTypes[]> {
   const { data: purchasedMemberships, error } = await supabase
     .from("purchasedMemberships")
     .select("*, members(name, phone), gymMembership(price, gymMembershipName)")
@@ -79,6 +59,5 @@ export async function cancelPurchase(value: boolean, id: string) {
     .select();
 
   if (error) throw new Error("Karnet nie został anulowany.");
-
   return data;
 }

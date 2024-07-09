@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTrainers } from "../../services/apiTrainers";
 
-
 export function useTrainers() {
   const {
     data: trainers,
     isLoading: trainerIsLoading,
     error,
   } = useQuery({
-    queryKey: ["trainers",],
+    queryKey: ["trainers"],
     queryFn: getTrainers,
   });
 
