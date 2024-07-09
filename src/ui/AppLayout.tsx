@@ -42,7 +42,6 @@ function AppLayout() {
         <Sidebar setNavigationVisibility={setNavigationVisibility} />
 
         <SidebarOptions />
-        <div className="fixed"></div>
       </div>
       <div className={`grid h-screen overflow-auto bg-slate-600 `}>
         <main className="lg:text-md h-full self-center overflow-auto bg-slate-600 py-10  text-center text-sm">
