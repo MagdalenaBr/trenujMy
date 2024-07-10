@@ -1,10 +1,10 @@
 import { HiOutlinePencil } from "react-icons/hi2";
 import { useUpdateBookingStatus } from "../homePage/useUpdateBookingStatus";
 import { TODAY_DAY } from "../../utils/constants";
-import { BookingsDataType } from "../../types/bookingTypes";
 import AddBookingModal from "./AddBookingModal";
 import StatusButton from "../../ui/StatusButton";
 import Button from "../../ui/Button";
+import { BookingsDataType } from "../../types/bookingTypes";
 
 export default function StatusChange({
   booking,

@@ -1,11 +1,11 @@
 import { HiPlus } from "react-icons/hi2";
-import { BookingsDataType } from "../../types/bookingTypes";
 import { MembersType } from "../../types/membersTypes";
 import SelectBookingTypeModal from "../bookings/SelectBookingTypeModal";
 import MemberClasses from "./MemberClasses";
 import Button from "../../ui/Button";
 import NoDataContainer from "../../ui/NoDataContainer";
 import MemberDataConainer from "../../ui/MemberDataContainer";
+import { BookingsDataType } from "../../types/bookingTypes";
 
 export default function BookingTableContainer({
   booking,

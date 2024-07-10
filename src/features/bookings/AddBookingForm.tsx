@@ -24,7 +24,7 @@ interface BookingTypes extends CommonDataTypes {
   created_at: string;
   id: string;
   trainers: {
-    id: string
+    id: string;
     name: string;
     category: string;
   };
@@ -38,7 +38,7 @@ interface PropsType {
   handleCloseModal?: () => void;
   booking?: BookingTypes;
   memberIdNumber: string;
-  closeSelectModal?:  () => void;
+  closeSelectModal?: () => void;
   typeOfActivities: string;
 }
 
@@ -77,10 +77,9 @@ function AddBookingForm({
   });
 
   const onSubmit = (data: CommonDataTypes) => {
-
     const { date, status, trainerId } = data;
 
-    let newBookingData
+    let newBookingData;
     if (typeOfActivities === "groupActivities") {
       newBookingData = {
         date: trainerId.split(" ")[1],
@@ -106,7 +105,7 @@ function AddBookingForm({
   };
 
   if (trainerIsLoading || scheduleIsLoading) return <Spinner />;
-  
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <p className="text-md align-self-center py-1 text-center font-bold uppercase tracking-wider text-textLight">

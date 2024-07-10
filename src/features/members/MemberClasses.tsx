@@ -1,8 +1,8 @@
 import { DateTime } from "luxon";
-import { BookingsDataType } from "../../types/bookingTypes";
 import StatusChange from "../bookings/StatusChange";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
+import { BookingsDataType } from "../../types/bookingTypes";
 
 function MemberClasses({
   memberBookings,
