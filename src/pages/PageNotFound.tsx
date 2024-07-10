@@ -1,4 +1,3 @@
-import MainContainer from "../ui/MainContainer";
 
 function PageNotFound() {
   return (
