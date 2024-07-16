@@ -14,10 +14,6 @@ export default {
 				accentColor2: "rgb(var(--color-accentColor2) / <alpha-value>)",
 				lightAccentColor: "rgb(var(--color-lightAccentColor) / <alpha-value>)",
 				bgColor: "rgb(var(--color-bgColor) / <alpha-value>)",
-				statusCanceled: "rgb(var(--color-statusCanceled) / <alpha-value>)",
-				statusComplited: "rgb(var(--color-statusComplited) / <alpha-value>)",
-				statusUnconfirmed:
-				"rgb(var(--color-statusUnconfirmed) / <alpha-value>)",
 				serchInputBg: "rgb(var(--color-serchInputBg) / <alpha-value>)",
 				bgTableWithSpacing:
 				"rgb(var(--color-bgTableWithSpacing) / <alpha-value>)",

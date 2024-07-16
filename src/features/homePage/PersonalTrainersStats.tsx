@@ -38,7 +38,7 @@ export default function PersonalTrainersStats() {
       <Heading>Liczba zajęć: trener personalny</Heading>
 
       {uniqeData && uniqeData?.length > 0 ? (
-        <ResponsiveContainer width="100%" height="75%">
+        <ResponsiveContainer width="100%" height="75%" className='text-slate-900'>
           <BarChart
             width={500}
             height={300}
@@ -52,7 +52,7 @@ export default function PersonalTrainersStats() {
             }}
           >
             <CartesianGrid strokeDasharray="1 " />
-            <XAxis dataKey="name" hide />
+            <XAxis dataKey="name" hide/>
             <YAxis />
             <Tooltip />
             <Bar
