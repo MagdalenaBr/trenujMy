@@ -19,20 +19,31 @@
     --text-light: 226 232 240; /* slate 200*/
     --text-medium: 203 213 225; /* slate 300*/
     --text-dark: 15 23 42; /* slate 900*/
+    --color-mainBgColor: 71 85 105; /*slate 600*/
+    --color-textLightMode: 203 213 225; /*slate 300*/
+    --color-containerBg: 15 23 42; /* slate 900*/
+    --color-containerBg2: 30 41 59; /* slate 800*/
+    --color-bgTableWithSpacing: 15 23 42;
+    --color-cancelStatus: 239 68 68; /*red 500*/
+    --color-confirmStatus: 132 204 22; /*lime 500*/
+    --color-disabledStatus: 75 85 99; /*gray 600*/
+    --color-secondaryTextColor: 148 163 184; /*slae 400*/
+    --color-headingTextColor:  203 213 225; /*slate 300*/
+    --color-iconsColor:  150 129 192;
+    --color-lightAccentColor: 187 186 191;
+    --color-divideColor: 203 213 225; /* slate 300*/
 
-    --color-primaryTextColor: 203 213 225;
-    --color-secondaryTextColor: 148 163 184;
+
+
     --color-activeBkg: 51 65 85;
     --color-activeText: 203 213 225;
     --color-accentColor1: 114 80 182;
     --color-accentColor2: 150 129 192;
     --color-bgColor: 15 23 42;
-    --color-bgTableWithSpacing: 15 23 42;
     --color-statusCanceled: 239 68 68;
     --color-statusComplited: 132 204 22;
     --color-statusUnconfirmed: 129 140 248;
     --color-serchInputBg: 15 23 42;
-    --color-lightAccentColor: 221 214 254;
 
     /* FullCalendar */
 
@@ -47,20 +58,29 @@
     --text-light: 226 232 240; /* slate 200*/
     --text-medium: 203 213 225; /* slate 300*/
     --text-dark: 15 23 42; /* slate 900*/
+    --color-mainBgColor: 71 85 105; /*slate 600*/
+    --color-textLightMode: 203 213 225; /*slate 300*/
+    --color-containerBg: 15 23 42; /* slate 900*/
+    --color-containerBg2: 30 41 59; /* slate 800*/
+    --color-bgTableWithSpacing: 15 23 42;
+    --color-cancelStatus: 239 68 68; /*red 500*/
+    --color-confirmStatus: 132 204 22; /*lime 500*/
+    --color-disabledStatus: 75 85 99; /*gray 600*/
+    --color-secondaryTextColor: 148 163 184; /*slae 400*/
+    --color-headingTextColor:  203 213 225; /*slate 300*/
+    --color-iconsColor:  150 129 192;
+    --color-lightAccentColor: 187 186 191;
+    --color-divideColor: 203 213 225; /* slate 300*/
+    --color-serchInputBg: 71 85 105; /* slate 600*/
 
-    --color-primaryTextColor: 203 213 225;
-    --color-secondaryTextColor: 148 163 184;
     --color-activeBkg: 51 65 85;
     --color-activeText: 203 213 225;
     --color-accentColor1: 114 80 182;
     --color-accentColor2: 150 129 192;
     --color-bgColor: 15 23 42;
-    --color-bgTableWithSpacing: 15 23 42;
     --color-statusCanceled: 239 68 68;
     --color-statusComplited: 132 204 22;
     --color-statusUnconfirmed: 129 140 248;
-    --color-serchInputBg: 15 23 42;
-    --color-lightAccentColor: 221 214 254;
 
     /* FullCalendar */
 
@@ -74,20 +94,22 @@
     --text-light: 226 232 240; /* slate 200*/
     --text-medium: 203 213 225; /* slate 300*/
     --text-dark: 15 23 42; /* slate 900*/
+    --color-mainBgColor: 226 232 240; /* slate 200*/
+    --color-textLightMode: 15 23 42; /*slate 900*/
+    --color-containerBg: 241 245 249; /* slate 200*/
+    --color-containerBg2: 203 213 225; /* slate 200*/
+    --color-bgTableWithSpacing: 241 245 249; /* slate 200*/
+    --color-cancelStatus: 220 38 38; /*red 600*/
+    --color-confirmStatus: 63 188 0; /*lime 600*/
+    --color-disabledStatus:100 116 139; /*gray 600*/
+    --color-secondaryTextColor: 100 116 139; /*slae 600*/
+    --color-headingTextColor:  15 23 42; /* slate 900*/
+    --color-iconsColor: 79 46 143;
+    --color-lightAccentColor: 51 65 85; /*slate 700*/
+    --color-divideColor: 15 23 42; /*slate 900 */
+    --color-serchInputBg: 226 232 240; /* slate 300*/
 
-    --color-primaryTextColor: 30 41 59;
-    --color-secondaryTextColor: 168 183 204;
-    --color-activeText: 203 213 225;
-    --color-activeBkg: 71 85 105;
-    --color-accentColor1: 114 80 182;
-    --color-accentColor2: 150 129 192;
-    --color-bgColor: 148 163 184;
-    --color-bgTableWithSpacing: 100 116 139;
-    --color-statusCanceled: 253 164 175;
-    --color-statusComplited: 190 242 100;
-    --color-statusUnconfirmed: 165 180 252;
-    --color-serchInputBg: 15 23 42;
-    --color-lightAccentColor: 221 214 254;
+
 
     /* FullCalendar */
 
@@ -99,8 +121,24 @@
   }
   @media ((prefers-color-scheme: dark)) {
     :root {
-      --color-primaryTextColor: 203 213 225;
-      --color-secondaryTextColor: 148 163 184;
+      --text-light: 226 232 240; /* slate 200*/
+      --text-medium: 203 213 225; /* slate 300*/
+      --text-dark: 15 23 42; /* slate 900*/
+      --color-mainBgColor: 71 85 105; /*slate 600*/
+      --color-textLightMode: 203 213 225; /*slate 300*/
+      --color-containerBg: 15 23 42; /* slate 900*/
+      --color-containerBg2: 30 41 59; /* slate 800*/
+      --color-bgTableWithSpacing: 15 23 42;
+      --color-cancelStatus: 239 68 68; /*red 500*/
+      --color-confirmStatus: 132 204 22; /*lime 500*/
+      --color-disabledStatus: 75 85 99; /*gray 600*/
+      --color-secondaryTextColor: 148 163 184; /*slae 400*/
+      --color-headingTextColor:  203 213 225; /*slate 300*/
+      --color-iconsColor:  150 129 192;
+      --color-lightAccentColor: 187 186 191;
+      --color-divideColor: 203 213 225; /* slate 300*/
+      --color-serchInputBg: 71 85 105; /* slate 600*/
+
       --color-activeText: 203 213 225;
       --color-activeBkg: 51 65 85;
       --color-accentColor1: 114 80 182;
@@ -110,8 +148,6 @@
       --color-statusCanceled: 239 68 68;
       --color-statusComplited: 132 204 22;
       --color-statusUnconfirmed: 129 140 248;
-      --color-serchInputBg: 100 116 139;
-      --color-lightAccentColor: 221 214 254;
 
       /* FullCalendar */
 

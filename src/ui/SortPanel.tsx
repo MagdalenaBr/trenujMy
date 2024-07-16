@@ -35,7 +35,7 @@ export default function SortPanel({
     <select
       onChange={handleChange}
       value={sortValue || ""}
-      className="w-60 border-2 border-none  bg-serchInputBg px-2 py-1  text-[12px] focus:border-slate-300 focus:bg-slate-300 focus:text-slate-800 focus:shadow-md lg:text-sm"
+      className="w-60 border-2 border-accentColor2 bg-bgTableWithSpacing px-2 py-1  text-[12px] focus:border-slate-900  focus:shadow-md focus:shadow-slate-900 lg:text-sm focus:outline-none"
     >
       <option value="domyślne">{mainSortCategory}</option>
       {searchCategories?.map((el) => (

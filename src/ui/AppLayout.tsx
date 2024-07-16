@@ -8,7 +8,7 @@ function AppLayout() {
 
   return (
     <div
-      className={` h-screen w-screen bg-slate-900 text-primaryTextColor transition-all lg:relative lg:grid lg:grid-cols-[auto_1fr]`}
+      className={` h-screen w-screen bg-slate-900 text-textMedium transition-all lg:relative lg:grid lg:grid-cols-[auto_1fr]`}
     >
       <MobileNav
         navigationVisibility={navigationVisibility}
@@ -19,8 +19,8 @@ function AppLayout() {
         navigationVisibility={navigationVisibility}
         setNavigationVisibility={setNavigationVisibility}
       />
-      <div className={`grid h-screen overflow-auto bg-slate-600 `}>
-        <main className="lg:text-md h-full self-center overflow-auto bg-slate-600 py-10  text-center text-sm">
+      <div className="grid h-screen overflow-auto">
+        <main className="lg:text-md h-full self-center overflow-auto bg-mainBgColor py-10 text-textLightMode text-center text-sm">
           <Outlet />
         </main>
       </div>

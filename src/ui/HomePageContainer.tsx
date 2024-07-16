@@ -9,7 +9,7 @@ export default function HomePageContainer({
 }) {
   return (
     <div
-      className={`${colGrid} ${width} h-80 overflow-auto border-2 border-slate-900 bg-slate-900 px-4 pt-4 shadow-2xl shadow-slate-900 xl:w-auto `}
+      className={`${colGrid} ${width} h-80 overflow-auto bg-containerBg px-4 py-4 shadow-lg shadow-slate-900 xl:w-auto border-2 border-slate-900 `}
     >
       {children}
     </div>

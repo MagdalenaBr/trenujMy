@@ -13,7 +13,7 @@ function TrainerRow({ trainer }: { trainer: TrainersDataTypes }) {
             className="aspect-square h-20 object-cover object-top"
           />
         ) : (
-          <HiMiniUser className="h-28 w-20 object-cover" />
+          <HiMiniUser className="h-20 w-20 object-cover" />
         )}
         <h2 className="text-[12px] font-semibold uppercase tracking-wide text-lightAccentColor lg:text-sm">
           {trainer.name}

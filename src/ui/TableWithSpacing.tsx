@@ -17,7 +17,7 @@ function TableWithSpacing({
 }: PropsType) {
   return (
     <TableContext.Provider value={{ columns, uniqueStyles, smColumns }}>
-      <div role="table">{children}</div>
+      <div  role="table">{children}</div>
     </TableContext.Provider>
   );
 }
@@ -28,7 +28,7 @@ function Header({ children }: PropsType) {
   return (
     <div
       role="row"
-      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles}  ${ColumnsContext?.smColumns} mb-4 border-2 bg-slate-800 py-1  text-sm font-bold uppercase tracking-widest`}
+      className={`grid ${ColumnsContext?.columns} ${ColumnsContext?.uniqueStyles}  ${ColumnsContext?.smColumns} mb-4 border-2 bg-slate-800 py-1 text-slate-300 text-sm font-bold uppercase tracking-widest`}
     >
       {children}
     </div>
@@ -40,7 +40,7 @@ function Row({ children, noBorder }: PropsType) {
 
   return (
     <div
-      className={`my-2 ${!noBorder ? " border-2  border-slate-200" : ""}  ${ColumnsContext?.uniqueStyles} bg-bgTableWithSpacing/60 py-1 text-sm `}
+      className={`my-2 ${!noBorder ? " border-2  border-slate-200" : ""}  ${ColumnsContext?.uniqueStyles} bg-bgTableWithSpacing py-1 text-sm `}
     >
       <div
         className={`grid px-2 ${ColumnsContext?.columns} ${ColumnsContext?.smColumns} ${ColumnsContext?.uniqueStyles} items-center`}

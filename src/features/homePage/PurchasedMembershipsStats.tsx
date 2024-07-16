@@ -89,11 +89,11 @@ export default function PurchasedMembershipsStats() {
                 labelLine={false}
                 innerRadius={60}
                 outerRadius={70}
-                fill="#13c51c9d"
+                fill="#7c7e7c9d"
                 nameKey="name"
                 dataKey="value"
               >
-                <Cell key={`cell`} fill="#b7cab99d" />
+                <Cell key={`cell`} fill="#7c7e7c9d" />
               </Pie>
             </>
           )}

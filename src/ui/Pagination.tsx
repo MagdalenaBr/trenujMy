@@ -27,9 +27,23 @@ export default function Pagination({
     searchParams.set("page", String(pageNumber));
     setSearchParams(searchParams);
   }
+  const buttons = [
+    {
+      name: "poprzednia",
+      icon: <HiChevronLeft />,
+      disabled: currentPage === 1,
+      action: prevPage,
+    },
+    {
+      name: "następna",
+      icon: <HiChevronRight />,
+      disabled: currentPage === pageNum,
+      action: nextPage,
+    },
+  ];
 
   return (
-    <div className="flex w-[37rem] justify-between px-2 py-1 text-accentColor2 lg:w-auto">
+    <div className="flex w-[37rem] justify-between px-2 py-1 font-semibold text-iconsColor lg:w-auto">
       <div>
         <span>{(currentPage - 1) * NUM_OF_RESULTS + 1}</span> -{" "}
         <span>
@@ -39,24 +53,19 @@ export default function Pagination({
       </div>
 
       <div className="flex gap-9">
-        <button
-          className="flex
-      items-center gap-1  py-1 pl-2 pr-4 text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 disabled:hover:bg-gray-600"
-          onClick={prevPage}
-          disabled={currentPage === 1}
-        >
-          <HiChevronLeft />
-          <span>Poprzednia</span>
-        </button>
-        <button
-          className="flex
-          items-center gap-1  py-1 pl-4 pr-2 text-sm uppercase hover:bg-accentColor2 hover:text-slate-800 disabled:hover:bg-gray-600"
-          onClick={nextPage}
-          disabled={currentPage === pageNum}
-        >
-          <span>Następna</span>
-          <HiChevronRight />
-        </button>
+        {buttons.map((button) => (
+          <button
+            className="flex
+      items-center gap-1  py-1 pl-2 pr-4 text-sm uppercase hover:border-iconsColor hover:text-textLightMode disabled:hover:border-gray-600 border-2 border-transparent"
+            onClick={button.action}
+            disabled={button.disabled}
+          >
+            {button.name === "poprzednia" && button.icon}
+            <span>{button.name}</span>
+            {button.name === "następna" && button.icon}
+          </button>
+        ))}
+       
       </div>
     </div>
   );

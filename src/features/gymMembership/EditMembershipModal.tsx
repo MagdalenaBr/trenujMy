@@ -11,9 +11,9 @@ export default function EditMembershipModal() {
       </Modal.Window>
       <Modal.OpenButton openForm="gymMembership">
         <Button styles=" mx-2 my-1">
-          <div className="flex items-start gap-2">
-            <HiPlus className="text-3xl text-accentColor2 " />
-            <span className="text-lg uppercase tracking-wide text-accentColor2">
+          <div className="flex items-start gap-2 text-iconsColor">
+            <HiPlus className="text-3xl " />
+            <span className="text-lg uppercase tracking-wide">
               Edytuj
             </span>
           </div>

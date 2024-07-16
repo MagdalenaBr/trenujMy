@@ -14,14 +14,14 @@ function Home() {
   return (
     <MainContainer>
       <div className="lg:text-md text-sm">
-        <h1 className="pb-4 text-start text-2xl tracking-wider">
+        <h1 className="pb-4 text-start text-2xl tracking-wider text-textLightMode">
           Witaj,{" "}
           <span className="font-bold uppercase text-accentColor2">
             {user?.user_metadata.userName}
           </span>
         </h1>
         <div className="flex flex-col justify-between gap-2 lg:flex-row">
-          <p className=" self-start  bg-slate-800 px-2 py-1 font-semibold tracking-wide">
+          <p className=" self-start text-textMedium bg-slate-800 px-2 py-1 font-semibold tracking-wide">
             {TODAY_DAY.toLocaleString(DateTime.DATE_HUGE)}
           </p>
           <FilterPanel />

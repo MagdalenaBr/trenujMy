@@ -33,7 +33,7 @@ function Schedule({
   if (openHoursLoading || scheduleIsLoading) return <Spinner />;
   return (
     <div className=" overflow-x-scroll bg-slate-900 p-2 lg:overflow-hidden">
-      <div className=" mx-auto w-[60rem] lg:w-full">
+      <div className=" mx-auto w-[60rem] text-textMedium lg:w-full">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin]}
           initialView={page === "trainer" ? "timeGridWeek" : "dayGridMonth"}

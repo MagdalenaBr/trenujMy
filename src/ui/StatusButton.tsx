@@ -16,7 +16,7 @@ export default function StatusButton({
   return (
     <button
       disabled={disabled}
-      className={` border text-[11px]  font-semibold uppercase ${paddingX} ${status === "cancel" && !disabled ? " border-red-500" : !disabled && " border-lime-500"} ${width} ${disabled ? "border-gray-600 bg-gray-600 text-slate-900" : ""}`}
+      className={` border text-[11px]  font-semibold uppercase ${paddingX} ${status === "cancel" && !disabled ? " border-cancelStatus" : !disabled && " border-confirmStatus"} ${width} ${disabled ? "border-none  text-slate-400" : ""}`}
       onClick={onClick}
     >
       {children}

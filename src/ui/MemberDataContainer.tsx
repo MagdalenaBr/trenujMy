@@ -6,11 +6,11 @@ export default function MemberDataConainer({
   name: string;
 }) {
   return (
-    <div>
+    <div className="divide-divideColor">
       <div className="flex items-center justify-center py-5">
-        <hr className="mx-3 w-[17rem]" />
-        <h3 className="font-semibold uppercase">{name}</h3>
-        <hr className="mx-3 w-[17rem]" />
+        <hr className="mx-3 w-[17rem]  border-divideColor " />
+        <h3 className="font-semibold text-base md:text-lg uppercase">{name}</h3>
+        <hr className="mx-3 w-[17rem]  border-divideColor" />
       </div>
       {children}
     </div>

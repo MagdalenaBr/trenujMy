@@ -42,7 +42,7 @@ export default function UpdateUserName() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col  divide-y divide-slate-700"
     >
-      <h3 className="pb-4 text-start text-2xl text-accentColor2">
+      <h3 className="pb-4 text-start text-2xl text-iconsColor">
         Zmień nazwę:
       </h3>
       <Input

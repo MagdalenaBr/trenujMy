@@ -116,7 +116,7 @@ function MemberPage() {
 
   return (
     <Container>
-      <h2 className="font-bold uppercase">{member.name}</h2>
+      <h2 className="font-bold md:text-2xl uppercase">{member.name}</h2>
       <div className="flex flex-col justify-around lg:flex-row">
         <div className="flex flex-col flex-wrap gap-4">
           <GridContainer>

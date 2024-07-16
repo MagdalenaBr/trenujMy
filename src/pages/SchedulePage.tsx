@@ -10,7 +10,7 @@ function SchedulePage() {
     <MainContainer
       title="Grafik"
       buttons={
-        <div className=" flex flex-col items-end gap-1 text-[10px] text-primaryTextColor lg:mb-4 lg:flex-row lg:items-center lg:gap-3 xl:text-sm">
+        <div className=" flex flex-col items-end gap-1 text-[10px] text-textMedium lg:mb-4 lg:flex-row lg:items-center lg:gap-3 xl:text-sm">
           <CreateScheduleModal>
             <FormButton>Dodaj zajęcia</FormButton>
           </CreateScheduleModal>

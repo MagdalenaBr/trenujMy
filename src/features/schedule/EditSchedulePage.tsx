@@ -16,7 +16,7 @@ export default function EditSchedulePage() {
   return (
     <MainContainer title="Aktualny grafik">
       <div className="overflow-auto">
-        <div className=" w-[41rem] border-slate-700 bg-slate-900/70 p-4 text-slate-200 md:w-auto">
+        <div className=" w-[41rem] border-2 text-textLightMode border-slate-900 bg-containerBg p-4 md:w-auto">
           <BackButton />
           <TableWithSpacing
             smColumns="grid-cols-[170px_130px_150px_100px_50px]"
@@ -30,7 +30,7 @@ export default function EditSchedulePage() {
             </TableWithSpacing.Header>
             {schedule?.map((el) => (
               <TableWithSpacing.Row key={el.id}>
-                <p className="text-start  font-bold text-slate-200">
+                <p className="text-start  font-bold">
                   {el.trainers.name}
                 </p>
                 <p>{el.name}</p>
@@ -40,7 +40,7 @@ export default function EditSchedulePage() {
                       el.date.slice(0, -3).split("T")[0],
                     ).toLocaleString()}
                   </p>
-                  <p className="text-sm text-slate-300">
+                  <p className="text-sm text-secondaryTextColor">
                     {el.date.slice(0, -3).split("T")[1]}
                   </p>
                 </div>

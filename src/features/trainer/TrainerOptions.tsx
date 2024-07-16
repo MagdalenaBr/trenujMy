@@ -17,7 +17,7 @@ function TrainerOptions({ trainer }: { trainer: TrainersDataTypes }) {
   if (!id) return null;
   
   return (
-    <div className="flex gap-2 px-5 text-2xl text-accentColor2">
+    <div className="flex gap-2 px-5 text-2xl text-iconsColor">
       <Link
         to={`/trenerzy/${id}`}
         className="self-start border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"

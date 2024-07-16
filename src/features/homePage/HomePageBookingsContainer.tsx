@@ -10,10 +10,10 @@ export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
 
   return (
-    <div className="col-span-4 overflow-x-scroll xl:overflow-x-hidden">
+    <div className="col-span-4 overflow-x-scroll xl:overflow-x-hidden shadow-lg shadow-slate-900">
       <HomePageContainer colGrid="col-span-4" width="w-[50rem]">
         <Heading>Rezerwacje</Heading>
-        <TableWithSpacing columns="grid-cols-5">
+        <TableWithSpacing columns="grid-cols-[150px_200px_90px_120px_200px]">
           {bookingsAfterDate?.map((booking) => (
             <TableWithSpacing.Row key={booking.id} noBorder={true}>
               <div className="px-2 text-start">
@@ -22,7 +22,7 @@ export default function HomePageBookingsContainer() {
                   {booking.members?.phone}
                 </p>
               </div>
-              <p className="px-2 text-start">{booking.trainers.name}</p>
+              <p className="px-2 text-start ">{booking.trainers.name}</p>
               <div className="text-start">
                 <p>
                   {DateTime.fromISO(

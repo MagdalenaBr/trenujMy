@@ -11,9 +11,9 @@ export default function PaymentModal() {
       </Modal.Window>
       <Modal.OpenButton openForm="payment">
         <Button styles=" mx-2 my-1">
-          <div className="flex items-center gap-2">
-            <HiPlus className="text-accentColor2 md:text-3xl " />
-            <span className="text-sm uppercase tracking-wide text-accentColor2 md:text-lg">
+          <div className="flex items-center gap-2  text-iconsColor">
+            <HiPlus className=" md:text-2xl " />
+            <span className="text-sm uppercase tracking-wide  md:text-lg">
               Dodaj
             </span>
           </div>
