@@ -1,4 +1,6 @@
 import { PaymentsType } from "../types/paymentsTypes";
+import { TODAY_DAY_END } from "../utils/constants";
+import { START_DAY } from "../utils/helpers";
 import supabase from "./supabase";
 
 export async function getPayments(): Promise<PaymentsType[]> {
@@ -12,6 +14,23 @@ export async function getPayments(): Promise<PaymentsType[]> {
     throw new Error("Dane na temat płatności nie mogły zostać pobrane.");
   return payments;
 }
+
+export async function getPaymentsAfterDate(
+  selectedTimeRange: string | null,
+): Promise<{created_at: string, amount: number}[]> {
+  const { data: payments, error } = await supabase
+    .from("payments")
+    .select("created_at, amount")
+    .lte("created_at", TODAY_DAY_END)
+    .gte("created_at", START_DAY(selectedTimeRange));
+  if (error)
+    throw new Error(
+      "Wystąpił błąd podczas pobierania danych odnośnie płaności. Spróbuj ponownie.",
+    );
+  return payments;
+}
+
+
 
 export async function getUserPayments(
   memberId: string,

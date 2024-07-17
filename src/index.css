@@ -28,8 +28,8 @@
     --color-confirmStatus: 132 204 22; /*lime 500*/
     --color-disabledStatus: 75 85 99; /*gray 600*/
     --color-secondaryTextColor: 148 163 184; /*slae 400*/
-    --color-headingTextColor:  203 213 225; /*slate 300*/
-    --color-iconsColor:  150 129 192;
+    --color-headingTextColor: 203 213 225; /*slate 300*/
+    --color-iconsColor: 150 129 192;
     --color-lightAccentColor: 187 186 191;
     --color-divideColor: 203 213 225; /* slate 300*/
     --color-activeBkg: 51 65 85;
@@ -58,12 +58,11 @@
     --color-confirmStatus: 132 204 22; /*lime 500*/
     --color-disabledStatus: 75 85 99; /*gray 600*/
     --color-secondaryTextColor: 148 163 184; /*slae 400*/
-    --color-headingTextColor:  203 213 225; /*slate 300*/
-    --color-iconsColor:  150 129 192;
+    --color-headingTextColor: 203 213 225; /*slate 300*/
+    --color-iconsColor: 150 129 192;
     --color-lightAccentColor: 187 186 191;
     --color-divideColor: 203 213 225; /* slate 300*/
     --color-serchInputBg: 71 85 105; /* slate 600*/
-
   }
   :root[class="light"] {
     --color-mainBgColor: 226 232 240; /* slate 200*/
@@ -73,14 +72,13 @@
     --color-bgTableWithSpacing: 241 245 249; /* slate 200*/
     --color-cancelStatus: 220 38 38; /*red 600*/
     --color-confirmStatus: 63 188 0; /*lime 600*/
-    --color-disabledStatus:100 116 139; /*gray 600*/
+    --color-disabledStatus: 100 116 139; /*gray 600*/
     --color-secondaryTextColor: 100 116 139; /*slae 600*/
-    --color-headingTextColor:  15 23 42; /* slate 900*/
+    --color-headingTextColor: 15 23 42; /* slate 900*/
     --color-iconsColor: 79 46 143;
     --color-lightAccentColor: 51 65 85; /*slate 700*/
     --color-divideColor: 15 23 42; /*slate 900 */
     --color-serchInputBg: 226 232 240; /* slate 300*/
-
   }
   @media ((prefers-color-scheme: dark)) {
     :root {
@@ -93,8 +91,8 @@
       --color-confirmStatus: 132 204 22; /*lime 500*/
       --color-disabledStatus: 75 85 99; /*gray 600*/
       --color-secondaryTextColor: 148 163 184; /*slae 400*/
-      --color-headingTextColor:  203 213 225; /*slate 300*/
-      --color-iconsColor:  150 129 192;
+      --color-headingTextColor: 203 213 225; /*slate 300*/
+      --color-iconsColor: 150 129 192;
       --color-lightAccentColor: 187 186 191;
       --color-divideColor: 203 213 225; /* slate 300*/
       --color-serchInputBg: 71 85 105; /* slate 600*/

@@ -21,5 +21,5 @@ export function START_DAY(selectedTimeRange: string | null) {
   if (selectedTimeRange === "90") startDay = TODAY_DAY.minus({ day: 90 });
   if (selectedTimeRange === "rok") startDay = TODAY_DAY.minus({ year: 1 });
 
-  return startDay?.set({ hour: 0, minute: 0, second: 0 }).toString();
+  return startDay?.set({ hour: 0, minute: 0, second: 0 });
 }
