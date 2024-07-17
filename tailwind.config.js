@@ -16,8 +16,8 @@ export default {
 				bgColor: "rgb(var(--color-bgColor) / <alpha-value>)",
 				serchInputBg: "rgb(var(--color-serchInputBg) / <alpha-value>)",
 				bgTableWithSpacing:
-				"rgb(var(--color-bgTableWithSpacing) / <alpha-value>)",
-				
+					"rgb(var(--color-bgTableWithSpacing) / <alpha-value>)",
+
 				textLight: "rgb(var(--text-light) / <alpha-value>)",
 				textMedium: "rgb(var(--text-medium) / <alpha-value>)",
 				textDark: "rgb(var(--text-dark) / <alpha-value>)",
@@ -29,14 +29,11 @@ export default {
 				disabledStatus: "rgb(var(--color-disabledStatus) / <alpha-value>)",
 				secondaryTextColor:
 					"rgb(var(--color-secondaryTextColor) / <alpha-value>)",
-				headingTextColor:
-					"rgb(var(--color-headingTextColor) / <alpha-value>)",
-				iconsColor:
-					"rgb(var(--color-iconsColor) / <alpha-value>)",
-				containerBg2:
-					"rgb(var(--color-containerBg2) / <alpha-value>)",
-				divideColor:
-					"rgb(var(--color-divideColor) / <alpha-value>)",
+				headingTextColor: "rgb(var(--color-headingTextColor) / <alpha-value>)",
+				iconsColor: "rgb(var(--color-iconsColor) / <alpha-value>)",
+				containerBg2: "rgb(var(--color-containerBg2) / <alpha-value>)",
+				divideColor: "rgb(var(--color-divideColor) / <alpha-value>)",
+				noDataColor: "rgb(var(--color-noDataColor) / <alpha-value>)",
 			},
 			backgroundImage: { bgImg: "url('./data/background.jpg')" },
 		},

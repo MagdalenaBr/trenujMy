@@ -5,6 +5,7 @@ import TableWithSpacing from "../../ui/TableWithSpacing";
 import BookingStatus from "../../ui/BookingStatus";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
+import TableNoContent from "../../ui/TableNoContent";
 
 export default function HomePageBookingsContainer() {
   const { bookingsAfterDate } = useBookingsAfterDate();
@@ -40,8 +41,8 @@ export default function HomePageBookingsContainer() {
             </TableWithSpacing.Row>
           ))}
 
-          {bookingsAfterDate?.length === 0 && (
-            <p>Brak dostępnych rezerwacji.</p>
+          {!bookingsAfterDate?.length && (
+            <TableNoContent>Brak dostępnych rezerwacji.</TableNoContent>
           )}
         </TableWithSpacing>
       </HomePageContainer>

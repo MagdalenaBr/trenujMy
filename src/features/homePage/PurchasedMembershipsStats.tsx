@@ -3,8 +3,13 @@ import { usePurchasedMembership } from "../gymMembership/usePurchasedMembership"
 import { ARR_OF_GYM_MEMBERSHIP_ID } from "../../utils/constants";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function PurchasedMembershipsStats() {
+  const darkModeContext = useContext(DarkModeContext);
+
+  console.log(darkModeContext?.darkMode);
   const { purchasedMemberships } = usePurchasedMembership(false);
 
   const oneDay = purchasedMemberships?.filter(
@@ -89,11 +94,14 @@ export default function PurchasedMembershipsStats() {
                 labelLine={false}
                 innerRadius={60}
                 outerRadius={70}
-                fill="#7c7e7c9d"
+                fill={darkModeContext?.darkMode ? "#9ca3af" : "#475569"}
                 nameKey="name"
                 dataKey="value"
               >
-                <Cell key={`cell`} fill="#7c7e7c9d" />
+                <Cell
+                  key={`cell`}
+                  fill={darkModeContext?.darkMode ? "#9ca3af" : "#475569"}
+                />
               </Pie>
             </>
           )}

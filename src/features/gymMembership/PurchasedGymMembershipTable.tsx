@@ -3,6 +3,7 @@ import { useCancelPurchase } from "./useCancelPurchase";
 import { PurchasedMemberschipTypes } from "../../types/purchaseMembershipTypes";
 import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
+import TableNoContent from "../../ui/TableNoContent";
 
 export default function PurchasedGymMembershipTable({
   purchasedMemberships,
@@ -19,6 +20,8 @@ export default function PurchasedGymMembershipTable({
     cancelPurchase({ id, value });
   }
 
+
+  if(!purchasedMemberships?.length) return <TableNoContent>Brak dosępnych danych.</TableNoContent>
   return (
     <TableWithSpacing
       smColumns="grid-cols-[130px_120px_200px_100px_100px]"

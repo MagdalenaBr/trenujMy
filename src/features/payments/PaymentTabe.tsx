@@ -4,6 +4,7 @@ import { PRICE_TO_PAY } from "../../utils/helpers";
 import { PaymentsType } from "../../types/paymentsTypes";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import StatusButton from "../../ui/StatusButton";
+import TableNoContent from "../../ui/TableNoContent";
 
 export default function PaymentTable({
   payments,
@@ -19,6 +20,9 @@ export default function PaymentTable({
   function handleClick(id: string, value: boolean) {
     cancelPayment({ id, value });
   }
+
+  if(!payments?.length) return <TableNoContent>Brak dostępnych danych.</TableNoContent>
+
 
   return (
     <div className={`overflow-y-auto ${height}`}>

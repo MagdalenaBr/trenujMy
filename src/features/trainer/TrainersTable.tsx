@@ -43,7 +43,8 @@ function TrainersTable() {
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
   if (trainerIsLoading) return <Spinner />;
-  if (!trainers?.length) return <TableNoContent />;
+  if (!trainers?.length)
+    return <TableNoContent>Brak danych dotyczących trenerów.</TableNoContent>;
   return (
     <Table
       uniqueStyles="w-[38rem] md:w-auto"

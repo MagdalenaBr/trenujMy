@@ -20,8 +20,9 @@ function MembersTable() {
         : "",
   );
 
-  if (!members?.length) return <TableNoContent />;
   if (isLoading) return <Spinner />;
+  if (!filteredMembers?.length)
+    return <TableNoContent>Brak dostępnych klientów.</TableNoContent>;
   return (
     <div>
       <Table
@@ -34,27 +35,23 @@ function MembersTable() {
           <p>e-mail</p>
           <p>telefon</p>
         </Table.Header>
-        {filteredMembers ? (
-          filteredMembers.map((member) => (
-            <Table.Row key={member.id}>
-              <p className="text-[12px] font-semibold uppercase tracking-wide text-lightAccentColor lg:text-sm">
-                {member.name}
-              </p>
-              <p>{member.email.toLowerCase()}</p>
-              <p>{member.phone}</p>
-              <div className="flex">
-                <Link
-                  to={`/klienci/${member.id}`}
-                  className="self-start  border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
-                >
-                  <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-iconsColor hover:scale-125 hover:text-slate-300" />
-                </Link>
-              </div>
-            </Table.Row>
-          ))
-        ) : (
-          <TableNoContent />
-        )}
+        {filteredMembers.map((member) => (
+          <Table.Row key={member.id}>
+            <p className="text-[12px] font-semibold uppercase tracking-wide text-lightAccentColor lg:text-sm">
+              {member.name}
+            </p>
+            <p>{member.email.toLowerCase()}</p>
+            <p>{member.phone}</p>
+            <div className="flex">
+              <Link
+                to={`/klienci/${member.id}`}
+                className="self-start  border-2 border-transparent px-1 py-1 text-2xl hover:border-activeBkg"
+              >
+                <BsInfoLg className="  cursor-pointer justify-self-end text-2xl text-iconsColor hover:scale-125 hover:text-slate-300" />
+              </Link>
+            </div>
+          </Table.Row>
+        ))}
       </Table>
     </div>
   );

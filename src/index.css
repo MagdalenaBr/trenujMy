@@ -38,7 +38,7 @@
     --color-accentColor2: 150 129 192;
     --color-bgColor: 15 23 42;
     --color-serchInputBg: 15 23 42;
-
+    --color-noDataColor: 156 163 175; /*gray 400*/
     /* FullCalendar */
 
     --fc-border-color: rgb(203, 213, 225);
@@ -63,6 +63,7 @@
     --color-lightAccentColor: 187 186 191;
     --color-divideColor: 203 213 225; /* slate 300*/
     --color-serchInputBg: 71 85 105; /* slate 600*/
+    --color-noDataColor: 156 163 175; /*gray 400*/
   }
   :root[class="light"] {
     --color-mainBgColor: 226 232 240; /* slate 200*/
@@ -79,6 +80,7 @@
     --color-lightAccentColor: 51 65 85; /*slate 700*/
     --color-divideColor: 15 23 42; /*slate 900 */
     --color-serchInputBg: 226 232 240; /* slate 300*/
+    --color-noDataColor: 75 85 99; /*gray 600*/
   }
   @media ((prefers-color-scheme: dark)) {
     :root {
@@ -96,6 +98,7 @@
       --color-lightAccentColor: 187 186 191;
       --color-divideColor: 203 213 225; /* slate 300*/
       --color-serchInputBg: 71 85 105; /* slate 600*/
+      --color-noDataColor: 156 163 175; /*gray 400*/
     }
   }
 }

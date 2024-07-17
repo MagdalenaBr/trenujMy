@@ -1,10 +1,10 @@
-function TableNoContent() {
+function TableNoContent({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="row"
-      className="flex h-40 items-center justify-center font-semibold text-slate-800"
+      className="flex h-40 items-center justify-center font-semibold text-noDataColor"
     >
-      Brak dostępnych danych.
+      {children}
     </div>
   );
 }

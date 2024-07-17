@@ -7,16 +7,23 @@ import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import BackButton from "../../ui/BackButton";
+import TableNoContent from "../../ui/TableNoContent";
 
 export default function EditSchedulePage() {
   const { schedule, scheduleIsLoading } = useSchedules("currentSchedule");
 
   if (scheduleIsLoading) return <Spinner />;
+  if (!schedule?.length)
+    return (
+      <MainContainer title="Aktualny grafik">
+        <TableNoContent>Brak zaplanowanych zajęć.</TableNoContent>
+      </MainContainer>
+    );
 
   return (
     <MainContainer title="Aktualny grafik">
       <div className="overflow-auto">
-        <div className=" w-[41rem] border-2 text-textLightMode border-slate-900 bg-containerBg p-4 md:w-auto">
+        <div className=" w-[41rem] border-2 border-slate-900 bg-containerBg p-4 text-textLightMode md:w-auto">
           <BackButton />
           <TableWithSpacing
             smColumns="grid-cols-[170px_130px_150px_100px_50px]"
@@ -30,9 +37,7 @@ export default function EditSchedulePage() {
             </TableWithSpacing.Header>
             {schedule?.map((el) => (
               <TableWithSpacing.Row key={el.id}>
-                <p className="text-start  font-bold">
-                  {el.trainers.name}
-                </p>
+                <p className="text-start  font-bold">{el.trainers.name}</p>
                 <p>{el.name}</p>
                 <div>
                   <p>
