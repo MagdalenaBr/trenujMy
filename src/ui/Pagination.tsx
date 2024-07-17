@@ -54,7 +54,7 @@ export default function Pagination({
 
       <div className="flex gap-9">
         {buttons.map((button) => (
-          <button
+          <button key={button.name}
             className="flex
       items-center gap-1  py-1 pl-2 pr-4 text-sm uppercase hover:border-iconsColor hover:text-textLightMode disabled:hover:border-gray-600 border-2 border-transparent"
             onClick={button.action}

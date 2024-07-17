@@ -20,7 +20,6 @@ export function useBookings() {
 
   const {
     data: { data: bookings, count } = {},
-    error,
     isLoading,
   } = useQuery({
     queryKey: ["bookings", sortByStatusValue, sortByDateValue, currentPage],
@@ -43,5 +42,5 @@ if(currentPage > 1)
     queryFn: () => getBookings(sortByDateValue, sortByStatusValue, currentPage -1),
   });
 
-  return { bookings, error, isLoading, count };
+  return { bookings, isLoading, count };
 }

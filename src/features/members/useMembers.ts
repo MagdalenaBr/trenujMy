@@ -5,11 +5,10 @@ export function useMembers() {
 	const {
 		data: members,
 		isLoading,
-		error,
 	} = useQuery({
 		queryKey: ["members"],
 		queryFn: getMembers,
 	});
 
-	return { members, isLoading, error };
+	return { members, isLoading};
 }

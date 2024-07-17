@@ -14,19 +14,21 @@ import { TODAY_DAY } from "../../utils/constants";
 function BookingsTable() {
   const todayDay = TODAY_DAY.toString().slice(0, 10);
   const searchNameContext = useContext(SearchNameContext);
-  const { bookings, isLoading, error, count } = useBookings();
+
+ 
+  const { bookings, isLoading, count } = useBookings();
 
 
+  if (!bookings?.length) return <TableNoContent />;
   if (isLoading) return <Spinner />;
-  if (error) return <TableNoContent />;
-
+  
   const filteredBookings = bookings?.filter((bookings) =>
     bookings.members.name
-      .toLowerCase()
-      .includes(searchNameContext?.name.toLocaleLowerCase() as string)
-      ? bookings
-      : "",
-  );
+  .toLowerCase()
+  .includes(searchNameContext?.name.toLocaleLowerCase() as string)
+  ? bookings
+  : "",
+);
 
   return (
     <Table uniqueStyles="px-2 py-2 w-[40rem]  lg:w-auto" columns="lg:grid-cols-4" smColumns="grid-cols-[150px_160px_100px_200px]">

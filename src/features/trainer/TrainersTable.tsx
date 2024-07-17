@@ -5,9 +5,10 @@ import { SearchNameContext } from "../../context/SearchContext";
 import TrainerRow from "./TrainerRow";
 import TableNoContent from "../../ui/TableNoContent";
 import Table from "../../ui/Table";
+import Spinner from "../../ui/Spinner";
 
 function TrainersTable() {
-  const { trainers } = useTrainers();
+  const { trainers, trainerIsLoading } = useTrainers();
   const [searchParams] = useSearchParams();
   const searchNameContext = useContext(SearchNameContext);
 
@@ -41,21 +42,19 @@ function TrainersTable() {
   if (sortValuePrice.value === "malejaco" && sortValuePrice.value !== null)
     filteredTrainers = filteredTrainers?.sort((a, b) => b.price - a.price);
 
+  if (trainerIsLoading) return <Spinner />;
+  if (!trainers?.length) return <TableNoContent />;
   return (
     <Table
       uniqueStyles="w-[38rem] md:w-auto"
       columns="xl:grid-cols-5"
       smColumns={"grid-cols-[200px_100px_100px_50px_100px]"}
     >
-      {filteredTrainers ? (
-        filteredTrainers.map((trainer) => (
-          <Table.Row key={trainer.id}>
-            <TrainerRow trainer={trainer} />
-          </Table.Row>
-        ))
-      ) : (
-        <TableNoContent />
-      )}
+      {filteredTrainers?.map((trainer) => (
+        <Table.Row key={trainer.id}>
+          <TrainerRow trainer={trainer} />
+        </Table.Row>
+      ))}
     </Table>
   );
 }

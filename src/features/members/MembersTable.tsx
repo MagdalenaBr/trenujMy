@@ -5,10 +5,11 @@ import { useMembers } from "./useMembers";
 import { SearchNameContext } from "../../context/SearchContext";
 import Table from "../../ui/Table";
 import TableNoContent from "../../ui/TableNoContent";
+import Spinner from "../../ui/Spinner";
 
 function MembersTable() {
   const searchNameContext = useContext(SearchNameContext);
-  const { members } = useMembers();
+  const { members, isLoading } = useMembers();
   const filteredMembers = members?.filter((member) =>
     member.name
       .toLowerCase()
@@ -19,6 +20,8 @@ function MembersTable() {
         : "",
   );
 
+  if (!members?.length) return <TableNoContent />;
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <Table
