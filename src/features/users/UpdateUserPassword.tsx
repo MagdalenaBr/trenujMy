@@ -4,9 +4,11 @@ import { useUpdateUserPassword } from "../authentication/useUpdateUserPassword";
 import { schema } from "../../validation/UpdateUserPaasswordValidation";
 import Input from "../../ui/Input";
 import ButtonsContainer from "../../ui/ButtonsContainer";
+import useLoggedUser from "../authentication/useLoggedUser";
 
 export default function UpdateUserPassword() {
   const { updateUserPassword } = useUpdateUserPassword();
+  const {user}=useLoggedUser()
 
   const {
     register,
@@ -51,7 +53,7 @@ export default function UpdateUserPassword() {
         register={register}
         errors={errors}
       />
-      <ButtonsContainer isEditingSession={true} />
+      <ButtonsContainer deactivate={user?.email === 'test@test.com'} isEditingSession={true} />
     </form>
   );
 }
