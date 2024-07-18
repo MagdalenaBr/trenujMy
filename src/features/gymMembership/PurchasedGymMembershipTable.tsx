@@ -15,7 +15,7 @@ export default function PurchasedGymMembershipTable({
   purchasedMemberships: PurchasedMemberschipTypes[] | undefined;
   height?: string;
   isMemberPage?: boolean;
-  isLoading: boolean;
+  isLoading?: boolean;
 }) {
   const { cancelPurchase } = useCancelPurchase();
 

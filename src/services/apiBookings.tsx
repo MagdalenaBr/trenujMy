@@ -96,8 +96,6 @@ export async function getBooking(
   id: string,
   columnName: string,
 ): Promise<BookingsDataType[]> {
-
-  console.log(id, columnName);
   const { data: booking, error } = await supabase
     .from("bookings")
     .select("*, trainers(id, name, category), members(name, phone)")

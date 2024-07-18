@@ -16,7 +16,7 @@ export default function PaymentTable({
   payments: PaymentsType[] | undefined;
   isMemberPage?: boolean;
   height?: string;
-  paymentsIsLoading: boolean;
+  paymentsIsLoading?: boolean;
 }) {
   const { cancelPayment } = useCancelPayment();
 

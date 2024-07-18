@@ -108,7 +108,7 @@ function AddBookingForm({
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-md align-self-center py-1 text-center font-bold uppercase tracking-wider text-textLight">
+      <p className="text-md align-self-center py-1 text-center font-bold uppercase tracking-wider text-textLightMode">
         {typeOfActivities === "personalTrainer"
           ? "Trener personalny"
           : "Zajęcia grupowe"}

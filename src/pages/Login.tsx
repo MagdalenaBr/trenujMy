@@ -5,8 +5,8 @@ import SmallSpinner from "../ui/SmallSpinner";
 
 export default function Login() {
   const { login, isPending } = useUserLogIn();
-  const [email, setEmail] = useState("bronx@test.com");
-  const [password, setPassword] = useState("11111");
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("11111111");
 
   function handleClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

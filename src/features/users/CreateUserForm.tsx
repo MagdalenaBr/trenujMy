@@ -4,9 +4,12 @@ import { schema } from "../../validation/UserValidation";
 import useUserSignUp from "../authentication/useUserSignUp";
 import Input from "../../ui/Input";
 import ButtonsContainer from "../../ui/ButtonsContainer";
+import useLoggedUser from "../authentication/useLoggedUser";
 
 export default function CreateUserForm() {
   const { signUp } = useUserSignUp();
+ const {user}=useLoggedUser()
+ console.log(user);
 
   const {
     register,
@@ -70,7 +73,7 @@ export default function CreateUserForm() {
         register={register}
         errors={errors}
       />
-      <ButtonsContainer isEditingSession={true} />
+      <ButtonsContainer isEditingSession={true} deactivate={user?.email === 'test@test.com'} />
     </form>
   );
 }
