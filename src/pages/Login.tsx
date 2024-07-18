@@ -59,6 +59,9 @@ export default function Login() {
           </button>
         </form>
       </div>
+      <p className="text-sm text-red-600">
+        W wersji demonstracyjnej możliwość edycji danych została wyłączona.
+      </p>
     </div>
   );
 }
