@@ -7,7 +7,7 @@ interface PropsTypes {
 
 export default function Form({ onSubmit, children }: PropsTypes) {
   return (
-    <div className=" z-10 bg-slate-900 px-10 py-6 shadow-sm  shadow-accentColor2">
+    <div className=" z-10 bg-bgTableWithSpacing px-10 py-6 shadow-sm  shadow-accentColor2">
       <form
         onSubmit={onSubmit}
         noValidate

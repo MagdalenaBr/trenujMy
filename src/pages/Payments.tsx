@@ -7,8 +7,8 @@ import MainContainer from "../ui/MainContainer";
 import Heading from "../ui/Heading";
 
 export default function Payments() {
-  const { purchasedMemberships } = usePurchasedMembership(true);
-  const { payments } = usePayments();
+  const { purchasedMemberships, isLoading } = usePurchasedMembership(true);
+  const { payments, isLoading: paymentsIsLoading } = usePayments();
 
   return (
     <MainContainer title="Płatności">
@@ -16,7 +16,7 @@ export default function Payments() {
         <div className="col-span-6 flex  flex-col gap-3 border-2 border-slate-900 bg-bgTableWithSpacing px-4 py-4 shadow-lg shadow-slate-900 ">
           <Heading>Płatności</Heading>
           <div className="h-60 overflow-auto">
-            <PaymentTable payments={payments} />
+            <PaymentTable payments={payments} paymentsIsLoading={paymentsIsLoading}/>
           </div>
         </div>
 
@@ -24,6 +24,7 @@ export default function Payments() {
           <Heading>Zakupione karnety</Heading>
           <PurchasedGymMembershipTable
             purchasedMemberships={purchasedMemberships}
+            isLoading={isLoading}
           ></PurchasedGymMembershipTable>
         </div>
         <GymMembershipTypesContainer />

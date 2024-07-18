@@ -84,7 +84,7 @@ function AddTrainerForm({
 
       <label
         htmlFor="image"
-        className="my-4 w-36 border-2  border-accentColor1 bg-slate-500 px-2 py-1 text-center text-sm font-semibold uppercase text-slate-900"
+        className="my-4 w-36 cursor-pointer  border-2 border-accentColor1 px-2 py-1 text-center text-sm font-semibold uppercase text-textLightMode"
       >
         Dodaj zdjęcie
         <input

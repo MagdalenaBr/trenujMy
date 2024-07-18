@@ -3,10 +3,12 @@ import EditMembershipModal from "./EditMembershipModal";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import Heading from "../../ui/Heading";
 import TableNoContent from "../../ui/TableNoContent";
+import Spinner from "../../ui/Spinner";
 
 export default function GymMembershipTypesContainer() {
-  const { gymMembership } = useGymMembership();
+  const { gymMembership, isLoading } = useGymMembership();
 
+  if (isLoading) return <Spinner />;
   if (!gymMembership?.length)
     return <TableNoContent>Brak dostępnych danych.</TableNoContent>;
 

@@ -12,9 +12,10 @@ import { useBookingsAfterDate } from "./useBookingsAfterDate";
 import Heading from "../../ui/Heading";
 import HomePageContainer from "../../ui/HomePageContainer";
 import NoDataContainer from "../../ui/NoDataContainer";
+import Spinner from "../../ui/Spinner";
 
 export default function PersonalTrainersStats() {
-  const { personalTrainerBookings } = useBookingsAfterDate();
+  const { personalTrainerBookings, isLoading } = useBookingsAfterDate();
 
   const data = personalTrainerBookings?.map((booking) => {
     return {
@@ -33,12 +34,23 @@ export default function PersonalTrainersStats() {
       ),
   );
 
+  if (isLoading)
+    return (
+      <HomePageContainer colGrid="col-span-1">
+        <Spinner />
+      </HomePageContainer>
+    );
+
   return (
     <HomePageContainer colGrid="col-span-1">
       <Heading>Liczba zajęć: trener personalny</Heading>
 
       {uniqeData && uniqeData?.length > 0 ? (
-        <ResponsiveContainer width="100%" height="75%" className='text-slate-900'>
+        <ResponsiveContainer
+          width="100%"
+          height="75%"
+          className="text-slate-900"
+        >
           <BarChart
             width={500}
             height={300}
@@ -52,7 +64,7 @@ export default function PersonalTrainersStats() {
             }}
           >
             <CartesianGrid strokeDasharray="1 " />
-            <XAxis dataKey="name" hide/>
+            <XAxis dataKey="name" hide />
             <YAxis />
             <Tooltip />
             <Bar

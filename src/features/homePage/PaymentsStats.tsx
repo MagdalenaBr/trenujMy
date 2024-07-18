@@ -13,9 +13,10 @@ import { DateInput, DateTime, Interval } from "luxon";
 import { TODAY_DAY } from "../../utils/constants";
 import { START_DAY } from "../../utils/helpers";
 import { useSearchParams } from "react-router-dom";
+import Spinner from "../../ui/Spinner";
 
 export default function PaymentsStats() {
-  const { paymentsAfterDate } = usePaymensAfterDate();
+  const { paymentsAfterDate, isLoading } = usePaymensAfterDate();
 
   const [searchParams] = useSearchParams();
   const selectedTimeRange = !searchParams.get("zakres")
@@ -37,11 +38,20 @@ export default function PaymentsStats() {
     return {
       dzien: day,
       kwota: paymentsAfterDate
-        ?.filter((payment) => DateTime.fromISO(payment.created_at).toLocaleString() === day)
+        ?.filter(
+          (payment) =>
+            DateTime.fromISO(payment.created_at).toLocaleString() === day,
+        )
         .reduce((acc, cur) => acc + cur.amount, 0),
     };
   });
 
+  if (isLoading)
+    return (
+      <HomePageContainer>
+        <Spinner />
+      </HomePageContainer>
+    );
 
   return (
     <HomePageContainer>
@@ -61,7 +71,12 @@ export default function PaymentsStats() {
           <XAxis dataKey="dzien" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="kwota" stroke="#8884d8" fill="#8884d8" />
+          <Area
+            type="monotone"
+            dataKey="kwota"
+            stroke="#8884d8"
+            fill="#8884d8"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </HomePageContainer>

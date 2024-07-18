@@ -16,14 +16,14 @@ export default function CreateUserForm() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmit(data: {
-    name: string;
-    password: string;
-    confirmPassword: string;
-    email: string;
+    newUserName: string;
+    newUserPassword: string;
+    confirmNewUserPassword: string;
+    newUserEamil: string;
   }) {
-    const { name, email, password } = data;
+    const { newUserName, newUserPassword, newUserEamil } = data;
     signUp(
-      { email, password, name },
+      { email: newUserEamil, password: newUserPassword, name: newUserName },
       {
         onSettled() {
           reset();
@@ -43,28 +43,30 @@ export default function CreateUserForm() {
       <Input
         label="Nazwa"
         type="text"
-        id="name"
+        id="newUserName"
         register={register}
         errors={errors}
       />
       <Input
         label="Email"
         type="email"
-        id="email"
+        id="newUserEamil"
         register={register}
         errors={errors}
       />
       <Input
         label="Hasło"
         type="password"
-        id="password"
+        id="newUserPassword"
+        autocomplete="new-password"
         register={register}
         errors={errors}
       />
       <Input
         label="Powtórz hasło"
         type="password"
-        id="confirmPassword"
+        autocomplete="new-password"
+        id="confirmNewUserPassword"
         register={register}
         errors={errors}
       />

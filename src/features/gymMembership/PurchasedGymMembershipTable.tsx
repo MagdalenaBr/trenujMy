@@ -4,24 +4,28 @@ import { PurchasedMemberschipTypes } from "../../types/purchaseMembershipTypes";
 import StatusButton from "../../ui/StatusButton";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import TableNoContent from "../../ui/TableNoContent";
+import Spinner from "../../ui/Spinner";
 
 export default function PurchasedGymMembershipTable({
   purchasedMemberships,
   height = "h-60",
   isMemberPage,
+  isLoading,
 }: {
   purchasedMemberships: PurchasedMemberschipTypes[] | undefined;
   height?: string;
   isMemberPage?: boolean;
+  isLoading: boolean;
 }) {
   const { cancelPurchase } = useCancelPurchase();
-  
+
   function handleClick(id: string, value: boolean) {
     cancelPurchase({ id, value });
   }
 
-
-  if(!purchasedMemberships?.length) return <TableNoContent>Brak dosępnych danych.</TableNoContent>
+  if (isLoading) return <Spinner />;
+  if (!purchasedMemberships?.length)
+    return <TableNoContent>Brak dosępnych danych.</TableNoContent>;
   return (
     <TableWithSpacing
       smColumns="grid-cols-[130px_120px_200px_100px_100px]"

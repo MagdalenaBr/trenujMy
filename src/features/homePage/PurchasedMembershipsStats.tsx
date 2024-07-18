@@ -8,8 +8,6 @@ import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function PurchasedMembershipsStats() {
   const darkModeContext = useContext(DarkModeContext);
-
-  console.log(darkModeContext?.darkMode);
   const { purchasedMemberships } = usePurchasedMembership(false);
 
   const oneDay = purchasedMemberships?.filter(

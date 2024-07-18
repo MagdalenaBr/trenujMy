@@ -30,7 +30,7 @@ function FormInput({
         defaultValue={value}
         readOnly={readOnly}
         {...register(inputName)}
-        className="col-span-2 h-9 border-b-2 border-r-2 border-slate-600 bg-slate-700 px-2 text-sm font-semibold  tracking-wider text-textLight placeholder:text-textLight focus:bg-slate-400 focus:text-textDark focus:outline-none focus:ring-1 focus:ring-slate-400 md:w-[26rem]"
+        className="col-span-2 h-9 shadow-sm shadow-slate-900 border-slate-600 bg-serchInputBg px-2 text-sm  font-semibold tracking-wider text-textLightMode  placeholder:text-textLight focus:border-slate-300 focus:bg-slate-300 focus:text-textDark focus:shadow-md focus:outline-none  focus:ring-1 focus:ring-slate-400  md:w-[26rem] "
         onChange={(e) => {
           if (!onChange) return;
           onChange(e);

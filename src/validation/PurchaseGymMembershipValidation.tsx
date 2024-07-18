@@ -6,5 +6,5 @@ export const schema = yup.object().shape({
   memberId: yup
     .string().required("Wybierz imię i nazwisko klienta."),
   gymMembershipId: yup.string().required("Wybierz rodzaj karnetu."),
-  price: yup.number().transform((value) => Number.isNaN(value) ? null : value ).required("Podaj cenę."),
+  price: yup.number().transform((value) => Number.isNaN(value) ? null : value ).required("Podaj cenę.").max(99999, 'Maksymalna kwota pięciocyfrowa.'),
 });

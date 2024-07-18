@@ -7,7 +7,7 @@ type Props = {
 function FormRow({ name, label, children }: Props) {
   return (
     <>
-      <label htmlFor={name} className="font-semibold text-textLight">
+      <label htmlFor={name} className="font-semibold text-textLightMode">
         {label}
       </label>
       {children}

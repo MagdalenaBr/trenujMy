@@ -1,12 +1,16 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { DEVICE_WIDTH } from "../../utils/constants";
 import { BookingsDataType } from "../../types/bookingTypes";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function MemberClassesStats({
   memberBookings,
 }: {
   memberBookings: BookingsDataType[];
 }) {
+  const darkModeContext = useContext(DarkModeContext);
+
   if (!memberBookings) return [];
   const unconfirmedClasses = memberBookings.filter(
     (el) => el.status === "niepotwierdzona",
@@ -80,11 +84,11 @@ export default function MemberClassesStats({
               cy="50%"
               labelLine={false}
               outerRadius={80}
-              fill="#13c51c9d"
+              fill={darkModeContext?.darkMode ? "#9ca3af" : "#475569"}
               nameKey="name"
               dataKey="value"
             >
-              <Cell key={`cell`} fill="#b7cab99d" />
+              <Cell key={`cell`} fill={darkModeContext?.darkMode ? "#9ca3af" : "#475569"} />
             </Pie>
           </>
         )}

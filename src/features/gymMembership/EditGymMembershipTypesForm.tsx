@@ -32,6 +32,7 @@ export default function EditGymMembershipTypesForm({
     <Form onSubmit={handleSubmit(onSubmit)}>
       {gymMembership?.map((membership) => (
         <FormRow
+        key={membership.id}
           name={String(membership.id)}
           label={membership.gymMembershipName}
         >

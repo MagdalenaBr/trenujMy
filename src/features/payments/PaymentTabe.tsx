@@ -5,24 +5,27 @@ import { PaymentsType } from "../../types/paymentsTypes";
 import TableWithSpacing from "../../ui/TableWithSpacing";
 import StatusButton from "../../ui/StatusButton";
 import TableNoContent from "../../ui/TableNoContent";
+import Spinner from "../../ui/Spinner";
 
 export default function PaymentTable({
   payments,
   isMemberPage,
   height,
+  paymentsIsLoading,
 }: {
   payments: PaymentsType[] | undefined;
   isMemberPage?: boolean;
   height?: string;
+  paymentsIsLoading: boolean;
 }) {
   const { cancelPayment } = useCancelPayment();
-  
+
   function handleClick(id: string, value: boolean) {
     cancelPayment({ id, value });
   }
-
-  if(!payments?.length) return <TableNoContent>Brak dostępnych danych.</TableNoContent>
-
+  if (paymentsIsLoading) return <Spinner />;
+  if (!payments?.length)
+    return <TableNoContent>Brak dostępnych danych.</TableNoContent>;
 
   return (
     <div className={`overflow-y-auto ${height}`}>

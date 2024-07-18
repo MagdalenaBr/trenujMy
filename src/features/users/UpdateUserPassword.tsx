@@ -39,12 +39,14 @@ export default function UpdateUserPassword() {
         label="Nowe hasło"
         type="password"
         id="password"
+        autocomplete="new-password"
         register={register}
         errors={errors}
       />
       <Input
         label="Powtórz hasło"
         type="password"
+        autocomplete="new-password"
         id="confirmPassword"
         register={register}
         errors={errors}
